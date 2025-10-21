@@ -1,4 +1,78 @@
 .footerContainer {
   margin: 0 auto;
-  width: 1200px;
+  width: 100vw;
+}
+
+.footerInnerContainer {
+  display: flex;
+  width: var(--width-300);
+  margin: 0 auto;
+}
+.footerInnerContainer section {
+  width: 760px;
+}
+
+.noticeWrapper {
+  border-top: 1px solid var(--color-gray-800);
+  border-bottom: 1px solid var(--color-gray-400);
+  font-size: var(--text-sm);
+}
+
+.noticeWrapper ul {
+  width: var(--width-300);
+  display: flex;
+  padding: 0;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.noticeWrapper li {
+  display: flex;
+  position: relative;
+  gap: 20px;
+  width: 580px;
+  padding-left: 20px;
+}
+
+.noticeWrapper li > div::before {
+  z-index: 20;
+  content: "";
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 12px;
+  top: 50%;
+  left: 4px;
+  background-color: #eaeaea;
+  transform: translateY(-50%);
+}
+
+.footerMenu {
+  display: flex;
+  gap: 10px;
+  font-size: var(--text-sm);
+}
+
+.footerMenu li {
+  position: relative;
+}
+
+.footerMenu li:not(:first-child) > a::before {
+  z-index: 20;
+  content: "";
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 12px;
+  top: 50%;
+  left: -5px;
+  background-color: #eaeaea;
+  transform: translateY(-50%);
+}
+
+.footerAddress ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: var(--text-xs);
 }
