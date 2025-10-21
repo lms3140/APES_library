@@ -1,0 +1,368 @@
+{
+  "서울": [
+    {
+      "id": "001",
+      "name": "광화문점", 
+      "address": "서울특별시 종로구 종로 1, 교보생명빌딩 지하 1층",
+      "time": "9:30 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-397-3400",
+      "image": "/images/storeInfo/storeImage/gwanghwamun.png",
+      "mapUrl": "https://map.kakao.com/?urlX=495119.0&urlY=1130911.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%ED%99%94%EB%AC%B8%EC%A0%90"
+    },
+    {
+      "id": "058",
+      "name": "가든파이브점", 
+      "address": "서울특별시 송파구 충민로 66, 가든파이브 라이프 리빙관 현대시티몰 4층",
+      "time": "월~목 - 10:30 ~ 20:30 / 금~일 10:30 ~ 21:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-2157-3401",
+      "image": "/images/storeInfo/storeImage/gardenfive.png",
+      "mapUrl": "https://map.kakao.com/?urlX=527493.0&urlY=1104985.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B0%80%EB%93%A0%ED%8C%8C%EC%9D%B4%EB%B8%8C%EC%A0%90"
+    },
+    {
+      "id": "015",
+      "name": "강남점", 
+      "address": "서울특별시 서초구 강남대로 465, 교보타워 지하 1~지하 2층",
+      "time": "9:30 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-530-0304",
+      "image": "/images/storeInfo/storeImage/gangnam.png",
+      "mapUrl": "https://map.kakao.com/?urlX=505318.0&urlY=1112298.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B0%95%EB%82%A8%EC%A0%90"
+    },
+    {
+      "id": "023",
+      "name": "건대스타시티점", 
+      "address": "서울시 광진구 능동로 92 롯데백화점 스타시티점 지하1층",
+      "time": "10:00 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-3425-3501",
+      "image": "/images/storeInfo/storeImage/starcity.png",
+      "mapUrl": "https://map.kakao.com/?urlX=515734.0&urlY=1122088.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B1%B4%EB%8C%80%EC%8A%A4%ED%83%80%EC%8B%9C%ED%8B%B0%EC%A0%90"
+    },
+    {
+      "id": "041",
+      "name": "동대문점", 
+      "address": "서울특별시 중구 장충단로13길 20, 현대시티아울렛 지하 1층",
+      "time": "월~목 : 10:30~21:00 금~일,공휴일 : 10:30~21:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-2283-2131",
+      "image": "/images/storeInfo/storeImage/dongdaemun.png",
+      "mapUrl": "https://map.kakao.com/?urlX=501695.0&urlY=1130334.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8F%99%EB%8C%80%EB%AC%B8%EC%A0%90"
+    },
+    {
+      "id": "033",
+      "name": "목동점", 
+      "address": "서울특별시 양천구 목동서로 159-1, CBS 지하 1층",
+      "time": "10:30 ~ 21:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-2062-8801",
+      "image": "/images/storeInfo/storeImage/mokdong.png",
+      "mapUrl": "https://map.kakao.com/?urlX=472350.0&urlY=1119122.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%AA%A9%EB%8F%99%EC%A0%90"
+    },
+    {
+      "id": "072",
+      "name": "서울대점", 
+      "address": "서울특별시 관악구 관악로 1, 서울대학교 학생회관 구내서점",
+      "time": "평일 8:30~19:00 / 토요일 10:00 ~ 17:00",
+      "holiday": "일요일, 공휴일",
+      "tel": "02-880-8581",
+      "image": "/images/storeInfo/storeImage/seoulUniv.png",
+      "mapUrl": "http://map.kakao.com/?urlX=489070.0&urlY=1099962.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%9C%EC%9A%B8%EB%8C%80%EC%A0%90"
+    },
+    {
+      "id": "068",
+      "name": "수유점", 
+      "address": "서울특별시 강북구 도봉로 348, 교보생명빌딩 지하 1층",
+      "time": "10:30 ~ 21:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-999-3501",
+      "image": "/images/storeInfo/storeImage/suyu.png",
+      "mapUrl": "https://map.kakao.com/?urlX=505857.0&urlY=1149682.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%88%98%EC%9C%A0%EC%A0%90"
+    },
+    {
+      "id": "036",
+      "name": "영등포점", 
+      "address": "서울특별시 영등포구 영중로 15, 타임스퀘어 멀티플렉스 2층",
+      "time": "10:30 ~ 22:00",
+      "holiday": "휴점일없음. 설날,추석당일(13:00~22:00)",
+      "tel": "02-2678-3501",
+      "image": "/images/storeInfo/storeImage/yeongdeungpo.png",
+      "mapUrl": "https://map.kakao.com/?urlX=478503.0&urlY=1115994.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%98%81%EB%93%B1%ED%8F%AC%EC%A0%90"
+    },
+    {
+      "id": "003",
+      "name": "원그로브점", 
+      "address": "서울특별시 강서구 공항대로 165 원그로브몰 B동 지하1층",
+      "time": "10:30~22:00",
+      "holiday": "휴일 없음 (설/추석 당일 13:00~22:00 )",
+      "tel": "02-2667-0630",
+      "image": "/images/storeInfo/storeImage/onegrove.png",
+      "mapUrl": "https://map.kakao.com/?urlX=461291.0&urlY=1128347.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9B%90%EA%B7%B8%EB%A1%9C%EB%B8%8C%EC%A0%90"
+    },
+    {
+      "id": "046",
+      "name": "은평점", 
+      "address": "서울특별시 은평구 통일로 1050 (진관동) 롯데몰 은평점 3층",
+      "time": "10:30~22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-6975-5300",
+      "image": "/images/storeInfo/storeImage/eunpyeong.png",
+      "mapUrl": "https://map.kakao.com/?urlX=481850.0&urlY=1149451.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%80%ED%8F%89%EC%A0%90"
+    },
+    {
+      "id": "074",
+      "name": "이화여대점", 
+      "address": "서울특별시 서대문구 이화여대길 52, 이화여자대학교 ECC센터 지하 4층",
+      "time": "평일 10:00 ~ 19:00 / 토요일 13:00~17:00",
+      "holiday": "일요일, 공휴일",
+      "tel": "02-393-1641",
+      "image": "/images/storeInfo/storeImage/ehwaUniv.png",
+      "mapUrl": "https://map.kakao.com/?urlX=488241.0&urlY=1128320.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%B4%ED%99%94%EC%97%AC%EB%8C%80%EC%A0%90"
+    },
+    {
+      "id": "029",
+      "name": "잠실점", 
+      "address": "서울특별시 송파구 올림픽로 269, 롯데 캐슬프라자 지하 1층",
+      "time": "9:30 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-2140-8800",
+      "image": "/images/storeInfo/storeImage/jamsil.png",
+      "mapUrl": "https://map.kakao.com/?urlX=522262.0&urlY=1115272.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9E%A0%EC%8B%A4%EC%A0%90"
+    },
+    {
+      "id": "090",
+      "name": "천호점", 
+      "address": "서울특별시 강동구 올림픽로 664, 대우한강베네시티 지하 1층",
+      "time": "11:00 ~ 21:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-472-3501",
+      "image": "/images/storeInfo/storeImage/chunho.png",
+      "mapUrl": "https://map.kakao.com/?urlX=527682.0&urlY=1122503.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%9C%ED%98%B8%EC%A0%90"
+    },
+    {
+      "id": "056",
+      "name": "청량리점", 
+      "address": "서울특별시 동대문구 왕산로 214, 롯데백화점 청량리점 지하 1층",
+      "time": "월~목 - 10:30 ~ 20:00 / 금~일, 공휴일 - 10:30 ~ 20:30",
+      "holiday": "설(당일)/추석(당일) *2025.10.5(일) 정기휴일*",
+      "tel": "02-959-3501",
+      "image": "/images/storeInfo/storeImage/chungryangri.png",
+      "mapUrl": "https://map.kakao.com/?urlX=510531.0&urlY=1133655.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%AD%EB%9F%89%EB%A6%AC%EC%A0%90"
+    },
+    {
+      "id": "049",
+      "name": "합정점", 
+      "address": "서울특별시 마포구 월드컵로3길 14 딜라이트스퀘어 2차(지하 1층), 1차(지하 2층)",
+      "time": "10:30 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "02-335-1901",
+      "image": "/images/storeInfo/storeImage/hapjeong.png",
+      "mapUrl": "https://map.kakao.com/?urlX=480636.0&urlY=1125149.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%95%A9%EC%A0%95%EC%A0%90"
+    }
+  ],
+  "경기/인천": [
+    {
+      "id": "070",
+      "name": "광교점", 
+      "address": "경기도 수원시 영통구 광교중앙로 145, 광교엘포트몰 지하 1층",
+      "time": "10:30 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "031-214-3501",
+      "image": "/images/storeInfo/storeImage/gwanggyo.png",
+      "mapUrl": "https://map.kakao.com/?urlX=512804.0&urlY=1052150.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%EA%B5%90%EC%A0%90"
+    },
+    {
+      "id": "013",
+      "name": "부천점", 
+      "address": "경기도 부천시 부천로 1, 부천역사쇼핑몰 7층",
+      "time": "10:00 ~ 21:30",
+      "holiday": "매월 2,4째주 일요일, 설(당일), 추석(당일)",
+      "tel": "0312-663-3501",
+      "image": "/images/storeInfo/storeImage/bucheon.png",
+      "mapUrl": "https://map.kakao.com/?urlX=452040.0&urlY=1106859.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%80%EC%B2%9C%EC%A0%90"
+    },
+    {
+      "id": "047",
+      "name": "분당점", 
+      "address": "경기도 성남시 분당구 황새울로312번길 26, KT&G 분당타워 지하 1층",
+      "time": "10:00 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "031-702-3501",
+      "image": "/images/storeInfo/storeImage/bundang.png",
+      "mapUrl": "https://map.kakao.com/?urlX=527157.0&urlY=1078934.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%84%EB%8B%B9%EC%A0%90"
+    },
+    {
+      "id": "042",
+      "name": "송도점", 
+      "address": "인천광역시 연수구 송도국제대로 123, 현대프리미엄아울렛 지하 1층",
+      "time": "10:30 ~ 21:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "032-727-2807",
+      "image": "/images/storeInfo/storeImage/songdo.png",
+      "mapUrl": "https://map.kakao.com/?urlX=424351.0&urlY=1078685.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%86%A1%EB%8F%84%EC%A0%90"
+    },
+    {
+      "id": "025",
+      "name": "인천점", 
+      "address": "인천광역시 남동구 예술로 138, 이토타워 지하1층",
+      "time": "10:00 ~ 21:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "032-455-1000",
+      "image": "/images/storeInfo/storeImage/incheon.png",
+      "mapUrl": "https://map.kakao.com/?urlX=433857.0&urlY=1096431.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%B8%EC%B2%9C%EC%A0%90"
+    },
+    {
+      "id": "038",
+      "name": "일산점", 
+      "address": "경기도 고양시 일산동구 중앙로 1036, 고양종합터미널 지하 1층",
+      "time": "10:00 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "031-936-7546",
+      "image": "/images/storeInfo/storeImage/ilsan.png",
+      "mapUrl": "https://map.kakao.com/?urlX=453548.0&urlY=1151153.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%BC%EC%82%B0%EC%A0%90"
+    },
+    {
+      "id": "069",
+      "name": "판교점", 
+      "address": "경기도 성남시 분당구 판교역로146번길 20, 현대백화점 지하 2층",
+      "time": "월~목 - 10:30 ~ 20:00 / 금~일 - 10:30 ~ 21:00 / 공휴일 - 10:30 ~ 20:30",
+      "holiday": "설 (당일) / 추석(당일) / 비정기휴무 현대백화점과 동일", 
+      "tel": "031-5170-2424",
+      "image": "/images/storeInfo/storeImage/pangyo.png",
+      "mapUrl": "https://map.kakao.com/?urlX=524798.0&urlY=1081466.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%8C%90%EA%B5%90%EC%A0%90"
+    }, 
+    {
+      "id": "057",
+      "name": "평촌점", 
+      "address": "경기도 안양시 동안구 시민대로 180, 롯데백화점 평촌점 6층",
+      "time": "월~목 - 10:30 ~ 20:00 / 금~일 10:30 ~ 20:30",
+      "holiday": "롯데백화점 평촌점 월별 정기휴무와 동일",
+      "tel": "031-466-3501",
+      "image": "/images/storeInfo/storeImage/pyeongchon.png",
+      "mapUrl": "https://map.kakao.com/?urlX=489112.0&urlY=1080876.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%8F%89%EC%B4%8C%EC%A0%90"
+    }
+  ],
+  "수도권 외": [
+    {
+      "id": "059",
+      "name": "경성대 ・ 부경대점", 
+      "address": "부산광역시 남구 수영로 324, 지하 2층",
+      "time": "11:00 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "051-624-9961",
+      "image": "/images/storeInfo/storeImage/kyeongsungUniv.png",
+      "mapUrl": "https://map.kakao.com/?urlX=978838.0&urlY=460942.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B2%BD%EC%84%B1%EB%8C%80%E3%86%8D%EB%B6%80%EA%B2%BD%EB%8C%80%EC%A0%90"
+    },
+    {
+      "id": "087",
+      "name": "광주상무점", 
+      "address": "광주광역시 서구 상무중앙로 58, 광주 타임스타워 3층",
+      "time": "11:00 ~ 21:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "062-373-3501",
+      "image": "/images/storeInfo/storeImage/sangmu.png",
+      "mapUrl": "https://map.kakao.com/?urlX=465588.0&urlY=459944.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%EC%A3%BC%EC%83%81%EB%AC%B4%EC%A0%90"
+    },
+    {
+      "id": "004",
+      "name": "대구점", 
+      "address": "대구광역시 중구 국채보상로 586, 교보생명빌딩 1~3층",
+      "time": "10:00 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "053-425-3501",
+      "image": "/images/storeInfo/storeImage/daegu.png",
+      "mapUrl": "https://map.kakao.com/?urlX=860091.0&urlY=662136.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8C%80%EA%B5%AC%EC%A0%90"
+    },
+    {
+      "id": "002",
+      "name": "대전점", 
+      "address": "대전광역시 서구 대덕대로 226, 명동프라자 3층",
+      "time": "10:30 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "042-488-3501",
+      "image": "/images/storeInfo/storeImage/daejeon.png",
+      "mapUrl": "https://map.kakao.com/?urlX=585212.0&urlY=793097.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8C%80%EC%A0%84%EC%A0%90"
+    },
+    {
+      "id": "005",
+      "name": "부산점", 
+      "address": "부산광역시 부산진구 중앙대로 658, 교보생명빌딩 1층, 지하 1층",
+      "time": "11:00 ~ 21:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "051-806-3501",
+      "image": "/images/storeInfo/storeImage/busan.png",
+      "mapUrl": "https://map.kakao.com/?urlX=969199.0&urlY=464622.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%80%EC%82%B0%EC%A0%90"
+    },
+    {
+      "id": "024",
+      "name": "세종점", 
+      "address": "세종특별자치시 한누리대로 411, AK& 3층",
+      "time": "10:30 ~ 20:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "044-960-5170",
+      "image": "/images/storeInfo/storeImage/sejong.png",
+      "mapUrl": "https://map.kakao.com/?urlX=557979.0&urlY=834207.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%B8%EC%A2%85%EC%A0%90"
+    },
+    {
+      "id": "045",
+      "name": "센텀시티점", 
+      "address": "부산광역시 해운대구 센텀남대로 59, 롯데백화점 센텀시티점 7층",
+      "time": "월~목 - 10:30 ~ 20:00 / 금~일, 공휴일 - 10:30 ~ 20:30",
+      "holiday": "설(당일),추석(당일), 백화점 휴무일(월 1회)",
+      "tel": "051-743-3501",
+      "image": "/images/storeInfo/storeImage/centumcity.png",
+      "mapUrl": "https://map.kakao.com/?urlX=985385.0&urlY=470059.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90"
+    },
+    {
+      "id": "039",
+      "name": "울산점", 
+      "address": "울산광역시 남구 화합로 185, 업스퀘어 지하 1층",
+      "time": "10:30 ~ 22:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "052-227-3501",
+      "image": "/images/storeInfo/storeImage/ulsan.png",
+      "mapUrl": "https://map.kakao.com/?urlX=1030304.0&urlY=574170.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9A%B8%EC%82%B0%EC%A0%90"
+    },
+    {
+      "id": "031",
+      "name": "전주점", 
+      "address": "전북 전주시 완산구 전주객사4길 24-47, NC웨이브 B관 지하 1층",
+      "time": "10:30 ~ 21:00",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "063-717-3501",
+      "image": "/images/storeInfo/storeImage/jeonju.png",
+      "mapUrl": "https://map.kakao.com/?urlX=532637.0&urlY=644947.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%A0%84%EC%A3%BC%EC%A0%90"
+    },
+    {
+      "id": "028",
+      "name": "창원점", 
+      "address": "경상남도 창원시 성산구 중앙대로 104, 마이우스빌딩 지하 1층",
+      "time": "11:00 ~ 21:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "055-284-3501",
+      "image": "/images/storeInfo/storeImage/changwon.png",
+      "mapUrl": "https://map.kakao.com/?urlX=882562.0&urlY=482998.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B0%BD%EC%9B%90%EC%A0%90"
+    },
+    {
+      "id": "034",
+      "name": "천안점", 
+      "address": "충청남도 천안시 동남구 만남로 43, 신세계백화점 천안아산점 B관 3층",
+      "time": "월~목 - 10:30 ~ 20:00 / 금~일,공휴일 - 10:30 ~ 20:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "041-558-3501",
+      "image": "/images/storeInfo/storeImage/cheonan.png",
+      "mapUrl": "https://map.kakao.com/?urlX=534633.0&urlY=922414.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%9C%EC%95%88%EC%A0%90"
+    },
+    {
+      "id": "048",
+      "name": "칠곡점", 
+      "address": "대구광역시 북구 동암로 104, 3층",
+      "time": "11:30 ~ 20:30",
+      "holiday": "설(당일), 추석(당일)",
+      "tel": "053-322-3501",
+      "image": "/images/storeInfo/storeImage/chilgok.png",
+      "mapUrl": "https://map.kakao.com/?urlX=852416.0&urlY=682388.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B9%A0%EA%B3%A1%EC%A0%90"
+    }
+  ]
+}
