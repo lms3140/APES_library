@@ -1,5 +1,6 @@
-const tabs = ["서울", "경기/인천", "수도권 외"];
 export function StoreTab({ activeTab, onTabChange }) {
+  const tabs = ["서울", "경기/인천", "수도권 외"];
+
   return (
     <div>
       {tabs &&
