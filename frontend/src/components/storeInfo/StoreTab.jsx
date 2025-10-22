@@ -1,15 +1,19 @@
-const tabs = ["서울", "경기/인천", "수도권 외"];
 export function StoreTab({ activeTab, onTabChange }) {
+  const koTab = [
+    { label: "서울", value: "seoul" },
+    { label: "경기/인천", value: "gyeonggi" },
+    { label: "수도권 외", value: "etc" },
+  ];
   return (
     <div>
-      {tabs &&
-        tabs.map((tab) => {
+      {koTab &&
+        koTab.map((tab) => {
           return (
             <button
-              className={activeTab === tab ? "active" : ""}
-              onClick={() => onTabChange(tab)}
+              className={activeTab === tab.value ? "active" : ""}
+              onClick={() => onTabChange(tab.value)}
             >
-              {tab}
+              {tab.label}
             </button>
           );
         })}
