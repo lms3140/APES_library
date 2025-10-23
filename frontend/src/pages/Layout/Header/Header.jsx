@@ -4,23 +4,25 @@ export function Header() {
   return (
     <div>
       <div className={style.userMenuContainer}>
-        <ul>
-          <li>
-            <a href="#">회원가입</a>
-          </li>
-          <li>
-            <a href="#">로그인</a>
-          </li>
-          <li>
-            <a href="#">주문배송</a>
-          </li>
-          <li>
-            <a href="#">매장안내</a>
-          </li>
-          <li>
-            <a href="#">고객센터</a>
-          </li>
-        </ul>
+        <div className={style.userMenuWrapper}>
+          <ul>
+            <li>
+              <a href="#">회원가입</a>
+            </li>
+            <li>
+              <a href="#">로그인</a>
+            </li>
+            <li>
+              <a href="#">주문배송</a>
+            </li>
+            <li>
+              <a href="#">매장안내</a>
+            </li>
+            <li>
+              <a href="#">고객센터</a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <header className={style.headerContainer}>

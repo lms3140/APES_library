@@ -1,11 +1,11 @@
 .footerContainer {
-  margin: 0 auto;
-  width: 100vw;
+  margin-inline: auto;
+  width: 100%;
 }
 
 .footerInnerContainer {
   display: flex;
-  width: var(--width-300);
+  max-width: var(--width-300);
   margin: 0 auto;
 }
 .footerInnerContainer section {
@@ -19,7 +19,7 @@
 }
 
 .noticeWrapper ul {
-  width: var(--width-300);
+  max-width: var(--width-300);
   display: flex;
   padding: 0;
   margin: 0 auto;
