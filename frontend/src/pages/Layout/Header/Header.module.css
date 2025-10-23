@@ -2,9 +2,6 @@
   font-size: var(--text-xs);
   background-color: #f4f4f4;
   height: 24px;
-  display: flex;
-  justify-content: end;
-  align-items: center;
 }
 
 .userMenuContainer ul {
@@ -15,6 +12,11 @@
   position: relative;
   margin: 0;
   margin-right: 20px;
+}
+
+.userMenuWrapper {
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
 .userMenuContainer li {
@@ -42,7 +44,7 @@
   color: red;
 }
 .headerContainer {
-  width: var(--width-300);
+  max-width: var(--width-300);
   margin: 0 auto;
 }
 
@@ -50,7 +52,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: var(--width-300);
+  max-width: var(--width-300);
   margin: 0 auto;
   flex-wrap: nowrap;
 }

@@ -64,7 +64,7 @@ export function Footer() {
           </address>
           <span>AFEC BOOK CENTRE</span>
         </section>
-        <div>sdas</div>
+        <div></div>
       </div>
     </footer>
   );
