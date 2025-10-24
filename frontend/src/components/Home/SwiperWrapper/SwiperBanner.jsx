@@ -1,5 +1,5 @@
 /**
- * Swiper를 한번 래핑한 컴포넌트
+ * Swiper를 배너 형식에 맞게 래핑한 컴포넌트
  */
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,24 +10,38 @@ import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 
 /**
+ * 배너를 쉽게 사용하기 위해 swiper 라이브러리를 래핑해 구현한 컴포넌트입니다.
+ *
  *
  * @typedef {object} SwiperWrapperProps
  * @property {import("swiper/types").SwiperOptions} swiperOptions Swiper의 속성값입니다.
- * @property {string} url 사진파일 경로
- * @property {{fileName:string}[]} imgNameList 사진파일 이름이 들어간 배열
- *
+ * @property {{url:string}[]} imgList 사진url 리스트
  * @param {SwiperWrapperProps} props Props
  *
  * @returns {import("react").JSX.Element}
+ *
+ * @example
+ * // img 배열
+ * const imgNameList = [{url:"cake.jpg"},{url:"iceTea"}];
+ * // 옵션을 별도로 선언
+ * const swiperOptions = {
+ *    slidesPerView:1,
+ *    navigation: true,
+ *    ...
+ * }
+ * <SwiperBanner
+ *    swiperOptions={swiperOptions}
+ *    imgList={imgNameList}
+ *  />
  */
-export function SwiperBanner({ swiperOptions, url, imgNameList }) {
+export function SwiperBanner({ swiperOptions, imgList }) {
   return (
     <Swiper {...swiperOptions}>
-      {imgNameList.map((name) => {
+      {imgList.map((img) => {
         return (
           <SwiperSlide>
-            <div>
-              <img src={`${url}/${name.fileName}`} alt={name.fileName} />
+            <div style={{ display: "flex" }}>
+              <img src={`${img.url}`} alt={img.url} />
             </div>
           </SwiperSlide>
         );

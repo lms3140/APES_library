@@ -1,87 +1,74 @@
 import styles from "./BannerSection.module.css";
-import { Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/navigation";
-import { useState } from "react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { useMemo, useState } from "react";
 import { SwiperBanner } from "../SwiperWrapper/SwiperBanner";
 
 const bannerImgNames = [
-  { fileName: "ad1.png" },
-  { fileName: "ad2.png" },
-  { fileName: "ad3.png" },
-  { fileName: "ad4.png" },
+  { url: "./images/bannerImg/ad1.png" },
+  { url: "./images/bannerImg/ad2.png" },
+  { url: "./images/bannerImg/ad3.png" },
+  { url: "./images/bannerImg/ad4.png" },
 ];
 const eventBanner = [
-  { url: "eb1.jpg", msg: "깊이 생각하면 다칩니다." },
-  { url: "eb2.jpg", msg: "안녕하세요" },
-  { url: "eb3.jpg", msg: "안녕하세요ㅎㅎ" },
+  { url: "./images/bannerImg/eb1.jpg", msg: "이번이 특가다!" },
+  { url: "./images/bannerImg/eb2.jpg", msg: "특가는 아니다!" },
+  { url: "./images/bannerImg/eb3.jpg", msg: "사실 뭔지모른다!" },
 ];
 
-const swiperOptions = {
+const mainSwiperOptions = {
   className: styles.swiper,
   slidesPerView: 1,
   navigation: true,
   pagination: { clickable: true },
-  onSlideChange: () => console.log("slide change"),
-  onSwiper: (swiper) => console.log(swiper),
-  modules: [Navigation, Pagination],
+  modules: [Navigation, Pagination, Autoplay],
   loop: true,
+  autoplay: {
+    delay: 2500,
+    pauseOnMouseEnter: true,
+    disableOnInteraction: false,
+  },
 };
 
 export function BannerSection() {
+  // index를 끌어와 알맞는 msg를 띄워주기
   const [eventBannerIdx, setEventBannerIdx] = useState(0);
+
+  // props 참조변경을 막기위해 memo
+  const sideSwiperOptions = useMemo(() => {
+    return {
+      slidesPerView: 1,
+      pagination: { clickable: true },
+      onSlideChange: (swiper) => {
+        setEventBannerIdx(swiper.realIndex);
+      },
+      onSwiper: (swiper) => {
+        setEventBannerIdx(swiper.realIndex);
+      },
+      modules: [Navigation, Pagination],
+      loop: true,
+    };
+  }, []);
+
   return (
     <section className={styles.bannerSection}>
       <div className={styles.bannerWrapper}>
-        {/* <Swiper
-          className={styles.swiper}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-          modules={[Navigation, Pagination]}
-          loop
-        >
-          {bannerImgNames.map((name) => {
-            return (
-              <SwiperSlide>
-                <img src={`./images/bannerImg/${name}`} alt={name} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper> */}
         <SwiperBanner
-          swiperOptions={swiperOptions}
-          imgNameList={bannerImgNames}
+          swiperOptions={mainSwiperOptions}
+          imgList={bannerImgNames}
         />
       </div>
       <div className={styles.eventBannerWrapper}>
-        <Swiper
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          onSlideChange={(swiper) => setEventBannerIdx(swiper.activeIndex)}
-          onSwiper={(swiper) => {
-            console.log(swiper);
-            setEventBannerIdx(swiper.activeIndex);
-          }}
-          modules={[Navigation, Pagination]}
-          loop
-        >
-          {eventBanner.map((name) => {
-            return (
-              <SwiperSlide>
-                <div>
-                  <img src={`./images/bannerImg/${name.url}`} alt={name} />
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-        <div>{eventBanner[eventBannerIdx].msg}</div>
+        <div style={{ height: 274 }}>
+          <SwiperBanner
+            swiperOptions={sideSwiperOptions}
+            imgList={eventBanner}
+          />
+        </div>
+        <div className={styles.eBannerMsg}>
+          <a href="#">
+            <span>{eventBanner[eventBannerIdx].msg}</span>
+          </a>
+        </div>
       </div>
     </section>
   );
