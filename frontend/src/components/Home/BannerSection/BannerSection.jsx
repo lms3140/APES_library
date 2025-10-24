@@ -6,20 +6,37 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import { useState } from "react";
+import { SwiperBanner } from "../SwiperWrapper/SwiperBanner";
 
-const bannerImgNames = ["ad1.png", "ad2.png", "ad3.png", "ad4.png"];
+const bannerImgNames = [
+  { fileName: "ad1.png" },
+  { fileName: "ad2.png" },
+  { fileName: "ad3.png" },
+  { fileName: "ad4.png" },
+];
 const eventBanner = [
   { url: "eb1.jpg", msg: "깊이 생각하면 다칩니다." },
   { url: "eb2.jpg", msg: "안녕하세요" },
   { url: "eb3.jpg", msg: "안녕하세요ㅎㅎ" },
 ];
 
+const swiperOptions = {
+  className: styles.swiper,
+  slidesPerView: 1,
+  navigation: true,
+  pagination: { clickable: true },
+  onSlideChange: () => console.log("slide change"),
+  onSwiper: (swiper) => console.log(swiper),
+  modules: [Navigation, Pagination],
+  loop: true,
+};
+
 export function BannerSection() {
   const [eventBannerIdx, setEventBannerIdx] = useState(0);
   return (
     <section className={styles.bannerSection}>
       <div className={styles.bannerWrapper}>
-        <Swiper
+        {/* <Swiper
           className={styles.swiper}
           slidesPerView={1}
           navigation
@@ -36,7 +53,11 @@ export function BannerSection() {
               </SwiperSlide>
             );
           })}
-        </Swiper>
+        </Swiper> */}
+        <SwiperBanner
+          swiperOptions={swiperOptions}
+          imgNameList={bannerImgNames}
+        />
       </div>
       <div className={styles.eventBannerWrapper}>
         <Swiper
