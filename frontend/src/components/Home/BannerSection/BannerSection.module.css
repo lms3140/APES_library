@@ -5,6 +5,7 @@
   display: flex;
   /* 구지 이렇게 한 이유가 뭐지?? */
   gap: calc(var(--spacing) * 9);
+  align-items: center;
 }
 
 .bannerWrapper {
@@ -20,12 +21,26 @@
 }
 
 .eventBannerWrapper {
+  display: flex;
+  flex-direction: column;
   width: 274px;
   height: 380px;
 }
 .eventBannerWrapper img {
   width: 100%;
-  object-fit: cover;
+}
+
+.eBannerMsg {
+  display: flex;
+  flex-grow: 1;
+  background-color: var(--color-gray-300);
+}
+.eBannerMsg a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* swiper style*/
