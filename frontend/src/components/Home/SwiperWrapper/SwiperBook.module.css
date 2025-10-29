@@ -1,0 +1,7 @@
+.bookSlide {
+  display: flex;
+  flex-direction: column;
+}
+
+.swiperBook :global(.swiper) {
+}
