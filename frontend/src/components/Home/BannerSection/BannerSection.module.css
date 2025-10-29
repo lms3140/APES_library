@@ -1,0 +1,60 @@
+.bannerSection {
+  max-width: var(--width-300);
+  height: 380px;
+  margin-inline: auto;
+  display: flex;
+  /* 구지 이렇게 한 이유가 뭐지?? */
+  gap: calc(var(--spacing) * 9);
+  align-items: center;
+}
+
+.bannerWrapper {
+  width: 890px;
+  height: 380px;
+  border-radius: var(--radius-md);
+}
+
+.bannerWrapper {
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.eventBannerWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 274px;
+  height: 380px;
+}
+.eventBannerWrapper img {
+  width: 100%;
+}
+
+.eBannerMsg {
+  display: flex;
+  flex-grow: 1;
+  background-color: var(--color-gray-300);
+}
+.eBannerMsg a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* swiper style*/
+.bannerWrapper :global(.swiper) {
+  height: 100%;
+}
+.bannerWrapper :global(.swiper-slide) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 드래그막기 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

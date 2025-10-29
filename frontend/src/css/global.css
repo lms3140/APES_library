@@ -1,0 +1,100 @@
+/* @import url(reset.css); */
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+:host,
+:root {
+  --color-red-100: #fdf2f2;
+  --color-red-200: #fce9ea;
+  --color-red-300: #f8d3d4;
+  --color-red-400: #fda1a4;
+  --color-red-500: #ff6c71;
+  --color-red-600: #f64f55;
+  --color-red-700: #da2128;
+  --color-red-800: #c71e24;
+  --color-red-900: #ac2619;
+  --color-green-100: #f4faf2;
+  --color-green-200: #edf7e9;
+  --color-green-300: #dbeed3;
+  --color-green-400: #b7dea8;
+  --color-green-500: #94cd7d;
+  --color-green-600: #70bc52;
+  --color-green-700: #4dac27;
+  --color-green-800: #3c9a17;
+  --color-green-900: #2a760c;
+  --color-blue-100: #f5f5fb;
+  --color-blue-200: #ededf7;
+  --color-blue-300: #dcddef;
+  --color-blue-400: #b9bbe0;
+  --color-blue-500: #9699d0;
+  --color-blue-600: #7377c0;
+  --color-blue-700: #5055b1;
+  --color-blue-800: #474c98;
+  --color-blue-900: #2c307c;
+  --color-gray-100: #f7f7f7;
+  --color-gray-200: #f2f2f2;
+  --color-gray-300: #eaeaea;
+  --color-gray-400: #d5d5d5;
+  --color-gray-500: #ccc;
+  --color-gray-600: #999;
+  --color-gray-700: #767676;
+  --color-gray-800: #595959;
+  --color-gray-900: #292929;
+  --spacing: 0.25rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: calc(1 / 0.75);
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --leading-normal: 1.5;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --default-transition-duration: 0.15s;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --default-mono-font-family: var(--font-mono);
+  --animate-topButtonSlideUp: topButtonSlideUp 0.23s forwards;
+  --animate-rotateBtn: rotateBtn 3s ease infinite;
+  --animate-bounceHead: bounceHead 3s cubic-bezier(0.3, 1.06, 0.81, 1.11)
+    infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-fadeIn: fadeIn 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --color-bluelight-900: #223fa5;
+  --color-bluelight-800: #314fb9;
+  --color-bluelight-700: #3f5ed5;
+  --color-bluelight-600: #6287e5;
+  --color-bluelight-500: #87a4ef;
+  --color-bluelight-400: #aac3f2;
+  --color-bluelight-300: #c5d6f7;
+  --color-bluelight-200: #dde8fd;
+  --color-bluelight-100: #f1f6fd;
+  --color-red-error: #ec1f2d;
+  --width-15: 60px;
+  --width-25: 100px;
+  --width-35: 140px;
+  --width-50: 200px;
+  --width-75: 300px;
+  --width-300: 1200px;
+}

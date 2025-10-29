@@ -4,12 +4,12 @@ import { MdArrowDropUp } from "react-icons/md";
 import { useSelector } from 'react-redux';
 
 
-export function HeaderLogin() {
-  const isLogin = useSelector((state) => state.auth.isLogin);
-
-
 
   
+
+export function Header() {
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
   return (
     <div>
       <div className={style.userMenuContainer}>

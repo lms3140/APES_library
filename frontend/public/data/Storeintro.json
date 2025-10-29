@@ -1,0 +1,641 @@
+{
+  "gwanghwamunStore": {
+    "floors": [
+      {
+        "floorNumber": 1,
+        "sections": [
+          {
+            "sectionName": "A코너",
+            "categories": ["예술", "여행", "만화"]
+          },
+          {
+            "sectionName": "B코너",
+            "categories": ["잡지", "가정생활", "요리", "취미", "스포츠", "건강"]
+          },
+          {
+            "sectionName": "C코너",
+            "categories": ["아동", "유아"]
+          },
+          {
+            "sectionName": "D코너",
+            "categories": ["초·중·고학습"]
+          },
+          {
+            "sectionName": "E코너",
+            "categories": ["日本書籍"]
+          },
+          {
+            "sectionName": "F코너",
+            "categories": ["Foreign Books", "어린이 영어"]
+          },
+          {
+            "sectionName": "G코너",
+            "categories": ["외국어", "한국소개도서 (Books on Korea)"]
+          },
+          {
+            "sectionName": "H코너",
+            "categories": ["경제", "경영", "자기계발", "정치·사회"]
+          },
+          {
+            "sectionName": "I코너",
+            "categories": ["과학", "기술", "컴퓨터", "취업수험서"]
+          },
+          {
+            "sectionName": "J코너",
+            "categories": ["소설", "시", "에세이"]
+          },
+          {
+            "sectionName": "K코너",
+            "categories": ["인문", "역사", "문화", "종교"]
+          },
+          {
+            "sectionName": "L코너",
+            "categories": ["화방용품", "학용품", "사무용품", "디자인문구"]
+          },
+          {
+            "sectionName": "M코너",
+            "categories": ["일상소품"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": ["문구", "음반", "잡화", "디지털기기"]
+          }
+        ]
+      }
+    ]
+  },
+  "가든5": {
+    "floors": [
+      {
+        "floorNumber": 1,
+        "sections": [
+          {
+            "sectionName": "서가 A",
+            "categories": ["소설", "시", "에세이", "만화", "청소년"]
+          },
+          {
+            "sectionName": "서가 B",
+            "categories": ["어린이", "가정생활", "요리"]
+          },
+          {
+            "sectionName": "서가 C",
+            "categories": ["초·중·고학습", "외국어", "예술", "취미"]
+          },
+          {
+            "sectionName": "서가 D",
+            "categories": [
+              "경제",
+              "자기계발",
+              "인문",
+              "과학",
+              "기술공학",
+              "컴퓨터"
+            ]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "학용품",
+              "사무용품",
+              "디자인 문구",
+              "디지털",
+              "음반"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "강남": {
+    "floors": [
+      {
+        "floorNumber": 1,
+        "sections": [
+          {
+            "sectionName": "서가 A",
+            "categories": ["브랜드책방"]
+          },
+          {
+            "sectionName": "서가 B",
+            "categories": ["외국어", "Foreign Book", "日本書籍"]
+          },
+          {
+            "sectionName": "서가 C",
+            "categories": ["여행", "취미", "예술"]
+          },
+          {
+            "sectionName": "서가 D",
+            "categories": ["컴퓨터", "기술", "과학", "건강"]
+          },
+          {
+            "sectionName": "서가 E",
+            "categories": [
+              "정치",
+              "사회",
+              "경제",
+              "취업·수험서",
+              "경영",
+              "자기계발"
+            ]
+          },
+          {
+            "sectionName": "서가 F",
+            "categories": ["인문", "역사", "문화", "종교"]
+          },
+          {
+            "sectionName": "서가 G",
+            "categories": ["소설", "청소년", "시", "에세이", "잡지", "만화"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": ["디지털", "몽블랑"]
+          },
+          {
+            "sectionName": "문보장",
+            "categories": ["문보장"]
+          }
+        ]
+      },
+      {
+        "floorNumber": 2,
+        "sections": [
+          {
+            "sectionName": "서가 H",
+            "categories": ["중등학습", "초등학습", "고등학습"]
+          },
+          {
+            "sectionName": "서가 I",
+            "categories": ["아동", "유아"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "음반",
+              "고급필기구",
+              "사무용품",
+              "디자인문구",
+              "학용품",
+              "아트박스"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "건대스타시티점": {
+    "floors": [
+      {
+        "floorNumber": 1,
+        "sections": [
+          {
+            "sectionName": "서가 A",
+            "categories": ["문학", "잡지", "만화", "청소년"]
+          },
+          {
+            "sectionName": "서가 B",
+            "categories": ["초·중·고 학습", "외국어"]
+          },
+          {
+            "sectionName": "서가 C",
+            "categories": ["정치", "경제", "컴퓨터", "수험서"]
+          },
+          {
+            "sectionName": "서가 D",
+            "categories": ["인문", "종교", "가정생활", "여행"]
+          },
+          {
+            "sectionName": "서가 E",
+            "categories": ["어린이", "예술", "취미"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": ["문구", "기프트"]
+          }
+        ]
+      }
+    ]
+  },
+  "동대문점": {
+    "floors": [
+      {
+        "floorNumber": "B1",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["여행", "취미", "요리"] },
+          {
+            "sectionName": "서가 B",
+            "categories": ["인문", "종교", "정치", "경제"]
+          },
+          { "sectionName": "서가 C", "categories": ["어린이", "초등학습"] },
+          {
+            "sectionName": "서가 D",
+            "categories": [
+              "컴퓨터",
+              "과학",
+              "외국어",
+              "외국서적",
+              "만화",
+              "예술"
+            ]
+          },
+          {
+            "sectionName": "서가 E",
+            "categories": ["소설", "시", "에세이", "중·고학습", "잡지"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": ["디자인문구", "오피스", "음반", "디지털"]
+          }
+        ]
+      }
+    ]
+  },
+  "목동점": {
+    "floors": [
+      {
+        "floorNumber": "B1",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["소설", "에세이", "만화"] },
+          {
+            "sectionName": "서가 B",
+            "categories": ["잡지", "취미", "실용", "예술"]
+          },
+          {
+            "sectionName": "서가 C",
+            "categories": ["인문", "종교", "정치", "과학", "기술", "컴퓨터"]
+          },
+          { "sectionName": "서가 D", "categories": ["초·중·고학습"] },
+          {
+            "sectionName": "서가 E",
+            "categories": ["외국어", "외국서적", "자기계발", "경제경영"]
+          },
+          { "sectionName": "서가 F", "categories": ["어린이"] },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "학용품",
+              "화방용품",
+              "사무용품",
+              "음반",
+              "디자인문구",
+              "만년필",
+              "필기구",
+              "룩옵티컬",
+              "아트박스"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "서울대점": {
+    "floors": [
+      {
+        "floorNumber": "2F",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["경제·사회·인문"] },
+          { "sectionName": "서가 B", "categories": ["과학·기술·외국서적"] },
+          { "sectionName": "서가 C", "categories": ["외국어·문학·예술"] },
+          { "sectionName": "기타", "categories": ["독서테이블"] }
+        ]
+      }
+    ]
+  },
+  "수유점": {
+    "floors": [
+      {
+        "floorNumber": "B1",
+        "sections": [
+          {
+            "sectionName": "A",
+            "categories": ["소설", "에세이", "예술", "취미"]
+          },
+          {
+            "sectionName": "B",
+            "categories": ["인문", "경제", "과학", "컴퓨터", "수험서"]
+          },
+          {
+            "sectionName": "C",
+            "categories": ["외국어", "초중고학습", "어린이"]
+          },
+          { "sectionName": "음반", "categories": ["음반"] },
+          {
+            "sectionName": "문구",
+            "categories": ["GIFT", "디지털", "사무용품", "학용품", "디자인문구"]
+          }
+        ]
+      }
+    ]
+  },
+  "영등포점": {
+    "floors": [
+      {
+        "floorNumber": "2F",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["이벤트"] },
+          { "sectionName": "서가 B", "categories": ["소설", "시", "에세이"] },
+          {
+            "sectionName": "서가 C",
+            "categories": ["예술", "잡지", "여행", "취미", "요리", "건강"]
+          },
+          {
+            "sectionName": "서가 D",
+            "categories": ["인문", "역사", "만화", "종교"]
+          },
+          {
+            "sectionName": "서가 E",
+            "categories": [
+              "자기계발",
+              "경제",
+              "정치",
+              "수험서",
+              "컴퓨터",
+              "기술"
+            ]
+          },
+          { "sectionName": "서가 F", "categories": ["초.중.고학습", "청소년"] },
+          { "sectionName": "서가 G", "categories": ["가정생활", "어린이"] },
+          {
+            "sectionName": "서가 M",
+            "categories": ["외국어", "Foreign Books", "과학"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "일상소품",
+              "화방용품",
+              "학용품",
+              "사무용품",
+              "디자인문구",
+              "디지털",
+              "음반"
+            ]
+          },
+          {
+            "sectionName": "기타",
+            "categories": ["키즈파크", "폴바셋", "삼성 모바일", "록옵티컬"]
+          }
+        ]
+      }
+    ]
+  },
+  "원코로점": {
+    "floors": [
+      {
+        "floorNumber": "B1",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["문학/취미"] },
+          { "sectionName": "서가 B", "categories": ["인문/정치/예술"] },
+          { "sectionName": "서가 C", "categories": ["외국어/수험서/기술"] },
+          { "sectionName": "서가 D", "categories": ["어린이"] },
+          { "sectionName": "서가 E", "categories": ["학용품/사무용품"] },
+          { "sectionName": "서가 F", "categories": ["디자인문구"] },
+          { "sectionName": "서가 G", "categories": ["일상소품"] },
+          { "sectionName": "서가 H", "categories": ["경제/경영"] },
+          {
+            "sectionName": "PLAY AGIT(플레이 아지트)",
+            "categories": ["만화", "음반", "캐릭터특화존"]
+          },
+          { "sectionName": "문보장", "categories": ["문보장"] }
+        ]
+      }
+    ]
+  },
+  "은평점": {
+    "floors": [
+      {
+        "floorNumber": "3F",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["어린이"] },
+          { "sectionName": "서가 B", "categories": ["초등학습"] },
+          {
+            "sectionName": "서가 C",
+            "categories": ["외국어", "여행", "예술", "취미"]
+          },
+          {
+            "sectionName": "서가 D",
+            "categories": ["경제", "정치", "인문", "과학", "기술"]
+          },
+          {
+            "sectionName": "서가 E",
+            "categories": ["소설", "시/에세이", "만화", "중고학습"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "데스크셀렉션",
+              "디자인문구",
+              "일상소품",
+              "사무용품",
+              "학용품",
+              "디지털",
+              "음반"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "이화여대점": {
+    "floors": [
+      {
+        "floorNumber": "B4",
+        "sections": [
+          {
+            "sectionName": "서가 A",
+            "categories": ["외국어", "외국서적", "경제", "수험서"]
+          },
+          { "sectionName": "서가 B", "categories": ["문학", "아동", "유아"] },
+          {
+            "sectionName": "서가 C",
+            "categories": ["예술", "인문", "사회", "과학"]
+          },
+          {
+            "sectionName": "기타",
+            "categories": ["행사", "잡지", "사무용품", "학용품"]
+          }
+        ]
+      }
+    ]
+  },
+  "잠실점": {
+    "floors": [
+      {
+        "floorNumber": "B1",
+        "sections": [
+          {
+            "sectionName": "서가 A",
+            "categories": ["예술", "잡지", "인문", "역사", "문화", "종교"]
+          },
+          {
+            "sectionName": "서가 B",
+            "categories": ["과학", "기술", "컴퓨터", "취업수험서"]
+          },
+          {
+            "sectionName": "서가 C",
+            "categories": ["외국어", "Foreign Books"]
+          },
+          { "sectionName": "서가 D", "categories": ["초.중.고학습"] },
+          { "sectionName": "서가 E", "categories": ["어린이", "가정생활"] },
+          {
+            "sectionName": "서가 F",
+            "categories": ["소설", "시/에세이", "만화", "청소년"]
+          },
+          {
+            "sectionName": "서가 G",
+            "categories": ["취미", "여행", "건강", "요리"]
+          },
+          {
+            "sectionName": "서가 H",
+            "categories": ["경제", "경영", "정치", "사회", "자기계발"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "학용품",
+              "사무용품",
+              "필기구",
+              "화방용품",
+              "디자인문구",
+              "음반",
+              "일상소품",
+              "디지털"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "천호점": {
+    "floors": [
+      {
+        "floorNumber": "B1",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["소설"] },
+          {
+            "sectionName": "서가 B",
+            "categories": ["에세이", "인문", "역사", "종교"]
+          },
+          {
+            "sectionName": "서가 C",
+            "categories": ["경제", "정치", "외국어", "수험서"]
+          },
+          { "sectionName": "서가 D", "categories": ["어린이"] },
+          {
+            "sectionName": "서가 E",
+            "categories": ["예술", "만화", "취미", "잡지"]
+          },
+          { "sectionName": "서가 F", "categories": ["초·중·고학습", "사전"] },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "일상소품",
+              "학용품",
+              "사무용품",
+              "디지털",
+              "디자인문구"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "청량리점": {
+    "floors": [
+      {
+        "floorNumber": "B1",
+        "sections": [
+          {
+            "sectionName": "서가 A",
+            "categories": ["유아", "아동", "초·중·고학습"]
+          },
+          {
+            "sectionName": "서가 B",
+            "categories": [
+              "취미",
+              "요리",
+              "건강",
+              "예술",
+              "외국어",
+              "만화",
+              "여행",
+              "인문",
+              "종교",
+              "수험서"
+            ]
+          },
+          {
+            "sectionName": "서가 C",
+            "categories": [
+              "소설",
+              "에세이",
+              "경제",
+              "정치",
+              "컴퓨터",
+              "과학",
+              "기술"
+            ]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": ["학용품", "디자인문구", "일상소품", "디지털", "음반"]
+          }
+        ]
+      }
+    ]
+  },
+  "합정점": {
+    "floors": [
+      {
+        "floorNumber": "1차",
+        "sections": [
+          { "sectionName": "서가 A", "categories": ["예술", "음악", "디자인"] },
+          {
+            "sectionName": "서가 B",
+            "categories": ["외국서적", "건강", "요리", "취미", "여행"]
+          },
+          { "sectionName": "HOTTRACKS", "categories": ["아트샵"] }
+        ]
+      },
+      {
+        "floorNumber": "2차",
+        "sections": [
+          { "sectionName": "서가 C", "categories": ["만화"] },
+          {
+            "sectionName": "서가 D",
+            "categories": ["잡지", "소설", "시/에세이"]
+          },
+          {
+            "sectionName": "서가 E",
+            "categories": ["유아", "아동", "가정생활", "청소년"]
+          },
+          {
+            "sectionName": "서가 F",
+            "categories": [
+              "초·중·고학습",
+              "어린이영어",
+              "과학",
+              "기술",
+              "컴퓨터"
+            ]
+          },
+          { "sectionName": "서가 G", "categories": ["정치", "수험서", "종교"] },
+          { "sectionName": "서가 H", "categories": ["인문", "역사", "문화"] },
+          {
+            "sectionName": "서가 I",
+            "categories": ["경제", "자기계발", "외국어"]
+          },
+          {
+            "sectionName": "HOTTRACKS",
+            "categories": [
+              "디자인문구",
+              "일상소품",
+              "학용품",
+              "사무용품",
+              "디지털"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

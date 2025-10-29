@@ -1,0 +1,41 @@
+.shortcutSection {
+  max-width: var(--width-300);
+  margin-inline: auto;
+  height: 96px;
+  display: flex;
+  gap: calc(var(--spacing) * 9);
+  margin-top: calc(var(--spacing) * 8);
+}
+.shortcutWrapper {
+  width: 890px;
+  height: 96px;
+}
+
+.shortcutWrapper ul {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 5px;
+  text-align: center;
+  justify-content: space-between;
+}
+.adBannerWrapper {
+  width: 274px;
+  height: 100%;
+}
+
+.icon {
+  background-color: var(--color-gray-200);
+  width: 68px;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-2xl);
+}
+
+.icon + span {
+  font-size: var(--text-sm);
+  text-align: center;
+}
