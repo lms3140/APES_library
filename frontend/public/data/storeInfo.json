@@ -8,7 +8,106 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-397-3400",
       "image": "/images/storeInfo/storeImage/gwanghwamun.png",
-      "mapUrl": "https://map.kakao.com/?urlX=495119.0&urlY=1130911.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%ED%99%94%EB%AC%B8%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=495119.0&urlY=1130911.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%ED%99%94%EB%AC%B8%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "A코너",
+              "categories": ["예술", "여행", "만화"]
+            },
+            {
+              "sectionName": "B코너",
+              "categories": [
+                "잡지",
+                "가정생활",
+                "요리",
+                "취미",
+                "스포츠",
+                "건강"
+              ]
+            },
+            {
+              "sectionName": "C코너",
+              "categories": ["아동", "유아"]
+            },
+            {
+              "sectionName": "D코너",
+              "categories": ["초·중·고학습"]
+            },
+            {
+              "sectionName": "E코너",
+              "categories": ["日本書籍"]
+            },
+            {
+              "sectionName": "F코너",
+              "categories": ["Foreign Books/어린이 영어"]
+            },
+            {
+              "sectionName": "G코너",
+              "categories": ["외국어/한국소개도서 (Books on Korea)"]
+            },
+            {
+              "sectionName": "H코너",
+              "categories": ["경제", "경영", "자기계발", "정치·사회"]
+            },
+            {
+              "sectionName": "I코너",
+              "categories": ["과학", "기술", "컴퓨터", "취업수험서"]
+            },
+            {
+              "sectionName": "J코너",
+              "categories": ["소설", "시", "에세이"]
+            },
+            {
+              "sectionName": "K코너",
+              "categories": ["인문", "역사", "문화", "종교"]
+            },
+            {
+              "sectionName": "L코너",
+              "categories": ["화방용품", "학용품", "사무용품", "디자인문구"]
+            },
+            {
+              "sectionName": "M코너",
+              "categories": ["일상소품"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": ["문구/음반/잡화/디지털기기"]
+            },
+            {
+              "sectionName": "전시공간",
+              "categories": "교보아트스페이스"
+            },
+            {
+              "sectionName": "카페",
+              "categories": "스타벅스"
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/gwanghwamun.png"
+        }
+      ],
+      "transportInfo": [
+        {
+          "subway": ["", "", ""],
+          "bus": [
+            {
+              "station": "",
+              "busNo": ""
+            },
+            {
+              "station": "",
+              "busNo": ""
+            }
+          ]
+        }
+      ],
+      "parkingInfo": "",
+      "kakaoMap": {
+        "strLat": "37.57081936962591",
+        "strLong": "126.9778991525692"
+      }
     },
     {
       "id": "058",
@@ -18,7 +117,52 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-2157-3401",
       "image": "/images/storeInfo/storeImage/gardenfive.png",
-      "mapUrl": "https://map.kakao.com/?urlX=527493.0&urlY=1104985.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B0%80%EB%93%A0%ED%8C%8C%EC%9D%B4%EB%B8%8C%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=527493.0&urlY=1104985.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B0%80%EB%93%A0%ED%8C%8C%EC%9D%B4%EB%B8%8C%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["소설", "시", "에세이", "만화", "청소년"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["어린이", "가정생활", "요리"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["초·중·고학습", "외국어", "예술", "취미"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": [
+                "경제",
+                "자기계발",
+                "인문",
+                "과학",
+                "기술공학",
+                "컴퓨터"
+              ]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용품",
+                "사무용품",
+                "디자인 문구",
+                "디지털",
+                "음반"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/gardenfive.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.47731815991441",
+        "strLong": "127.12432988848975"
+      }
     },
     {
       "id": "015",
@@ -28,7 +172,87 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-530-0304",
       "image": "/images/storeInfo/storeImage/gangnam.png",
-      "mapUrl": "https://map.kakao.com/?urlX=505318.0&urlY=1112298.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B0%95%EB%82%A8%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=505318.0&urlY=1112298.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B0%95%EB%82%A8%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "B1",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["브랜드책방"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["외국어", "Foreign Book", "日本書籍"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["여행", "취미", "예술"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["컴퓨터", "기술", "과학", "건강"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": [
+                "정치",
+                "사회",
+                "경제",
+                "취업·수험서",
+                "경영",
+                "자기계발"
+              ]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["인문", "역사", "문화", "종교"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["소설", "청소년", "시", "에세이", "잡지", "만화"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": ["디지털", "몽블랑"]
+            },
+            {
+              "sectionName": "문보장",
+              "categories": ["문보장"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/gangnamB1.jpg"
+        },
+        {
+          "floorNumber": "B2",
+          "sections": [
+            {
+              "sectionName": "서가 H",
+              "categories": ["중등학습", "초등학습", "고등학습"]
+            },
+            {
+              "sectionName": "서가 I",
+              "categories": ["아동", "유아"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "음반",
+                "고급필기구",
+                "사무용품",
+                "디자인문구",
+                "학용품",
+                "아트박스"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/gangnamB2.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.5037373",
+        "strLong": "127.0240583"
+      }
     },
     {
       "id": "023",
@@ -38,7 +262,43 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-3425-3501",
       "image": "/images/storeInfo/storeImage/starcity.png",
-      "mapUrl": "https://map.kakao.com/?urlX=515734.0&urlY=1122088.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B1%B4%EB%8C%80%EC%8A%A4%ED%83%80%EC%8B%9C%ED%8B%B0%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=515734.0&urlY=1122088.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B1%B4%EB%8C%80%EC%8A%A4%ED%83%80%EC%8B%9C%ED%8B%B0%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["문학", "잡지", "만화", "청소년"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["초·중·고 학습", "외국어"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["정치", "경제", "컴퓨터", "수험서"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["인문", "종교", "가정생활", "여행"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["어린이", "예술", "취미"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": ["문구", "기프트"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/starcity.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.5389997704376",
+        "strLong": "127.071214413664"
+      }
     },
     {
       "id": "041",
@@ -48,7 +308,50 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-2283-2131",
       "image": "/images/storeInfo/storeImage/dongdaemun.jpg",
-      "mapUrl": "https://map.kakao.com/?urlX=501695.0&urlY=1130334.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8F%99%EB%8C%80%EB%AC%B8%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=501695.0&urlY=1130334.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8F%99%EB%8C%80%EB%AC%B8%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["여행", "취미", "요리"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["인문", "종교", "정치", "경제"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["어린이", "초등학습"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": [
+                "컴퓨터",
+                "과학",
+                "외국어",
+                "외국서적",
+                "만화",
+                "예술"
+              ]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["소설", "시", "에세이", "중·고학습", "잡지"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": ["디자인문구", "오피스", "음반", "디지털"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/dongdaemun.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.5687421",
+        "strLong": "127.0076714"
+      }
     },
     {
       "id": "033",
@@ -58,7 +361,57 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-2062-8801",
       "image": "/images/storeInfo/storeImage/mokdong.jpg",
-      "mapUrl": "https://map.kakao.com/?urlX=472350.0&urlY=1119122.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%AA%A9%EB%8F%99%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=472350.0&urlY=1119122.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%AA%A9%EB%8F%99%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["소설", "에세이", "만화"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["잡지", "취미", "실용", "예술"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["인문", "종교", "정치", "과학", "기술", "컴퓨터"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["초·중·고학습"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["외국어", "외국서적", "자기계발", "경제경영"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용품",
+                "화방용품",
+                "사무용품",
+                "음반",
+                "디자인문구",
+                "만년필",
+                "필기구",
+                "룩옵티컬",
+                "아트박스"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/mokdong.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.52826659999999",
+        "strLong": "126.8748781"
+      }
     },
     {
       "id": "072",
@@ -68,7 +421,35 @@
       "holiday": "일요일, 공휴일",
       "tel": "02-880-8581",
       "image": "/images/storeInfo/storeImage/seoulUniv.png",
-      "mapUrl": "http://map.kakao.com/?urlX=489070.0&urlY=1099962.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%9C%EC%9A%B8%EB%8C%80%EC%A0%90"
+      "mapUrl": "http://map.kakao.com/?urlX=489070.0&urlY=1099962.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%9C%EC%9A%B8%EB%8C%80%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["경제·사회·인문"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["과학·기술·외국서적"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["외국어·문학·예술"]
+            },
+            {
+              "sectionName": "기타",
+              "categories": ["독서테이블"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/seoulUniv.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.4592697",
+        "strLong": "126.9505863"
+      }
     },
     {
       "id": "068",
@@ -78,7 +459,45 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-999-3501",
       "image": "/images/storeInfo/storeImage/suyu.png",
-      "mapUrl": "https://map.kakao.com/?urlX=505857.0&urlY=1149682.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%88%98%EC%9C%A0%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=505857.0&urlY=1149682.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%88%98%EC%9C%A0%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "A",
+              "categories": ["소설", "에세이", "예술", "취미"]
+            },
+            {
+              "sectionName": "B",
+              "categories": ["인문", "경제", "과학", "컴퓨터", "수험서"]
+            },
+            {
+              "sectionName": "C",
+              "categories": ["외국어", "초중고학습", "어린이"]
+            },
+            {
+              "sectionName": "음반",
+              "categories": ["음반"]
+            },
+            {
+              "sectionName": "문구",
+              "categories": [
+                "GIFT",
+                "디지털",
+                "사무용품",
+                "학용품",
+                "디자인문구"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/suyu.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.6384713",
+        "strLong": "127.0265461"
+      }
     },
     {
       "id": "036",
@@ -88,7 +507,74 @@
       "holiday": "휴점일없음. 설날,추석당일(13:00~22:00)",
       "tel": "02-2678-3501",
       "image": "/images/storeInfo/storeImage/yeongdeungpo.png",
-      "mapUrl": "https://map.kakao.com/?urlX=478503.0&urlY=1115994.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%98%81%EB%93%B1%ED%8F%AC%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=478503.0&urlY=1115994.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%98%81%EB%93%B1%ED%8F%AC%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["이벤트"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["소설", "시", "에세이"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["예술", "잡지", "여행", "취미", "요리", "건강"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["인문", "역사", "만화", "종교"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": [
+                "자기계발",
+                "경제",
+                "정치",
+                "수험서",
+                "컴퓨터",
+                "기술"
+              ]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["초.중.고학습", "청소년"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["가정생활", "어린이"]
+            },
+            {
+              "sectionName": "서가 M",
+              "categories": ["외국어", "Foreign Books", "과학"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "일상소품",
+                "화방용품",
+                "학용품",
+                "사무용품",
+                "디자인문구",
+                "디지털",
+                "음반"
+              ]
+            },
+            {
+              "sectionName": "기타",
+              "categories": ["키즈파크", "폴바셋", "삼성 모바일", "록옵티컬"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/yeongdeungpo.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.517023",
+        "strLong": "126.902735"
+      }
     },
     {
       "id": "003",
@@ -98,7 +584,59 @@
       "holiday": "휴일 없음 (설/추석 당일 13:00~22:00 )",
       "tel": "02-2667-0630",
       "image": "/images/storeInfo/storeImage/onegrove.jpeg",
-      "mapUrl": "https://map.kakao.com/?urlX=461291.0&urlY=1128347.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9B%90%EA%B7%B8%EB%A1%9C%EB%B8%8C%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=461291.0&urlY=1128347.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9B%90%EA%B7%B8%EB%A1%9C%EB%B8%8C%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["문학/취미"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["인문/정치/예술"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["외국어/수험서/기술"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["학용품/사무용품"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["디자인문구"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["일상소품"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["경제/경영"]
+            },
+            {
+              "sectionName": "PLAY AGIT(플레이 아지트)",
+              "categories": ["만화", "음반", "캐릭터특화존"]
+            },
+            {
+              "sectionName": "문보장",
+              "categories": ["문보장"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/onegrove.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.561452",
+        "strLong": "126.824756"
+      }
     },
     {
       "id": "046",
@@ -108,7 +646,51 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-6975-5300",
       "image": "/images/storeInfo/storeImage/eunpyeong.png",
-      "mapUrl": "https://map.kakao.com/?urlX=481850.0&urlY=1149451.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%80%ED%8F%89%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=481850.0&urlY=1149451.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%80%ED%8F%89%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["초등학습"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["외국어", "여행", "예술", "취미"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["경제", "정치", "인문", "과학", "기술"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["소설", "시/에세이", "만화", "중고학습"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "데스크셀렉션",
+                "디자인문구",
+                "일상소품",
+                "사무용품",
+                "학용품",
+                "디지털",
+                "음반"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/eunpyeong.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.63761025148713",
+        "strLong": "126.91774803525738"
+      }
     },
     {
       "id": "074",
@@ -118,7 +700,35 @@
       "holiday": "일요일, 공휴일",
       "tel": "02-393-1641",
       "image": "/images/storeInfo/storeImage/ehwaUniv.png",
-      "mapUrl": "https://map.kakao.com/?urlX=488241.0&urlY=1128320.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%B4%ED%99%94%EC%97%AC%EB%8C%80%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=488241.0&urlY=1128320.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%B4%ED%99%94%EC%97%AC%EB%8C%80%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["외국어", "외국서적", "경제", "수험서"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["문학", "아동", "유아"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["예술", "인문", "사회", "과학"]
+            },
+            {
+              "sectionName": "기타",
+              "categories": ["행사", "잡지", "사무용품", "학용품"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/ehwaUniv.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.561469",
+        "strLong": "126.946759"
+      }
     },
     {
       "id": "029",
@@ -128,7 +738,64 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-2140-8800",
       "image": "/images/storeInfo/storeImage/jamsil.png",
-      "mapUrl": "https://map.kakao.com/?urlX=522262.0&urlY=1115272.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9E%A0%EC%8B%A4%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=522262.0&urlY=1115272.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9E%A0%EC%8B%A4%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["예술", "잡지", "인문", "역사", "문화", "종교"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["과학", "기술", "컴퓨터", "취업수험서"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["외국어", "Foreign Books"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["초.중.고학습"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["어린이", "가정생활"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["소설", "시/에세이", "만화", "청소년"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["취미", "여행", "건강", "요리"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["경제", "경영", "정치", "사회", "자기계발"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용품",
+                "사무용품",
+                "필기구",
+                "화방용품",
+                "디자인문구",
+                "음반",
+                "일상소품",
+                "디지털"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/jamsil.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.5144165",
+        "strLong": "127.1007216"
+      }
     },
     {
       "id": "090",
@@ -138,7 +805,53 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-472-3501",
       "image": "/images/storeInfo/storeImage/chunho.png",
-      "mapUrl": "https://map.kakao.com/?urlX=527682.0&urlY=1122503.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%9C%ED%98%B8%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=527682.0&urlY=1122503.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%9C%ED%98%B8%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["소설"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["에세이", "인문", "역사", "종교"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["경제", "정치", "외국어", "수험서"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["예술", "만화", "취미", "잡지"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["초·중·고학습", "사전"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "일상소품",
+                "학용품",
+                "사무용품",
+                "디지털",
+                "디자인문구"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/chunho.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.5404511",
+        "strLong": "127.1252874"
+      }
     },
     {
       "id": "056",
@@ -148,7 +861,60 @@
       "holiday": "설(당일)/추석(당일) *2025.10.5(일) 정기휴일*",
       "tel": "02-959-3501",
       "image": "/images/storeInfo/storeImage/chungryangri.png",
-      "mapUrl": "https://map.kakao.com/?urlX=510531.0&urlY=1133655.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%AD%EB%9F%89%EB%A6%AC%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=510531.0&urlY=1133655.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%AD%EB%9F%89%EB%A6%AC%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["유아", "아동", "초·중·고학습"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": [
+                "취미",
+                "요리",
+                "건강",
+                "예술",
+                "외국어",
+                "만화",
+                "여행",
+                "인문",
+                "종교",
+                "수험서"
+              ]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": [
+                "소설",
+                "에세이",
+                "경제",
+                "정치",
+                "컴퓨터",
+                "과학",
+                "기술"
+              ]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용품",
+                "디자인문구",
+                "일상소품",
+                "디지털",
+                "음반"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/chungryangri.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.5806981",
+        "strLong": "127.047695"
+      }
     },
     {
       "id": "049",
@@ -158,7 +924,81 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "02-335-1901",
       "image": "/images/storeInfo/storeImage/hapjeong.png",
-      "mapUrl": "https://map.kakao.com/?urlX=480636.0&urlY=1125149.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%95%A9%EC%A0%95%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=480636.0&urlY=1125149.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%95%A9%EC%A0%95%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "1차",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["예술", "음악", "디자인"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["외국서적", "건강", "요리", "취미", "여행"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": ["아트샵"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/hapjeong1.jpg"
+        },
+        {
+          "floorNumber": "2차",
+          "sections": [
+            {
+              "sectionName": "서가 C",
+              "categories": ["만화"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["잡지", "소설", "시/에세이"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["유아", "아동", "가정생활", "청소년"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": [
+                "초·중·고학습",
+                "어린이영어",
+                "과학",
+                "기술",
+                "컴퓨터"
+              ]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["정치", "수험서", "종교"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["인문", "역사", "문화"]
+            },
+            {
+              "sectionName": "서가 I",
+              "categories": ["경제", "자기계발", "외국어"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "디자인문구",
+                "일상소품",
+                "학용품",
+                "사무용품",
+                "디지털"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/hapjeong2.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.5500215",
+        "strLong": "126.9123444"
+      }
     }
   ],
   "gyeonggi": [
@@ -170,7 +1010,68 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "031-214-3501",
       "image": "/images/storeInfo/storeImage/gwanggyo.png",
-      "mapUrl": "https://map.kakao.com/?urlX=512804.0&urlY=1052150.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%EA%B5%90%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=512804.0&urlY=1052150.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%EA%B5%90%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["베스트셀러", "이벤트"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": [
+                "여행",
+                "예술",
+                "취미",
+                "잡지",
+                "소설",
+                "시/에세이",
+                "청소년"
+              ]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": [
+                "인문",
+                "역사",
+                "종교",
+                "경제",
+                "경영",
+                "과학",
+                "기술",
+                "외국어",
+                "컴퓨터"
+              ]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["초·중·고학습"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "디자인문구",
+                "사무용품",
+                "학용품",
+                "일상소품",
+                "필기구",
+                "디지털"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/gwanggyo.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.2869447",
+        "strLong": "127.0577533"
+      }
     },
     {
       "id": "013",
@@ -180,7 +1081,67 @@
       "holiday": "매월 2,4째주 일요일, 설(당일), 추석(당일)",
       "tel": "0312-663-3501",
       "image": "/images/storeInfo/storeImage/bucheon.png",
-      "mapUrl": "https://map.kakao.com/?urlX=452040.0&urlY=1106859.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%80%EC%B2%9C%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=452040.0&urlY=1106859.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%80%EC%B2%9C%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["만화", "잡지"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["자기계발", "소설", "에세이"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["경제", "정치"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["인문", "종교", "역사"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": [
+                "예술",
+                "건강",
+                "취미",
+                "여행",
+                "과학",
+                "기술",
+                "컴퓨터"
+              ]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["취업수험서", "외국어"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["유아", "아동", "가정생활"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["초·중·고학습"]
+            },
+            {
+              "sectionName": "서가 I",
+              "categories": ["디자인 문구"]
+            },
+            {
+              "sectionName": "서가 J",
+              "categories": ["스토리존"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/bucheon.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.483940966743376",
+        "strLong": "126.78309316439194"
+      }
     },
     {
       "id": "047",
@@ -190,7 +1151,62 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "031-702-3501",
       "image": "/images/storeInfo/storeImage/bundang.png",
-      "mapUrl": "https://map.kakao.com/?urlX=527157.0&urlY=1078934.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%84%EB%8B%B9%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=527157.0&urlY=1078934.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%84%EB%8B%B9%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["소설", "시/에세이", "만화", "잡지"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["인문", "역사", "종교"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": [
+                "경제",
+                "경영",
+                "정치",
+                "사회",
+                "과학",
+                "기술",
+                "컴퓨터"
+              ]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["여행", "예술", "외국어"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["초·중·고학습", "취미", "건강", "요리"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용품",
+                "사무용품",
+                "디자인문구",
+                "일상소품",
+                "라이프스타일",
+                "디지털코드"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/bundang.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.3834287",
+        "strLong": "127.1226573"
+      }
     },
     {
       "id": "042",
@@ -200,7 +1216,50 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "032-727-2807",
       "image": "/images/storeInfo/storeImage/songdo.png",
-      "mapUrl": "https://map.kakao.com/?urlX=424351.0&urlY=1078685.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%86%A1%EB%8F%84%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=424351.0&urlY=1078685.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%86%A1%EB%8F%84%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["소설", "청소년", "만화"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["중·고학습"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["잡지", "인문", "경제", "자기계발"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["예술", "수험서", "과학", "외국어", "여행"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["초등학습", "어린이", "키즈가든"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "사무용품",
+                "학용품",
+                "디자인문구",
+                "디지털",
+                "디자인소품",
+                "음반"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/songdo.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.3821037",
+        "strLong": "126.6583306"
+      }
     },
     {
       "id": "025",
@@ -210,7 +1269,63 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "032-455-1000",
       "image": "/images/storeInfo/storeImage/incheon.png",
-      "mapUrl": "https://map.kakao.com/?urlX=433857.0&urlY=1096431.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%B8%EC%B2%9C%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=433857.0&urlY=1096431.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%B8%EC%B2%9C%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["인문", "역사", "종교"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["소설", "만화"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["에세이", "자기계발"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["여행", "예술"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["정치", "경제", "수험서", "컴퓨터"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["잡지", "취미", "건강", "요리"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["과학", "기술", "외국어"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["초·중·고학습", "청소년"]
+            },
+            {
+              "sectionName": "서가 I",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 J",
+              "categories": ["디자인문구", "학용품"]
+            },
+            {
+              "sectionName": "서가 K",
+              "categories": ["일상소품", "음반", "디지털"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/incheon.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.4461759",
+        "strLong": "126.701014"
+      }
     },
     {
       "id": "038",
@@ -220,7 +1335,65 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "031-936-7546",
       "image": "/images/storeInfo/storeImage/ilsan.png",
-      "mapUrl": "https://map.kakao.com/?urlX=453548.0&urlY=1151153.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%BC%EC%82%B0%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=453548.0&urlY=1151153.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9D%BC%EC%82%B0%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["소설", "시", "에세이"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["잡지", "예술", "취미", "건강"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["어린이", "요리", "가정생활"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["초·중·고학습", "외국어"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["만화", "여행", "청소년"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": [
+                "자기계발",
+                "경제",
+                "경영",
+                "정치",
+                "사회",
+                "인문",
+                "종교",
+                "과학",
+                "기술"
+              ]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "디지털",
+                "일상소품",
+                "학용품",
+                "사무용품",
+                "디자인문구",
+                "음반",
+                "고급필기구"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/ilsan.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.64358672324906",
+        "strLong": "126.7894649532133"
+      }
     },
     {
       "id": "069",
@@ -230,7 +1403,59 @@
       "holiday": "설 (당일) / 추석(당일) / 비정기휴무 현대백화점과 동일",
       "tel": "031-5170-2424",
       "image": "/images/storeInfo/storeImage/pangyo.png",
-      "mapUrl": "https://map.kakao.com/?urlX=524798.0&urlY=1081466.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%8C%90%EA%B5%90%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=524798.0&urlY=1081466.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%8C%90%EA%B5%90%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": [
+                "소설",
+                "만화",
+                "잡지",
+                "여행",
+                "외국어",
+                "어린이영어",
+                "예술"
+              ]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["정치", "경제", "자기계발", "유아", "아동"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["초·중·고학습", "청소년", "공부법"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["HOT&ISSUE"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["종교", "인문", "역사", "컴퓨터", "기술", "수험서"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "디지털",
+                "필기구",
+                "사무용품",
+                "학용품",
+                "일상소품",
+                "음반",
+                "디자인문구"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/pangyo.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.392567",
+        "strLong": "127.112017"
+      }
     },
     {
       "id": "057",
@@ -240,7 +1465,54 @@
       "holiday": "롯데백화점 평촌점 월별 정기휴무와 동일",
       "tel": "031-466-3501",
       "image": "/images/storeInfo/storeImage/pyeongchon.png",
-      "mapUrl": "https://map.kakao.com/?urlX=489112.0&urlY=1080876.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%8F%89%EC%B4%8C%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=489112.0&urlY=1080876.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%ED%8F%89%EC%B4%8C%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["잡지", "여행", "요리", "취미"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["소설", "시", "에세이", "만화"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["인문", "역사", "경제", "종교", "예술"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["초·중·고학습", "청소년", "자기계발", "정치"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["취업수험서", "외국어", "외국서적"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "음반",
+                "디지털",
+                "일상소품",
+                "디자인문구",
+                "학용품",
+                "사무용품"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/pyeongchon.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "37.390485",
+        "strLong": "126.9508241"
+      }
     }
   ],
   "etc": [
@@ -252,7 +1524,57 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "051-624-9961",
       "image": "/images/storeInfo/storeImage/kyungsungUniv.png",
-      "mapUrl": "https://map.kakao.com/?urlX=978838.0&urlY=460942.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B2%BD%EC%84%B1%EB%8C%80%E3%86%8D%EB%B6%80%EA%B2%BD%EB%8C%80%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=978838.0&urlY=460942.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B2%BD%EC%84%B1%EB%8C%80%E3%86%8D%EB%B6%80%EA%B2%BD%EB%8C%80%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "1~5",
+              "categories": ["소설", "만화", "에세이"]
+            },
+            {
+              "sectionName": "8~9",
+              "categories": ["여행", "취미", "실용"]
+            },
+            {
+              "sectionName": "6~7,10~12",
+              "categories": ["자기계발", "경제", "인문", "외국어"]
+            },
+            {
+              "sectionName": "13~15",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "16~18",
+              "categories": ["역사", "종교", "인문"]
+            },
+            {
+              "sectionName": "19",
+              "categories": ["과학", "컴퓨터"]
+            },
+            {
+              "sectionName": "20~21",
+              "categories": ["경제", "경영"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용품",
+                "사무용품",
+                "일상소품",
+                "디자인문구",
+                "디지털"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/kyungsung.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.137548382858405",
+        "strLong": "129.10150328580022"
+      }
     },
     {
       "id": "087",
@@ -262,7 +1584,47 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "062-373-3501",
       "image": "/images/storeInfo/storeImage/sangmu.png",
-      "mapUrl": "https://map.kakao.com/?urlX=465588.0&urlY=459944.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%EC%A3%BC%EC%83%81%EB%AC%B4%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=465588.0&urlY=459944.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EA%B4%91%EC%A3%BC%EC%83%81%EB%AC%B4%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["학용품", "사무용품", "디자인 문구"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["디지털", "일상소품"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["소설", "시", "에세이", "잡지", "여행"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["초·중·고학습", "외국어"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["예술", "인문", "기술", "컴퓨터", "과학"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["경제", "경영", "정치", "사회", "수험서"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/sangmu.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.1520810",
+        "strLong": "126.8489398"
+      }
     },
     {
       "id": "004",
@@ -272,7 +1634,89 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "053-425-3501",
       "image": "/images/storeInfo/storeImage/daegu.png",
-      "mapUrl": "https://map.kakao.com/?urlX=860091.0&urlY=662136.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8C%80%EA%B5%AC%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=860091.0&urlY=662136.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8C%80%EA%B5%AC%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "1F",
+          "sections": [
+            {
+              "sectionName": "서가 F",
+              "categories": ["소설", "비소설", "여행", "잡지"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["만화"]
+            },
+            {
+              "sectionName": "기타",
+              "categories": ["바로드림수령"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/daegu1F.png"
+        },
+        {
+          "floorNumber": "2F",
+          "sections": [
+            {
+              "sectionName": "서가 H",
+              "categories": ["토익", "토플", "외국어", "사전"]
+            },
+            {
+              "sectionName": "서가 J",
+              "categories": ["기술공학", "컴퓨터"]
+            },
+            {
+              "sectionName": "서가 K",
+              "categories": [
+                "경제",
+                "경영",
+                "자기계발",
+                "예술/취미",
+                "스포츠",
+                "건강"
+              ]
+            },
+            {
+              "sectionName": "서가 L",
+              "categories": ["인문", "종교", "정치", "수험서"]
+            },
+            {
+              "sectionName": "카페",
+              "categories": ["카페 공간학"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/daegu2F.png"
+        },
+        {
+          "floorNumber": "B1",
+          "sections": [
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "음반",
+                "디지털",
+                "고급필기류",
+                "일상소품",
+                "학용품",
+                "디자인문구"
+              ]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["초·중·고 학습", "청소년", "과학"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["유아", "아동", "가정생활", "요리"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/daeguB1.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.870538336512936",
+        "strLong": "128.59483068204622"
+      }
     },
     {
       "id": "002",
@@ -282,7 +1726,64 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "042-488-3501",
       "image": "/images/storeInfo/storeImage/daejeon.png",
-      "mapUrl": "https://map.kakao.com/?urlX=585212.0&urlY=793097.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8C%80%EC%A0%84%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=585212.0&urlY=793097.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%8C%80%EC%A0%84%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": [
+                "잡지",
+                "여행",
+                "외국어",
+                "취미",
+                "실용",
+                "예술",
+                "만화"
+              ]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": [
+                "인문",
+                "역사",
+                "종교",
+                "자기계발",
+                "경제·경영",
+                "정치·사회"
+              ]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["학습", "과학·기술", "컴퓨터"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["소설", "시·에세이"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "사무용품",
+                "학용품",
+                "디자인문구",
+                "데스크셀렉션",
+                "디지털"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/daejeon.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "36.3526159717372",
+        "strLong": "127.3797290848213"
+      }
     },
     {
       "id": "005",
@@ -292,7 +1793,75 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "051-806-3501",
       "image": "/images/storeInfo/storeImage/busan.png",
-      "mapUrl": "https://map.kakao.com/?urlX=969199.0&urlY=464622.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%80%EC%82%B0%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=969199.0&urlY=464622.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EB%B6%80%EC%82%B0%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": [
+                "소설",
+                "에세이",
+                "여행",
+                "건강",
+                "요리",
+                "취미",
+                "잡지"
+              ]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["토이", "음반"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["예술", "장르소설", "만화"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["디지털"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["자기계발", "경제·경영", "정치·사회", "수험서"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["인문", "역사", "문화", "종교"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["학습", "외국어", "과학", "기술", "컴퓨터"]
+            },
+            {
+              "sectionName": "서가 I",
+              "categories": ["홈", "인테리어", "데스크셀렉션"]
+            },
+            {
+              "sectionName": "서가 J",
+              "categories": ["디자인문구", "오피스"]
+            },
+            {
+              "sectionName": "서가 K",
+              "categories": ["오피스"]
+            },
+            {
+              "sectionName": "서가 L",
+              "categories": ["북라운지", "이벤트", "베스트"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/busan.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.1515311",
+        "strLong": "129.0595553"
+      }
     },
     {
       "id": "024",
@@ -302,7 +1871,51 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "044-960-5170",
       "image": "/images/storeInfo/storeImage/sejong.png",
-      "mapUrl": "https://map.kakao.com/?urlX=557979.0&urlY=834207.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%B8%EC%A2%85%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=557979.0&urlY=834207.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%B8%EC%A2%85%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "A",
+              "categories": ["디지털", "음반"]
+            },
+            {
+              "sectionName": "B",
+              "categories": ["문학", "인문", "기술", "과학"]
+            },
+            {
+              "sectionName": "C",
+              "categories": ["경제", "정치", "수험서", "외국어"]
+            },
+            {
+              "sectionName": "D",
+              "categories": ["초·중·고 학습"]
+            },
+            {
+              "sectionName": "E",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "F",
+              "categories": ["예술", "요리", "가정생활"]
+            },
+            {
+              "sectionName": "G",
+              "categories": ["만화", "취미"]
+            },
+            {
+              "sectionName": "H",
+              "categories": ["학용품", "디자인문구"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/sejong.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "36.5011289",
+        "strLong": "127.258862"
+      }
     },
     {
       "id": "045",
@@ -312,7 +1925,56 @@
       "holiday": "설(당일),추석(당일), 백화점 휴무일(월 1회)",
       "tel": "051-743-3501",
       "image": "/images/storeInfo/storeImage/centumcity.png",
-      "mapUrl": "https://map.kakao.com/?urlX=985385.0&urlY=470059.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=985385.0&urlY=470059.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%84%BC%ED%85%80%EC%8B%9C%ED%8B%B0%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["중·고 학습", "외국어"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["어린이", "취미", "건강·요리"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["문학", "만화", "잡지", "여행"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["인문·역사", "종교", "수험서"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["경제·경영", "정치·사회"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["과학·기술", "컴퓨터"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "고급필기구",
+                "음반",
+                "디지털",
+                "일상소품",
+                "디자인문구",
+                "필기구",
+                "학용품",
+                "사무용품"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/centumcity.jpg"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.1698956",
+        "strLong": "129.1310707"
+      }
     },
     {
       "id": "039",
@@ -322,7 +1984,55 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "052-227-3501",
       "image": "/images/storeInfo/storeImage/ulsan.png",
-      "mapUrl": "https://map.kakao.com/?urlX=1030304.0&urlY=574170.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9A%B8%EC%82%B0%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=1030304.0&urlY=574170.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%9A%B8%EC%82%B0%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["소설", "시·에세이"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["경제·경영", "정치·사회", "인문", "종교"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["잡지", "예술", "외국어", "과학", "기술"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["여행", "취미", "건강", "요리", "만화"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["어린이", "초·중·고 학습"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "사무용품",
+                "학용품",
+                "필기구",
+                "일상·소품",
+                "디자인문구",
+                "디지털",
+                "음반"
+              ]
+            },
+            {
+              "sectionName": "기타",
+              "categories": ["HOLLYS커피", "글라스박스 안경"]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/ulsan.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.5413040",
+        "strLong": "129.3389380"
+      }
     },
     {
       "id": "031",
@@ -332,7 +2042,45 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "063-717-3501",
       "image": "/images/storeInfo/storeImage/jeonju.png",
-      "mapUrl": "https://map.kakao.com/?urlX=532637.0&urlY=644947.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%A0%84%EC%A3%BC%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=532637.0&urlY=644947.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%A0%84%EC%A3%BC%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": [
+                "어린이",
+                "시/에세이",
+                "인문",
+                "자기계발",
+                "경제",
+                "경영"
+              ]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["소설", "만화", "중·고 학습", "수험서", "컴퓨터"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "데스크셀렉션",
+                "홈인테리어",
+                "디자인문구",
+                "오피스",
+                "디지털",
+                "음반"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/jeonju.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.81906713290727",
+        "strLong": "127.14446192183789"
+      }
     },
     {
       "id": "028",
@@ -342,7 +2090,69 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "055-284-3501",
       "image": "/images/storeInfo/storeImage/changwon.png",
-      "mapUrl": "https://map.kakao.com/?urlX=882562.0&urlY=482998.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B0%BD%EC%9B%90%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=882562.0&urlY=482998.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B0%BD%EC%9B%90%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["잡지", "예술", "종교"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["경제·경영", "자기계발"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["인문·역사", "정치·사회", "취업수험서"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["유아·아동", "초등학습", "키즈가든"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": [
+                "과학",
+                "기술·공학",
+                "컴퓨터",
+                "요리",
+                "건강",
+                "가정·생활"
+              ]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["외국어", "만화", "취미·스포츠", "여행", "사전"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["중·고 학습"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["소설", "시·에세이", "청소년"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용품",
+                "음반",
+                "사무용품",
+                "디자인문구",
+                "일상소품",
+                "디지털"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/changwon.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.22362389132218",
+        "strLong": "128.68078033220516"
+      }
     },
     {
       "id": "034",
@@ -352,7 +2162,65 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "041-558-3501",
       "image": "/images/storeInfo/storeImage/cheonan.png",
-      "mapUrl": "https://map.kakao.com/?urlX=534633.0&urlY=922414.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%9C%EC%95%88%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=534633.0&urlY=922414.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B2%9C%EC%95%88%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 A",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 B",
+              "categories": ["초·중·고 학습"]
+            },
+            {
+              "sectionName": "서가 C",
+              "categories": ["소설", "시", "에세이"]
+            },
+            {
+              "sectionName": "서가 D",
+              "categories": ["추천", "이벤트"]
+            },
+            {
+              "sectionName": "서가 E",
+              "categories": ["잡지"]
+            },
+            {
+              "sectionName": "서가 F",
+              "categories": ["인문", "종교", "역시"]
+            },
+            {
+              "sectionName": "서가 G",
+              "categories": ["자기계발", "경제", "정치"]
+            },
+            {
+              "sectionName": "서가 H",
+              "categories": ["과학", "기술", "수험서", "외국어"]
+            },
+            {
+              "sectionName": "서가 I",
+              "categories": ["여행", "취미", "예술", "만화"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "디지털",
+                "학용품",
+                "사무용품",
+                "화방용품",
+                "디자인문구"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/cheonan.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "36.81925242756512",
+        "strLong": "127.15526775510082"
+      }
     },
     {
       "id": "048",
@@ -362,7 +2230,63 @@
       "holiday": "설(당일), 추석(당일)",
       "tel": "053-322-3501",
       "image": "/images/storeInfo/storeImage/chilgok.png",
-      "mapUrl": "https://map.kakao.com/?urlX=852416.0&urlY=682388.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B9%A0%EA%B3%A1%EC%A0%90"
+      "mapUrl": "https://map.kakao.com/?urlX=852416.0&urlY=682388.0&name=%EA%B5%90%EB%B3%B4%EB%AC%B8%EA%B3%A0%EC%B9%A0%EA%B3%A1%EC%A0%90",
+      "storeMapInfo": [
+        {
+          "floorNumber": "",
+          "sections": [
+            {
+              "sectionName": "서가 1 ~ 5",
+              "categories": ["소설", "만화", "시", "에세이"]
+            },
+            {
+              "sectionName": "서가 7, 13",
+              "categories": ["여행", "취미", "실용"]
+            },
+            {
+              "sectionName": "서가 8, 9, 10",
+              "categories": ["자기계발", "경제·경영", "외국어"]
+            },
+            {
+              "sectionName": "서가 11, 12",
+              "categories": ["인문", "예술"]
+            },
+            {
+              "sectionName": "서가 14 ~ 16",
+              "categories": ["어린이"]
+            },
+            {
+              "sectionName": "서가 17 ~ 21",
+              "categories": ["인문", "외국어", "실용", "유아"]
+            },
+            {
+              "sectionName": "서가 22 ~ 24",
+              "categories": ["과학", "기술"]
+            },
+            {
+              "sectionName": "서가 25 ~ 27",
+              "categories": ["정치", "수험서"]
+            },
+            {
+              "sectionName": "HOTTRACKS",
+              "categories": [
+                "학용",
+                "사무용품",
+                "필기구",
+                "디자인문구",
+                "디지털",
+                "모바일",
+                "ACC"
+              ]
+            }
+          ],
+          "map": "/images/storeInfo/storeInfoImage/chilgok.png"
+        }
+      ],
+      "kakaoMap": {
+        "strLat": "35.9439604",
+        "strLong": "128.5622848"
+      }
     }
   ]
 }
