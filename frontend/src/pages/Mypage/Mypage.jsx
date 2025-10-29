@@ -1,22 +1,41 @@
-export function Mypage() {
+import { Header } from "../../../../src/pages/Layout/Header/Header";
 
+
+
+export function Mypage() {
 
     
 
     return (
+        <div>
+            <Header />
             <main className="mypage_main">
-                <section>
-                    {/* 마이메인 */}
-                    <div className="my">
-                        <ul className="">
-                            <li className="">
-                                <Link to="https://www.kyobobook.co.kr" className="">HOME</Link>
+                <section className="breadcrumb">
+                    {/* 메인마이 */}
+                    <div className="breadcrumb_inner">
+                        <ul className="top_breadcrumb">
+                            <li className="breadcrumb_item">
+                                <Link to="https://www.kyobobook.co.kr" className="home_link">HOME</Link>
                             </li>
-                            <li>
-                                <Link to="/main" className="" style={{ pointerEvents: 'none' }}>마이</Link>
+                            <li className="breadcrumb_item">
+                                ::before
+                                <Link to="/main" className="btn_sub_depth" style={{ pointerEvents: 'none' }}>마이</Link>
                             </li>
                         </ul>
                     </div>
+                </section>
+                <section className="contents_wrap">
+                    <div className="contents_inner">
+                        <aside className="aside_wrap">
+                            <div className="aside_body">
+                                <div className="my_profile_area">
+                                    <div className="profile_thumb_box"></div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+
+                </section>
                     {/* 알림/추천 토글 */}
                     <div className="switch_toggle_wrap">
                         <div className="switch_toggle_header">
@@ -50,7 +69,7 @@ export function Mypage() {
                             </div>
                             </a>
                     </div>
-              
+                
                     {/* 나머지 혜택 항목들 */}
                     </div>
                     </div>
@@ -77,10 +96,11 @@ export function Mypage() {
                             </div>
                             </li>
                         </ul>
-                </section>
+                
 
 
             </main>
+        </div>
 
     );
 }
