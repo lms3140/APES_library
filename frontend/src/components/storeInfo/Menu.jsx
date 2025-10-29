@@ -1,4 +1,5 @@
-export function Menu(href, name, click) {
+export function Menu({ href, name, click }) {
+  console.log(name);
   return (
     <a
       href={href}

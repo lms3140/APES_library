@@ -5,11 +5,22 @@ import { StoreTab } from "../../components/storeInfo/StoreTab.jsx";
 import { MenuList } from "../../components/storeInfo/MenuList.jsx";
 import { axiosData } from "../../utils/dataFetch.js";
 import { StoreMap } from "../../components/storeInfo/StoreMap.jsx";
+import { useNavigate, useParams } from "react-router-dom";
+import { Coming } from "../../components/storeInfo/Coming.jsx";
 
 export function StoreInfo() {
+  const navigate = useNavigate();
   const [info, setInfo] = useState(); //json 데이터
   const [activeTab, setActiveTab] = useState("seoul"); //활성화된 탭 (서울, 경기/인천, 수도권 외)
   const [selectedStore, setSelectedStore] = useState(null); //선택된 매장
+  const { pid } = useParams();
+
+  //url id로 매핑해서 이동
+  let store = null;
+  for (const region in info) {
+    store = info[region].find((s) => s.id === pid);
+    if (store) break;
+  }
 
   //json데이터 불러오기
   useEffect(() => {
@@ -20,7 +31,7 @@ export function StoreInfo() {
 
       //기본 선택값을 광화문점으로
       const defaultStore = jsonData["seoul"]?.find(
-        (store) => store.name === "광화문점"
+        (store) => store.id === "001"
       );
       if (defaultStore) setSelectedStore(defaultStore);
     };
@@ -36,6 +47,7 @@ export function StoreInfo() {
   //지점 클릭시 이벤트
   const handleStoreClick = (store) => {
     setSelectedStore(store);
+    navigate(`/store-info/${store.id}`);
   };
 
   return (
@@ -54,8 +66,10 @@ export function StoreInfo() {
         )}
       </div>
       <div>
+        <Coming selectedStore={selectedStore} />
+      </div>
+      <div>
         <MenuList />
-        {/** 수정중... 명석님 도와주세요ㅠ */}
       </div>
       <div>
         <StoreMap selectedStore={selectedStore} />

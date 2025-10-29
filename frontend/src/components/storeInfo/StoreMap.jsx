@@ -6,7 +6,7 @@ export function StoreMap({ selectedStore }) {
 
   return (
     <div>
-      <h1>매장안내도</h1>
+      <h1 id="storeMap">매장안내도</h1>
       {selectedStore.storeMapInfo &&
         selectedStore?.storeMapInfo?.map((floor) => (
           <div>

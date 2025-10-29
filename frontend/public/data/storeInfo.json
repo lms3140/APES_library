@@ -87,7 +87,27 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/gwanghwamun.png"
         }
-      ]
+      ],
+      "transportInfo": [
+        {
+          "subway": ["", "", ""],
+          "bus": [
+            {
+              "station": "",
+              "busNo": ""
+            },
+            {
+              "station": "",
+              "busNo": ""
+            }
+          ]
+        }
+      ],
+      "parkingInfo": "",
+      "kakaoMap": {
+        "strLat": "37.57081936962591",
+        "strLong": "126.9778991525692"
+      }
     },
     {
       "id": "058",
@@ -138,7 +158,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/gardenfive.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.47731815991441",
+        "strLong": "127.12432988848975"
+      }
     },
     {
       "id": "015",
@@ -224,7 +248,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/gangnamB2.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.5037373",
+        "strLong": "127.0240583"
+      }
     },
     {
       "id": "023",
@@ -266,7 +294,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/starcity.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.5389997704376",
+        "strLong": "127.071214413664"
+      }
     },
     {
       "id": "041",
@@ -315,7 +347,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/dongdaemun.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.5687421",
+        "strLong": "127.0076714"
+      }
     },
     {
       "id": "033",
@@ -371,7 +407,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/mokdong.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.52826659999999",
+        "strLong": "126.8748781"
+      }
     },
     {
       "id": "072",
@@ -405,7 +445,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/seoulUniv.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.4592697",
+        "strLong": "126.9505863"
+      }
     },
     {
       "id": "068",
@@ -449,7 +493,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/suyu.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.6384713",
+        "strLong": "127.0265461"
+      }
     },
     {
       "id": "036",
@@ -522,7 +570,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/yeongdeungpo.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.517023",
+        "strLong": "126.902735"
+      }
     },
     {
       "id": "003",
@@ -580,7 +632,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/onegrove.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.561452",
+        "strLong": "126.824756"
+      }
     },
     {
       "id": "046",
@@ -630,7 +686,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/eunpyeong.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.63761025148713",
+        "strLong": "126.91774803525738"
+      }
     },
     {
       "id": "074",
@@ -664,7 +724,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/ehwaUniv.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.561469",
+        "strLong": "126.946759"
+      }
     },
     {
       "id": "029",
@@ -727,7 +791,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/jamsil.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.5144165",
+        "strLong": "127.1007216"
+      }
     },
     {
       "id": "090",
@@ -779,7 +847,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/chunho.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.5404511",
+        "strLong": "127.1252874"
+      }
     },
     {
       "id": "056",
@@ -838,7 +910,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/chungryangri.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.5806981",
+        "strLong": "127.047695"
+      }
     },
     {
       "id": "049",
@@ -918,7 +994,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/hapjeong2.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.5500215",
+        "strLong": "126.9123444"
+      }
     }
   ],
   "gyeonggi": [
@@ -987,7 +1067,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/gwanggyo.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.2869447",
+        "strLong": "127.0577533"
+      }
     },
     {
       "id": "013",
@@ -1053,7 +1137,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/bucheon.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.483940966743376",
+        "strLong": "126.78309316439194"
+      }
     },
     {
       "id": "047",
@@ -1114,7 +1202,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/bundang.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.3834287",
+        "strLong": "127.1226573"
+      }
     },
     {
       "id": "042",
@@ -1163,7 +1255,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/songdo.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.3821037",
+        "strLong": "126.6583306"
+      }
     },
     {
       "id": "025",
@@ -1225,7 +1321,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/incheon.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.4461759",
+        "strLong": "126.701014"
+      }
     },
     {
       "id": "038",
@@ -1289,7 +1389,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/ilsan.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.64358672324906",
+        "strLong": "126.7894649532133"
+      }
     },
     {
       "id": "069",
@@ -1347,7 +1451,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/pangyo.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.392567",
+        "strLong": "127.112017"
+      }
     },
     {
       "id": "057",
@@ -1400,7 +1508,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/pyeongchon.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "37.390485",
+        "strLong": "126.9508241"
+      }
     }
   ],
   "etc": [
@@ -1458,7 +1570,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/kyungsung.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.137548382858405",
+        "strLong": "129.10150328580022"
+      }
     },
     {
       "id": "087",
@@ -1504,7 +1620,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/sangmu.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.1520810",
+        "strLong": "126.8489398"
+      }
     },
     {
       "id": "004",
@@ -1592,7 +1712,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/daeguB1.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.870538336512936",
+        "strLong": "128.59483068204622"
+      }
     },
     {
       "id": "002",
@@ -1655,7 +1779,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/daejeon.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "36.3526159717372",
+        "strLong": "127.3797290848213"
+      }
     },
     {
       "id": "005",
@@ -1729,7 +1857,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/busan.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.1515311",
+        "strLong": "129.0595553"
+      }
     },
     {
       "id": "024",
@@ -1779,7 +1911,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/sejong.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "36.5011289",
+        "strLong": "127.258862"
+      }
     },
     {
       "id": "045",
@@ -1834,7 +1970,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/centumcity.jpg"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.1698956",
+        "strLong": "129.1310707"
+      }
     },
     {
       "id": "039",
@@ -1888,7 +2028,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/ulsan.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.5413040",
+        "strLong": "129.3389380"
+      }
     },
     {
       "id": "031",
@@ -1932,7 +2076,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/jeonju.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.81906713290727",
+        "strLong": "127.14446192183789"
+      }
     },
     {
       "id": "028",
@@ -2000,7 +2148,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/changwon.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.22362389132218",
+        "strLong": "128.68078033220516"
+      }
     },
     {
       "id": "034",
@@ -2064,7 +2216,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/cheonan.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "36.81925242756512",
+        "strLong": "127.15526775510082"
+      }
     },
     {
       "id": "048",
@@ -2126,7 +2282,11 @@
           ],
           "map": "/images/storeInfo/storeInfoImage/chilgok.png"
         }
-      ]
+      ],
+      "kakaoMap": {
+        "strLat": "35.9439604",
+        "strLong": "128.5622848"
+      }
     }
   ]
 }
