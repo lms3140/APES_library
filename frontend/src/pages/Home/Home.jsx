@@ -1,9 +1,7 @@
-import { Navigation, Pagination } from "swiper/modules";
-import { BannerSection } from "../../components/Home/BannerSection/BannerSection";
-import { ShortcutSection } from "../../components/Home/ShortcutSection/ShortCutSection";
-
 import styles from "./Home.module.css";
-import { SwiperBook } from "../../components/Home/SwiperWrapper/SwiperBook";
+import { SwiperBook } from "../../components/SwiperWrapper/SwiperBook";
+import { BannerSection } from "./BannerSection/BannerSection";
+import { ShortcutSection } from "./ShortcutSection/ShortcutSection";
 
 const mainSwiperOptions = {
   slidesPerView: 6,
