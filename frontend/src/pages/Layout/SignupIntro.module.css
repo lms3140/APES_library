@@ -1,21 +1,13 @@
 /* 전체 화면 중앙 정렬 */
-.wrapper {
-    display: flex;
-    justify-content: center; /* 가로 중앙 */
-    align-items: center;    /* 세로 중앙 */
-    min-height: 100vh;
-    background: #fff;
-}
-
-/* 중앙 컨테이너 */
 .container {
     width: 360px;
+    margin: 80px auto;
     text-align: center;
     font-family: "Noto Sans KR", sans-serif;
 }
 
-/* 로고 */
-.SignupLogo img {
+/* 로고 영역 */
+.logo img {
     width: 160px;
     margin-bottom: 30px;
 }
@@ -32,8 +24,12 @@
     cursor: pointer;
 }
 
+.btnSignup:hover {
+    background-color: #3f42a0;
+}
+
 /* 하단 링크 */
-.SignupLinks {
+.signupLinks {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,21 +38,21 @@
     font-size: 0.9rem;
 }
 
-.SignupLinks a {
+.signupLinks a {
     color: #555;
     text-decoration: none;
 }
 
-.SignupLinks a:hover {
+.signupLinks a:hover {
     text-decoration: underline;
 }
 
-/* SNS 회원가입 버튼 세로 정렬 */
+/* SNS 회원가입 버튼 */
 .socialSignup {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 세로 정렬 */
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .btnKakao {
@@ -76,14 +72,14 @@
     font-weight: bold;
 }
 
-/* 다른 방법 타이틀 */
+/* 다른 방법으로 회원가입 */
 .otherTitle {
     margin-top: 18px;
     color: #9aa3b2;
     font-size: 13px;
 }
 
-/* 간편 가입 버튼 컨테이너 */
+/* 소셜 아이콘 버튼 */
 .otherMethods {
     display: flex;
     justify-content: center;
