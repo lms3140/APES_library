@@ -10,7 +10,7 @@ export function Header() {
               <a href="#">회원가입</a>
             </li>
             <li>
-              <a href="#">로그인</a>
+              <a href="/login">로그인</a>
             </li>
             <li>
               <a href="#">주문배송</a>
