@@ -4,17 +4,15 @@ export function StoreList({ stores, onStoreClick, selectedStore }) {
   return (
     <div>
       {stores &&
-        stores.map((store) => {
-          return (
-            <div
-              key={store.name}
-              className={selectedStore?.name === store.name ? "active" : ""}
-              onClick={() => onStoreClick(store)}
-            >
-              {store.name}
-            </div>
-          );
-        })}
+        stores.map((store) => (
+          <div
+            key={store.id}
+            className={selectedStore?.id === store.id ? "active" : ""}
+            onClick={() => onStoreClick(store)}
+          >
+            {store.name}
+          </div>
+        ))}
     </div>
   );
 }

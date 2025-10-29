@@ -1,9 +1,17 @@
-.mypage_main {
+.mypageMain {
     position: relative;
 }
 
 
-.profile_thumb_box.no_img .thumb_box{
+.profileThumbBoxNoImg .thumb_box{
     background-size: cover;
     background-image: '../../images';
+}
+
+.blurImgBox {
+    /* 부모 스타일 */
+}
+
+.blurImg {
+    filter: blur(30px);
 }
