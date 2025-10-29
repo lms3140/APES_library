@@ -17,14 +17,6 @@ export const router = createBrowserRouter([
         path: "/store-info",
         element: <StoreInfo />,
       },
-        {
-            path: "/login",
-            element: <Login />,
-        },
-        {
-            path: "/signup-intro",
-            element: <SignupIntro />,
-        },
     ],
   },
 ]);
