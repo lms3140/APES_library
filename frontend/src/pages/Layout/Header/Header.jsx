@@ -26,20 +26,20 @@ export function HeaderLogin() {
             {isLogin &&
               <>
                 <li><Link to="/">로그아웃</Link></li>
-                <li>
-                  <button type="button">
-                    <span>회원혜택 <MdArrowDropUp /></span>
-                  </button>
-                  <ul>
-                    <li><Link to="/">교보북클럽</Link></li>
-                    <li><Link to="/">등급 혜택</Link></li>
-                    <li><Link to="/">신규회원 혜택</Link></li>
-                    <li><Link to="/">Prestige Lounge</Link></li>
-                    <li><Link to="/">제휴 혜택</Link></li>
-                  </ul>
-                </li>
               </>
             }
+            <li>
+              <button type="button">
+                <span>회원혜택 <MdArrowDropUp /></span>
+              </button>
+              <ul>
+                <li><Link to="/">교보북클럽</Link></li>
+                <li><Link to="/">등급 혜택</Link></li>
+                <li><Link to="/">신규회원 혜택</Link></li>
+                <li><Link to="/">Prestige Lounge</Link></li>
+                <li><Link to="/">제휴 혜택</Link></li>
+              </ul>
+            </li>
             <li><Link to="/">주문배송</Link></li>
             <li><Link to="/">매장안내</Link></li>
             <li><Link to="/">고객센터</Link></li>

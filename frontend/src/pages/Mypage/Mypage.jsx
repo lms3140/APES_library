@@ -9,8 +9,8 @@ export function Mypage() {
     return (
         <div>
             <Header />
-            <main className="mypage_main">
-                <section className="breadcrumb">
+            <main className="mypageMain">
+                <section className="breadCrumb">
                     {/* 메인마이 */}
                     <div className="breadcrumb_inner">
                         <ul className="top_breadcrumb">
@@ -29,7 +29,12 @@ export function Mypage() {
                         <aside className="aside_wrap">
                             <div className="aside_body">
                                 <div className="my_profile_area">
-                                    <div className="profile_thumb_box"></div>
+                                    <div className="profile_thumb_box no_img">
+
+                                    </div>
+                                    <div className="profile_name_box">
+
+                                    </div>
                                 </div>
                             </div>
                         </aside>
