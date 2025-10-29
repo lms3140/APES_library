@@ -40,7 +40,7 @@ export function SwiperBanner({ swiperOptions, imgList }) {
       {imgList.map((img) => {
         return (
           <SwiperSlide>
-            <div style={{ display: "flex" }}>
+            <div>
               <img src={`${img.url}`} alt={img.url} />
             </div>
           </SwiperSlide>
