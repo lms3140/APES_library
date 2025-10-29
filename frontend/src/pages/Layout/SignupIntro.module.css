@@ -1,0 +1,119 @@
+/* 전체 화면 중앙 정렬 */
+.wrapper {
+    display: flex;
+    justify-content: center; /* 가로 중앙 */
+    align-items: center;    /* 세로 중앙 */
+    min-height: 100vh;
+    background: #fff;
+}
+
+/* 중앙 컨테이너 */
+.container {
+    width: 360px;
+    text-align: center;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 로고 */
+.SignupLogo img {
+    width: 160px;
+    margin-bottom: 30px;
+}
+
+/* 회원가입 버튼 */
+.btnSignup {
+    width: 100%;
+    height: 45px;
+    background-color: #5156b2;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 하단 링크 */
+.SignupLinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.SignupLinks a {
+    color: #555;
+    text-decoration: none;
+}
+
+.SignupLinks a:hover {
+    text-decoration: underline;
+}
+
+/* SNS 회원가입 버튼 세로 정렬 */
+.socialSignup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btnKakao {
+    background-color: #ffeb00;
+    border: none;
+    height: 45px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btnNaver {
+    background-color: #03c75a;
+    color: white;
+    border: none;
+    height: 45px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* 다른 방법 타이틀 */
+.otherTitle {
+    margin-top: 18px;
+    color: #9aa3b2;
+    font-size: 13px;
+}
+
+/* 간편 가입 버튼 컨테이너 */
+.otherMethods {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.iconBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+    font-size: 18px;
+    background: #fff;
+    margin-bottom: 6px;
+}
+
+.iconLabel {
+    font-size: 12px;
+    color: #666;
+}
