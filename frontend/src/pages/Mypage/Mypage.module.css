@@ -1,0 +1,9 @@
+.mypage_main {
+    position: relative;
+}
+
+
+.profile_thumb_box.no_img .thumb_box{
+    background-size: cover;
+    background-image: '../../images';
+}
