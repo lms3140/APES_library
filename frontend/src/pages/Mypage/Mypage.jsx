@@ -1,4 +1,5 @@
 import { Header } from "../../../../src/pages/Layout/Header/Header";
+import { Footer } from "../Layout/Footer/Footer";
 
 
 
@@ -12,27 +13,30 @@ export function Mypage() {
             <main className="mypageMain">
                 <section className="breadCrumb">
                     {/* 메인마이 */}
-                    <div className="breadcrumb_inner">
-                        <ul className="top_breadcrumb">
-                            <li className="breadcrumb_item">
-                                <Link to="https://www.kyobobook.co.kr" className="home_link">HOME</Link>
+                    <div className="breadCrumbInner">
+                        <ul className="topBreadCrumb">
+                            <li className="breadCrumbItem">
+                                <Link to="https://www.kyobobook.co.kr" className="homeLink">HOME</Link>
                             </li>
-                            <li className="breadcrumb_item">
+                            <li className="breadCrumbItem">
                                 ::before
-                                <Link to="/main" className="btn_sub_depth" style={{ pointerEvents: 'none' }}>마이</Link>
+                                <Link to="/main" className="btnSubDepth" style={{ pointerEvents: 'none' }}>마이</Link>
                             </li>
                         </ul>
                     </div>
                 </section>
-                <section className="contents_wrap">
-                    <div className="contents_inner">
-                        <aside className="aside_wrap">
-                            <div className="aside_body">
-                                <div className="my_profile_area">
-                                    <div className="profile_thumb_box no_img">
+                <section className="contentsWrap">
+                    <div className="contentsInner">
+                        <aside className="asideWrap">
+                            <div className="asideBody">
+                                <div className="myProfileArea">
+                                    <div className="profileThumbBoxNoImg">
 
                                     </div>
-                                    <div className="profile_name_box">
+                                    <div className="profileNameBox">
+                                        {/* 사용자 이름(닉네임) */}
+                                        <span className="nameNowrap"><b data-role="nickname">닉네임</b>님</span>
+                                        {/* 등급 배지 */}
 
                                     </div>
                                 </div>
@@ -106,6 +110,6 @@ export function Mypage() {
 
             </main>
         </div>
-
+        <Footer />
     );
 }
