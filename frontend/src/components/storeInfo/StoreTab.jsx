@@ -1,8 +1,8 @@
 export function StoreTab({ activeTab, onTabChange }) {
   const koTab = [
-    { label: "서울", value: "seoul" },
-    { label: "경기/인천", value: "gyeonggi" },
-    { label: "수도권 외", value: "etc" },
+    { key: "서울", value: "seoul" },
+    { key: "경기/인천", value: "gyeonggi" },
+    { key: "수도권 외", value: "etc" },
   ];
   return (
     <div>
@@ -13,7 +13,7 @@ export function StoreTab({ activeTab, onTabChange }) {
               className={activeTab === tab.value ? "active" : ""}
               onClick={() => onTabChange(tab.value)}
             >
-              {tab.label}
+              {tab.key}
             </button>
           );
         })}
