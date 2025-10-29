@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>1</h1>,
+        element: <Home />,
       },
       {
         path: "/store-info/:pid",
