@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4f43e6e-cdbd-4d5b-a90a-1e75c2ef4d02" name="Changes" comment="" />
+    <list default="true" id="f4f43e6e-cdbd-4d5b-a90a-1e75c2ef4d02" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/Logo.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/Signup.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/Signup.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/Login.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/SignupIntro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/SignupIntro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/SignupIntro.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/SignupIntro.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Signupform.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Signupform.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/dataFetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/dataFetch.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +75,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "seongeun2",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/dev/APES_library",
@@ -98,11 +113,23 @@
       <option name="presentableId" value="Default" />
       <updated>1761700530560</updated>
       <workItem from="1761700541150" duration="974000" />
-      <workItem from="1761701550792" duration="24010000" />
+      <workItem from="1761701550792" duration="24232000" />
+      <workItem from="1761786992577" duration="17120000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

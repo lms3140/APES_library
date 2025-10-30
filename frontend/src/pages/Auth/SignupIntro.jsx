@@ -1,23 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaGoogle, FaMobileAlt, FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import styles from "./SignupIntro.module.css";
+import cstyles from "./Logo.module.css";
 
 const SignupIntro = () => {
     const navigate = useNavigate();
 
     return (
-        <div className={styles.container}>
-            <div className={styles.logo}>
-                <img src="#" alt="교보문고 로고" />
+        <div className={cstyles.container}>
+            <div className={cstyles.logo}>
+                <img src="#" alt="무슨문고 로고" />
             </div>
 
             <button className={styles.btnSignup}>회원가입</button>
 
             <div className={styles.signupLinks}>
                 <a href="#">법인회원 가입</a>
+                {/*<Link to="#">법인회원 가입</Link>*/}
                 <span>|</span>
-                <a href="#">로그인</a>
+                <Link to="/login">로그인</Link>
             </div>
 
             <div className={styles.socialSignup}>
