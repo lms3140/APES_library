@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./pages/Layout/Layout";
 import { Home } from "./pages/Home/Home";
 import { StoreInfo } from "./pages/storeInfo/StoreInfo";
+import Login from "./pages/Layout/Login.jsx"
+import SignupIntro from "./pages/Layout/SignupIntro.jsx"
+import { Mypage } from "./pages/Mypage/Mypage.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: "/store-info/:pid",
         element: <StoreInfo />,
+      },
+      {
+        path: "/mypage",
+        element: <Mypage />,
       },
     ],
   },

@@ -1,9 +1,7 @@
-import { Navigation, Pagination } from "swiper/modules";
-import { BannerSection } from "../../components/Home/BannerSection/BannerSection";
-import { ShortcutSection } from "../../components/Home/ShortcutSection/ShortCutSection";
-
 import styles from "./Home.module.css";
-import { SwiperBook } from "../../components/Home/SwiperWrapper/SwiperBook";
+import { SwiperBook } from "../../components/SwiperWrapper/SwiperBook";
+import { BannerSection } from "./BannerSection/BannerSection";
+import { ShortcutSection } from "./ShortcutSection/ShortcutSection";
 
 const mainSwiperOptions = {
   slidesPerView: 6,
@@ -12,7 +10,7 @@ const mainSwiperOptions = {
 const bookList = [
   {
     url: "/images/bookImg/b1.webp",
-    bookName: "2025 노벨문학상 크러스너 호르커이 라슬로 세트(사...",
+    bookName: "2025 노벨문학상 크러스너 호르커이 라슬로 세트",
   },
   { url: "/images/bookImg/b2.webp", bookName: "사탄탱고" },
   { url: "/images/bookImg/b3.webp", bookName: "저항의 멜랑콜리" },
@@ -30,8 +28,11 @@ export function Home() {
       <ShortcutSection />
 
       <section
-        style={{ maxWidth: 1200, marginInline: "auto", overflow: "visible" }}
+        style={{ maxWidth: 1328, marginInline: "auto", overflow: "visible" }}
       >
+        <div style={{ maxWidth: 1200, marginInline: "auto" }}>
+          <h2>타이틀</h2>
+        </div>
         <SwiperBook swiperOptions={mainSwiperOptions} bookList={bookList} />
       </section>
     </div>

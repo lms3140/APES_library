@@ -1,0 +1,29 @@
+.swiperBook {
+  position: relative;
+}
+
+.bookSlide {
+  display: flex;
+  flex-direction: column;
+}
+
+.swiperBook :global(.swiper) {
+  width: var(--width-300);
+}
+
+.slideControlButton {
+  color: red;
+  width: calc(var(--spacing) * 11);
+  height: calc(var(--spacing) * 11);
+  border: 1px solid var(--color-gray-400);
+  border-radius: var(--radius-3xl);
+  position: absolute;
+}
+
+.slideControlPrevButton {
+  top: calc(50% - calc(var(--spacing) * 11));
+}
+.slideControlNextButton {
+  top: calc(50% - calc(var(--spacing) * 11));
+  right: 0;
+}
