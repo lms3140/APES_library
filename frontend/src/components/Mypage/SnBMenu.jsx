@@ -1,6 +1,8 @@
 import style from '../../pages/Mypage/Mypage.module.css'
 import { Link } from 'react-router-dom';
 
+// Mypage 좌측 사이드바 메뉴
+
 export function SnBMenu({ title, items }) {
     return (
         <li className={style.snbItem}>

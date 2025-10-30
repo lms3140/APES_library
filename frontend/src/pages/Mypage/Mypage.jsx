@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom';
 import style from "../Mypage/Mypage.module.css";
 import { SnBMenu } from '../../components/Mypage/SnBMenu.jsx';
 import { BookSwiper } from '../../components/Mypage/BookSwiper.jsx';
+import { BenefitIcoGroup } from '../../components/Mypage/benefitIcoGroup.jsx';
 import snbMenuData from '../../../public/data/Mypage/snbMenuData.json';
 import bookSwiperData from '../../../public/data/Mypage/bookSwiperData.json';
+import benefitData from '../../../public/data/Mypage/benefitData.json';
+import { BenefitSubGroup } from '../../components/Mypage/BenefitSubGroup.jsx';
 
 export function Mypage() {
     return (
@@ -135,71 +138,18 @@ export function Mypage() {
                             </div>
                             <div className={style.benefitInfoWrap}>
                                 <div className={style.benefitIcoGroup}>
-                                    <div className={`${style.benefitItem} ${style.benefitIconboxPoint}`}>
-                                        <Link to='#' className={style.benefitLink}>
-                                            <span className={style.benefitTitle}>통합포인트</span>
-                                            <div className={style.benefitVal}>
-                                                <span className={style.val}>포인트</span>
-                                                <span className={style.unit}>P</span>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <div className={`${style.benefitItem} ${style.benefitIconboxEVoucher}`}>
-                                        <Link to='#' className={style.benefitLink}>
-                                            <span className={style.benefitTitle}>e교환권</span>
-                                            <div className={style.benefitVal}>
-                                                <span className={style.val}>0</span>
-                                                <span className={style.unit}>원</span>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <div className={`${style.benefitItem} ${style.benefitIconboxGIftcard}`}>
-                                        <Link to='#' className={style.benefitLink}>
-                                            <span className={style.benefitTitle}>기프트카드</span>
-                                            <div className={style.benefitVal}>
-                                                <span className={style.val}>0</span>
-                                                <span className={style.unit}>장</span>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <div className={`${style.benefitItem} ${style.benefitIconboxCash}`}>
-                                        <Link to='#' className={style.benefitLink}>
-                                            <span className={style.benefitTitle}>교보캐시</span>
-                                            <div className={style.benefitVal}>
-                                                <span className={style.val}>0</span>
-                                                <span className={style.unit}>원</span>
-                                            </div>
-                                        </Link>
-                                    </div>
+                                    
+                                    {benefitData.benefitIcoGroup.map((item, index) => (
+                                        <BenefitIcoGroup key={index} item={item}/>
+                                    ))}
+                                    
                                 </div>
                                 <div className={style.benefitSubGroup}>
-                                    <div className={`${style.benefitItem} ${style.benefitSubBox}`}>
-                                        <Link to='#' className={style.benefitLink}>
-                                            <span className={style.benefitTitle}>쿠폰</span>
-                                            <div className={style.benefitVal}>
-                                                <span className={style.val}>0</span>
-                                                <span className={style.unit}>장</span>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <div className={`${style.benefitItem} ${style.benefitSubBox}`}>
-                                        <Link to='#' className={style.benefitLink}>
-                                            <span className={style.benefitTitle}>교보e캐시</span>
-                                            <div className={style.benefitVal}>
-                                                <span className={style.val}>0</span>
-                                                <span className={style.unit}>원</span>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <div className={`${style.benefitItem} ${style.benefitSubBox}`}>
-                                        <Link to='#' className={style.benefitLink}>
-                                            <span className={style.benefitTitle}>예치금</span>
-                                            <div className={style.benefitVal}>
-                                                <span className={style.val}>0</span>
-                                                <span className={style.unit}>원</span>
-                                            </div>
-                                        </Link>
-                                    </div>
+                                    
+                                    {benefitData.benefitSubBox.map((items, index) => (
+                                        <BenefitSubGroup key={index} items={items} />
+                                    ))}
+                                    
                                 </div>
                             </div>
                             <div className={`${style.titleWrap} ${style.titleSizeMd}`}>
