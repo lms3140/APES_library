@@ -1,0 +1,142 @@
+.container {
+  display: flex;
+  gap: 40px;
+  padding: 36px 32px;
+  align-items: flex-start;
+  background-color: #fff;
+  border-top: 1px solid #e5e5e5; /* Added top border to separate from list */
+}
+
+/* Added styling for locationLabel with FiMapPin */
+.locationLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.locationLabel svg {
+  width: 14px;
+  height: 14px;
+}
+
+.infoSection {
+  flex: 0 0 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.favoriteButton {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+  width: 28px;
+  height: 28px;
+}
+
+.favoriteButton:hover {
+  border-color: #8b6f47;
+}
+
+.infoRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 10px 0;
+}
+
+.infoLabel {
+  color: #999;
+  min-width: 70px;
+  font-weight: 400;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.button {
+  padding: 12px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #8b6f47;
+  background-color: #8b6f47;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background-color: #6f5838;
+  border-color: #6f5838;
+}
+
+.buttonSecondary {
+  background-color: #fff;
+  color: #8b6f47;
+  border: 1px solid #ddd;
+}
+
+.buttonSecondary:hover {
+  background-color: #f9f9f9;
+  border-color: #8b6f47;
+}
+
+.imageSection {
+  flex: 1;
+  min-height: 280px;
+}
+
+.storeImage {
+  width: 927px;
+  height: 376px;
+  max-height: 380px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .infoSection {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+}
