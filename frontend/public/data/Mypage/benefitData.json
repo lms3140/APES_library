@@ -1,0 +1,56 @@
+{
+    "benefitIcoGroup": [
+        {
+            "cname": "benefitIconboxPoint",
+            "items": {
+                "title": "통합포인트",
+                "value": 777,
+                "unit": "P"
+            }
+        },
+        {
+            "cname":"benefitIconboxEVoucher",
+            "items": {
+                "title": "e교환권",
+                "value": 9999,
+                "unit": "원"
+            }
+        },
+        {
+            "cname": "benefitIconboxGIftcard",
+            "items": {
+                "title": "기프트카드",
+                "value": 666,
+                "unit": "장"
+            }
+        },
+        {
+            "cname": "benefitIconboxCash",
+            "items": {
+                "title": "교보캐시",
+                "value": 4444,
+                "unit": "원"
+            }
+        }
+
+    ],
+
+    "benefitSubBox": [
+        {
+            "title": "쿠폰",
+            "value": 777,
+            "unit": "장"
+        },
+        {
+            "title": "교보e캐시",
+            "value": 9999,
+            "unit": "원"
+        },
+        {
+            "title": "예치금",
+            "value": 666,
+            "unit": "원"
+        }
+    ]
+    
+}
