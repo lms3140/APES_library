@@ -1,0 +1,9 @@
+.bookListSection {
+  max-width: 1328px;
+  margin-inline: auto;
+}
+
+.bookListItem {
+  max-width: 1200px;
+  margin-inline: auto;
+}
