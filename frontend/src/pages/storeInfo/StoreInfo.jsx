@@ -7,6 +7,7 @@ import { axiosData } from "../../utils/dataFetch.js";
 import { StoreMap } from "../../components/storeInfo/StoreMap.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { Coming } from "../../components/storeInfo/Coming.jsx";
+import { Service } from "../../components/storeInfo/Service.jsx";
 
 export function StoreInfo() {
   const navigate = useNavigate();
@@ -66,15 +67,18 @@ export function StoreInfo() {
         )}
       </div>
       <div>
-        <Coming selectedStore={selectedStore} />
+        <MenuList />
       </div>
       <div>
-        <MenuList />
+        <Coming selectedStore={selectedStore} />
       </div>
       <div>
         <StoreMap selectedStore={selectedStore} />
       </div>
       {/** 매장 서비스 구현할것인지 고민 */}
+      <div>
+        <Service />
+      </div>
     </div>
   );
 }

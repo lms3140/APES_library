@@ -5,6 +5,7 @@ import {
   MapTypeControl,
   ZoomControl,
 } from "react-kakao-maps-sdk";
+import { Parking } from "./Parking";
 
 export function Coming({ selectedStore }) {
   //selectedStore가 있을때만 렌더링
@@ -29,6 +30,9 @@ export function Coming({ selectedStore }) {
           <MapTypeControl position={"TOPRIGHT"} />
           <ZoomControl position={"RIGHT"} />
         </Map>
+      </div>
+      <div>
+        <Parking selectedStore={selectedStore} />
       </div>
     </div>
   );
