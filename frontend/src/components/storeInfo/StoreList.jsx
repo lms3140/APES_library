@@ -1,13 +1,38 @@
+// export function StoreList({ stores, onStoreClick, selectedStore }) {
+//   console.log(stores);
+
+//   return (
+//     <div>
+//       {stores &&
+//         stores.map((store) => (
+//           <div
+//             key={store.id}
+//             className={selectedStore?.id === store.id ? "active" : ""}
+//             onClick={() => onStoreClick(store)}
+//           >
+//             {store.name}
+//           </div>
+//         ))}
+//     </div>
+//   );
+// }
+
+"use client";
+
+import styles from "./StoreList.module.css";
+
 export function StoreList({ stores, onStoreClick, selectedStore }) {
   console.log(stores);
 
   return (
-    <div>
+    <div className={styles.listContainer}>
       {stores &&
         stores.map((store) => (
           <div
             key={store.id}
-            className={selectedStore?.id === store.id ? "active" : ""}
+            className={`${styles.storeItem} ${
+              selectedStore?.id === store.id ? styles.active : ""
+            }`}
             onClick={() => onStoreClick(store)}
           >
             {store.name}
