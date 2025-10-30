@@ -1,0 +1,74 @@
+.userMenuContainer {
+  font-size: var(--text-xs);
+  background-color: #f4f4f4;
+  height: 24px;
+}
+
+.userMenuContainer ul {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  margin: 0;
+  margin-right: 20px;
+}
+
+.userMenuWrapper {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.userMenuContainer li {
+  position: relative;
+}
+
+.userMenuContainer a {
+  color: var(--color-gray-800);
+}
+
+.userMenuContainer .userMenuList > li:not(:first-child) > a::before {
+  z-index: 20;
+  content: "";
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 12px;
+  top: 50%;
+  left: -5px;
+  background-color: #eaeaea;
+  transform: translateY(-50%);
+}
+.menuItem {
+  position: relative;
+}
+
+.subMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.subMenu ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+.subMenu ul li {
+  width: 75px;
+}
+
+/* hover 또는 focus-within 시 표시 */
+.menuItem:hover .subMenu,
+.menuItem:focus-within .subMenu {
+  display: block;
+}

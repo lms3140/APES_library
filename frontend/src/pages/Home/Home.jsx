@@ -2,10 +2,8 @@ import styles from "./Home.module.css";
 import { SwiperBook } from "../../components/SwiperWrapper/SwiperBook";
 import { BannerSection } from "./BannerSection/BannerSection";
 import { ShortcutSection } from "./ShortcutSection/ShortcutSection";
-
-const mainSwiperOptions = {
-  slidesPerView: 6,
-};
+import { useEffect } from "react";
+import { BookListSection } from "./BookListSection/BookListSection";
 
 const bookList = [
   {
@@ -26,15 +24,7 @@ export function Home() {
     <div className={styles.homeContainer}>
       <BannerSection />
       <ShortcutSection />
-
-      <section
-        style={{ maxWidth: 1328, marginInline: "auto", overflow: "visible" }}
-      >
-        <div style={{ maxWidth: 1200, marginInline: "auto" }}>
-          <h2>타이틀</h2>
-        </div>
-        <SwiperBook swiperOptions={mainSwiperOptions} bookList={bookList} />
-      </section>
+      <BookListSection bookList={bookList} />
     </div>
   );
 }
