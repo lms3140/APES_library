@@ -1,0 +1,40 @@
+.tabContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  border-bottom: 1px solid #e5e5e5; /* Made border more visible */
+  padding: 0 32px;
+  background-color: #fff;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 15px;
+  color: #666; /* Changed from #999 to #666 for better visibility */
+  cursor: pointer;
+  position: relative;
+  font-weight: 400;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: #333;
+}
+
+.tab.active {
+  color: #000;
+  font-weight: 600;
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #8b6f47;
+}
