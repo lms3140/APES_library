@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 48px;
-  border-bottom: 1px solid #e5e5e5; /* Made border more visible */
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
   padding: 0 32px;
   background-color: #fff;
 }
@@ -12,7 +13,7 @@
   border: none;
   padding: 16px 0;
   font-size: 15px;
-  color: #666; /* Changed from #999 to #666 for better visibility */
+  color: #666;
   cursor: pointer;
   position: relative;
   font-weight: 400;

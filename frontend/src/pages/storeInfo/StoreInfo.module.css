@@ -1,21 +1,42 @@
-.container {
+/* .container {
   max-width: 1200px;
   margin: 0 auto;
   background: white;
-}
+} */
 
 .storeSection {
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  overflow: hidden;
+  margin-inline: auto;
+  max-width: 1200px;
+  padding-top: 20px;
+  overflow: visible;
   margin-bottom: 40px;
-  /* Added margin-left auto to align to the right */
   margin-left: auto;
-  /* Ensure vertical stacking of children */
   display: flex;
   flex-direction: column;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  border-left: none;
+  border-right: none;
+}
+
+.storeSection2 {
+  margin-inline: auto;
+  padding-top: 20px;
+  overflow: visible;
+  margin-bottom: 40px;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  border-left: none;
+  border-right: none;
 }
 
 .section {
+  margin-inline: auto;
+  max-width: 1200px;
   margin-bottom: 40px;
+  overflow: visible;
+  position: relative;
 }
