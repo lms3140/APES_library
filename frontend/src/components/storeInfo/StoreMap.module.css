@@ -1,0 +1,86 @@
+.storeMap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fffdfa;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  color: #111;
+  box-sizing: border-box;
+  padding: 80px 0 120px;
+}
+
+/* 제목과 구분선 */
+.title {
+  width: 1180px;
+  font-size: 38px;
+  font-weight: 800;
+  border-bottom: 2px solid #000;
+  padding-bottom: 18px;
+  margin-bottom: 0; /* 줄 간격 제거 */
+  text-align: left;
+}
+
+/* 제목 아래 바로 지도와 목록이 이어짐 */
+.floorWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* 왼쪽/오른쪽 높이 맞춤 */
+  width: 1180px;
+  padding-top: 40px; /* border에서 약간 띄움 */
+  gap: 60px;
+}
+
+/* 왼쪽 리스트 */
+.sectionList {
+  flex: 0 0 400px;
+  border-right: 1px solid #e5e5e5;
+  padding-right: 40px;
+}
+
+.sectionList ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sectionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.sectionName {
+  font-weight: 700;
+  width: 100px;
+}
+
+.categories {
+  color: #333;
+  flex: 1;
+  text-align: left;
+}
+
+/* 오른쪽 지도 영역 */
+.mapContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+}
+
+/* 매장안내도 이미지 */
+.mapImage {
+  width: 100%;
+  max-width: 720px;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-top: 0; /* 리스트 하단선에 맞춤 */
+  align-self: flex-end; /* 상단 타이틀 하단선 기준 정렬 */
+}

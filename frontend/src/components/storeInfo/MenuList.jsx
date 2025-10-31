@@ -1,3 +1,4 @@
+import styles from "./MenuList.module.css";
 import { useState } from "react";
 import { Menu } from "./Menu.jsx";
 
@@ -16,17 +17,19 @@ export function MenuList() {
   };
 
   return (
-    <nav>
-      <ul>
+    <nav className={styles.menuNav}>
+      <ul className={styles.menuList}>
         {menus &&
-          menus.map((menu) => {
-            console.log(menu);
-            return (
-              <li key={menu.href}>
-                <Menu href={menu.href} name={menu.name} click={handleClick} />
-              </li>
-            );
-          })}
+          menus.map((menu) => (
+            <li
+              key={menu.href}
+              className={`${styles.menuItem} ${
+                active === menu.name ? styles.active : ""
+              }`}
+            >
+              <Menu href={menu.href} name={menu.name} click={handleClick} />
+            </li>
+          ))}
       </ul>
     </nav>
   );

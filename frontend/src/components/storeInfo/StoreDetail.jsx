@@ -1,62 +1,9 @@
-// import { FaRegStar } from "react-icons/fa";
-// import { FiMapPin } from "react-icons/fi";
-
-// export function StoreDetail({ store }) {
-//   //지도보기 버튼 누르면 새창으로 카카오맵 열기
-//   const handleOpenMap = () => {
-//     if (store?.mapUrl) {
-//       window.open(store.mapUrl, "_blank");
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <div>
-//         <div>
-//           <FiMapPin />
-//           {store?.name}
-//         </div>
-
-//         <h2>{store?.name}</h2>
-//         <button>
-//           <FaRegStar />
-//         </button>
-
-//         <p>
-//           <span>매장주소 </span>
-//           {store?.address}
-//         </p>
-
-//         <p>
-//           <span>영업시간 </span>
-//           {store?.time}
-//         </p>
-
-//         <p>
-//           <span>휴점 </span>
-//           {store?.holiday}
-//         </p>
-
-//         <div>
-//           <button onClick={handleOpenMap}>지도보기</button>
-//           <button>매장문의 {store?.tel}</button>
-//         </div>
-//       </div>
-
-//       <div>
-//         <img src={store?.image} alt="매장사진" />
-//       </div>
-//     </div>
-//   );
-// }
-
-"use client";
-
+import styles from "./StoreDetail.module.css";
 import { FaRegStar } from "react-icons/fa";
 import { FiMapPin } from "react-icons/fi";
-import styles from "./StoreDetail.module.css";
 
 export function StoreDetail({ store }) {
+  //지도보기 버튼 누르면 새창으로 카카오맵 열기
   const handleOpenMap = () => {
     if (store?.mapUrl) {
       window.open(store.mapUrl, "_blank");
@@ -85,12 +32,12 @@ export function StoreDetail({ store }) {
 
         <p className={styles.infoRow}>
           <span className={styles.infoLabel}>영업시간 </span>
-          {store?.hours}
+          {store?.time}
         </p>
 
         <p className={styles.infoRow}>
           <span className={styles.infoLabel}>휴점 </span>
-          {store?.closedDays}
+          {store?.holiday}
         </p>
 
         <div className={styles.buttonGroup}>
@@ -98,17 +45,13 @@ export function StoreDetail({ store }) {
             지도보기
           </button>
           <button className={`${styles.button} ${styles.buttonSecondary}`}>
-            매장문의 {store?.phone}
+            매장문의 {store?.tel}
           </button>
         </div>
       </div>
 
       <div className={styles.imageSection}>
-        <img
-          src={store?.image || "/placeholder.svg"}
-          alt="매장사진"
-          className={styles.storeImage}
-        />
+        <img src={store?.image} alt="매장사진" className={styles.storeImage} />
       </div>
     </div>
   );

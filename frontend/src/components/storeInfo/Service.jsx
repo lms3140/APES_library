@@ -5,8 +5,8 @@ export function Service({ selectedStore }) {
   }
 
   return (
-    <div>
-      <h1 id="service">매장 서비스</h1>
+    <div id="service">
+      <h1>매장 서비스</h1>
       {selectedStore.storeService &&
         selectedStore.storeService.map((service) => (
           <nav>
