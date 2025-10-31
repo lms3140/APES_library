@@ -1,6 +1,8 @@
+// 승현 라우터
+
 export const route2 = [
   {
-    path: "/caketest2",
-    element: <h1>히히</h1>,
+    path: "/payment",
+    element: <Payment />,
   },
 ];
