@@ -14,7 +14,12 @@ const SignupIntro = () => {
                 <img src="#" alt="무슨문고 로고" />
             </div>
 
-            <button className={styles.btnSignup}>회원가입</button>
+            <button
+                className={styles.btnSignup}
+                onClick={() => navigate("/signup")}
+            >
+                회원가입
+            </button>
 
             <div className={styles.signupLinks}>
                 <a href="#">법인회원 가입</a>

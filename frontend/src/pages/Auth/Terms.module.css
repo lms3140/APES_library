@@ -1,0 +1,99 @@
+/* 약관 동의 섹션 전체 */
+.agreeSection {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+/* 전체 동의 */
+.agreeAll {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* 모든 체크박스 기본 크기 통일 */
+.agreeSection input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* 체크박스 간격 통일 */
+.agreeAll input,
+.groupHeader input[type="checkbox"],
+.groupContent div input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* 개별 약관 항목 */
+.agreeItem {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+/* 아코디언 헤더: 체크박스 + 라벨 + 보기/접기 버튼 */
+.groupHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.groupHeader input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.groupHeader label {
+    flex-grow: 1;
+    min-width: 0;
+    font-size: 14px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+/* 아코디언 펼쳐진 내용 */
+.groupContent {
+    display: flex;
+    gap: 100px;
+    margin-top: 10px;
+    padding-left: 50px;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* 하위 체크박스(마케팅) */
+.groupContent div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.groupContent div input {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+/* 아코디언 보기/접기 버튼 */
+.btnView {
+    background: none;
+    border: none;
+    color: #0078ff;
+    font-size: 12px;
+    padding: 0;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.btnView:hover {
+    text-decoration: underline;
+}

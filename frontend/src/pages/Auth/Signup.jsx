@@ -2,19 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
 import cstyles from "./Logo.module.css";
+import Terms from "./Terms.jsx"; // 약관 컴포넌트
 
 const Signup = () => {
-    /*
-      id : 아이디
-      pwd : 비밀번호
-      name : 사용자 이름
-      phone : 사용자 전화번호
-      email : 사용자 이메일
-      birth(char(8)) : 사용자 생년월일
-      gender : 사용자 성별
-      mdate : 회원가입 일자 - ?
-    */
-
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -30,35 +20,98 @@ const Signup = () => {
         agreeTerms: false,
         agreePrivacy: false,
         agreeMarketing: false,
+        marketingEmail: false,
+        marketingSMS: false,
     });
 
+    const [idCheckResult, setIdCheckResult] = useState(null);
+    const [pwdMatch, setPwdMatch] = useState(null);
+
+    // 입력값 변경 핸들러
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
+
+        if (name === "pwd" || name === "pwdcheck") {
+            const updatedForm = { ...formData, [name]: value };
+            setFormData(updatedForm);
+
+            if (updatedForm.pwd && updatedForm.pwdcheck) {
+                setPwdMatch(updatedForm.pwd === updatedForm.pwdcheck);
+            } else {
+                setPwdMatch(null);
+            }
+            return;
+        }
+
+        if (name === "phone") {
+            const formatted = value
+                .replace(/[^0-9]/g, "")
+                .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/, "$1-$2-$3")
+                .replace(/(-{1,2})$/, "");
+            setFormData({ ...formData, phone: formatted });
+            return;
+        }
+
         setFormData({
             ...formData,
             [name]: type === "checkbox" ? checked : value,
         });
     };
 
-    const handleAllAgree = (e) => {
-        const checked = e.target.checked;
+    const handleAllAgree = (checked) => {
         setFormData({
             ...formData,
             agreeAll: checked,
             agreeTerms: checked,
             agreePrivacy: checked,
             agreeMarketing: checked,
+            marketingEmail: checked,
+            marketingSMS: checked,
         });
+    };
+
+    const handleIdCheck = () => {
+        if (!formData.id) {
+            alert("아이디를 입력해주세요.");
+            return;
+        }
+        if (formData.id === "admin") {
+            setIdCheckResult("duplicate");
+        } else {
+            setIdCheckResult("available");
+        }
+    };
+
+    const handleSendCode = () => {
+        if (!formData.email) {
+            alert("이메일을 입력해주세요.");
+            return;
+        }
+        alert(`인증번호가 ${formData.email}로 발송되었습니다.`);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (formData.pwd !== formData.pwdcheck) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
+        if (!isRequiredFilled) {
+            alert("필수 항목을 모두 입력하고 필수 약관에 동의해주세요.");
+            return;
+        }
+
+        if (idCheckResult !== "available") {
+            alert("아이디 중복 확인을 완료해주세요.");
+            return;
+        }
+
         console.log("회원가입 데이터:", formData);
         alert("회원가입이 완료되었습니다!");
         navigate("/login");
     };
 
-    // 필수 입력 값 체크
     const isRequiredFilled =
         formData.id &&
         formData.pwd &&
@@ -83,27 +136,43 @@ const Signup = () => {
             </div>
 
             {/* 회원정보 입력 */}
-            <div className={styles.sectionTitle}>
+            <div className={styles.sectionRow}>
                 <h3 className={styles.sectionTitle}>회원정보 입력</h3>
                 <p className={styles.sectionInfo}>
-                    <span className={styles.required}>*</span> 필수 입력</p>
+                    <span className={styles.required}>*</span> 필수 입력
+                </p>
             </div>
 
             <form onSubmit={handleSubmit} className={styles.form}>
+                {/* 아이디 */}
                 <label>
-                    아이디
-                    <span className={styles.required}>*</span>
+                    아이디 <span className={styles.required}>*</span>
                 </label>
-                <input
-                    name="id"
-                    value={formData.id}
-                    onChange={handleChange}
-                    placeholder="아이디를 입력해주세요."
-                />
+                <div className={styles.inputRow}>
+                    <input
+                        name="id"
+                        value={formData.id}
+                        onChange={handleChange}
+                        placeholder="아이디를 입력해주세요."
+                    />
+                    <button
+                        type="button"
+                        onClick={handleIdCheck}
+                        className={styles.btnCheck}
+                    >
+                        중복확인
+                    </button>
+                </div>
+                {idCheckResult === "available" && (
+                    <p className={styles.successMsg}>사용 가능한 아이디입니다.</p>
+                )}
+                {idCheckResult === "duplicate" && (
+                    <p className={styles.errorMsg}>이미 존재하는 아이디입니다.</p>
+                )}
 
+                {/* 비밀번호 */}
                 <label>
-                    비밀번호
-                    <span className={styles.required}>*</span>
+                    비밀번호 <span className={styles.required}>*</span>
                 </label>
                 <input
                     type="password"
@@ -113,9 +182,9 @@ const Signup = () => {
                     placeholder="비밀번호를 입력해주세요."
                 />
 
+                {/* 비밀번호 확인 */}
                 <label>
-                    비밀번호 확인
-                    <span className={styles.required}>*</span>
+                    비밀번호 확인 <span className={styles.required}>*</span>
                 </label>
                 <input
                     type="password"
@@ -124,10 +193,16 @@ const Signup = () => {
                     onChange={handleChange}
                     placeholder="비밀번호를 한 번 더 입력해주세요."
                 />
+                {pwdMatch === false && (
+                    <p className={styles.errorMsg}>비밀번호가 일치하지 않습니다.</p>
+                )}
+                {pwdMatch === true && (
+                    <p className={styles.successMsg}>비밀번호가 일치합니다.</p>
+                )}
 
+                {/* 이름 */}
                 <label>
-                    이름
-                    <span className={styles.required}>*</span>
+                    이름 <span className={styles.required}>*</span>
                 </label>
                 <input
                     name="name"
@@ -136,9 +211,9 @@ const Signup = () => {
                     placeholder="이름을 입력해주세요."
                 />
 
+                {/* 휴대폰번호 */}
                 <label>
-                    휴대폰번호
-                    <span className={styles.required}>*</span>
+                    휴대폰번호 <span className={styles.required}>*</span>
                 </label>
                 <input
                     name="phone"
@@ -147,111 +222,74 @@ const Signup = () => {
                     placeholder="휴대폰 번호를 입력해주세요."
                 />
 
+                {/* 이메일 */}
                 <label>
-                    이메일
-                    <span className={styles.required}>*</span>
+                    이메일 <span className={styles.required}>*</span>
                 </label>
-                <input
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="이메일을 입력해주세요."
-                />
+                <div className={styles.emailWrapper}>
+                    <input
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="이메일을 입력해주세요."
+                    />
+                    <button
+                        type="button"
+                        className={styles.btnSendCode}
+                        onClick={handleSendCode}
+                        disabled={!formData.email}
+                    >
+                        인증번호 발송
+                    </button>
+                </div>
 
-                <label>
-                    생년월일
-                    <span className={styles.required}>*</span>
-                </label>
-                <input
-                    name="birth"
-                    value={formData.birth}
-                    onChange={handleChange}
-                    placeholder="YYYYMMDD"
-                />
-
-                <label>
-                    성별
-                    <span className={styles.required}>*</span>
-                </label>
-                <select
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleChange}
-                >
-                    <option value="">선택</option>
-                    <option value="male">남</option>
-                    <option value="female">여</option>
-                </select>
-
-                {/* 약관 동의 섹션 */}
-                <h3 className={styles.sectionTitle}>서비스 이용약관 동의</h3>
-
-                <div className={styles.agreeSection}>
-                    <div className={styles.agreeAll}>
+                {/* 생년월일 + 성별 가로 배치 */}
+                <div className={styles.rowFlex}>
+                    <div className={styles.flexItem}>
+                        <label>
+                            생년월일 <span className={styles.required}>*</span>
+                        </label>
                         <input
-                            type="checkbox"
-                            name="agreeAll"
-                            checked={formData.agreeAll}
-                            onChange={handleAllAgree}
+                            name="birth"
+                            value={formData.birth}
+                            onChange={handleChange}
+                            placeholder="YYYYMMDD"
+                            pattern="\d{8}"
+                            title="8자리 숫자 (예: 19991231)"
                         />
-                        <label>
-                            약관 전체 동의
-                        </label>
-
                     </div>
 
-                    <div className={styles.agreeItem}>
+                    <div className={styles.flexItem}>
                         <label>
-                            <input
-                                type="checkbox"
-                                name="agreeTerms"
-                                checked={formData.agreeTerms}
-                                onChange={handleChange}
-                            />
-                            교보문고 이용약관 (필수)
-                            <span className={styles.required}>*</span>
+                            성별 <span className={styles.required}>*</span>
                         </label>
-                        <button type="button" className={styles.btnView}>
-                            보기
-                        </button>
-                    </div>
-
-                    <div className={styles.agreeItem}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="agreePrivacy"
-                                checked={formData.agreePrivacy}
-                                onChange={handleChange}
-                            />
-                            개인정보 수집 및 이용 동의 (필수)
-                            <span className={styles.required}>*</span>
-                        </label>
-                        <button type="button" className={styles.btnView}>
-                            보기
-                        </button>
-                    </div>
-
-                    <div className={styles.agreeItem}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="agreeMarketing"
-                                checked={formData.agreeMarketing}
-                                onChange={handleChange}
-                            />
-                            마케팅 정보 수신 동의 (선택)
-                        </label>
-                        <button type="button" className={styles.btnView}>
-                            보기
-                        </button>
+                        <div className={styles.segmentedControl}>
+                            <button
+                                type="button"
+                                className={formData.gender === "male" ? styles.activeSegment : ""}
+                                onClick={() => setFormData({ ...formData, gender: "male" })}
+                            >
+                                {formData.gender === "male" && "✔"}   남
+                            </button>
+                            <button
+                                type="button"
+                                className={formData.gender === "female" ? styles.activeSegment : ""}
+                                onClick={() => setFormData({ ...formData, gender: "female" })}
+                            >
+                                {formData.gender === "female" && "✔"}  여
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                {/* 약관 컴포넌트 */}
+                <Terms formData={formData} setFormData={setFormData} handleAllAgree={handleAllAgree} />
 
                 <button
                     type="submit"
                     className={styles.btnSignup}
-                    disabled={!isRequiredFilled}>
+                    disabled={!isRequiredFilled}
+                >
                     회원가입
                 </button>
             </form>

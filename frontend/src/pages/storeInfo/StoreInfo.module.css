@@ -1,0 +1,21 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+}
+
+.storeSection {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  /* Added margin-left auto to align to the right */
+  margin-left: auto;
+  /* Ensure vertical stacking of children */
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-bottom: 40px;
+}

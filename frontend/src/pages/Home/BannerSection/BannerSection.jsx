@@ -1,7 +1,7 @@
 import styles from "./BannerSection.module.css";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useMemo, useState } from "react";
-import { SwiperBanner } from "../SwiperWrapper/SwiperBanner";
+import { SwiperBanner } from "../../../components/SwiperWrapper/SwiperBanner";
 
 const bannerImgNames = [
   { url: "./images/bannerImg/ad1.png" },
