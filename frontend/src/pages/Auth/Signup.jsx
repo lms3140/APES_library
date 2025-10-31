@@ -247,7 +247,7 @@ const Signup = () => {
                 <div className={styles.rowFlex}>
                     <div className={styles.flexItem}>
                         <label>
-                            생년월일 <span className={styles.required}>*</span>
+                            생년월일/성별 <span className={styles.required}>*</span>
                         </label>
                         <input
                             name="birth"
@@ -260,9 +260,6 @@ const Signup = () => {
                     </div>
 
                     <div className={styles.flexItem}>
-                        <label>
-                            성별 <span className={styles.required}>*</span>
-                        </label>
                         <div className={styles.segmentedControl}>
                             <button
                                 type="button"
