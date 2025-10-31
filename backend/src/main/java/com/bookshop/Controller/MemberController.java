@@ -18,14 +18,19 @@ public class MemberController {
 
     @PostMapping("/idcheck")
     public String idcheck(@RequestBody Member member) {
-
-        return "";
+            boolean result = memberService.idCheck(member.getId());
+            String msg = "";
+            if(result) msg = "이미 사용중인 아이디입니다.";
+            else msg = "아이디 사용가능";
+        return msg;
     }
 
     @PostMapping("/signup")
     public boolean signup(@RequestBody Member member) {
-
-        return false;
+        boolean result = false;
+        int rows = memberService.signup(member);
+        if(rows == 1) result = true;
+        return result;
     }
 
     @PostMapping("/login")
