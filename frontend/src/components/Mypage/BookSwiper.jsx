@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import style from "../../pages/Mypage/Mypage.module.css";
 
+// Mypage 추천에 떠있는 책 목록 스위퍼
+
 export function BookSwiper({items}) {
    return (
         <li className={`${style.ProdBlurItem} ${style.swiperSlide} ${style.swiperSlideVisible} ${style.swiperSlideActive}`}>
