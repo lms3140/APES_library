@@ -70,10 +70,10 @@ export function StoreInfo() {
 
       <MenuList />
 
-      <div className={styles.section}>
+      <div className={styles.section} id="coming">
         <Coming selectedStore={selectedStore} />
       </div>
-      <div className={styles.section}>
+      <div className={styles.section2} id="storeMap">
         <StoreMap selectedStore={selectedStore} />
       </div>
       {/** 매장 서비스 구현할것인지 고민 */}

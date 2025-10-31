@@ -18,7 +18,7 @@ export function Coming({ selectedStore }) {
   const lng = Number(selectedStore.kakaoMap.strLong);
 
   return (
-    <div id="coming">
+    <div>
       <h1>오시는길</h1>
       <div>
         <h2>

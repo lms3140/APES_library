@@ -6,6 +6,8 @@
   background-color: #fff;
   z-index: 100;
   border: none;
+  margin-inline: auto;
+  max-width: 1200px;
 }
 
 .menuNav::after {

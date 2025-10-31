@@ -7,12 +7,12 @@ export function StoreMap({ selectedStore }) {
   }
 
   return (
-    <div id="storeMap" className={styles.storeMap}>
-      <h1 className={styles.title}>매장안내도</h1>
+    <div className={styles.storeMap}>
+      <h3 className={styles.title}>매장안내도</h3>
       {selectedStore.storeMapInfo &&
         selectedStore?.storeMapInfo?.map((floor, idx) => (
           <div key={idx} className={styles.floorWrapper}>
-            <nav>
+            <nav className={styles.sectionList}>
               <ul>
                 {floor.sections &&
                   floor?.sections?.map((section, i) => (
