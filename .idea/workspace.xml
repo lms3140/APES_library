@@ -5,100 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f6b76f8-21f5-4df4-b790-0adcd1eb7b42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/APES_library.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/3조.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/bookshop/Controller/MemberController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/bookshop/dto/Member.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/bookshop/repository/JdbcTemplateMemberRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/bookshop/repository/MemberRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/bookshop/service/MemberService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/bookshop/service/MemberServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/data/Mypage/benefitData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/data/Mypage/bookSwiperData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/data/Mypage/snbMenuData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Mypage/BenefitIcoGroup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Mypage/BenefitSubGroup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Mypage/BookSwiper.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Mypage/SnBMenu.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/common/Button/Button.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/common/Button/Button.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/Parking.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/Service.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreDetail.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreList.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreTab.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/useStickyHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home/BookListSection/BookListSection.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home/BookListSection/BookListSection.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Checkout/Checkout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/ActionIcons/UserActionMenus.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/ActionIcons/UserActionMenus.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/HeaderVariant/FixedHeader.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/HeaderVariant/FixedHeader.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/HeaderVariant/MainHeader.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/HeaderVariant/MainHeader.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/SearchBar/SearchBar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/SearchBar/SearchBar.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/UserMenu/UserMenu.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/UserMenu/UserMenu.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/HeaderSwitch.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/NotFound.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/storeInfo/StoreInfo.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/route1.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/route2.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/route3.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/router.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/store/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/data/storeInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/data/storeInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/MemberAPI.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/MemberAPI.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/BannerSection/BannerSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home/BannerSection/BannerSection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/BannerSection/BannerSection.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home/BannerSection/BannerSection.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/ShortcutSection/ShortcutSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home/ShortcutSection/ShortcutSection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/ShortcutSection/ShortcutSection.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home/ShortcutSection/ShortcutSection.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/SwiperWrapper/SwiperBanner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SwiperWrapper/SwiperBanner.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/SwiperWrapper/SwiperBook.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SwiperWrapper/SwiperBook.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/SwiperWrapper/SwiperBook.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SwiperWrapper/SwiperBook.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/storeInfo/Coming.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/Coming.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/storeInfo/StoreTab.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useCustomHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Checkout/Checkout.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Auth/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/Signup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Auth/Signup.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/Signup.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Auth/SignupIntro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Auth/SignupIntro.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Header/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Layout/Layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Layout/Layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Mypage/Mypage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Mypage/Mypage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/storeInfo/StoreInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/storeInfo/StoreInfo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/utils/dataFetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/dataFetch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/route3.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/route3.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "Merging seongeun2",
+    "git-widget-placeholder": "seongeun2",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
@@ -111,17 +41,5 @@
         <option value="$PROJECT_DIR$/frontend/node_modules/cac/mod.js" />
       </list>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/frontend/src/router/route3.jsx</url>
-          <line>13</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
