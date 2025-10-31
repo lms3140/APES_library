@@ -1,0 +1,237 @@
+/* ---------------------- 타이틀 + 스텝 정보 한 줄 ---------------------- */
+.titleRow {
+    display: flex;
+    justify-content: space-between; /* 좌우 끝에 배치 */
+    align-items: baseline; /* 글자 기준선 맞춤 */
+}
+
+.titleRow .title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.titleRow .stepInfo {
+    font-size: 14px;
+    color: #4caf50;
+    margin: 0;
+}
+
+/* ---------------------- 소제목 ---------------------- */
+.sectionRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 30px 0 15px 0;
+    text-align: left;
+}
+
+.sectionInfo {
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+}
+
+/* ---------------------- 필수 입력 별표 ---------------------- */
+.required {
+    color: #4caf50;
+    margin-left: 4px;
+    font-weight: 700;
+}
+
+/* ---------------------- 폼 ---------------------- */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.form label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: block;
+    color: #333;
+}
+
+.form input,
+.form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form input:focus,
+.form select:focus {
+    border-color: #0078d4;
+}
+
+/* ---------------------- 아이디 중복 확인  ---------------------- */
+.inputRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inputRow input {
+    flex: 1;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    padding-left: 8px;
+    height: 100%;
+}
+
+.inputRow input::placeholder {
+    color: #999;
+}
+
+/* ---------------------- 아이디 중복 확인 버튼 ---------------------- */
+.btnCheck {
+    padding: 0px 16px;
+    background-color: #ff4961;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 40px; /* 높이 통일 */
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.3s;
+}
+
+.btnCheck:hover {
+    background-color: #d93d52;
+}
+
+/* ---------------------- 비밀번호 일치 / 불일치 메시지 ---------------------- */
+.successMsg {
+    color: #4caf50;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.errorMsg {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.emailWrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.emailWrapper input {
+    flex: 1;
+}
+
+/* ---------------------- 인증번호 발송 버튼 ---------------------- */
+.btnSendCode {
+    height: 40px;
+    padding: 0 16px;
+    background-color: #888888;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnSendCode:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btnSendCode:hover:not(:disabled) {
+    background-color: #666666;
+}
+
+/* ---------------------- 생년월일/성별 ---------------------- */
+.rowFlex {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.flexItem {
+    flex: 1;
+}
+
+/* ---------------------- 성별 세그먼티드 컨트롤 ---------------------- */
+.segmentedControl {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 40px;
+}
+
+.segmentedControl button {
+    flex: 1;
+    border: none;
+    background: #f5f5f5;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; /* 체크아이콘과 텍스트 간격 */
+}
+
+.segmentedControl button:hover {
+    background: #e0e0e0;
+}
+
+/* 선택된 버튼 */
+.activeSegment {
+    background: #005fcc;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* 선택된 버튼 hover 시 좀 더 어두운 색 */
+.activeSegment:hover {
+    background: #0049a5;
+}
+
+/* ---------------------- 회원가입 버튼 ---------------------- */
+.btnSignup {
+    width: 100%;
+    padding: 12px;
+    background-color: #0077ff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.btnSignup:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
