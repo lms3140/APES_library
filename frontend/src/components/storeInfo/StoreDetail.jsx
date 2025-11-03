@@ -1,6 +1,5 @@
 import styles from "./StoreDetail.module.css";
 import { FaRegStar } from "react-icons/fa";
-import { FiMapPin } from "react-icons/fi";
 
 export function StoreDetail({ store }) {
   //지도보기 버튼 누르면 새창으로 카카오맵 열기
@@ -13,11 +12,6 @@ export function StoreDetail({ store }) {
   return (
     <div className={styles.container}>
       <div className={styles.infoSection}>
-        <div className={styles.locationLabel}>
-          <FiMapPin />
-          {store?.name}
-        </div>
-
         <div className={styles.header}>
           <h2 className={styles.title}>{store?.name}</h2>
           <button className={styles.favoriteButton}>

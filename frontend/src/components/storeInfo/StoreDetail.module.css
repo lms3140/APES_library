@@ -5,6 +5,7 @@
   align-items: flex-start;
   background-color: #fff;
   border-top: 1px solid #e5e5e5;
+  border-bottom: none;
 }
 
 .locationLabel {
