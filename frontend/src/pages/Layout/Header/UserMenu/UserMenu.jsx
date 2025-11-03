@@ -18,10 +18,10 @@ export function UserMenu() {
           ) : (
             <>
               <li>
-                <Link to="#">회원가입</Link>
+                <Link to="/signup-intro">회원가입</Link>
               </li>
               <li>
-                <Link to="#">로그인</Link>
+                <Link to="/login">로그인</Link>
               </li>
             </>
           )}
@@ -53,7 +53,7 @@ export function UserMenu() {
             <Link to="#">주문배송</Link>
           </li>
           <li>
-            <Link to="#">매장안내</Link>
+            <Link to="/store-info/001">매장안내</Link>
           </li>
           <li>
             <Link to="#">고객센터</Link>
