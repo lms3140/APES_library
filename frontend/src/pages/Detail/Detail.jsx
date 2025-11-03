@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import coverImage from "./cover.jpg"
 import styles from "./Detail.module.css";
+import { FaHeart, FaGift } from "react-icons/fa"; // ❤️🎁 아이콘 추가
 
 const Detail = () => {
     return (
@@ -7,14 +9,14 @@ const Detail = () => {
             {/* 상단: 책 이미지 + 기본 정보 */}
             <div className={styles.detailTop}>
                 <img
-                    src="https://via.placeholder.com/200x300"
-                    alt="책 표지"
+                    src={coverImage}
+                    alt="장르의 해부학"
                     className={styles.bookImage}
                 />
                 <div className={styles.bookInfo}>
-                    <h2 className={styles.title}>책 제목 예시</h2>
-                    <p className={styles.author}>저자명 | 출판사명</p>
-                    <p className={styles.price}>₩12,000</p>
+                    <h2 className={styles.title}>장르의 해부학</h2>
+                    <p className={styles.author}>존 트루비 지음 | 출판사 다산초당 </p>
+                    <p className={styles.price}>₩34,560</p>
                 </div>
             </div>
 
@@ -49,6 +51,35 @@ const Detail = () => {
 
             {/* 구매 버튼 */}
             <button className={styles.btnPurchase}>구매하기</button>
+
+            {/* ✅ 하단 고정 바 */}
+            <div className={styles.bottomBar}>
+                <div className={styles.barContent}>
+                    <div className={styles.barPrice}>
+                        <span>₩34,560</span>
+                    </div>
+
+                    {/* 버튼 그룹 */}
+                    <div className={styles.barButtons}>
+                        {/* 하트 */}
+                        <button className={styles.iconBtn}>
+                            <FaHeart className={styles.heartIcon} />
+                        </button>
+
+                        {/* 선물하기 */}
+                        <button className={styles.giftBtn}>
+                            <FaGift className={styles.giftIcon} />
+                            <span>선물하기</span>
+                        </button>
+
+                        {/* 장바구니 */}
+                        <button className={styles.cartBtn}>장바구니</button>
+
+                        {/* 바로결제 */}
+                        <button className={styles.buyBtn}>바로결제</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
