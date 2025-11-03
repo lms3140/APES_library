@@ -2,10 +2,17 @@ package com.bookshop.Controller;
 
 import com.bookshop.dto.Member;
 import com.bookshop.service.MemberService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
@@ -34,9 +41,41 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public int login() {
+    public ResponseEntity<?> login(@RequestBody Member member, HttpServletRequest request) {
+        ResponseEntity<?> response = null;
+        boolean result = memberService.login(member);
 
-        return 0;
+        if(result) {
+            HttpSession session = request.getSession(true);
+            session.setAttribute("sid", "test");
+            response = ResponseEntity.ok(Map.of("login", true));
+        } else {
+            response = ResponseEntity.ok(Map.of("login", false));
+        }
+        return response;
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+
+        if(session != null) {
+            session.invalidate();
+        }
+
+        var cookie = new Cookie("JSEEIONID", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+
+        var xsrf = new Cookie("XSRF-TOKEN", null);
+        xsrf.setPath("/");
+        xsrf.setMaxAge(0);
+        xsrf.setHttpOnly(true);
+        response.addCookie(xsrf);
+
+        return ResponseEntity.ok(Map.of("logout", true));
     }
 
 }
