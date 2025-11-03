@@ -1,0 +1,22 @@
+.actionCartLink {
+  font-size: 2rem;
+}
+
+.actionMyPageLink {
+  display: flex;
+  background-color: var(--color-green-600);
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  color: var(--color-green-100);
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 10px var(--color-green-600);
+}
+
+.actionList {
+  display: flex;
+  align-items: center;
+  width: 100px;
+  justify-content: space-between;
+}
