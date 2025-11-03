@@ -19,16 +19,23 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public boolean login(Member member) {
-        return false;
+        String encodePwd = memberRepository.login(member.getId());
+        boolean result = passwordEncoder.matches(member.getPwd(), encodePwd);
+        return result;
     }
 
     @Override
     public int signup(Member member) {
-        return 0;
+        String encodePwd = passwordEncoder.encode(member.getPwd());
+        member.setPwd(encodePwd);
+        return memberRepository.save(member);
     }
 
     @Override
     public boolean idCheck(String id) {
-        return false;
+        boolean result = true;
+        Long count = memberRepository.findById(id);
+        if(count == 0) result = false;
+        return result;
     }
 }
