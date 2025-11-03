@@ -1,8 +1,6 @@
 import styles from "./StoreList.module.css";
 
 export function StoreList({ stores, onStoreClick, selectedStore }) {
-  console.log(stores);
-
   return (
     <div className={styles.listContainer}>
       {stores &&
