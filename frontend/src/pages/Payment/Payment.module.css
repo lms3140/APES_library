@@ -1,0 +1,11 @@
+ol, li {
+    list-style: none;
+}
+.icoLocationPrimary {
+    display: inline-block;
+    width: 10px;
+    width: 20px;
+    background-size: 10px 20px;
+    background-image: url("/images/paymentPage/ico_location_primary@2x.png");
+    vertical-align: top;
+}
