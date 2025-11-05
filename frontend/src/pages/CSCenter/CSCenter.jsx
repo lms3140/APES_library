@@ -6,9 +6,6 @@ export function CSCenter() {
   return (
     <div>
       <div>
-        <SideBar />
-      </div>
-      <div>
         <Main />
       </div>
     </div>
