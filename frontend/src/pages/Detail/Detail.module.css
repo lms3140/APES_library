@@ -3,8 +3,10 @@
     margin: 0 auto;
     padding: 20px;
     font-family: 'Arial', sans-serif;
+    padding-bottom: 120px;
 }
 
+/* 상단 도서 정보 */
 .detailTop {
     display: flex;
     gap: 20px;
@@ -15,74 +17,76 @@
     width: 200px;
     height: 300px;
     object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.bookInfo {
+/* 탭 메뉴 */
+.tabs {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: space-around;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 200;
+    border-bottom: 1px solid #ddd;
 }
 
-.title {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.author {
-    font-size: 16px;
-    color: #555;
-}
-
-.price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #b12704;
-}
-
-.detailSection {
-    margin-bottom: 30px;
-}
-
-.sectionTitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.description {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-}
-
-.tableOfContents {
-    list-style: disc;
-    padding-left: 20px;
-    font-size: 16px;
-}
-
-.review {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.5;
-}
-
-.btnPurchase {
-    background-color: #3f42a0;
-    color: white;
-    padding: 12px 24px;
+.tabs button {
+    flex: 1;
+    background: none;
     border: none;
-    cursor: pointer;
     font-size: 16px;
-    border-radius: 4px;
+    font-weight: 500;
+    padding: 14px 0;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.btnPurchase:hover {
-    background-color: #e65c00;
+.tabs button:hover {
+    color: #5156b2;
 }
 
-/* ✅ 하단 고정 바 */
+.active {
+    border-bottom: 3px solid #5156b2;
+    color: #5156b2;
+    font-weight: 600;
+}
+
+.groupHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.iconToggle {
+    font-size: 18px;
+    color: #555;
+    transition: transform 0.3s ease;
+}
+
+/* 접히는 내용 */
+.policyContent {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.policyContent.open {
+    max-height: 300px; /* 내용 길이에 맞게 충분히 지정 */
+    opacity: 1;
+}
+
+.policyContent.closed {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* 하단 고정 바 */
 .bottomBar {
     position: fixed;
     bottom: 0;
@@ -101,93 +105,3 @@
     justify-content: space-between;
     align-items: center;
 }
-
-.barPrice span {
-    font-size: 20px;
-    font-weight: 700;
-    color: #2a7a7b;
-}
-
-.barButtons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* ❤️ 하트 버튼 */
-.iconBtn {
-    background-color: #fff;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.iconBtn:hover {
-    border-color: #3f42a0;
-}
-
-.heartIcon {
-    color: #3f42a0;
-    font-size: 20px;
-}
-
-/* 🎁 선물하기 버튼 */
-.giftBtn {
-    background-color: #fff;
-    color: #3f42a0;
-    border: 2px solid #3f42a0;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.2s ease;
-}
-
-.giftBtn:hover {
-    background-color: #fff3e0;
-}
-
-.giftIcon {
-    font-size: 16px;
-}
-
-/* 장바구니 & 결제 버튼 */
-.cartBtn {
-    background-color: #fff;
-    color: #3f42a0;
-    border: 2px solid #3f42a0;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.cartBtn:hover {
-    background-color: #fff3e0;
-}
-
-.buyBtn {
-    background-color: #3f42a0;
-    color: #fff;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.buyBtn:hover {
-    background-color: #e65f00;
-}
-
