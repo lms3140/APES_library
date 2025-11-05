@@ -1,17 +1,14 @@
 import React from "react";
-import bookDetail from "./bookdetail.jpg";
+// import bookDetail from "./bookdetail.jpg";
 import styles from "./Detail.module.css";
-import coverImage from "./cover.jpg";
 
 const ProductInfo = () => {
     return (
         <div className={styles.detailSection}>
             <h3 className={styles.sectionTitle}>상품 정보</h3>
             <img
-                src={bookDetail}
-                alt="책 상세 이미지"
-                className={styles.detailImage}
-            />
+                // src={bookDetail}
+                    alt="책 상세 이미지" className={styles.detailImage} />
 
             <div className={styles.description}>
                 <h3>“오직 장르를 이해한 사람만이 자신의 이야기를 완성할 수 있다!”</h3>
@@ -62,7 +59,6 @@ const ProductInfo = () => {
                 <li>5장. 프로젝트 실습</li>
             </ul>
 
-            {/* 기본 정보 테이블 추가 */}
             <h4 className={styles.sectionTitle}>기본 정보</h4>
             <table className={styles.basicInfoTable}>
                 <tbody>

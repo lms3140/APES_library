@@ -1,17 +1,12 @@
-/* ===============================
-   📘 기본 컨테이너
-================================ */
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     font-family: 'Arial', sans-serif;
-    padding-bottom: 120px; /* 하단 고정 바 공간 확보 */
+    padding-bottom: 120px;
 }
 
-/* ===============================
-   🧱 상단 도서 정보
-================================ */
+/* 상단 도서 정보 */
 .detailTop {
     display: flex;
     gap: 20px;
@@ -26,68 +21,30 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.bookInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.title {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-    color: #222;
-}
-
-.author {
-    font-size: 16px;
-    color: #555;
-    margin-top: 5px;
-}
-
-.price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 10px;
-}
-
-.btnPurchase {
-    background-color: #5156b2;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-    transition: background 0.2s ease;
-}
-
-.btnPurchase:hover {
-    background-color: #3f42a0;
-}
-
-/* ===============================
-   🧭 탭 메뉴 (비고: 지금은 스크롤에 따라 보임)
-================================ */
+/* 탭 메뉴 */
 .tabs {
     display: flex;
+    width: 100%;
     justify-content: space-around;
-    border-bottom: 2px solid #eee;
-    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 200;
+    border-bottom: 1px solid #ddd;
 }
 
-.tabs a {
+.tabs button {
     flex: 1;
-    text-align: center;
-    padding: 12px 0;
-    text-decoration: none;
-    color: #333;
+    background: none;
+    border: none;
+    font-size: 16px;
     font-weight: 500;
+    padding: 14px 0;
+    cursor: pointer;
     transition: 0.2s ease;
 }
 
-.tabs a:hover {
+.tabs button:hover {
     color: #5156b2;
 }
 
@@ -97,75 +54,39 @@
     font-weight: 600;
 }
 
-/* ===============================
-   📖 탭 콘텐츠 영역
-================================ */
-.tabContent {
-    margin-bottom: 40px;
-}
-
-/* ===============================
-   🧾 상세 내용 공통
-================================ */
-.detailSection {
-    margin-bottom: 30px;
-}
-
-.sectionTitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.description {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-}
-
-.tableOfContents {
-    list-style: disc;
-    padding-left: 20px;
-    font-size: 16px;
-}
-
-/* ===============================
-   📋 기본정보 표 스타일
-================================ */
-.basicInfoTable {
+.groupHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    cursor: pointer;
 }
 
-.basicInfoTable th,
-.basicInfoTable td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #ddd;
-    vertical-align: top;
-    font-size: 16px;
-    color: #333;
+.iconToggle {
+    font-size: 18px;
+    color: #555;
+    transition: transform 0.3s ease;
 }
 
-.basicInfoTable th {
-    font-weight: 600;
-    width: 130px;
-    text-align: left;
+/* 접히는 내용 */
+.policyContent {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.4s ease;
 }
 
-/* ===============================
-   💬 리뷰 (간단 문단용)
-================================ */
-.review {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.5;
+.policyContent.open {
+    max-height: 300px; /* 내용 길이에 맞게 충분히 지정 */
+    opacity: 1;
 }
 
-/* ===============================
-   ✅ 하단 고정 바 (결제/찜/장바구니)
-================================ */
+.policyContent.closed {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* 하단 고정 바 */
 .bottomBar {
     position: fixed;
     bottom: 0;
@@ -183,150 +104,4 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.barPrice span {
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;
-}
-
-.barButtons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* ❤️ 하트 버튼 */
-.iconBtn {
-    background-color: #fff;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.iconBtn:hover {
-    border-color: #5156b2;
-}
-
-.heartIcon {
-    color: #5156b2;
-    font-size: 20px;
-}
-
-/* 🎁 선물하기 버튼 */
-.giftBtn {
-    background-color: #fff;
-    color: #5156b2;
-    border: 2px solid #3f42a0;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.2s ease;
-}
-
-.giftBtn:hover {
-    background-color: #f5f5f5;
-}
-
-.giftIcon {
-    font-size: 16px;
-}
-
-/* 🛒 장바구니 & 💳 바로결제 */
-.cartBtn {
-    background-color: #fff;
-    color: #5156b2;
-    border: 2px solid #3f42a0;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.cartBtn:hover {
-    background-color: #f5f5f5;
-}
-
-.buyBtn {
-    background-color: #5156b2;
-    color: #fff;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.buyBtn:hover {
-    background-color: #3f42a0;
-}
-
-/* ===============================
-   📱 반응형
-================================ */
-@media (max-width: 768px) {
-    .container {
-        padding: 16px;
-        padding-bottom: 140px;
-    }
-
-    .detailTop {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .bookImage {
-        width: 160px;
-        height: 240px;
-    }
-
-    .title {
-        font-size: 20px;
-    }
-
-    .tabs {
-        flex-direction: column;
-        border-bottom: none;
-    }
-
-    .tabs a {
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .barContent {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .barButtons {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-    }
-
-    .barPrice span {
-        font-size: 18px;
-    }
-
-    .cartBtn,
-    .buyBtn,
-    .giftBtn {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
 }
