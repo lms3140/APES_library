@@ -26,19 +26,19 @@
   background-color: #fff;
   border: 1px solid #eaeaea;
   border-radius: 12px;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-sizing: border-box;
 }
 
 .address {
-  width: 590px;
+  width: 598px;
   height: 60px;
   display: flex;
   align-items: center;
   font-size: 18px;
   font-weight: 400;
   padding: 16px;
-  margin-top: 10px;
+  margin: 0;
   /* border-bottom: 1px solid #e5e5e5; */
 }
 
@@ -47,12 +47,10 @@
 }
 
 .map {
-  width: 100%;
-  height: 360px;
-  border-radius: 8px;
-  overflow: hidden;
   width: 598px;
   height: 410px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 /* --- 중앙 구분선 --- */
