@@ -1,0 +1,178 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  color: #111;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+/* 메인 오른쪽 영역 */
+.content {
+  flex: 1;
+}
+
+/* 제목 */
+.content h1:first-of-type {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.content h1:last-of-type {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.content h1 span {
+  color: #000;
+  font-weight: 700;
+}
+
+/* 1:1 문의 영역 */
+.qnaSection {
+  margin-bottom: 60px;
+}
+
+.qnaSection h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.qnaList {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.qnaList li {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 32px;
+  box-sizing: border-box;
+  background-color: #fff;
+  width: 320px;
+  height: 172px;
+}
+
+/* 문의 접수/문의 내역 사이 세로 border */
+.qnaList li:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qnaList li:first-child a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #111;
+  gap: 8px;
+  font-size: 14px;
+}
+
+/* 사이 구분선 */
+.qnaList li:first-child a:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.qnaList li:first-child svg {
+  font-size: 32px;
+}
+
+.qnaList li:first-child p {
+  margin: 0;
+}
+
+/* 전화 상담 영역 */
+.qnaList li:nth-child(2) h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.qnaList li:nth-child(2) div {
+  margin: 0;
+  font-size: 12px;
+  color: #000;
+  padding: 0;
+}
+
+/* 전화번호 사이 세로 border */
+.qnaList li:nth-child(2) div:first-of-type {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 12px;
+  /* border-bottom: 1px solid #e0e0e0; */
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.qnaList li:nth-child(2) div:first-of-type p {
+  color: #474c98;
+  font-weight: 700;
+  margin: 0;
+  padding-right: 8px;
+  justify-content: space-between;
+}
+
+.qnaList li:nth-child(2) div:first-of-type p:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+/* 보이는 ARS 영역 */
+.qnaList li:nth-child(3) h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.qnaList li:nth-child(3) p {
+  font-size: 12px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.qnaList li:nth-child(3) a {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 3px 6px;
+  margin: 12px 0 0;
+  text-decoration: none;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 공지사항 */
+.noticeSection {
+  position: relative;
+}
+
+.noticeSection h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.noticeSection a {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #595959;
+  text-decoration: none;
+}

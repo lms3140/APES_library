@@ -2,13 +2,12 @@ import { Contact } from "../components/CSCenter/Contact.jsx";
 import { FaQ } from "../components/CSCenter/FaQ.jsx";
 import { Notice } from "../components/CSCenter/Notice.jsx";
 import { QnAForm } from "../components/CSCenter/QnAForm.jsx";
-import { QnALayout } from "../components/CSCenter/QnALayout.jsx";
-import { SideBar } from "../components/CSCenter/SideBar.jsx";
+import { CsCenterLayout } from "../components/CSCenter/CsCenterLayout.jsx";
 import { CSCenter } from "../pages/CSCenter/CSCenter.jsx";
 
 export const route1 = [
   {
-    element: <QnALayout />,
+    element: <CsCenterLayout />,
     children: [
       {
         path: "/cscenter",
