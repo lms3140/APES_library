@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Detail.module.css";
 
-const Review = () => {
+export const Review = () => {
     return (
         <div className={styles.detailSection}>
             <h3 className={styles.sectionTitle}>리뷰</h3>
