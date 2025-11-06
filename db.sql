@@ -3,38 +3,40 @@ create database book_store;
 use book_store;
 
 -- ============================================================
--- 📚 카테고리 / 서브카테고리
+-- 📚 카테고리 / 하위 카테고리
 -- ============================================================
 
 CREATE TABLE category (
-  category_id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 카테고리 ID
-  category_name VARCHAR(100) NOT NULL             -- 카테고리명
+  category_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  category_name VARCHAR(100) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE subcategory (
-  subcategory_id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 하위 카테고리 ID
-  category_id BIGINT NOT NULL,                      -- 상위 카테고리 ID (FK)
-  subcategory_name VARCHAR(100) NOT NULL,           -- 하위 카테고리명
-  CONSTRAINT FK_category_TO_subcategory
-    FOREIGN KEY (category_id)
-    REFERENCES category (category_id)
+  subcategory_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  category_id BIGINT NOT NULL,
+  subcategory_name VARCHAR(100) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (category_id) REFERENCES category (category_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 -- ============================================================
--- ✍️ 저자 / 번역가
+-- ✍️ 저자 / 번역가 (시간필드 없음)
 -- ============================================================
 
 CREATE TABLE author (
-  author_id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 저자 ID
-  name VARCHAR(100) NOT NULL                    -- 저자명
+  author_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE translator (
-  translator_id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 번역가 ID
-  name VARCHAR(100) NOT NULL,                       -- 번역가명
-  bio TEXT NULL                                     -- 약력
+  translator_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  bio TEXT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -43,46 +45,42 @@ CREATE TABLE translator (
 -- ============================================================
 
 CREATE TABLE book (
-  book_id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 도서 ID
-  title VARCHAR(255) NOT NULL,                -- 제목
-  subcategory_id BIGINT NULL,                 -- 하위 카테고리 ID (FK)
-  price INT NULL,                             -- 가격
-  point INT NULL,                             -- 포인트
-  published_date DATE NULL,                   -- 출판일
-  description TEXT NULL,                      -- 책 설명
-  image_url VARCHAR(500) NULL,                -- 이미지 URL
-  CONSTRAINT FK_subcategory_TO_book
-    FOREIGN KEY (subcategory_id)
-    REFERENCES subcategory (subcategory_id)
+  book_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  subcategory_id BIGINT NULL,
+  price INT NULL,
+  point INT NULL,
+  published_date DATE NULL,
+  description TEXT NULL,
+  image_url VARCHAR(500) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (subcategory_id) REFERENCES subcategory (subcategory_id)
     ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 -- ============================================================
--- 📚 도서-저자 / 도서-번역가 매핑 (N:M 관계)
+-- 📚 책 - 저자 / 번역가 매핑 (변경 없음)
 -- ============================================================
 
 CREATE TABLE book_author (
-  book_id BIGINT NOT NULL,      -- 도서 ID
-  author_id BIGINT NOT NULL,    -- 저자 ID
+  book_id BIGINT NOT NULL,
+  author_id BIGINT NOT NULL,
   PRIMARY KEY (book_id, author_id),
-  CONSTRAINT FK_book_TO_book_author
-    FOREIGN KEY (book_id) REFERENCES book (book_id)
+  FOREIGN KEY (book_id) REFERENCES book (book_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_author_TO_book_author
-    FOREIGN KEY (author_id) REFERENCES author (author_id)
+  FOREIGN KEY (author_id) REFERENCES author (author_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE book_translator (
-  book_id BIGINT NOT NULL,         -- 도서 ID
-  translator_id BIGINT NOT NULL,   -- 번역가 ID
+  book_id BIGINT NOT NULL,
+  translator_id BIGINT NOT NULL,
   PRIMARY KEY (book_id, translator_id),
-  CONSTRAINT FK_book_TO_book_translator
-    FOREIGN KEY (book_id) REFERENCES book (book_id)
+  FOREIGN KEY (book_id) REFERENCES book (book_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_translator_TO_book_translator
-    FOREIGN KEY (translator_id) REFERENCES translator (translator_id)
+  FOREIGN KEY (translator_id) REFERENCES translator (translator_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -92,150 +90,145 @@ CREATE TABLE book_translator (
 -- ============================================================
 
 CREATE TABLE member (
-  member_id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 회원 ID
-  user_id VARCHAR(50) NOT NULL UNIQUE,          -- 사용자 ID
-  password VARCHAR(255) NOT NULL,               -- 비밀번호
-  name VARCHAR(50) NOT NULL,                    -- 이름
-  phone VARCHAR(20) NOT NULL,                   -- 전화번호
-  email VARCHAR(100) NOT NULL,                  -- 이메일
-  birth DATE NULL,                              -- 생년월일
-  gender VARCHAR(1) NULL,                       -- 성별
-  role VARCHAR(20) NULL,                        -- 권한 (USER/ADMIN 등)
-  point_balance INT DEFAULT 0                   -- 보유 포인트
+  member_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  birth DATE NULL,
+  gender VARCHAR(1) NULL,
+  role VARCHAR(20) NULL,
+  point_balance INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE address (
-  address_id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 주소 ID
-  member_id BIGINT NOT NULL,                    -- 회원 ID (FK)
-  recipient_name VARCHAR(50) NULL,              -- 수령인 이름
-  phone VARCHAR(20) NULL,                       -- 수령인 전화번호
-  address_line1 VARCHAR(255) NULL,              -- 기본 주소
-  address_line2 VARCHAR(255) NULL,              -- 상세 주소
-  zip_code VARCHAR(10) NULL,                    -- 우편번호
-  CONSTRAINT FK_member_TO_address
-    FOREIGN KEY (member_id) REFERENCES member (member_id)
+  address_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  member_id BIGINT NOT NULL,
+  recipient_name VARCHAR(50) NULL,
+  phone VARCHAR(20) NULL,
+  address_line1 VARCHAR(255) NULL,
+  address_line2 VARCHAR(255) NULL,
+  zip_code VARCHAR(10) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 -- ============================================================
--- 🧾 주문 / 주문 상세
+-- 🧾 주문 / 주문 상세 (생성 시각만)
 -- ============================================================
 
 CREATE TABLE purchase_order (
-  order_id BIGINT AUTO_INCREMENT PRIMARY KEY,     -- 주문 ID
-  member_id BIGINT NOT NULL,                      -- 주문자 ID (FK)
-  address_id BIGINT NULL,                         -- 배송지 ID (FK)
-  order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 주문일시
-  order_status VARCHAR(20) NULL,                  -- 주문 상태
-  total_price INT NULL,                           -- 총 결제금액
-  CONSTRAINT FK_member_TO_purchase_order
-    FOREIGN KEY (member_id) REFERENCES member (member_id)
+  order_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  member_id BIGINT NOT NULL,
+  address_id BIGINT NULL,
+  order_status VARCHAR(20) NULL,
+  total_price INT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_address_TO_purchase_order
-    FOREIGN KEY (address_id) REFERENCES address (address_id)
+  FOREIGN KEY (address_id) REFERENCES address (address_id)
     ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE order_detail (
-  order_detail_id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 주문 상세 ID
-  order_id BIGINT NOT NULL,                          -- 주문 ID (FK)
-  book_id BIGINT NOT NULL,                           -- 도서 ID (FK)
-  quantity INT DEFAULT 1,                            -- 수량
-  unit_price INT NULL,                               -- 단가
-  CONSTRAINT FK_order_TO_order_detail
-    FOREIGN KEY (order_id) REFERENCES purchase_order (order_id)
+  order_detail_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT NOT NULL,
+  book_id BIGINT NOT NULL,
+  quantity INT DEFAULT 1,
+  unit_price INT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (order_id) REFERENCES purchase_order (order_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_book_TO_order_detail
-    FOREIGN KEY (book_id) REFERENCES book (book_id)
+  FOREIGN KEY (book_id) REFERENCES book (book_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 -- ============================================================
--- 🗂️ 도서 컬렉션
+-- 🗂 도서 컬렉션
 -- ============================================================
 
 CREATE TABLE book_collection (
-  collection_id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 컬렉션 ID
-  name VARCHAR(255) NOT NULL,                       -- 컬렉션명
-  description TEXT NULL,                            -- 설명
-  display_order INT NULL,                           -- 노출 순서
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   -- 생성일
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- 수정일
+  collection_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT NULL,
+  display_order INT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE collection_book (
-  collection_book_id BIGINT AUTO_INCREMENT PRIMARY KEY, -- 컬렉션-도서 연결 ID
-  collection_id BIGINT NOT NULL,                        -- 컬렉션 ID (FK)
-  book_id BIGINT NOT NULL,                              -- 도서 ID (FK)
-  display_order INT NULL,                               -- 컬렉션 내 노출 순서
-  CONSTRAINT FK_collection_TO_collection_book
-    FOREIGN KEY (collection_id) REFERENCES book_collection (collection_id)
+  collection_book_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  collection_id BIGINT NOT NULL,
+  book_id BIGINT NOT NULL,
+  display_order INT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (collection_id) REFERENCES book_collection (collection_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_book_TO_collection_book
-    FOREIGN KEY (book_id) REFERENCES book (book_id)
+  FOREIGN KEY (book_id) REFERENCES book (book_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 -- ============================================================
--- 🗣️ 리뷰 / 찜 / 문의 / 포인트 내역
+-- 🗣 리뷰 / 찜 / 문의 / 포인트 내역
 -- ============================================================
 
 CREATE TABLE review (
-  review_id BIGINT AUTO_INCREMENT PRIMARY KEY,         -- 리뷰 ID
-  member_id BIGINT NOT NULL,                           -- 작성자 ID (FK)
-  book_id BIGINT NOT NULL,                             -- 도서 ID (FK)
-  rating INT NULL,                                     -- 평점
-  content TEXT NULL,                                   -- 리뷰 내용
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,      -- 작성일시
-  CONSTRAINT FK_member_TO_review
-    FOREIGN KEY (member_id) REFERENCES member (member_id)
+  review_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  member_id BIGINT NOT NULL,
+  book_id BIGINT NOT NULL,
+  rating INT NULL,
+  content TEXT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_book_TO_review
-    FOREIGN KEY (book_id) REFERENCES book (book_id)
+  FOREIGN KEY (book_id) REFERENCES book (book_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE wishlist (
-  member_id BIGINT NOT NULL,   -- 회원 ID (FK)
-  book_id BIGINT NOT NULL,     -- 도서 ID (FK)
+  member_id BIGINT NOT NULL,
+  book_id BIGINT NOT NULL,
   PRIMARY KEY (member_id, book_id),
-  CONSTRAINT FK_member_TO_wishlist
-    FOREIGN KEY (member_id) REFERENCES member (member_id)
+  FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT FK_book_TO_wishlist
-    FOREIGN KEY (book_id) REFERENCES book (book_id)
+  FOREIGN KEY (book_id) REFERENCES book (book_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE inquiry (
-  inquiry_id BIGINT AUTO_INCREMENT PRIMARY KEY,       -- 문의 ID
-  member_id BIGINT NOT NULL,                          -- 작성자 ID (FK)
-  title VARCHAR(255) NULL,                            -- 제목
-  content TEXT NULL,                                  -- 내용
-  status VARCHAR(20) NULL,                            -- 상태 (대기, 답변완료 등)
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- 생성일
-  answered_at TIMESTAMP NULL,                         -- 답변일
-  answered_by BIGINT NULL,                            -- 답변자 ID
-  CONSTRAINT FK_member_TO_inquiry
-    FOREIGN KEY (member_id) REFERENCES member (member_id)
+  inquiry_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  member_id BIGINT NOT NULL,
+  title VARCHAR(255) NULL,
+  content TEXT NULL,
+  status VARCHAR(20) NULL,
+  answered_by BIGINT NULL,
+  answered_at TIMESTAMP NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE point_history (
-  point_history_id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- 포인트 내역 ID
-  member_id BIGINT NOT NULL,                           -- 회원 ID (FK)
-  change_amount INT NULL,                              -- 변동 포인트
-  type VARCHAR(20) NULL,                               -- 유형 (적립/사용)
-  description VARCHAR(255) NULL,                       -- 설명
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,      -- 생성일
-  CONSTRAINT FK_member_TO_point_history
-    FOREIGN KEY (member_id) REFERENCES member (member_id)
+  point_history_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  member_id BIGINT NOT NULL,
+  change_amount INT NULL,
+  type VARCHAR(20) NULL,
+  description VARCHAR(255) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 -- insert data
 
