@@ -2,13 +2,20 @@ import React from "react";
 import styles from "./Detail.module.css";
 
 const Review = () => {
+    const reviews = [
+        { name: "김철수", text: "정말 기초부터 쉽게 설명되어 있어 좋았습니다." },
+        { name: "이영희", text: "예제 중심이라 따라하기 편했어요." },
+    ];
+
     return (
         <div className={styles.detailSection}>
             <h3 className={styles.sectionTitle}>리뷰</h3>
-            <p className={styles.review}>
-                이 책은 React와 웹 개발에 입문하는 사람들에게 정말 좋은 가이드입니다.
-                예제와 설명이 친절하며, 단계별로 따라가기 쉽습니다.
-            </p>
+            {reviews.map((review, idx) => (
+                <div key={idx} className={styles.review}>
+                    <strong>{review.name}</strong>
+                    <p>{review.text}</p>
+                </div>
+            ))}
         </div>
     );
 };

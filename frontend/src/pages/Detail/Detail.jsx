@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import coverImage from "./cover.jpg";
 import { FaHeart, FaGift } from "react-icons/fa";
 import ProductInfo from "./ProductInfo";
-import { Review } from "./Review"; // 수정된 리뷰 import
+import Review from "./Review";
 import ReturnPolicy from "./ReturnPolicy";
 import styles from "./Detail.module.css";
 
@@ -25,7 +25,11 @@ const Detail = () => {
     };
 
     useEffect(() => {
+        if (typeof window === "undefined") return;
+
         const handleScroll = () => {
+            if (!infoRef.current || !reviewRef.current || !returnRef.current) return;
+
             const scrollY = window.scrollY;
             const infoTop = infoRef.current.offsetTop - 100;
             const reviewTop = reviewRef.current.offsetTop - 100;
@@ -33,7 +37,7 @@ const Detail = () => {
 
             if (scrollY >= returnTop) setActiveTab("return");
             else if (scrollY >= reviewTop) setActiveTab("review");
-            else setActiveTab("info");
+            else if (scrollY >= infoTop) setActiveTab("info");
 
             setHideHeader(scrollY > 100);
         };

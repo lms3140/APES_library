@@ -1,16 +1,27 @@
+/* ===============================
+   📘 기본 컨테이너
+================================ */
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     font-family: 'Arial', sans-serif;
-    padding-bottom: 120px;
+    padding-bottom: 120px; /* 하단 고정 바 공간 확보 */
 }
 
-/* 상단 도서 정보 */
+/* ===============================
+   🧱 상단 도서 정보
+================================ */
 .detailTop {
     display: flex;
     gap: 20px;
     margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.hideHeader {
+    opacity: 0.7;
+    transform: translateY(-10px);
 }
 
 .bookImage {
@@ -21,26 +32,65 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 탭 메뉴 */
+.bookInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: #222;
+}
+
+.author {
+    font-size: 16px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.btnPurchase {
+    background-color: #5156b2;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.btnPurchase:hover {
+    background-color: #3f42a0;
+}
+
+/* ===============================
+   🧭 탭 메뉴
+================================ */
 .tabs {
     display: flex;
-    width: 100%;
     justify-content: space-around;
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-    z-index: 200;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
 }
 
 .tabs button {
     flex: 1;
-    background: none;
+    text-align: center;
+    padding: 12px 0;
     border: none;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 14px 0;
+    background: none;
     cursor: pointer;
+    font-weight: 500;
     transition: 0.2s ease;
 }
 
@@ -54,39 +104,148 @@
     font-weight: 600;
 }
 
-.groupHeader {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    cursor: pointer;
+/* ===============================
+   📖 탭 콘텐츠 영역
+================================ */
+.tabContent {
+    margin-bottom: 40px;
 }
 
-.iconToggle {
-    font-size: 18px;
-    color: #555;
+/* ===============================
+   🧾 상세 내용 공통
+================================ */
+.detailSection {
+    margin-bottom: 30px;
+}
+
+.sectionTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* ===============================
+   📚 목차 (펼치기)
+================================ */
+.tableOfContents {
+    list-style: none;
+    padding-left: 0;
+    font-size: 16px;
+}
+
+.tableOfContents > li {
+    margin-bottom: 8px;
+}
+
+.tableOfContents > li button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 4px 0;
+}
+
+.tableOfContents > li ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 16px;
+}
+
+.tableOfContents > li.open ul {
+    max-height: 500px; /* 충분히 큰 값 */
+}
+
+.tableOfContents .arrow {
     transition: transform 0.3s ease;
 }
 
-/* 접히는 내용 */
-.policyContent {
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: all 0.4s ease;
+.tableOfContents li.open .arrow {
+    transform: rotate(90deg);
 }
 
-.policyContent.open {
-    max-height: 300px; /* 내용 길이에 맞게 충분히 지정 */
-    opacity: 1;
+/* ===============================
+   📋 기본정보 표 스타일
+================================ */
+.basicInfoTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
-.policyContent.closed {
-    max-height: 0;
-    opacity: 0;
+.basicInfoTable th,
+.basicInfoTable td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+    font-size: 16px;
+    color: #333;
 }
 
-/* 하단 고정 바 */
+.basicInfoTable th {
+    font-weight: 600;
+    width: 130px;
+    text-align: left;
+}
+
+/* ===============================
+   💬 리뷰 (간단 문단용)
+================================ */
+.review {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* ===============================
+   📂 아코디언 버튼
+================================ */
+.accordionBtn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    padding: 0;
+}
+
+.accordionBtn:hover {
+    color: #5156b2;
+}
+
+/* 아코디언 내용 */
+.accordionContent {
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 3px solid #5156b2;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* 간단한 fade-in 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ===============================
+   ✅ 하단 고정 바 (결제/찜/장바구니)
+================================ */
 .bottomBar {
     position: fixed;
     bottom: 0;
@@ -104,4 +263,147 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.barPrice span {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+.barButtons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iconBtn {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.iconBtn:hover {
+    border-color: #5156b2;
+}
+
+.heartIcon {
+    color: #5156b2;
+    font-size: 20px;
+}
+
+.giftBtn {
+    background-color: #fff;
+    color: #5156b2;
+    border: 2px solid #3f42a0;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s ease;
+}
+
+.giftBtn:hover {
+    background-color: #f5f5f5;
+}
+
+.giftIcon {
+    font-size: 16px;
+}
+
+.cartBtn {
+    background-color: #fff;
+    color: #5156b2;
+    border: 2px solid #3f42a0;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.cartBtn:hover {
+    background-color: #f5f5f5;
+}
+
+.buyBtn {
+    background-color: #5156b2;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.buyBtn:hover {
+    background-color: #3f42a0;
+}
+
+/* ===============================
+ 반응형
+================================ */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        padding-bottom: 140px;
+    }
+
+    .detailTop {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .bookImage {
+        width: 160px;
+        height: 240px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .tabs {
+        flex-direction: column;
+        border-bottom: none;
+    }
+
+    .tabs button {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .barContent {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .barButtons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .barPrice span {
+        font-size: 18px;
+    }
+
+    .cartBtn,
+    .buyBtn,
+    .giftBtn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }
