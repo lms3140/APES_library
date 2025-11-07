@@ -1,0 +1,44 @@
+.reviewSection {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.reviewCard {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.memberId {
+    font-weight: bold;
+    color: #444;
+}
+
+.rating {
+    font-size: 14px;
+}
+
+.content {
+    margin: 6px 0;
+    line-height: 1.5;
+}
+
+.date {
+    font-size: 12px;
+    color: #888;
+}
+
+.noReview {
+    color: #888;
+}

@@ -1,0 +1,120 @@
+/* 하단 고정 바 */
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+/* 내부 콘텐츠 */
+.bottomBarContent {
+    display: flex;
+    align-items: center;
+    gap: 500px;
+}
+
+/* 총 금액 */
+.priceInfo {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.priceInfo span {
+    font-size: 22px;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+/* 버튼 그룹 */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 수량 조절 */
+.qtyControl {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.qtyControl button {
+    background: none;
+    border: none;
+    padding: 10px 14px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.qtyControl span {
+    width: 36px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* 공통 버튼 */
+button {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: 1px solid #6c63ff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+}
+
+/* 하트 버튼 */
+.iconBtn {
+    background: none;
+    border: none;
+    padding: 0 12px;
+}
+
+.heartIcon {
+    height: 28px;
+    width: auto;
+}
+
+/* 선물하기 버튼 */
+.giftBtn {
+    background: none;
+    border: 1px solid #6c63ff;
+    color: #6c63ff;
+}
+
+.presentIcon {
+    height: 24px; /* 버튼 텍스트와 맞추기 */
+    width: auto;
+    margin-right: 5px; /* 텍스트와 간격 */
+}
+
+/* 장바구니 버튼 */
+.cartBtn {
+    background: #fff;
+    color: #6c63ff;
+}
+
+/* 바로구매 버튼 */
+.buyBtn {
+    background: #6c63ff;
+    color: #fff;
+    border: none;
+}
+
+button:hover {
+    opacity: 0.9;
+}
