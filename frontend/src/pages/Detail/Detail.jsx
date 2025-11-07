@@ -11,8 +11,8 @@ export const Detail = () => {
     const reviewRef = useRef(null);
     const returnRef = useRef(null);
 
-    const [activeTab, setActiveTab] = useState("info");
-    const [hideHeader, setHideHeader] = useState(false);
+  const [activeTab, setActiveTab] = useState("info");
+  const [hideHeader, setHideHeader] = useState(false);
 
     // ✅ 특정 섹션으로 스크롤 이동
     const scrollToSection = (ref, key) => {
@@ -33,16 +33,16 @@ export const Detail = () => {
             const reviewTop = reviewRef.current.offsetTop - 100;
             const returnTop = returnRef.current.offsetTop - 100;
 
-            if (scrollY >= returnTop) setActiveTab("return");
-            else if (scrollY >= reviewTop) setActiveTab("review");
-            else setActiveTab("info");
+      if (scrollY >= returnTop) setActiveTab("return");
+      else if (scrollY >= reviewTop) setActiveTab("review");
+      else setActiveTab("info");
 
-            setHideHeader(scrollY > 100);
-        };
+      setHideHeader(scrollY > 100);
+    };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
     return (
         <div className={styles.container}>
@@ -59,47 +59,49 @@ export const Detail = () => {
                 </div>
             </div>
 
-            {/* 탭 메뉴 */}
-            <div className={styles.tabs}>
-                <button
-                    className={activeTab === "info" ? styles.active : ""}
-                    onClick={() => scrollToSection(infoRef, "info")}
-                >
-                    상품 정보
-                </button>
-                <button
-                    className={activeTab === "review" ? styles.active : ""}
-                    onClick={() => scrollToSection(reviewRef, "review")}
-                >
-                    리뷰
-                </button>
-                <button
-                    className={`${activeTab === "return" ? styles.active : ""} ${
-                        activeTab === "return" ? styles.highlightTab : ""
-                    }`}
-                    onClick={() => scrollToSection(returnRef, "return")}
-                >
-                    교환/반품/품절
-                </button>
-            </div>
+      {/* 탭 메뉴 */}
+      <div className={styles.tabs}>
+        <button
+          className={activeTab === "info" ? styles.active : ""}
+          onClick={() => scrollToSection(infoRef, "info")}
+        >
+          상품 정보
+        </button>
+        <button
+          className={activeTab === "review" ? styles.active : ""}
+          onClick={() => scrollToSection(reviewRef, "review")}
+        >
+          리뷰
+        </button>
+        <button
+          className={`${activeTab === "return" ? styles.active : ""} ${
+            activeTab === "return" ? styles.highlightTab : ""
+          }`}
+          onClick={() => scrollToSection(returnRef, "return")}
+        >
+          교환/반품/품절
+        </button>
+      </div>
 
-            {/* 섹션 */}
-            <section ref={infoRef}>
-                <ProductInfo />
-            </section>
+      {/* 섹션 */}
+      <section ref={infoRef}>
+        <ProductInfo />
+      </section>
 
-            <section ref={reviewRef}>
-                <Review />
-            </section>
+      <section ref={reviewRef}>
+        <Review />
+      </section>
 
-            <section ref={returnRef}>
-                <ReturnPolicy />
-            </section>
+      <section ref={returnRef}>
+        <ReturnPolicy />
+      </section>
 
             {/* ✅ 하단 고정바 (UnderBar 컴포넌트) */}
             <UnderBar />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Detail;

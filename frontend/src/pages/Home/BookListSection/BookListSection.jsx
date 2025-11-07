@@ -8,7 +8,7 @@ const mainSwiperOptions = {
 export function BookListSection({ bookList }) {
   return (
     <section className={styles.bookListSection}>
-      <div className={styles.BookListItem}>
+      <div className={styles.bookListItem}>
         <h2>타이틀</h2>
       </div>
       <SwiperBook swiperOptions={mainSwiperOptions} bookList={bookList} />
