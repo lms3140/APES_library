@@ -1,0 +1,201 @@
+.qnaContainer {
+  /* width: 100%; */
+  max-width: 800px;
+  margin: 0;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  /* color: #111; */
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 제목 */
+.qnaContainer h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+/* 전체 폼 영역 */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  /* width: 100%; */
+  box-sizing: border-box;
+}
+
+/* ===== 라벨 + 입력칸 가로 정렬 ===== */
+.fieldRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== 라벨 + textarea 세로 정렬 ===== */
+.fieldColumn {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 라벨 공통 */
+.label {
+  flex: 0 0 120px; /* 고정 너비 */
+  /* font-weight: 600; */
+  /* color: #111; */
+  text-align: left;
+  font-size: 14px;
+}
+
+/* select, input, textarea 공통 스타일 */
+.input,
+.select,
+.textarea {
+  flex: 1;
+  min-width: 0; /* flex overflow 방지 */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  /* padding: 10px 12px; */
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.input {
+  width: 800px;
+  height: 42px;
+}
+
+/* select */
+.select {
+  width: 410px;
+  height: 44px;
+  margin-bottom: 12px;
+}
+
+/* textarea */
+.textarea {
+  min-height: 160px;
+  resize: none;
+}
+
+/* 글자수 카운트 */
+.charCount {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* ===== 연락처, 이메일 섹션 ===== */
+.contactSection {
+  margin-top: 16px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.contactSection p {
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.contactType {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.phoneInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.checkboxLabel {
+  font-size: 13px;
+  color: #555;
+  display: block;
+  margin-top: 6px;
+}
+
+/* 이메일 */
+.emailField {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* ===== 버튼 ===== */
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0 30px;
+}
+
+.cancelBtn,
+.submitBtn {
+  width: 140px;
+  height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelBtn {
+  background-color: #eee;
+  color: #333;
+}
+
+.submitBtn {
+  background-color: #b1a7f2;
+  color: #fff;
+}
+
+.cancelBtn:hover {
+  background-color: #ddd;
+}
+
+.submitBtn:hover {
+  background-color: #968be6;
+}
+
+/* ===== 안내문 박스 ===== */
+.noticeBox {
+  background-color: #f7f7f7;
+  padding: 24px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.noticeBox h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.noticeBox p {
+  margin: 2px 0;
+}
+
+.green {
+  color: #3c9a17;
+}
