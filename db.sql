@@ -750,3 +750,140 @@ FROM
 GROUP BY 
     b.book_id, b.title, c.category_name, s.subcategory_name,
     b.price, b.point, b.published_date, b.description, b.image_url;
+    
+    
+    
+use book_store;
+
+show tables;
+
+desc book_collection;
+desc collection_book;
+
+select * from book_collection;
+
+select * from book;
+
+-- 1) 감성과 서사의 세계 (소설/시/희곡)
+INSERT INTO book_collection (name, description, display_order)
+VALUES ('감성과 서사의 세계', NULL, 1);
+
+INSERT INTO collection_book (collection_id, book_id, display_order) VALUES
+((SELECT collection_id FROM book_collection WHERE name='감성과 서사의 세계'), 10, 1),
+((SELECT collection_id FROM book_collection WHERE name='감성과 서사의 세계'), 13, 2),
+((SELECT collection_id FROM book_collection WHERE name='감성과 서사의 세계'), 18, 3),
+((SELECT collection_id FROM book_collection WHERE name='감성과 서사의 세계'), 22, 4),
+((SELECT collection_id FROM book_collection WHERE name='감성과 서사의 세계'), 23, 5),
+((SELECT collection_id FROM book_collection WHERE name='감성과 서사의 세계'), 25, 6);
+
+-- 2) 상상력 성장 도서관 (어린이)
+INSERT INTO book_collection (name, description, display_order)
+VALUES ('상상력 성장 도서관', NULL, 2);
+
+INSERT INTO collection_book (collection_id, book_id, display_order) VALUES
+((SELECT collection_id FROM book_collection WHERE name='상상력 성장 도서관'), 20, 1),
+((SELECT collection_id FROM book_collection WHERE name='상상력 성장 도서관'), 32, 2),
+((SELECT collection_id FROM book_collection WHERE name='상상력 성장 도서관'), 41, 3),
+((SELECT collection_id FROM book_collection WHERE name='상상력 성장 도서관'), 42, 4),
+((SELECT collection_id FROM book_collection WHERE name='상상력 성장 도서관'), 43, 5),
+((SELECT collection_id FROM book_collection WHERE name='상상력 성장 도서관'), 47, 6);
+
+-- 3) 트렌드 가이드 매거진 (잡지)
+INSERT INTO book_collection (name, description, display_order)
+VALUES ('트렌드 가이드 매거진', NULL, 3);
+
+INSERT INTO collection_book (collection_id, book_id, display_order) VALUES
+((SELECT collection_id FROM book_collection WHERE name='트렌드 가이드 매거진'), 86, 1),
+((SELECT collection_id FROM book_collection WHERE name='트렌드 가이드 매거진'), 90, 2),
+((SELECT collection_id FROM book_collection WHERE name='트렌드 가이드 매거진'), 91, 3),
+((SELECT collection_id FROM book_collection WHERE name='트렌드 가이드 매거진'), 93, 4),
+((SELECT collection_id FROM book_collection WHERE name='트렌드 가이드 매거진'), 96, 5),
+((SELECT collection_id FROM book_collection WHERE name='트렌드 가이드 매거진'), 98, 6);
+
+-- 4) 시험 준비 완성 세트 (수험서/자격증)
+INSERT INTO book_collection (name, description, display_order)
+VALUES ('시험 준비 완성 세트', NULL, 4);
+
+INSERT INTO collection_book (collection_id, book_id, display_order) VALUES
+((SELECT collection_id FROM book_collection WHERE name='시험 준비 완성 세트'), 3, 1),
+((SELECT collection_id FROM book_collection WHERE name='시험 준비 완성 세트'), 4, 2),
+((SELECT collection_id FROM book_collection WHERE name='시험 준비 완성 세트'), 8, 3),
+((SELECT collection_id FROM book_collection WHERE name='시험 준비 완성 세트'), 35, 4),
+((SELECT collection_id FROM book_collection WHERE name='시험 준비 완성 세트'), 48, 5),
+((SELECT collection_id FROM book_collection WHERE name='시험 준비 완성 세트'), 50, 6);
+
+-- 5) 생각을 머무르게 하는 글들 (에세이)
+INSERT INTO book_collection (name, description, display_order)
+VALUES ('생각을 머무르게 하는 글들', NULL, 5);
+
+INSERT INTO collection_book (collection_id, book_id, display_order) VALUES
+((SELECT collection_id FROM book_collection WHERE name='생각을 머무르게 하는 글들'), 14, 1),
+((SELECT collection_id FROM book_collection WHERE name='생각을 머무르게 하는 글들'), 21, 2),
+((SELECT collection_id FROM book_collection WHERE name='생각을 머무르게 하는 글들'), 29, 3),
+((SELECT collection_id FROM book_collection WHERE name='생각을 머무르게 하는 글들'), 56, 4),
+((SELECT collection_id FROM book_collection WHERE name='생각을 머무르게 하는 글들'), 60, 5),
+((SELECT collection_id FROM book_collection WHERE name='생각을 머무르게 하는 글들'), 81, 6);
+
+
+desc book_collection;
+
+
+create view collection_VW as
+SELECT
+    bc.collection_id,
+    bc.name AS collection_name,
+    bc.description,
+    bc.display_order AS collection_display_order,
+    b.book_id,
+    b.title,
+    b.image_url,
+    cb.display_order AS book_display_order
+FROM book_collection bc
+JOIN collection_book cb
+    ON bc.collection_id = cb.collection_id
+JOIN book b
+    ON cb.book_id = b.book_id
+ORDER BY
+    bc.display_order ASC,
+    cb.display_order ASC;SELECT
+    bc.collection_id,
+    bc.name AS collection_name,
+    bc.description,
+    bc.display_order AS collection_display_order,
+    b.book_id,
+    b.title,
+    b.image_url,
+    cb.display_order AS book_display_order
+FROM book_collection bc
+JOIN collection_book cb
+    ON bc.collection_id = cb.collection_id
+JOIN book b
+    ON cb.book_id = b.book_id
+ORDER BY
+    bc.display_order ASC,
+    cb.display_order ASC;
+    
+    
+select * from collection_vw;
+
+DROP VIEW IF EXISTS collection_vw;
+
+CREATE VIEW collection_vw AS
+SELECT
+    bc.collection_id AS collectionId,
+    bc.name AS collectionName,
+    bc.description AS description,
+    bc.display_order AS collectionDisplayOrder,
+
+    b.book_id AS bookId,
+    b.title AS title,
+    b.image_url AS imageUrl,
+    cb.display_order AS bookDisplayOrder
+FROM book_collection bc
+JOIN collection_book cb
+    ON bc.collection_id = cb.collection_id
+JOIN book b
+    ON cb.book_id = b.book_id
+ORDER BY
+    bc.display_order ASC,
+    cb.display_order ASC;
