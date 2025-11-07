@@ -1,30 +1,62 @@
-// import styles from "./SideBar.module.css";
-import { Link } from "react-router-dom";
+import styles from "./SideBar.module.css";
+import { Link, NavLink } from "react-router-dom";
 
 export function SideBar() {
   return (
-    <nav>
+    <nav className={styles.sidebar}>
       <h1>고객센터</h1>
       <ul>
         <li>
-          <Link to="/cscenter">메인</Link>
+          <NavLink
+            to="/cscenter"
+            end
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            <span>메인</span>
+          </NavLink>
         </li>
         <li>
-          <Link to="/cscenter/faq">자주 묻는 질문</Link>
+          <NavLink
+            to="/cscenter/faq"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            <span>자주 묻는 질문</span>
+          </NavLink>
         </li>
         <li>
-          <Link to="/cscenter/qna-form">1:1 문의</Link>
+          <NavLink
+            to="/cscenter/qna-form"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            <span>1:1 문의</span>
+          </NavLink>
           <ul>
             <li>
-              <Link to="/cscenter/qna-form">1:1 문의 접수</Link>
+              <NavLink
+                to="/cscenter/qna-form"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                <span>1:1 문의 접수</span>
+              </NavLink>
             </li>
             <li>
-              <Link to="#">1:1 문의 내역</Link> {/* 마이페이지로 연결 */}
+              <NavLink
+                to="/mypage"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                <span>1:1 문의 내역</span>
+              </NavLink>
+              {/* 마이페이지로 연결 */}
             </li>
           </ul>
         </li>
         <li>
-          <Link to="/cscenter/notice">공지사항</Link>
+          <NavLink
+            to="/cscenter/notice"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            <span>공지사항</span>
+          </NavLink>
         </li>
       </ul>
     </nav>

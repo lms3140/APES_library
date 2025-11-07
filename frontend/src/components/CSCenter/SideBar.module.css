@@ -1,0 +1,74 @@
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.sidebar h1 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+.sidebar > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar > ul > li {
+  position: relative;
+  padding-bottom: 10px;
+  padding: 16px 0;
+}
+
+/* 메인, 자주묻는질문 아래 가로 border */
+.sidebar > ul > li:nth-child(1),
+.sidebar > ul > li:nth-child(2) {
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* 공지사항 위 가로 border */
+.sidebar > ul > li:last-child {
+  border-top: 1px solid #eaeaea;
+}
+
+/* 링크 */
+.sidebar a {
+  text-decoration: none;
+  color: #111;
+  font-size: 15px;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* 하위 메뉴(1:1문의 접수/내역) — 들여쓰기 제거 */
+.sidebar ul ul {
+  margin: 15px 0 0 0;
+  padding: 0;
+  border: none;
+}
+
+.sidebar ul ul li {
+  margin-bottom: 8px;
+}
+
+/* 메인, 1:1 문의, 공지사항만 bold */
+.sidebar > ul > li:nth-child(1) > a,
+.sidebar > ul > li:nth-child(2) > a,
+.sidebar > ul > li:nth-child(3) > a,
+.sidebar > ul > li:last-child > a {
+  font-weight: 700;
+}
+
+/* 활성화된 메뉴 밑줄 */
+.active span {
+  text-decoration: underline;
+  /* text-underline-offset: 2px; */
+  text-decoration-thickness: 1px;
+}

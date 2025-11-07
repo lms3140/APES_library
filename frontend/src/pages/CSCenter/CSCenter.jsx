@@ -5,9 +5,7 @@ import { SideBar } from "../../components/CSCenter/SideBar.jsx";
 export function CSCenter() {
   return (
     <div>
-      <div>
-        <Main />
-      </div>
+      <Main />
     </div>
   );
 }
