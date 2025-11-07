@@ -2,9 +2,9 @@ import styles from "./Home.module.css";
 import { SwiperBook } from "../../components/SwiperWrapper/SwiperBook";
 import { BannerSection } from "./BannerSection/BannerSection";
 import { ShortcutSection } from "./ShortcutSection/ShortcutSection";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BookListSection } from "./BookListSection/BookListSection";
-
+import axios from "axios";
 const bookList = [
   {
     url: "/images/bookImg/b1.webp",
@@ -20,11 +20,29 @@ const bookList = [
 ];
 
 export function Home() {
+  const [bookCollections, setBookCollections] = useState([]);
+  useEffect(() => {
+    async function getCollectionBookList() {
+      try {
+        const res = await axios.get("http://localhost:8080/BookCollection/all");
+        setBookCollections(res.data);
+      } catch (e) {
+        console.log("데이터 불러오기 실패", e);
+      }
+    }
+
+    getCollectionBookList();
+  }, []);
   return (
     <div className={styles.homeContainer}>
       <BannerSection />
       <ShortcutSection />
-      <BookListSection bookList={bookList} />
+
+      {bookCollections.map((item) => {
+        return (
+          <BookListSection key={item.collectionId} bookCollection={item} />
+        );
+      })}
     </div>
   );
 }

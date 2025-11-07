@@ -5,13 +5,16 @@ const mainSwiperOptions = {
   slidesPerView: 6,
 };
 
-export function BookListSection({ bookList }) {
+export function BookListSection({ bookCollection }) {
   return (
     <section className={styles.bookListSection}>
       <div className={styles.bookListItem}>
-        <h2>타이틀</h2>
+        <h2>{bookCollection.collectionName}</h2>
       </div>
-      <SwiperBook swiperOptions={mainSwiperOptions} bookList={bookList} />
+      <SwiperBook
+        swiperOptions={mainSwiperOptions}
+        bookList={bookCollection.books}
+      />
     </section>
   );
 }
