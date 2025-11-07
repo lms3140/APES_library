@@ -1,13 +1,13 @@
 import React from "react";
-// import bookDetail from "./bookdetail.jpg";
+import bookDetail from "./bookdetail.jpg";
 import styles from "./Detail.module.css";
 
-const ProductInfo = () => {
+export const ProductInfo = () => {
     return (
         <div className={styles.detailSection}>
             <h3 className={styles.sectionTitle}>상품 정보</h3>
             <img
-                // src={bookDetail}
+                src={bookDetail}
                     alt="책 상세 이미지" className={styles.detailImage} />
 
             <div className={styles.description}>

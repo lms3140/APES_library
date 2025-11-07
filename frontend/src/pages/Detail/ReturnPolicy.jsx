@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import styles from "./Detail.module.css";
 
-const ReturnPolicy = () => {
+export const ReturnPolicy = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (

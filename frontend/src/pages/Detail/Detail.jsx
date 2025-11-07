@@ -1,35 +1,37 @@
 import React, { useRef, useState, useEffect } from "react";
 import coverImage from "./cover.jpg";
-import { FaHeart, FaGift } from "react-icons/fa";
-import ProductInfo from "./ProductInfo";
-import { Review } from "./Review"; // 수정된 리뷰 import
-import ReturnPolicy from "./ReturnPolicy";
+import { UnderBar } from "./UnderBar.jsx"; // ✅ 하단바 컴포넌트 import
+import { ProductInfo } from "./ProductInfo";
+import Review from "./Review"; // 수정된 리뷰 import
+import { ReturnPolicy } from "./ReturnPolicy";
 import styles from "./Detail.module.css";
 
-const Detail = () => {
-  const infoRef = useRef(null);
-  const reviewRef = useRef(null);
-  const returnRef = useRef(null);
+export const Detail = () => {
+    const infoRef = useRef(null);
+    const reviewRef = useRef(null);
+    const returnRef = useRef(null);
 
   const [activeTab, setActiveTab] = useState("info");
   const [hideHeader, setHideHeader] = useState(false);
 
-  const scrollToSection = (ref, key) => {
-    if (ref.current) {
-      window.scrollTo({
-        top: ref.current.offsetTop - 80,
-        behavior: "smooth",
-      });
-      setActiveTab(key);
-    }
-  };
+    // ✅ 특정 섹션으로 스크롤 이동
+    const scrollToSection = (ref, key) => {
+        if (ref.current) {
+            window.scrollTo({
+                top: ref.current.offsetTop - 80,
+                behavior: "smooth",
+            });
+            setActiveTab(key);
+        }
+    };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const infoTop = infoRef.current.offsetTop - 100;
-      const reviewTop = reviewRef.current.offsetTop - 100;
-      const returnTop = returnRef.current.offsetTop - 100;
+    // ✅ 스크롤 위치에 따라 탭 활성화/헤더 숨김 처리
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            const infoTop = infoRef.current.offsetTop - 100;
+            const reviewTop = reviewRef.current.offsetTop - 100;
+            const returnTop = returnRef.current.offsetTop - 100;
 
       if (scrollY >= returnTop) setActiveTab("return");
       else if (scrollY >= reviewTop) setActiveTab("review");
@@ -42,20 +44,20 @@ const Detail = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <div className={styles.container}>
-      {/* 상단 책 정보 */}
-      <div
-        className={`${styles.detailTop} ${hideHeader ? styles.hideHeader : ""}`}
-      >
-        <img src={coverImage} alt="책 이미지" className={styles.bookImage} />
-        <div className={styles.bookInfo}>
-          <h2 className={styles.title}>나의 첫 번째 개발서</h2>
-          <p className={styles.author}>홍길동 저 | 예문출판사</p>
-          <p className={styles.price}>₩ 48,000</p>
-          <button className={styles.btnPurchase}>구매하기</button>
-        </div>
-      </div>
+    return (
+        <div className={styles.container}>
+            {/* 상단 책 정보 */}
+            <div
+                className={`${styles.detailTop} ${hideHeader ? styles.hideHeader : ""}`}
+            >
+                <img src={coverImage} alt="책 이미지" className={styles.bookImage} />
+                <div className={styles.bookInfo}>
+                    <h2 className={styles.title}>나의 첫 번째 개발서</h2>
+                    <p className={styles.author}>홍길동 저 | 예문출판사</p>
+                    <p className={styles.price}>₩ 48,000</p>
+                    <button className={styles.btnPurchase}>구매하기</button>
+                </div>
+            </div>
 
       {/* 탭 메뉴 */}
       <div className={styles.tabs}>
@@ -94,23 +96,8 @@ const Detail = () => {
         <ReturnPolicy />
       </section>
 
-      {/* 하단 고정 바 */}
-      <div className={styles.bottomBar}>
-        <div className={styles.barContent}>
-          <div className={styles.barPrice}>
-            <span>₩ 48,000</span>
-          </div>
-          <div className={styles.barButtons}>
-            <button className={styles.iconBtn}>
-              <FaHeart className={styles.heartIcon} />
-            </button>
-            <button className={styles.giftBtn}>
-              <FaGift className={styles.giftIcon} />
-              <span>선물하기</span>
-            </button>
-            <button className={styles.cartBtn}>장바구니</button>
-            <button className={styles.buyBtn}>바로결제</button>
-          </div>
+            {/* ✅ 하단 고정바 (UnderBar 컴포넌트) */}
+            <UnderBar />
         </div>
       </div>
     </div>
