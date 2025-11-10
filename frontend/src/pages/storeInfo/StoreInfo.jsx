@@ -29,7 +29,6 @@ export function StoreInfo() {
     const fetch = async () => {
       const jsonData = await axiosData("/data/storeInfo.json");
       setInfo(jsonData);
-      console.log("storeInfoData ->", jsonData);
 
       //기본 선택값을 광화문점으로
       const defaultStore = jsonData["seoul"]?.find(
@@ -76,7 +75,6 @@ export function StoreInfo() {
       <div className={styles.section2} id="storeMap">
         <StoreMap selectedStore={selectedStore} />
       </div>
-      {/** 매장 서비스 구현할것인지 고민 */}
       <div className={styles.section}>
         <Service selectedStore={selectedStore} />
       </div>

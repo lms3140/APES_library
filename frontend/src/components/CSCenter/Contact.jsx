@@ -20,7 +20,7 @@ export function Contact() {
           <div className={styles.subTable}>
             <p>
               <span>1. </span>
-              <Link to="#">주문/배송 조회</Link>
+              <Link to="/mypage">주문/배송 조회</Link>
             </p>
             <p>2. 반품조회</p>
             <p>3. 환불 조회</p>

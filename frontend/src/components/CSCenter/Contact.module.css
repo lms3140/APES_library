@@ -142,10 +142,20 @@
   margin: 0;
 }
 
-a,
+/* a,
 a:link,
 a:visited,
 a:hover,
-a:active {
-  text-decoration: underline; /* 항상 밑줄 유지 */
+a:active  */
+.subTable :global(a),
+.subTable :global(a:hover),
+.subTable :global(a:visited),
+.subTable :global(a:link),
+.subTable :global(a:active),
+.noLeft :global(a),
+.noLeft :global(a:hover),
+.noLeft :global(a:visited),
+.noLeft :global(a:link),
+.noLeft :global(a:active) {
+  text-decoration: underline;
 }
