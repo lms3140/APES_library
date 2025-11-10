@@ -13,6 +13,10 @@ a {
   color: black;
 }
 
+img {
+  image-rendering: crisp-edges;
+}
+
 :host,
 :root {
   --color-red-100: #fdf2f2;

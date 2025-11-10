@@ -57,15 +57,15 @@ export function SwiperBook({ swiperOptions, bookList }) {
       <Swiper onSwiper={setSwiper} {...swiperOptions}>
         {bookList.map((book) => {
           return (
-            <SwiperSlide key={book.url}>
+            <SwiperSlide key={book.bookId}>
               <div className={styles.bookSlide}>
                 <img
                   width={180}
                   height={260}
-                  src={`${book.url}`}
+                  src={`${book.imageUrl}`}
                   alt={book.bookName}
                 />
-                <span>{book.bookName}</span>
+                <span>{book.title}</span>
               </div>
             </SwiperSlide>
           );

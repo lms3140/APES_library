@@ -19,7 +19,7 @@ class BookServiceTest {
     @Test
     void getBookDetail() {
 
-        // given (DB에 테스트용 책 데이터가 있다고 가정 or 데이터 세팅)
+        // given
         Long bookId = 1L;
 
         // when
