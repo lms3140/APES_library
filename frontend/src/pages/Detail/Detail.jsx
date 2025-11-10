@@ -99,8 +99,6 @@ export const Detail = () => {
             {/* ✅ 하단 고정바 (UnderBar 컴포넌트) */}
             <UnderBar />
         </div>
-      </div>
-    </div>
   );
 };
 
