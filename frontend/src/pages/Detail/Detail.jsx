@@ -1,65 +1,71 @@
 import React, { useRef, useState, useEffect } from "react";
 import coverImage from "./cover.jpg";
-import { UnderBar } from "./UnderBar.jsx"; // ✅ 하단바 컴포넌트 import
+import { UnderBar } from "./UnderBar.jsx";
 import { ProductInfo } from "./ProductInfo";
-import Review from "./Review"; // 수정된 리뷰 import
+import Review from "./Review";
 import { ReturnPolicy } from "./ReturnPolicy";
 import styles from "./Detail.module.css";
 
 export const Detail = () => {
-    const infoRef = useRef(null);
-    const reviewRef = useRef(null);
-    const returnRef = useRef(null);
+  const infoRef = useRef(null);
+  const reviewRef = useRef(null);
+  const returnRef = useRef(null);
 
   const [activeTab, setActiveTab] = useState("info");
   const [hideHeader, setHideHeader] = useState(false);
 
-    // ✅ 특정 섹션으로 스크롤 이동
-    const scrollToSection = (ref, key) => {
-        if (ref.current) {
-            window.scrollTo({
-                top: ref.current.offsetTop - 80,
-                behavior: "smooth",
-            });
-            setActiveTab(key);
-        }
+  // ✅ 스크롤 이동 함수 (상단 고정바 높이를 변수로 통일)
+  const scrollToSection = (ref, sectionKey) => {
+    if (ref.current) {
+      const offset = ref.current.offsetTop - 80; // 상단바 높이
+      window.scrollTo({ top: offset, behavior: "smooth" });
+      setActiveTab(sectionKey);
+    }
+  };
+
+  // ✅ requestAnimationFrame + passive scroll event → 렌더 최적화
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!infoRef.current || !reviewRef.current || !returnRef.current) return;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const infoTop = infoRef.current.offsetTop - 100;
+          const reviewTop = reviewRef.current.offsetTop - 100;
+          const returnTop = returnRef.current.offsetTop - 100;
+
+          if (scrollY >= returnTop) setActiveTab("return");
+          else if (scrollY >= reviewTop) setActiveTab("review");
+          else setActiveTab("info");
+
+          setHideHeader(scrollY > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    // ✅ 스크롤 위치에 따라 탭 활성화/헤더 숨김 처리
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const infoTop = infoRef.current.offsetTop - 100;
-            const reviewTop = reviewRef.current.offsetTop - 100;
-            const returnTop = returnRef.current.offsetTop - 100;
-
-      if (scrollY >= returnTop) setActiveTab("return");
-      else if (scrollY >= reviewTop) setActiveTab("review");
-      else setActiveTab("info");
-
-      setHideHeader(scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-    return (
-        <div className={styles.container}>
-            {/* 상단 책 정보 */}
-            <div
-                className={`${styles.detailTop} ${hideHeader ? styles.hideHeader : ""}`}
-            >
-                <img src={coverImage} alt="책 이미지" className={styles.bookImage} />
-                <div className={styles.bookInfo}>
-                    <h2 className={styles.title}>나의 첫 번째 개발서</h2>
-                    <p className={styles.author}>홍길동 저 | 예문출판사</p>
-                    <p className={styles.price}>₩ 48,000</p>
-                    <button className={styles.btnPurchase}>구매하기</button>
-                </div>
-            </div>
+  return (
+    <div className={styles.container}>
+      {/* ✅ 상단 상품 기본 정보 섹션 */}
+      <div className={`${styles.detailTop} ${hideHeader ? styles.hideHeader : ""}`}>
+        <img src={coverImage} alt="책 이미지" className={styles.bookImage} />
+        <div className={styles.bookInfo}>
+          <h2 className={styles.title}>나의 첫 번째 개발서</h2>
+          <p className={styles.author}>홍길동 저 | 예문출판사</p>
+          <p className={styles.price}>₩ 48,000</p>
+          <button className={styles.btnPurchase}>구매하기</button>
+        </div>
+      </div>
 
-      {/* 탭 메뉴 */}
+      {/* ✅ 탭 메뉴 */}
       <div className={styles.tabs}>
         <button
           className={activeTab === "info" ? styles.active : ""}
@@ -67,23 +73,23 @@ export const Detail = () => {
         >
           상품 정보
         </button>
+
         <button
           className={activeTab === "review" ? styles.active : ""}
           onClick={() => scrollToSection(reviewRef, "review")}
         >
           리뷰
         </button>
+
         <button
-          className={`${activeTab === "return" ? styles.active : ""} ${
-            activeTab === "return" ? styles.highlightTab : ""
-          }`}
+          className={activeTab === "return" ? styles.active : ""}
           onClick={() => scrollToSection(returnRef, "return")}
         >
           교환/반품/품절
         </button>
       </div>
 
-      {/* 섹션 */}
+      {/* ✅ 실제 섹션 영역 */}
       <section ref={infoRef}>
         <ProductInfo />
       </section>
@@ -96,9 +102,9 @@ export const Detail = () => {
         <ReturnPolicy />
       </section>
 
-            {/* ✅ 하단 고정바 (UnderBar 컴포넌트) */}
-            <UnderBar />
-        </div>
+      {/* ✅ 하단 고정 주문 바 */}
+      <UnderBar />
+    </div>
   );
 };
 

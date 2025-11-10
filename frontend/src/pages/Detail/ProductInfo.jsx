@@ -62,26 +62,26 @@ export const ProductInfo = () => {
             <h4 className={styles.sectionTitle}>기본 정보</h4>
             <table className={styles.basicInfoTable}>
                 <tbody>
-                <tr>
-                    <th>ISBN</th>
-                    <td>9791130670317</td>
-                </tr>
-                <tr>
-                    <th>발행(출시)일자</th>
-                    <td>2025년 10월 20일</td>
-                </tr>
-                <tr>
-                    <th>쪽수</th>
-                    <td>892쪽</td>
-                </tr>
-                <tr>
-                    <th>크기</th>
-                    <td>163 * 235 * 53 mm / 1310 g</td>
-                </tr>
-                <tr>
-                    <th>총권수</th>
-                    <td>1권</td>
-                </tr>
+                    <tr>
+                        <th>ISBN</th>
+                        <td>9791130670317</td>
+                    </tr>
+                    <tr>
+                        <th>발행(출시)일자</th>
+                        <td>2025년 10월 20일</td>
+                    </tr>
+                    <tr>
+                        <th>쪽수</th>
+                        <td>892쪽</td>
+                    </tr>
+                    <tr>
+                        <th>크기</th>
+                        <td>163 * 235 * 53 mm / 1310 g</td>
+                    </tr>
+                    <tr>
+                        <th>총권수</th>
+                        <td>1권</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
