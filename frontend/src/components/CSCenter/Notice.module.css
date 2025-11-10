@@ -1,0 +1,162 @@
+/* Notice.module.css — 공지사항 페이지 전용 스타일 */
+
+.noticeContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 80px auto;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  color: #111;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 상단 제목 영역 */
+.header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.total {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.total span {
+  color: #3c9a17;
+}
+
+/* 공지 리스트 전체 영역 */
+.noticeList {
+  border-top: 1px solid #000;
+}
+
+/* 리스트 헤더: 컬럼 이름 */
+.listHeader {
+  justify-content: space-between;
+  display: flex;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  font-weight: 500;
+  padding: 16px 24px;
+  align-items: center;
+}
+
+.listHeader div {
+  /* flex: 1; */
+  text-align: center;
+}
+
+.colNo {
+  width: 60px;
+  text-align: center;
+}
+
+.colTitle {
+  width: 610px;
+  text-align: left;
+  padding-left: 16px;
+}
+
+.colCategory {
+  width: 88px;
+  text-align: center;
+}
+
+.colDate {
+  width: 70px;
+  text-align: center;
+}
+
+/* 리스트 본문 */
+.listBody {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.noticeItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 24px;
+  justify-content: space-between;
+}
+
+.noticeItem div {
+  /* flex: 1; */
+  /* padding: 12px; */
+  text-align: center;
+}
+
+/* .noticeItem:first-child {
+  width: 60px;
+  height: 22px;
+}
+
+.noticeItem:nth-child(2) {
+  width: 610px;
+  height: 22px;
+}
+
+.noticeItem:nth-child(3) {
+  width: 88px;
+  height: 22px;
+}
+
+.noticeItem:last-child {
+  width: 70px;
+  height: 22px;
+} */
+
+/* 제목은 왼쪽 정렬 + hover 효과 */
+.title {
+  text-align: left;
+  padding-left: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: 24px;
+}
+
+.pagination button {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination button:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination .active {
+  background-color: #2d8700;
+  color: #fff;
+  border-color: #2d8700;
+}
+
+.pagination button:disabled {
+  color: #ccc;
+  cursor: default;
+  border-color: #eee;
+}
