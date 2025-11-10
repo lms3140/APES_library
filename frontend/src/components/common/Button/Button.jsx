@@ -31,8 +31,17 @@ const btnSizeObj = {
  * @param {object} props
  * @returns
  */
-export function Button({ btnTypes = "primary", size = "lg", children }) {
+export function Button({
+  btnTypes = "primary",
+  size = "lg",
+  children,
+  onClick,
+}) {
   const btnType = btnTypeObject[btnTypes] || btnTypeObject["primary"];
   const btnSize = btnSizeObj[size] || btnSizeObj["lg"];
-  return <button className={`${btnType} ${btnSize}`}>{children}</button>;
+  return (
+    <button onClick={onClick} className={`${btnType} ${btnSize}`}>
+      {children}
+    </button>
+  );
 }

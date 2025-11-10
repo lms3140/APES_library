@@ -1,48 +1,47 @@
 import styles from "./Home.module.css";
-import { SwiperBook } from "../../components/SwiperWrapper/SwiperBook";
 import { BannerSection } from "./BannerSection/BannerSection";
 import { ShortcutSection } from "./ShortcutSection/ShortcutSection";
 import { useEffect, useState } from "react";
 import { BookListSection } from "./BookListSection/BookListSection";
 import axios from "axios";
-const bookList = [
-  {
-    url: "/images/bookImg/b1.webp",
-    bookName: "2025 노벨문학상 크러스너 호르커이 라슬로 세트",
-  },
-  { url: "/images/bookImg/b2.webp", bookName: "사탄탱고" },
-  { url: "/images/bookImg/b3.webp", bookName: "저항의 멜랑콜리" },
-  { url: "/images/bookImg/b4.webp", bookName: "서왕모의 강림" },
-  { url: "/images/bookImg/b5.webp", bookName: "라스트 울프" },
-  { url: "/images/bookImg/b6.webp", bookName: "좀비가 사라지다" },
-  { url: "/images/bookImg/b7.webp", bookName: "벵크하임 남작의 귀향" },
-  { url: "/images/bookImg/b8.webp", bookName: "세계는 계속된다" },
-];
 
 export function Home() {
+  const { bookCollections, isError } = useBookList();
+
+  return (
+    <div className={styles.homeContainer}>
+      <BannerSection />
+      <ShortcutSection />
+      {bookCollections.length > 0 &&
+        bookCollections.map((item) => {
+          return (
+            <BookListSection key={item.collectionId} bookCollection={item} />
+          );
+        })}
+      {isError && (
+        <div className={styles.noBook}>
+          <img src="./images/bookImg/no_book.png" alt="no_book" width={1200} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+const useBookList = () => {
   const [bookCollections, setBookCollections] = useState([]);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     async function getCollectionBookList() {
       try {
         const res = await axios.get("http://localhost:8080/BookCollection/all");
         setBookCollections(res.data);
       } catch (e) {
-        console.log("데이터 불러오기 실패", e);
+        console.log(e);
+        setIsError(true);
       }
     }
 
     getCollectionBookList();
   }, []);
-  return (
-    <div className={styles.homeContainer}>
-      <BannerSection />
-      <ShortcutSection />
-
-      {bookCollections.map((item) => {
-        return (
-          <BookListSection key={item.collectionId} bookCollection={item} />
-        );
-      })}
-    </div>
-  );
-}
+  return { bookCollections, isError };
+};
