@@ -1,67 +1,80 @@
-/* Notice.module.css — 공지사항 페이지 전용 스타일 */
-
 .noticeContainer {
   width: 100%;
   max-width: 1200px;
-  margin: 80px auto;
+  margin: 0;
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
   color: #111;
   font-size: 14px;
   line-height: 1.6;
 }
 
-/* 상단 제목 영역 */
+/* 상단 영역 */
 .header {
-  display: flex;
-  /* justify-content: space-between; */
-  align-items: baseline;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .header h1 {
   font-size: 24px;
   font-weight: 700;
+  margin-top: 0;
 }
 
 .total {
   font-weight: 700;
   font-size: 16px;
+  margin-bottom: 16px;
 }
 
 .total span {
   color: #3c9a17;
 }
 
-/* 공지 리스트 전체 영역 */
+/* 리스트 영역 */
 .noticeList {
   border-top: 1px solid #000;
 }
 
-/* 리스트 헤더: 컬럼 이름 */
 .listHeader {
-  justify-content: space-between;
   display: flex;
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #ddd;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  color: #595959;
   font-weight: 500;
   padding: 16px 24px;
-  align-items: center;
 }
 
-.listHeader div {
-  /* flex: 1; */
+/* 열 고정 폭 */
+.no {
+  width: 60px;
   text-align: center;
 }
 
+.title {
+  flex: 1;
+  padding-left: 24px;
+  text-align: center;
+}
+
+.category {
+  width: 88px;
+  text-align: center;
+}
+
+.date {
+  width: 120px;
+  text-align: center;
+}
+
+/* 열 고정 폭 */
 .colNo {
   width: 60px;
   text-align: center;
 }
 
 .colTitle {
-  width: 610px;
+  flex: 1;
+  padding-left: 24px;
   text-align: left;
-  padding-left: 16px;
 }
 
 .colCategory {
@@ -70,11 +83,11 @@
 }
 
 .colDate {
-  width: 70px;
+  width: 120px;
   text-align: center;
 }
 
-/* 리스트 본문 */
+/* 본문 */
 .listBody {
   list-style: none;
   margin: 0;
@@ -84,79 +97,20 @@
 .noticeItem {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eaeaea;
   padding: 24px;
-  justify-content: space-between;
+  transition: background-color 0.2s ease;
 }
 
-.noticeItem div {
-  /* flex: 1; */
-  /* padding: 12px; */
-  text-align: center;
+.noticeItem:hover {
+  background-color: #fafafa;
 }
 
-/* .noticeItem:first-child {
-  width: 60px;
-  height: 22px;
-}
-
-.noticeItem:nth-child(2) {
-  width: 610px;
-  height: 22px;
-}
-
-.noticeItem:nth-child(3) {
-  width: 88px;
-  height: 22px;
-}
-
-.noticeItem:last-child {
-  width: 70px;
-  height: 22px;
-} */
-
-/* 제목은 왼쪽 정렬 + hover 효과 */
-.title {
-  text-align: left;
-  padding-left: 16px;
+.colTitle {
   color: #333;
   cursor: pointer;
 }
 
-.title:hover {
+.colTitle:hover {
   text-decoration: underline;
-}
-
-/* 페이지네이션 */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  margin-top: 24px;
-}
-
-.pagination button {
-  background: none;
-  border: 1px solid #ddd;
-  padding: 4px 10px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.pagination button:hover {
-  background-color: #f2f2f2;
-}
-
-.pagination .active {
-  background-color: #2d8700;
-  color: #fff;
-  border-color: #2d8700;
-}
-
-.pagination button:disabled {
-  color: #ccc;
-  cursor: default;
-  border-color: #eee;
 }
