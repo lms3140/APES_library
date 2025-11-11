@@ -285,3 +285,29 @@ th, td {
     letter-spacing: -0.01em;
     margin-left: 8px;
 }
+
+.iconWrapper {
+  display: inline-block;
+  width: 125px;   /* 아이콘 이미지 크기에 맞게 */
+  height: 32px;
+  vertical-align: middle;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.icoPaymentNpay {
+    background-size: 125px 32px;
+    background-image: url("../../../public/images/paymentPage/ico_payment_npay@2x.png");
+}
+.icoPaymentKakaopay {
+    background-size: 125px 32px;
+    background-image: url("../../../public/images/paymentPage/ico_payment_kakaopay@2x.png");
+}
+.icoPaymentToss {
+    background-size: 125px 32px;
+    background-image: url("../../../public/images/paymentPage/ico_payment_toss@2x.png");
+}
+.icoPaymentSamsungpay {
+    background-size: 125px 32px;
+    background-image: url("../../../public/images/paymentPage/ico_payment_samsungpay@2x.png");
+}

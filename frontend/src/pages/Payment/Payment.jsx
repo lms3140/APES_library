@@ -5,6 +5,7 @@ import { OrderProduct } from '../../components/Payment/OrderProduct.jsx'
 import { StepItemNum } from '../../components/Payment/stepItemNum.jsx'
 import { Point } from '../../components/Payment/Point.jsx'
 import { UsePoint } from '../../components/Payment/UsePoint.jsx'
+import { PaymentButton } from '../../components/Payment/PaymentButton.jsx'
 
 export default function Payment() {
   const pointData = [
@@ -13,6 +14,14 @@ export default function Payment() {
     {index: 3, label: '교보캐시', amount: 200},
     {index: 4, label: 'e교환권', amount: 300}
   ];
+  const payments = [
+    { name: '신용카드' },
+    { name: '네이버페이', iconClass: style.icoPaymentNpay, hasBenefit: true, isActive: true },
+    { name: '카카오페이', iconClass: style.icoPaymentKakaopay },
+    { name: '토스페이', iconClass: style.icoPaymentToss, hasBenefit: true },
+    { name: '삼성페이', iconClass: style.icoPaymentSamsungpay },
+  ];
+
   const totalPoint = pointData.reduce((sum, item) => sum+item.amount, 0);
   const cartRecommend = useRef(null);
   const [activeTab, setActiveTab] = useState(0);
@@ -227,16 +236,16 @@ export default function Payment() {
                               <>
                                 <button
                                   type="button"
-                                  className="btn_info_popup"
+                                  className={style.btn_info_popup}
                                   data-cash-voucher="info-e-coupon"
                                 >
-                                  <span className="ico_question"></span>
+                                  <span className={style.ico_question}></span>
                                   <span className="hidden">팝업 열기</span>
                                 </button>
 
                                 <button
                                   type="button"
-                                  className="btn_xs btn_line_gray"
+                                  className={`${style.btnXs} ${style.btnLineGray}`}
                                   data-cash-voucher="btn-chg-e-coupon"
                                 >
                                   <span className="text">목록</span>
@@ -335,10 +344,49 @@ export default function Payment() {
                   <input type="radio"/>
                   <label for="">퀵계좌이체</label>
                 </span>
+                <div className={style.recentInfoBox}>
+                  <span className={style.badgeMd}>
+                    <span className={style.text}>즉시 할인</span>
+                  </span>
+                </div>
+                <div className={style.rightArea}>
+                  <button type='button' className={style.btnInfoPopup}>
+                    <span className={style.icoQuestion}></span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+            <div className={style.paymentHeaderWrap}>
+              <div className={style.paymentHeaderInner}>
+                <span className={style.formRdo}>
+                  <input type="radio"/>
+                  <label for="">다른 결제 수단</label>
+                </span>
+              </div>
+            </div>
+            <div className={style.paymentBodyWrap}>
+              
+              
 
+              <div className={style.paymentEtcWrap}>
+                <div className={style.paymentItemRowGroup}>
+                  {payments.map((payment, index) => (
+                    <PaymentButton
+                      key={index}
+                      name={payment.name}
+                      iconClass={payment.iconClass}
+                      hasBenefit={payment.hasBenefit}
+                      isActive={payment.isActive}
+                    />
+                  ))}
+
+                  
+
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </section>
