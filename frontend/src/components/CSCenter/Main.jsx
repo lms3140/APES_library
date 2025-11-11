@@ -1,9 +1,20 @@
 import styles from "./Main.module.css";
+import noticeStyles from "./Notice.module.css";
 import { Link } from "react-router-dom";
-import { LuMessageSquareMore } from "react-icons/lu";
-import { IoDocumentTextOutline } from "react-icons/io5";
+import { Notice } from "./Notice";
+import { useEffect, useState } from "react";
+import { axiosData } from "../../utils/dataFetch";
 
 export function Main() {
+  const [miniNotices, setMiniNotices] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const json = await axiosData("/data/csCenterNotice.json");
+      setMiniNotices(json.slice(0, 3)); // ✅ 상위 3개만
+    })();
+  }, []);
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.content}>
@@ -113,6 +124,17 @@ export function Main() {
             <span>더보기</span>
             <span>{"+"}</span>
           </Link>
+          {/* ✅ 헤더/총건수/페이지네이션 없이 list body 3개만 */}
+          <ul className={noticeStyles.listBody}>
+            {miniNotices.map((item, idx) => (
+              <li key={item.id ?? idx} className={noticeStyles.noticeItem}>
+                <div className={noticeStyles.colNo}>{idx + 1}</div>
+                <div className={noticeStyles.colTitle}>{item.title}</div>
+                <div className={noticeStyles.colCategory}>{item.category}</div>
+                <div className={noticeStyles.colDate}>{item.date}</div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
