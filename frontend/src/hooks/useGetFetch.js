@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 /**
  * [Get] 데이터 요청 훅
  * @param {string} url get요청을 보낼 URL
@@ -35,7 +37,7 @@ export const useGetFetch = (url) => {
         const res = await axios.get(url);
         setData(res.data);
       } catch (e) {
-        console.error(e);
+        console.error(`[dev] useGetFetch 훅에서 에러 발생 : ${e}`);
         setIsError(true);
       } finally {
         setIsLoading(false);

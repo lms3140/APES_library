@@ -24,14 +24,15 @@ export function HomeColContent() {
 
   return (
     <div className={contentStyle.homeColContent}>
-      {data.map((collection) => {
-        return (
-          <BookCollectionSection
-            key={collection.collectionId}
-            bookCollection={collection}
-          />
-        );
-      })}
+      {data &&
+        data.map((collection) => {
+          return (
+            <BookCollectionSection
+              key={collection.collectionId}
+              bookCollection={collection}
+            />
+          );
+        })}
     </div>
   );
 }
