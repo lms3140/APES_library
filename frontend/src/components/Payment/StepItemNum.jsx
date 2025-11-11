@@ -3,7 +3,7 @@ import style from '../../pages/Payment/Payment.module.css'
 
 export function StepItemNum () {
     const steps = [
-        {num:1, label: "장바구니"},
+        {num:1, label:"장바구니"},
         {num:2, label:"사은품선택"},
         {num:3, label:"주문/결제"},
         {num:4, label:"주문완료"}
