@@ -1,0 +1,12 @@
+.noBook {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.homeColContent {
+  width: 1200px;
+  min-height: 800px;
+  margin-inline: auto;
+}

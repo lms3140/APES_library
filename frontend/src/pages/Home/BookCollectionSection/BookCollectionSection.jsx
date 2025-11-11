@@ -1,11 +1,11 @@
 import { SwiperBook } from "../../../components/SwiperWrapper/SwiperBook";
-import styles from "./BookListSection.module.css";
+import styles from "./BookCollectionSection.module.css";
 
 const mainSwiperOptions = {
   slidesPerView: 6,
 };
 
-export function BookListSection({ bookCollection }) {
+export function BookCollectionSection({ bookCollection }) {
   return (
     <section className={styles.bookListSection}>
       <div className={styles.bookListItem}>
