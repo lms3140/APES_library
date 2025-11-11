@@ -380,10 +380,27 @@ export default function Payment() {
                     />
                   ))}
 
+                  <div className={style.paymentItemOptionWrap}>
+                    <div className={style.infoTextBox}>
+                      <div className={style.formColGroup}>
+                        <div className={style.colBox}>
+                          <span className={style.formChk}>
+                            <input type="checkbox" />
+                            <label for="">이 결제수단을 다음에도 사용</label>
+                          </span>
+                          <span className={style.rightArea}>
+                            <a href=""></a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   
 
                 </div>
               </div>
+
+              
 
             </div>
           </div>
