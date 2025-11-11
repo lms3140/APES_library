@@ -41,7 +41,7 @@ export function SwiperBanner({ swiperOptions, imgList }) {
         return (
           <SwiperSlide>
             <div>
-              <img src={`${img.url}`} alt={img.url} />
+              <img src={`${img.url}`} alt={img.url} width={890} height={380} />
             </div>
           </SwiperSlide>
         );
