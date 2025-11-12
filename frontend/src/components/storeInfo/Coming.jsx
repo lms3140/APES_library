@@ -24,7 +24,20 @@ export function Coming({ selectedStore }) {
       <div className={styles.mapWrap}>
         <div className={styles.mapBox}>
           <h2 className={styles.address}>
-            <FiMapPin className={styles.icon} />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              className={styles.icon}
+            >
+              <desc>위치 아이콘</desc>
+              <path
+                stroke="#000"
+                d="M12 2.5a8.07 8.07 0 0 0-5.646 2.266A7.7 7.7 0 0 0 4 10.273C4 16.318 12 21.5 12 21.5s8-5.182 8-11.227a7.7 7.7 0 0 0-2.354-5.507A8.07 8.07 0 0 0 12 2.5Z"
+              />
+              <circle cx="12" cy="10.5" r="3" stroke="#8F603D" />
+            </svg>
             {selectedStore.address}
           </h2>
           <Map center={{ lat, lng }} className={styles.map}>

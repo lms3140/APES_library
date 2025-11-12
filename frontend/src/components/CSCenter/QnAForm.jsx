@@ -1,7 +1,11 @@
 import styles from "./QnAForm.module.css";
 import { useEffect, useState } from "react";
+import { axiosPost } from "../../utils/dataFetch.js";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export function QnAForm() {
+  const navigate = useNavigate();
   const [inquiryType, setInquiryType] = useState("");
   const [isContentEnabled, setIsContentEnabled] = useState(false);
   const [content, setContent] = useState("");
@@ -28,6 +32,21 @@ export function QnAForm() {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = { memberId: 1, title, content, status: "ready" };
+      const url = "http://localhost:8080/inquiry/qna";
+      const aa = await axiosPost(url, data);
+      toast.info("문의가 접수 되었습니다.");
+      console.log(aa);
+      navigate("/mypage");
+    } catch (e) {
+      console.log(e);
+      toast.error("다시 시도해주세요.");
+    }
+  };
+
   //content 모두 작성 시 문의 접수 버튼 색상 변경
   useEffect(() => {
     if (inquiryType && title.trim() && content.trim()) {
@@ -41,7 +60,7 @@ export function QnAForm() {
     <div className={styles.qnaContainer}>
       <h1>1:1 문의 접수</h1>
 
-      <form className={styles.from}>
+      <form className={styles.from} onSubmit={handleSubmit}>
         {/* 문의유형 */}
         <div className={styles.fieldRow}>
           <label htmlFor="inquiryType" className={styles.label}>

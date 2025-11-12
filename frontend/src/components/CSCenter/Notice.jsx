@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { axiosData } from "../../utils/dataFetch.js";
 import Pagination from "../../pages/CSCenter/Pagination.jsx";
 
-export function Notice({ limit }) {
+export function Notice() {
   //전체 데이터(json)
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0); //현재 페이지
