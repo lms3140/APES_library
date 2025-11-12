@@ -13,6 +13,17 @@ export const Detail = () => {
 
   const [activeTab, setActiveTab] = useState("info");
   const [hideHeader, setHideHeader] = useState(false);
+  const [book, setBook] = useState(null);  // 책 정보 상태 추가
+
+  const bookId = 1;  // 예시로 책 ID를 1로 설정
+
+  // ✅ 책 정보를 DB에서 가져오는 함수
+  useEffect(() => {
+    fetch(`http://localhost:5173/Book/detail?bid=${bookId}`)
+      .then((res) => res.json())
+      .then((data) => setBook(data))
+      .catch((err) => console.error("책 정보를 불러오는 데 실패했습니다.", err));
+  }, [bookId]);
 
   // ✅ 스크롤 이동 함수 (상단 고정바 높이를 변수로 통일)
   const scrollToSection = (ref, sectionKey) => {
@@ -52,20 +63,23 @@ export const Detail = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // 책 정보가 없으면 로딩 중 표시
+  if (!book) return <p>책 정보를 불러오는 중...</p>;
+
   return (
     <div className={styles.container}>
-      {/* ✅ 상단 상품 기본 정보 섹션 */}
+      {/* 상단 상품 기본 정보 섹션 */}
       <div className={`${styles.detailTop} ${hideHeader ? styles.hideHeader : ""}`}>
-        <img src={coverImage} alt="책 이미지" className={styles.bookImage} />
+        <img src={book.imageUrl || coverImage} alt="책 이미지" className={styles.bookImage} />
         <div className={styles.bookInfo}>
-          <h2 className={styles.title}>나의 첫 번째 개발서</h2>
-          <p className={styles.author}>홍길동 저 | 예문출판사</p>
-          <p className={styles.price}>₩ 48,000</p>
+          <h2 className={styles.title}>{book.title}</h2>
+          <p className={styles.author}>{book.authors}</p>
+          <p className={styles.price}>₩ {book.price.toLocaleString()}</p>
           <button className={styles.btnPurchase}>구매하기</button>
         </div>
       </div>
 
-      {/* ✅ 탭 메뉴 */}
+      {/* 탭 메뉴 */}
       <div className={styles.tabs}>
         <button
           className={activeTab === "info" ? styles.active : ""}
@@ -73,14 +87,12 @@ export const Detail = () => {
         >
           상품 정보
         </button>
-
         <button
           className={activeTab === "review" ? styles.active : ""}
           onClick={() => scrollToSection(reviewRef, "review")}
         >
           리뷰
         </button>
-
         <button
           className={activeTab === "return" ? styles.active : ""}
           onClick={() => scrollToSection(returnRef, "return")}
@@ -89,9 +101,9 @@ export const Detail = () => {
         </button>
       </div>
 
-      {/* ✅ 실제 섹션 영역 */}
+      {/* 실제 섹션 영역 */}
       <section ref={infoRef}>
-        <ProductInfo />
+        <ProductInfo book={book} />
       </section>
 
       <section ref={reviewRef}>
@@ -102,8 +114,8 @@ export const Detail = () => {
         <ReturnPolicy />
       </section>
 
-      {/* ✅ 하단 고정 주문 바 */}
-      <UnderBar />
+      {/* 하단 고정 주문 바 */}
+      <UnderBar productId={bookId} />
     </div>
   );
 };

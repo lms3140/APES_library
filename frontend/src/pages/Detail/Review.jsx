@@ -7,7 +7,7 @@ import styles from "./Review.module.css";
  * - 지금은 백엔드가 없으므로 mock 데이터 사용
  */
 
-const mockReviews = [
+export const mockReviews = [
     {
         review_id: 1,
         member_id: "user123",

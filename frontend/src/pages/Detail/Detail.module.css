@@ -178,7 +178,6 @@ h4.sectionTitle {
     overflow: hidden;
     padding: 0 15px;
     background-color: #f9f9f9;
-    transition: max-height 0.5s ease-out, padding 0.3s ease-out;
     border-radius: 0 0 8px 8px;
 }
 
