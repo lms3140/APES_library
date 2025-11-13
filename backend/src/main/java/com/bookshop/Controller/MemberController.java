@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+//로그인, 로그아웃, 회원가입, 아이디 중복체크, 멤버아이디(계정 고유 id) 조회
+
 @RestController
 @RequestMapping("/member")
 public class MemberController {

@@ -18,6 +18,7 @@ public class BookDetailDto {
     private String imageUrl;
     private String authors;
     private String translators;
+    private Integer quantity;
 
     public BookDetailDto() {}
     public BookDetailDto(BookDetail bookDetail) {
