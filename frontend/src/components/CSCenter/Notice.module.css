@@ -41,6 +41,7 @@
   color: #595959;
   font-weight: 500;
   padding: 16px 24px;
+  gap: 36px;
 }
 
 /* 열 고정 폭 */
@@ -61,7 +62,7 @@
 }
 
 .date {
-  width: 120px;
+  width: 70px;
   text-align: center;
 }
 
@@ -73,7 +74,7 @@
 
 .colTitle {
   flex: 1;
-  padding-left: 24px;
+  /* padding-left: 24px; */
   text-align: left;
 }
 
@@ -83,7 +84,7 @@
 }
 
 .colDate {
-  width: 120px;
+  width: 70px;
   text-align: center;
 }
 
@@ -100,6 +101,8 @@
   border-bottom: 1px solid #eaeaea;
   padding: 24px;
   transition: background-color 0.2s ease;
+  gap: 36px;
+  font-size: 14px;
 }
 
 .noticeItem:hover {

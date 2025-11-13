@@ -122,7 +122,27 @@ export function Main() {
           <h2>공지사항</h2>
           <Link to="/cscenter/notice">
             <span>더보기</span>
-            <span>{"+"}</span>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                fill="none"
+                stroke="#767676"
+                stroke-width="2.5"
+                viewBox="0 0 16 16"
+              >
+                <desc>더보기 플러스 아이콘</desc>
+                <g stroke="current" stroke-linecap="round" clip-path="url(#a)">
+                  <path d="M8 2v12m6-6H2" />
+                </g>
+                <defs>
+                  <clipPath id="a">
+                    <path fill="#fff" d="M0 0h16v16H0z" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
           </Link>
           {/* ✅ 헤더/총건수/페이지네이션 없이 list body 3개만 */}
           <ul className={noticeStyles.listBody}>
