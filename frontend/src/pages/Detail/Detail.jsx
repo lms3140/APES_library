@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import coverImage from "./cover.jpg";
+import axios from "axios";
 import { UnderBar } from "./UnderBar.jsx";
 import { ProductInfo } from "./ProductInfo";
 import Review from "./Review";
@@ -13,28 +13,39 @@ export const Detail = () => {
 
   const [activeTab, setActiveTab] = useState("info");
   const [hideHeader, setHideHeader] = useState(false);
-  const [book, setBook] = useState(null);  // 책 정보 상태 추가
+  const [book, setBook] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const bookId = 1;  // 예시로 책 ID를 1로 설정
+  const bookId = 1;
 
-  // ✅ 책 정보를 DB에서 가져오는 함수
+  // 책 정보를 DB에서 가져오기
   useEffect(() => {
-    fetch(`http://localhost:5173/Book/detail?bid=${bookId}`)
-      .then((res) => res.json())
-      .then((data) => setBook(data))
-      .catch((err) => console.error("책 정보를 불러오는 데 실패했습니다.", err));
+    const fetchBook = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5173/Book/detail`, {
+          params: { bid: bookId },
+        });
+        setBook(response.data);
+      } catch (err) {
+        console.error("책 정보를 불러오는 데 실패했습니다.", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBook();
   }, [bookId]);
 
-  // ✅ 스크롤 이동 함수 (상단 고정바 높이를 변수로 통일)
+  // 스크롤 이동 함수
   const scrollToSection = (ref, sectionKey) => {
     if (ref.current) {
-      const offset = ref.current.offsetTop - 80; // 상단바 높이
+      const offset = ref.current.offsetTop - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
       setActiveTab(sectionKey);
     }
   };
 
-  // ✅ requestAnimationFrame + passive scroll event → 렌더 최적화
+  // 스크롤 이벤트로 탭 및 상단바 숨김 처리
   useEffect(() => {
     let ticking = false;
 
@@ -63,18 +74,30 @@ export const Detail = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 책 정보가 없으면 로딩 중 표시
-  if (!book) return <p>책 정보를 불러오는 중...</p>;
+  if (loading) return <p>책 정보를 불러오는 중...</p>;
+  if (!book) return <p>책 정보를 찾을 수 없습니다.</p>;
 
   return (
     <div className={styles.container}>
       {/* 상단 상품 기본 정보 섹션 */}
       <div className={`${styles.detailTop} ${hideHeader ? styles.hideHeader : ""}`}>
-        <img src={book.imageUrl || coverImage} alt="책 이미지" className={styles.bookImage} />
+        {/* 이미지가 없으면 렌더링 안함 */}
+        {book.imageUrl ? (
+          <img
+            src={book.imageUrl}
+            alt="책 이미지"
+            className={styles.bookImage}
+          />
+        ) : (
+          <p>이미지가 없습니다.</p>
+        )}
+
         <div className={styles.bookInfo}>
-          <h2 className={styles.title}>{book.title}</h2>
-          <p className={styles.author}>{book.authors}</p>
-          <p className={styles.price}>₩ {book.price.toLocaleString()}</p>
+          <h2 className={styles.title}>{book.title || "제목 없음"}</h2>
+          <p className={styles.author}>{book.authors || "저자 정보 없음"}</p>
+          <p className={styles.price}>
+            ₩ {(book.price ?? 0).toLocaleString()}
+          </p>
           <button className={styles.btnPurchase}>구매하기</button>
         </div>
       </div>
