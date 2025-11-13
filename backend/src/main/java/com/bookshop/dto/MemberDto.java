@@ -18,6 +18,7 @@ public class MemberDto {
     private String gender;
     private String role;
     private Integer pointBalance;
+    private Integer changePoint;
 
     public MemberDto() {}
     public MemberDto(Member entity) {

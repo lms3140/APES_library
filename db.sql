@@ -2,6 +2,12 @@ drop database book_store;
 create database book_store;
 use book_store;
 
+-- SHOW tables;
+-- desc member;
+-- select * from member;
+-- select * from book;
+
+
 -- ============================================================
 -- 📚 카테고리 / 하위 카테고리
 -- ============================================================
