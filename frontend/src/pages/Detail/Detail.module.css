@@ -1,25 +1,28 @@
+/* .container */
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding-bottom: 120px;
 }
 
+/* .detailTop */
 .detailTop {
     display: flex;
     gap: 20px;
     padding: 20px;
     align-items: center;
     background: #fff;
-    /*position: sticky;*/
     top: 0;
     z-index: 50;
 }
 
+/* .hideHeader */
 .hideHeader {
     transform: translateY(-100%);
     opacity: 0;
 }
 
+/* .bookImage */
 .bookImage {
     width: 120px;
     height: auto;
@@ -27,27 +30,32 @@
     border-radius: 6px;
 }
 
+/* .bookInfo */
 .bookInfo {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+/* .title */
 .title {
     font-size: 20px;
     font-weight: 700;
 }
 
+/* .author */
 .author {
     font-size: 14px;
     color: #555;
 }
 
+/* .price */
 .price {
     font-size: 18px;
     font-weight: 600;
 }
 
+/* .btnPurchase */
 .btnPurchase {
     padding: 8px 16px;
     background-color: #6c63ff;
@@ -57,6 +65,7 @@
     cursor: pointer;
 }
 
+/* .tabs */
 .tabs {
     display: flex;
     gap: 10px;
@@ -68,6 +77,7 @@
     z-index: 30;
 }
 
+/* .tabs button */
 .tabs button {
     background: none;
     border: none;
@@ -76,11 +86,115 @@
     cursor: pointer;
 }
 
+/* .tabs button.active */
 .tabs button.active {
     border-bottom: 2px solid #6c63ff;
     color: #6c63ff;
 }
 
+/* .highlightTab */
 .highlightTab {
     font-weight: 700;
+}
+
+/* 테이블 스타일링 */
+.basicInfoTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.basicInfoTable th, .basicInfoTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.basicInfoTable th {
+    background-color: #f4f4f4;
+    font-weight: 600;
+}
+
+.basicInfoTable td {
+    font-size: 14px;
+    color: #555;
+}
+
+/* 짝수 번째 행 배경색 변경 */
+.basicInfoTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* 기본 정보 제목 스타일 */
+h4.sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* -------------------------------------- */
+/* 교환/반품/품절 안내 섹션 (ReturnPolicy) */
+/* -------------------------------------- */
+
+.detailSection {
+    margin-bottom: 20px;
+}
+
+/* 섹션 헤더 (클릭 영역) */
+.groupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.groupHeader:hover {
+    background-color: #ececec;
+}
+
+/* 제목 스타일 */
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 화살표 아이콘 */
+.iconToggle {
+    font-size: 18px;
+    color: #6c63ff;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 접히는 영역 컨테이너 */
+.policyContent {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    background-color: #f9f9f9;
+    border-radius: 0 0 8px 8px;
+}
+
+/* 펼쳐진 상태 */
+.policyContent.open {
+    max-height: 1000px; /* 충분히 큰 값 */
+    padding: 15px;
+}
+
+/* 텍스트 설명 */
+.description {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* 접힌 상태 */
+.policyContent.closed {
+    padding: 0;
 }

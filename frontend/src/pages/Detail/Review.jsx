@@ -7,7 +7,7 @@ import styles from "./Review.module.css";
  * - 지금은 백엔드가 없으므로 mock 데이터 사용
  */
 
-const mockReviews = [
+export const mockReviews = [
     {
         review_id: 1,
         member_id: "user123",
@@ -27,7 +27,12 @@ const mockReviews = [
 export default function Review() {
     return (
         <div className={styles.reviewSection}>
-            <h3 className={styles.sectionTitle}>리뷰</h3>
+            <div className={styles.headerRow}>
+                <h3 className={styles.sectionTitle}>
+                    리뷰 <span className={styles.reviewCount}>({mockReviews.length})</span>
+                </h3>
+                <button className={styles.writeButton}>✏️ 리뷰 작성</button>
+            </div>
 
             {mockReviews.length === 0 ? (
                 <p className={styles.noReview}>아직 리뷰가 없습니다.</p>
@@ -36,7 +41,9 @@ export default function Review() {
                     <div key={review.review_id} className={styles.reviewCard}>
                         <div className={styles.reviewHeader}>
                             <span className={styles.memberId}>{review.member_id}</span>
-                            <span className={styles.rating}>⭐ {review.rating}</span>
+                            <span className={styles.rating}>
+                                {"⭐".repeat(review.rating) + "☆".repeat(5 - review.rating)}
+                            </span>
                         </div>
                         <p className={styles.content}>{review.content}</p>
                         <span className={styles.date}>{review.created_at}</span>
