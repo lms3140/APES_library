@@ -850,3 +850,6 @@ ORDER BY
     bc.display_order ASC,
     cb.display_order ASC;
 
+
+select * from member;
+select * from inquiry;
