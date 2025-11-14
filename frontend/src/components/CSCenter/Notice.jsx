@@ -1,7 +1,7 @@
 import styles from "./Notice.module.css";
 import { useEffect, useState } from "react";
 import { axiosData } from "../../utils/dataFetch.js";
-import Pagination from "../../pages/CSCenter/Pagination.jsx";
+import Pagination from "../../pages/Pagination/Pagination.jsx";
 
 export function Notice() {
   //전체 데이터(json)
