@@ -1,729 +1,257 @@
-/* Main Layout */
-.mypageMain {
-  background: #f7f7f7;
-  min-height: 100vh;
-  padding: 0;
-}
-
 .containerWrapper {
-  /* max-width: 1200px; */
-  /* margin: 0 auto; */
-  /* padding: 0 20px; */
-  background-color: none;
-}
-
-/* Breadcrumb */
-.breadCrumb {
-  background-image: url('../../../public/images/mypage/bg_myroom_main@2x.png');
-  border-bottom: 1px solid #eaeaea;
-  padding: 15px 0;
-}
-
-.breadCrumbInner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.topBreadCrumb {
-  display: flex;
-  gap: 0;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  align-items: center;
-}
-
-.breadCrumbItem {
-  display: flex;
-  align-items: center;
-  color: white; /* 배경 이미지 위에서 보이도록 흰색으로 */
-  font-size: 13px;
-}
-
-.breadCrumbItem::after {
-  content: '/';
-  margin: 0 8px;
-  color: rgba(255, 255, 255, 0.7); /* 구분자도 흰색으로 */
-}
-
-.breadCrumbItem:last-child::after {
-  content: '';
-}
-
-.homeLink,
-.btnSubDepth {
-  color: white; /* 텍스트를 흰색으로 */
-  text-decoration: none;
-  font-weight: 400;
-  display: inline-flex;
-  align-items: center;
-}
-
-.homeButton {
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-
-.breadCrumbItem:last-child .btnSubDepth {
-  color: white;
-  font-weight: 500;
-}
-
-/* Contents Layout */
-.contentsWrap {
-  display: flex;
-  gap: 30px;
-  padding: 30px 0;
   position: relative;
-  z-index: 20; /* breadCrumbWrapper 위에 올라오도록 */
-}
-
-.contentsInner {
-  display: flex;
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Aside (Left Sidebar) */
-.asideWrap {
-  width: 240px;
-  flex-shrink: 0;
-}
-
-.asideBody {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.myProfileArea {
-  background: linear-gradient(135deg, #5055b1 0%, #3666ef 100%);
-  padding: 30px 20px;
-  text-align: center;
-  color: white;
-}
-
-.profileThumbBoxNoImg {
-  margin-bottom: 15px;
-}
-
-.thumbBox {
-  width: 70px;
-  height: 70px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  margin: 0 auto;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.profileNameBox {
-  margin-bottom: 20px;
-}
-
-.nameNowrap {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 8px;
-  font-weight: 400;
-}
-
-.nameNowrap b {
-  font-weight: 700;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-.badge .text {
-  font-weight: 500;
-}
-
-.profileInfoList {
-  display: flex;
-  gap: 8px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: center;
-}
-
-.infoItem {
-  flex: 1;
-}
-
-.infoItem a {
-  display: flex;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 12px 8px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: white;
-  text-align: center;
-  transition: background 0.2s;
-}
-
-.infoItem a:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.infoItem .title {
-  display: block;
-  font-size: 12px;
-  margin-bottom: 6px;
-  opacity: 0.9;
-}
-
-.infoItem .val {
-  display: block;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-/* SNB Menu */
-.snbWrap {
-  padding: 0;
-}
-
-.snbListCategory {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Section Wrap (Main Content) */
-.sectionWrap {
-  flex: 1;
-  min-width: 0;
-}
-
-/* Switch Toggle */
-.switchToggleWrapMy {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.switchToggleHeader {
-  margin-bottom: 30px;
-}
-
-.switchToggleBox {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.btnSwitch,
-.btnSwitchActive {
-  padding: 10px 24px;
-  border: 1px solid #eaeaea;
-  background: white;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s;
-  color: #767676;
-}
-
-.btnSwitch:hover {
-  border-color: #5055b1;
-  color: #5055b1;
-}
-
-.btnSwitchActive {
-  background: #5055b1;
-  color: white;
-  border-color: #5055b1;
-}
-
-.categoryTagList {
-  display: flex;
-  gap: 8px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-wrap: wrap;
-}
-
-.categoryItem,
-.categoryItemActive {
-  list-style: none;
-}
-
-.btnCategory {
-  padding: 8px 16px;
-  border: 1px solid #eaeaea;
-  background: white;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: all 0.2s;
-  color: #767676;
-  font-weight: 400;
-}
-
-.categoryItemActive .btnCategory {
-  background: #5055b1;
-  color: white;
-  border-color: #5055b1;
-  font-weight: 500;
-}
-
-.btnCategory:hover {
-  border-color: #5055b1;
-  color: #5055b1;
-}
-
-/* No Data */
-.noData {
-  padding: 80px 20px;
-  text-align: center;
-  color: #999;
-}
-
-.noData.sizeSm {
-  padding: 60px 20px;
-}
-
-.noDataDesc {
-  font-size: 15px;
-  margin-bottom: 20px;
-  color: #767676;
-  line-height: 1.6;
-}
-
-.noDataSdesc {
-  font-size: 13px;
-  color: #999;
-  line-height: 1.8;
-}
-
-.btnWrap {
-  margin-top: 24px;
-}
-
-.btnSm {
-  padding: 10px 24px;
-  background: white;
-  color: #5055b1;
-  border: 1px solid #5055b1;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.btnSm:hover {
-  background: #5055b1;
-  color: white;
-}
-
-/* Switch Toggle Content */
-.switchToggleContent {
-  display: none;
-}
-
-.switchToggleContent.active {
+  padding-top: 20px;
+  z-index: 102;
   display: block;
 }
-
-.switchToggleContentAlarm {
-  display: block;
-}
-
-/* Custom Swiper */
-.customSwiperWrap {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.swiperContainer {
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.prodBlurList {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  transition: transform 0.3s ease;
-}
-
-.swiperControlBox {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 20px;
-  align-items: center;
-}
-
-.swiperButtonPrev,
-.swiperButtonNext {
-  width: 36px;
-  height: 36px;
-  border: 1px solid #d5d5d5;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.swiperButtonPrev::after {
-  content: '<';
-  font-size: 16px;
-  font-weight: bold;
-  color: #767676;
-}
-
-.swiperButtonNext::after {
-  content: '>';
-  font-size: 16px;
-  font-weight: bold;
-  color: #767676;
-}
-
-.swiperButtonPrev:hover,
-.swiperButtonNext:hover {
-  background: #5055b1;
-  border-color: #5055b1;
-}
-
-.swiperButtonPrev:hover::after,
-.swiperButtonNext:hover::after {
-  color: white;
-}
-
-/* Benefit Info */
-.benefitInfoWrap {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.benefitIcoGroup {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.benefitSubGroup {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-/* Title Wrap */
-.titleWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.titleSizeMd {
-  padding: 30px 0 20px;
-}
-
-.titleHeading {
-  font-size: 20px;
-  font-weight: 700;
-  color: #292929;
-  margin: 0;
-}
-
-.rightArea {
-  display: flex;
-  align-items: center;
-}
-
-.rightArea a {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  text-decoration: none;
-  color: #767676;
-  font-size: 14px;
-  font-weight: 400;
-  transition: color 0.2s;
-}
-
-.rightArea a:hover {
-  color: #5055b1;
-}
-
-.icoArw {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23767676" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>') no-repeat center;
-  transition: background 0.2s;
-}
-
-.rightArea a:hover .icoArw {
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235055b1" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>') no-repeat center;
-}
-
-/* My Library */
-.myLibraryItem {
-  list-style: none;
-  margin-bottom: 20px;
-}
-
-.myLibraryBox {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  min-height: 140px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.myLibraryBox:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.myLibraryBox.empty {
-  border: 2px dashed #d5d5d5;
-  background: #fafafa;
-}
-
-.myLibraryBg {
+.breadCrumbBackImage {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.blurImg {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(30px);
-  opacity: 0.2;
-  transform: scale(1.2);
+  height: 354px;
+  background-size: cover;
+  background-image: url("../../../public/images/mypage/bg_myroom_main@2x.png");
 }
-
-.myLibraryBoxInner {
+.breadCrumbWrap {
   position: relative;
-  z-index: 1;
+  padding-top: 20px;
+  z-index: 102;
 }
-
-.myLibraryLink {
-  display: flex;
-  align-items: center;
-  padding: 24px;
-  text-decoration: none;
-  gap: 20px;
+.breadCrumbInner {
+  width: 1200px;
+  margin: 0 auto;
 }
-
-.myLibraryImgBox {
-  width: 90px;
-  height: 90px;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.breadCrumbList {
+  font-size: 0;
 }
-
-.myLibraryImgBox.typeSquareRound {
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.imgBox {
-  width: 100%;
-  height: 100%;
-}
-
-.imgBox img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.myLibraryInfo {
-  flex: 1;
-}
-
-.myLibraryTitle {
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  color: #292929;
-  margin-bottom: 8px;
-}
-
-.myLibraryDesc {
-  display: block;
-  font-size: 13px;
-  color: #999;
-  margin-bottom: 12px;
-}
-
-.myLibraryThumbList {
-  display: flex;
-  gap: 8px;
-}
-
-.thumbAdd {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 50px;
-  height: 32px;
-  padding: 0 12px;
-  background: rgba(80, 85, 177, 0.1);
-  border-radius: 6px;
-  font-size: 14px;
-  color: #5055b1;
-  font-weight: 600;
-}
-
-/* My Activity */
-.myActivityWrap {
-  background: white;
-  border-radius: 16px;
-  padding: 30px;
-  margin-top: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.continueViewBox {
-  margin-bottom: 20px;
-}
-
-.continueViewList {
-  padding: 20px 0;
-}
-
-.continueViewItem {
-  margin-bottom: 15px;
-}
-
-.continueProdWrap {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.continueProdWrap.noData {
-  background: #fafafa;
-  border-radius: 12px;
-}
-
-/* Hidden */
-.hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .contentsInner {
-    flex-direction: column;
-  }
-  
-  .asideWrap {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .mypageMain {
-    padding: 0;
-  }
-  
-  .containerWrapper {
-    padding: 0 15px;
-  }
-  
-  .contentsWrap {
-    padding: 20px 0;
-  }
-  
-  .contentsInner {
-    gap: 20px;
-  }
-  
-  .switchToggleWrapMy,
-  .benefitInfoWrap,
-  .myActivityWrap {
-    padding: 20px;
-    border-radius: 12px;
-  }
-  
-  .benefitIcoGroup,
-  .benefitSubGroup {
-    flex-direction: column;
-  }
-  
-  .prodBlurList {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 15px;
-  }
-}
-
-/* Text utility */
-.text {
-  display: inline-block;
-}
-
-/* Additional styles for better match */
-ul {
+ol, ul {
   list-style: none;
-  padding: 0;
   margin: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
   padding: 0;
-  font-family: inherit;
+}
+.breadCrumbItem {
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  vertical-align: top;
+}
+.homeLink {
+  display: block;
+  width: 14px;
+  height: 19px;
+  background-repeat: no-repeat;
+  background-size: 14px 13px;
+  background-position: 0 2px;
+  background-image: url('../../../public/images/Mypage/ico_breadcrumb_home_white@2x.png');
+}
+.noSub {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  display: block;
+  width: 4px;
+  height: 8px;
+  background-size: 4px 8px;
+  background-image: url('../../../public/images/mypage/ico_breadcrumb_divide@2x.png');
+}
+.btnSubDepth {
+  position: relative;
+  padding-bottom: 8px;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  color: #fff;
+  margin-left: 18px;
+}
+.contentsWrap {
+  position: relative;
+  padding-top: 62px;
+  display: block;
+}
+.contentsInner {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+.asideWrap {
+  width: 180px;
+  padding-right: 36px;
+  display: block;
+}
+.myProfileArea {
+  margin-bottom: 74px;
+  padding: 0;
+  overflow: visible;
+  background: none;
+  position: relative;
+  border-radius: 16px;
+}
+.profileThumbBoxNoImg {
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+.btnSetting {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.thumbBox {
+  border: none;
+  background-size: cover;
+  background-image: url('../../../public/images/mypage/img_no_profile@2x.png');
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.thumbBoxSetting {
+  position: absolute;
+  bottom: 0;
+  right: -12px;
+  display: block;
+  width: 28px;
+  height: 28px;
+  background-repeat: no-repeat;
+  background-size: 28px 28px;
+background-image: url('../../../public/images/mypage/btn_profile_setting@2x.png');
+}
+.profileNameBox {
+  min-height: 56px;
+  max-height: 82px;
+  position: relative;
+  margin-top: 10px;
+  line-height: 26px;
+}
+.nameNowrap {
+  font-size: 20px;
+  white-space: nowrap;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: #fff;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.badge {
+  display: flex;
+  margin-top: 7px;
+  gap: 9px;
+  white-space: nowrap;
+  vertical-align: top;
+  flex-wrap: wrap;
+  align-items: start;
+}
+.badgeIg {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 13px;
+  line-height: 23px;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  color: #fff;
+}
+.badgeImage {
+  background-image: url('../../../public/images/mypage/ico_grade_friends_sm.png');
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 4px;
+  width: 20px;
+  height: 23px;
+  background-repeat: no-repeat;
+  background-size: 20px 23px;
+}
+.badgeArrow {
+  display: inline-block;
+    vertical-align: top;
+    margin: 7px 0 0 4px;
+    width: 5px;
+    height: 9px;
+    background: url('../../../public/images/mypage/btn_more_view_white@2x.png') no-repeat 0 0 / 100%;
+}
+.profileInfoList {
+  padding: 17px 20px 19px;
+  margin-top: 12px;
+  border-radius: 12px;
+  border-radius: 12px;
+  background-color: rgba(56, 59, 124, 0.2);
+}
+.infoItemWish {
+  width: calc(50% - 16px);
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+}
+.infoLink {
+  display: inline-block;
+  vertical-align: top;
+}
+.title {
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: 5px;
+  display: block;
+  color: #fff;
+  opacity: 0.8;
+}
+.val {
+  display: block;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.infoItemList {
+  display: inline-block;
+  vertical-align: top;
+}
+.infoItemListLine {
+  display: inline-block;
+  width: 1px;
+  height: 24px;
+  margin: 10px 15px 0;
+  background-color: #fff;
+  border-radius: 10px;
+  opacity: 0.1;
+  vertical-align: top;
 }
 
-* {
-  box-sizing: border-box;
+.snbItem {
+  display: block;
+  position: relative;
+  margin-top: 8px;
+}
+.snbLinkDepthTitle {
+  font-size: 15px;
+  line-height: 23px;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  width: 180px;
+  height: 23px;
+}
+.snbLink {
+  display: block;
+  position: relative;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  width: 180px;
+  height: 22px;
+  margin-top: 8px;
+}
+.sectionWrap {
+  width: calc(100% - 216px);
+  
 }

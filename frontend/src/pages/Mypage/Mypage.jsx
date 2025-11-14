@@ -13,30 +13,31 @@ export function Mypage() {
         <main className={style.mypageMain}>
             <div className={style.containerWrapper}>
                 {/* 이미지 */}
-                <div className={style.breadCrumbWrapper}> 
+                <section className={style.breadCrumbBackImage}> 
                 
                     {/* 메인마이 */}
-                    <section className={style.breadCrumb}>
+                    <section className={style.breadCrumbWrap}>
                         <div className={style.breadCrumbInner}>
                             <ul className={style.breadCrumbList}>
                                 <li className={style.breadCrumbItem}>
-                                    <Link to="/" className={style.homeLink}><img src='../../../public/images/Mypage/ico_breadcrumb_home_white@2x.png' className={style.homeButton}/></Link>
+                                    <Link to="/" className={style.homeLink}></Link>
                                 </li>
                                 <li className={style.breadCrumbItem}>
+                                    <div className={style.noSub}></div>
                                     <Link to="#" className={style.btnSubDepth} style={{ pointerEvents: 'none' }}>마이</Link>
                                 </li>
                             </ul>
                         </div>
                     </section>
 
-                </div>
-                <section className={`${style.contentsWrap} ${style.aside}`}>
+                </section>
+                <section className={`${style.contentsWrap}`}>
                     <div className={style.contentsInner}>
                         <aside className={style.asideWrap}>
                             <div className={style.asideBody}>
                                 <div className={style.myProfileArea}>
                                     <div className={style.profileThumbBoxNoImg}>
-                                        <Link to="#">
+                                        <Link to="#" className={style.btnSetting}>
                                             <div className={style.thumbBox}>
                                                 <Link to="#"><div className={style.thumbBoxSetting}></div></Link>
                                             </div>
@@ -49,20 +50,25 @@ export function Mypage() {
                                         </span>
                                         {/* 등급 배지 */}
                                         <span className={style.badge}>
-                                            <span className={style.text}>프렌즈</span>
+                                            <Link to="#" className={style.badgeIg}>
+                                                <div className={style.badgeImage}></div>
+                                                <span className={style.text}>프렌즈</span>
+                                                <div className={style.badgeArrow}></div>
+                                            </Link>
                                         </span>
                                     </div>
                                     <ul className={style.profileInfoList}>
                                         {/* 찜 정보 */}
-                                        <li className={style.infoItem}>
-                                            <Link to="/wish">
+                                        <li className={style.infoItemWish}>
+                                            <Link to="/wish" className={style.infoLink}>
                                                 <span className={style.title}>찜</span>
                                                 <span className={style.val}>0</span>
                                             </Link>
                                         </li>
                                         {/* 리스트 정보 */}
-                                        <li className={style.infoItem}>
-                                            <Link to="#">
+                                        <li className={style.infoItemList}>
+                                            <div className={style.infoItemListLine}></div>
+                                            <Link to="#" className={style.infoLink}>
                                                 <span className={style.title}>리스트</span>
                                                 <span className={style.val}>0</span>
                                             </Link>
@@ -70,7 +76,6 @@ export function Mypage() {
                                     </ul>
                                 </div>
                                 <div className={style.snbWrap}>
-
                                     <ul className={style.snbListCategory}>
                                         <div className={style.snbWrap}>
                                             <ul className={style.snbListCategory}>

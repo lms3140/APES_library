@@ -5,7 +5,7 @@ use book_store;
 -- SHOW tables;
 -- desc member;
 -- select * from member;
--- select * from book;
+select * from book;
 
 
 -- ============================================================

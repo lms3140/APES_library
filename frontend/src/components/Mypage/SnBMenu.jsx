@@ -10,7 +10,7 @@ export function SnBMenu({ title, items }) {
             <ul className={style.snbSubList}>
                 {items.map((item, index) => (
                     <li key={index} className={style.subItem}>
-                        <Link to="#">{item.label}</Link>
+                        <Link to="#" className={style.snbLink}>{item.label}</Link>
                     </li>
                 ))}
             </ul>
