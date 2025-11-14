@@ -4,6 +4,7 @@ import { Notice } from "../components/CSCenter/Notice.jsx";
 import { QnAForm } from "../components/CSCenter/QnAForm.jsx";
 import { CsCenterLayout } from "../components/CSCenter/CsCenterLayout.jsx";
 import { CSCenter } from "../pages/CSCenter/CSCenter.jsx";
+import { Search } from "../pages/Search/Search.jsx";
 
 export const route1 = [
   {
@@ -30,5 +31,9 @@ export const route1 = [
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "/search",
+    element: <Search />,
   },
 ];
