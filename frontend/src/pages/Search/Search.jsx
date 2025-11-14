@@ -1,57 +1,57 @@
-import { useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import styles from "./Search.module.css";
-import { axiosData } from "../../utils/dataFetch.js";
+import { useEffect, useState } from "react";
+import { SearchFilter } from "../../components/Search/SearchFilter.jsx";
 import { SearchTabs } from "../../components/Search/SearchTabs.jsx";
 import { SearchSort } from "../../components/Search/SearchSort.jsx";
-import { SearchItem } from "../../components/Search/SearchItem.jsx";
+import { SearchItems } from "../../components/Search/SearchItems.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
 
 export function Search() {
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get("q");
-
-  const [data, setData] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+  const [keyword, setKeyword] = useState("");
+  const [books, setBooks] = useState([]); //검색 결과 목록
 
   useEffect(() => {
-    const fetch = async () => {
-      const jsonData = await axiosData("../../../../data/aladin_data.json");
-      setData(jsonData);
-    };
-    fetch();
+    const params = new URLSearchParams(window.location.search);
+    const kw = params.get("keyword");
+    setKeyword(kw);
+    fetchBooks(kw);
   }, []);
 
-  console.log("data :: ", data);
-
-  useEffect(() => {
-    if (!query) return;
-    const lower = query.toLowerCase();
-    const result = data.filter((item) =>
-      item.title.toLowerCase().includes(lower)
-    );
-    setFiltered(result);
-  }, [query, data]);
+  const fetchBooks = async (kw) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/search?keyword=${kw}`
+      );
+      const json = await response.json();
+      console.log("json :: ", json);
+      setBooks(json);
+    } catch (err) {
+      console.log("검색 오류", err);
+    }
+  };
 
   return (
-    <div className={styles.container}>
-      {/* 상단 검색 정보 */}
-      <div className={styles.header}>
-        <h1>"{query}" 검색 결과</h1>
-        <span>총 {filtered.length}건</span>
-      </div>
+    <div className={styles.searchContainer}>
+      {/* 왼쪽 필터 */}
+      <SearchFilter />
 
-      {/* 상단 카테고리 탭 */}
-      <SearchTabs />
+      {/* 오른쪽 */}
+      <div className={styles.rightArea}>
+        <h1 className={styles.resultTitle}>
+          {keyword}에 대한 {books.length}개의 검색 결과
+        </h1>
 
-      {/* 정렬 영역 */}
-      <SearchSort />
+        <SearchTabs />
+        <SearchSort books={books} />
 
-      {/* 검색 결과 리스트 */}
-      <ul className={styles.list}>
-        {filtered.map((item, idx) => (
-          <SearchItem key={idx} item={item} />
+        {/* 검색 결과 */}
+        {books.map((item) => (
+          <SearchItems key={item.id} item={item} />
         ))}
-      </ul>
+      </div>
+      <div>
+        <Pagination />
+      </div>
     </div>
   );
 }

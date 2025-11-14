@@ -5,6 +5,7 @@ import { QnAForm } from "../components/CSCenter/QnAForm.jsx";
 import { CsCenterLayout } from "../components/CSCenter/CsCenterLayout.jsx";
 import { CSCenter } from "../pages/CSCenter/CSCenter.jsx";
 import { Search } from "../pages/Search/Search.jsx";
+import { SearchFilter } from "../components/Search/SearchFilter.jsx";
 
 export const route1 = [
   {

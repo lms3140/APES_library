@@ -2,12 +2,11 @@ import styles from "./Notice.module.css";
 import { useEffect, useState } from "react";
 import { axiosData } from "../../utils/dataFetch.js";
 import Pagination from "../../pages/Pagination/Pagination.jsx";
+import { usePagination } from "../../hooks/usePagination.js";
 
 export function Notice() {
   //전체 데이터(json)
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0); //현재 페이지
-  const itemsPerPage = 10; //한 페이지당 표시할 게시글 수
 
   //json데이터 불러오기
   useEffect(() => {
@@ -18,15 +17,8 @@ export function Notice() {
     fetch();
   }, []);
 
-  //페이지 계산
-  const pageCount = Math.ceil(data.length / itemsPerPage);
-  const offset = currentPage * itemsPerPage;
-  const currentItems = data.slice(offset, offset + itemsPerPage);
-
-  //페이지 이동 시 호출
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
-  };
+  const { currentPage, pageCount, currentItems, handlePageChange, offset } =
+    usePagination(data, 10);
 
   return (
     <div className={styles.noticeContainer}>
