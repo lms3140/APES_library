@@ -1,134 +1,161 @@
+/* ===== 기본 레이아웃 ===== */
 .contactContainer {
   width: 100%;
+  max-width: 1180px;
+  margin: auto;
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
-  color: #111;
+  color: #000;
   font-size: 14px;
   line-height: 1.6;
-  margin: 80px auto;
-  max-width: 1180px;
 }
 
-/* 상단 제목 영역 */
 .header {
   margin-bottom: 20px;
 }
-
 .header h1 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 0;
 }
-
 .header p {
-  margin: 0;
-  color: #595959;
   font-size: 14px;
+  color: #595959;
+  margin: 0;
 }
 
-/* 표 전체 영역 */
-.tableWrap {
-  width: 100%;
-  border-collapse: collapse;
+/* 섹션 제목 줄 */
+.section {
   border-top: 1px solid #000;
 }
-
-.tableWrap th {
+.sectionTitle {
   background-color: #f7f7f7;
   font-weight: 400;
-  text-align: left;
-  padding: 12px 16px;
+  padding: 16px 12px;
+  /* border-bottom: 1px solid #ddd; */
   font-size: 14px;
+  margin: 0;
   text-align: center;
 }
 
-.tableWrap td {
-  /* border-bottom: 1px solid #ddd; */
-  padding: 12px 15px;
-  vertical-align: top;
-}
-
-.tableWrap table {
+/* ===== 도서문의 내부(그대로) ===== */
+.subTable {
   width: 100%;
-  border-collapse: collapse;
 }
-
-.tableWrap td table td {
-  border: none;
-  padding: 6px 10px;
-}
-
-/* 내부 중첩 구조 (교과서 안내 등) */
-.subList {
-  margin-top: 5px;
-  padding-left: 20px;
-}
-
-.subList p {
-  margin: 3px 0;
-}
-
-/* 링크 스타일 */
-.tableWrap a {
-  color: #0078d4;
-  text-decoration: underline;
-}
-
-.tableWrap a:hover {
-  text-decoration: none;
-}
-
-/* 매장 이용안내 (3번 섹션) */
-.storeTable td {
-  border: none;
-  vertical-align: top;
-  padding: 10px 15px;
-}
-
-.storeTable td p {
-  margin: 2px 0;
-}
-
-.storeTable td:first-child {
-  width: 120px;
-  font-weight: 600;
-  color: #222;
-}
-
-/* 하위 목록(예: 주문/배송 조회, 반품조회 등)에 가로줄 추가 */
-.tableWrap td table tr td {
+.subTable p {
+  margin: 0;
+  padding: 16px 12px;
   border-bottom: 1px solid #ddd;
-  padding: 10px 15px;
 }
-
-/* 마지막 항목(기타문의...)은 줄 제거 */
-.tableWrap td table tr:last-child td {
+.subTable p:last-child {
   border-bottom: none;
 }
 
-/* 교과서 안내 구역을 좌우 2칸 구조로 정렬 */
-.textbookRow {
-  display: table-row;
-}
-
-.textbookRow > td {
-  display: table-cell;
-  vertical-align: top;
-  padding: 10px 15px;
+.rowGroup {
+  display: flex;
   border-bottom: 1px solid #ddd;
 }
-
-/* 왼쪽(‘3. 교과서 안내’) */
-.textbookTitle {
-  width: 180px;
-  font-weight: 600;
+.leftCell {
+  width: 370px;
+  padding: 16px 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.rightCell {
+  flex: 1;
+  padding: 16px 12px;
+  border-left: 1px solid #ddd;
+}
+.rightCell p {
+  border-bottom: none;
+  margin: 0;
+  padding: 2px 0;
+  font-size: 13px;
 }
 
-/* 오른쪽(하위 항목) */
-.textbookSub {
-  border-left: 1px solid #ddd; /* 중간 세로선 */
-  padding-left: 20px;
+/* ===== 매장 이용안내: 가로 표(3열) ===== */
+.storeGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 220px 220px 1fr; /* 최상위 / 중간 / 매장리스트 */
+  grid-auto-rows: auto;
+  /* border: 1px solid #eaeaea; */
+  border-bottom: 1px solid #eaeaea;
+  border-top-width: 0; /* 섹션제목 아래선과 겹침 방지 */
 }
 
-.textbookSub p {
-  margin: 3px 0;
+/* 셀 공통: 표처럼 한 줄로 이어지게 상단/좌측만 그린다 */
+.cell {
+  box-sizing: border-box;
+  padding: 16px 12px;
+  border-top: 1px solid #eaeaea;
+  border-left: 1px solid #eaeaea;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+
+/* 첫 번째 행(상단) border 제거 */
+.storeGrid > .cell:nth-child(-n + 3) {
+  border-top: none;
+}
+
+/* 첫 열은 컨테이너의 외곽선(좌측)을 쓰므로 좌보더 제거 */
+.noLeft {
+  border-left: none;
+}
+
+.level1Span {
+  grid-column: 1 / 2;
+  grid-row: 1 / span 4; /* ✅ 기존 span 3 → 4로 변경 */
+  display: flex;
+  align-items: flex-start;
+  display: flex;
+  align-items: center;
+  border-left: none;
+}
+
+/* 가운데 열(파란 박스), 오른쪽 열(초록 박스) */
+.level2 {
+  font-weight: 500;
+}
+.level3 {
+  font-weight: 400;
+}
+
+/* 그리드 위치 보조(가독성 위해 클래스 제공) */
+.col2 {
+  grid-column: 2;
+}
+.col3 {
+  grid-column: 3;
+}
+
+/* 매장 리스트는 보더 없이 텍스트만 */
+.storeList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.storeList li {
+  margin: 0;
+}
+
+/* a,
+a:link,
+a:visited,
+a:hover,
+a:active  */
+.subTable :global(a),
+.subTable :global(a:hover),
+.subTable :global(a:visited),
+.subTable :global(a:link),
+.subTable :global(a:active),
+.noLeft :global(a),
+.noLeft :global(a:hover),
+.noLeft :global(a:visited),
+.noLeft :global(a:link),
+.noLeft :global(a:active) {
+  text-decoration: underline;
 }

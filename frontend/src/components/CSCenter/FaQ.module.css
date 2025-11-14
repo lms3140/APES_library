@@ -38,6 +38,7 @@
   padding: 24px 28px 24px 20px;
   cursor: pointer;
   gap: 28px;
+  height: 72px;
 }
 
 .question p {

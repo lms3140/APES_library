@@ -1,0 +1,119 @@
+.noticeContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  color: #111;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 상단 영역 */
+.header {
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.total {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.total span {
+  color: #3c9a17;
+}
+
+/* 리스트 영역 */
+.noticeList {
+  border-top: 1px solid #000;
+}
+
+.listHeader {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  color: #595959;
+  font-weight: 500;
+  padding: 16px 24px;
+  gap: 36px;
+}
+
+/* 열 고정 폭 */
+.no {
+  width: 60px;
+  text-align: center;
+}
+
+.title {
+  flex: 1;
+  padding-left: 24px;
+  text-align: center;
+}
+
+.category {
+  width: 88px;
+  text-align: center;
+}
+
+.date {
+  width: 70px;
+  text-align: center;
+}
+
+/* 열 고정 폭 */
+.colNo {
+  width: 60px;
+  text-align: center;
+}
+
+.colTitle {
+  flex: 1;
+  /* padding-left: 24px; */
+  text-align: left;
+}
+
+.colCategory {
+  width: 88px;
+  text-align: center;
+}
+
+.colDate {
+  width: 70px;
+  text-align: center;
+}
+
+/* 본문 */
+.listBody {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.noticeItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  padding: 24px;
+  transition: background-color 0.2s ease;
+  gap: 36px;
+  font-size: 14px;
+}
+
+.noticeItem:hover {
+  background-color: #fafafa;
+}
+
+.colTitle {
+  color: #333;
+  cursor: pointer;
+}
+
+.colTitle:hover {
+  text-decoration: underline;
+}

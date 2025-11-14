@@ -4,6 +4,7 @@ import com.bookshop.dto.BookDetailDto;
 import com.bookshop.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
@@ -34,5 +35,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             b.price, b.point, b.published_date, b.description, b.image_url
         """,
             nativeQuery = true)
-    BookDetailDto findDetailByBookId(Long bookId);
+    BookDetailDto findDetailByBookId(@Param("bookId") Long bookId);
 }

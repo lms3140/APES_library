@@ -162,7 +162,9 @@
 .noticeSection h2 {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #000;
+  padding-bottom: 30px;
 }
 
 .noticeSection a {
@@ -172,7 +174,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
-  color: #595959;
+  font-size: 14px;
+  color: #767676;
   text-decoration: none;
 }

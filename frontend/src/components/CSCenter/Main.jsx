@@ -1,9 +1,20 @@
 import styles from "./Main.module.css";
+import noticeStyles from "./Notice.module.css";
 import { Link } from "react-router-dom";
-import { LuMessageSquareMore } from "react-icons/lu";
-import { IoDocumentTextOutline } from "react-icons/io5";
+import { Notice } from "./Notice";
+import { useEffect, useState } from "react";
+import { axiosData } from "../../utils/dataFetch";
 
 export function Main() {
+  const [miniNotices, setMiniNotices] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const json = await axiosData("/data/csCenterNotice.json");
+      setMiniNotices(json.slice(0, 3)); // ✅ 상위 3개만
+    })();
+  }, []);
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.content}>
@@ -111,8 +122,39 @@ export function Main() {
           <h2>공지사항</h2>
           <Link to="/cscenter/notice">
             <span>더보기</span>
-            <span>{"+"}</span>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                fill="none"
+                stroke="#767676"
+                stroke-width="2.5"
+                viewBox="0 0 16 16"
+              >
+                <desc>더보기 플러스 아이콘</desc>
+                <g stroke="current" stroke-linecap="round" clip-path="url(#a)">
+                  <path d="M8 2v12m6-6H2" />
+                </g>
+                <defs>
+                  <clipPath id="a">
+                    <path fill="#fff" d="M0 0h16v16H0z" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </span>
           </Link>
+          {/* ✅ 헤더/총건수/페이지네이션 없이 list body 3개만 */}
+          <ul className={noticeStyles.listBody}>
+            {miniNotices.map((item, idx) => (
+              <li key={item.id ?? idx} className={noticeStyles.noticeItem}>
+                <div className={noticeStyles.colNo}>{idx + 1}</div>
+                <div className={noticeStyles.colTitle}>{item.title}</div>
+                <div className={noticeStyles.colCategory}>{item.category}</div>
+                <div className={noticeStyles.colDate}>{item.date}</div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
