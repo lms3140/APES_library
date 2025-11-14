@@ -22,7 +22,7 @@ export const Detail = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await axios.get(`http://localhost:5173/Book/detail`, {
+        const response = await axios.get(`http://localhost:8080/Book/detail`, {
           params: { bid: bookId },
         });
         setBook(response.data);

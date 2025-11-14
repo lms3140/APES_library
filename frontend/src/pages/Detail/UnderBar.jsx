@@ -16,7 +16,7 @@ export const UnderBar = ({ productId }) => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5173/Product/detail`, {
+        const { data } = await axios.get(`http://localhost:8080/Product/detail`, {
           params: { pid: productId }
         });
         setProduct(data);
