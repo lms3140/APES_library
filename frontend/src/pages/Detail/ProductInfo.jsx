@@ -5,8 +5,7 @@ export const ProductInfo = ({ book }) => {
   // 책 정보가 없으면 기본값 지정
   const title = book?.title || "제목 없음";
   const authors = book?.authors || "저자 정보 없음";
-  const publisher = book?.publisher || "출판사 정보 없음"; // DB에 publisher 컬럼이 있으면 사용
-  const description = book?.description || "설명 없음";
+  const publisher = book?.publisher || "출판사 정보 없음";
 
   return (
     <div className={styles.detailSection}>
@@ -19,7 +18,7 @@ export const ProductInfo = ({ book }) => {
       />
 
       <div className={styles.description}>
-        <p>{description}</p>
+        <p>{data.description}</p>
       </div>
 
       <h4 className={styles.sectionTitle}>기본 정보</h4>
