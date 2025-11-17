@@ -34,14 +34,19 @@ import "swiper/css/navigation";
  *    imgList={imgNameList}
  *  />
  */
-export function SwiperBanner({ swiperOptions, imgList }) {
+export function SwiperBanner({ swiperOptions, imgList, width, height }) {
   return (
     <Swiper {...swiperOptions}>
       {imgList.map((img) => {
         return (
           <SwiperSlide>
             <div>
-              <img src={`${img.url}`} alt={img.url} width={890} height={380} />
+              <img
+                src={`${img.url}`}
+                alt={img.url}
+                width={width}
+                height={height}
+              />
             </div>
           </SwiperSlide>
         );

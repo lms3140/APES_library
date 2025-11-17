@@ -55,6 +55,8 @@ export function BannerSection() {
         <SwiperBanner
           swiperOptions={mainSwiperOptions}
           imgList={bannerImgNames}
+          width={890}
+          height={380}
         />
       </div>
       <div className={styles.eventBannerWrapper}>
