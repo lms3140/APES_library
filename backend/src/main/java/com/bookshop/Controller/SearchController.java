@@ -1,5 +1,6 @@
 package com.bookshop.Controller;
 
+import com.bookshop.dto.SearchDto;
 import com.bookshop.entity.Book;
 import com.bookshop.service.SearchService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,9 @@ public class SearchController {
     private final SearchService searchService;
 
     @GetMapping("/search")
-    public List<Book> search(@RequestParam String keyword) {
-        return searchService.search(keyword);
+    public List<SearchDto> search(@RequestParam String keyword) {
+        return searchService.search(keyword).stream()
+                .map(SearchDto::new)
+                .toList();
     }
 }

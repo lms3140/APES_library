@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Dropdown } from "../../pages/Dropdown/Dropdown.jsx";
 import { ImMenu } from "react-icons/im";
 import { TfiLayoutGrid2Alt } from "react-icons/tfi";
+import { Link } from "react-router-dom";
 
 export function SearchSort({ books }) {
   const sortOptions = ["인기순", "최신순", "낮은가격순", "높은가격순"];
@@ -40,35 +41,37 @@ export function SearchSort({ books }) {
             />
           </svg>
         </button>
-        <button>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
-            fill="none"
-            stroke="#000"
-            viewBox="0 0 16 16"
-          >
-            <desc>장바구니 아이콘</desc>
-            <g stroke="current" clip-path="url(#a)">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2 2.667h1.123c.204.004.4.08.554.214.154.135.257.32.29.523l1.015 5.859a.9.9 0 0 0 .29.522.87.87 0 0 0 .554.215h6.448a.87.87 0 0 0 .537-.2.88.88 0 0 0 .298-.495l.86-4.123a.914.914 0 0 0-.448-1.035.9.9 0 0 0-.387-.104H6.667"
-              />
-              <path
-                stroke-miterlimit="10"
-                d="M6.333 13.333a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM11.667 13.333a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-              />
-            </g>
-            <defs>
-              <clipPath id="a">
-                <path fill="#fff" d="M0 0h16v16H0z" />
-              </clipPath>
-            </defs>
-          </svg>
-          장바구니 담기
-        </button>
+        <Link to="/cart">
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              fill="none"
+              stroke="#000"
+              viewBox="0 0 16 16"
+            >
+              <desc>장바구니 아이콘</desc>
+              <g stroke="current" clip-path="url(#a)">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2 2.667h1.123c.204.004.4.08.554.214.154.135.257.32.29.523l1.015 5.859a.9.9 0 0 0 .29.522.87.87 0 0 0 .554.215h6.448a.87.87 0 0 0 .537-.2.88.88 0 0 0 .298-.495l.86-4.123a.914.914 0 0 0-.448-1.035.9.9 0 0 0-.387-.104H6.667"
+                />
+                <path
+                  stroke-miterlimit="10"
+                  d="M6.333 13.333a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM11.667 13.333a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                />
+              </g>
+              <defs>
+                <clipPath id="a">
+                  <path fill="#fff" d="M0 0h16v16H0z" />
+                </clipPath>
+              </defs>
+            </svg>
+            장바구니 담기
+          </button>
+        </Link>
       </div>
 
       <div className={styles.sortRight}>

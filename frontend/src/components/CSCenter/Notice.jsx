@@ -1,4 +1,5 @@
 import styles from "./Notice.module.css";
+import paginationStyles from "../../pages/Pagination/Pagination.module.css";
 import { useEffect, useState } from "react";
 import { axiosData } from "../../utils/dataFetch.js";
 import Pagination from "../../pages/Pagination/Pagination.jsx";
@@ -49,7 +50,7 @@ export function Notice() {
         </ul>
       </nav>
 
-      <div className={styles.pagination}>
+      <div className={paginationStyles.pagination}>
         <Pagination
           pageCount={pageCount}
           onPageChange={handlePageChange}

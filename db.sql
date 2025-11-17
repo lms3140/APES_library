@@ -850,9 +850,12 @@ ORDER BY
     bc.display_order ASC,
     cb.display_order ASC;
 
+use book_store;
+
 
 select * from member;
 select * from inquiry;
 select * from book;
 select * from author;
 select * from book_author;
+desc book_author;
