@@ -1,58 +1,34 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { FaGift } from "react-icons/fa";
+import React from "react";
 import styles from "./UnderBar.module.css";
 import heartBlack from "./heart_black.png";
 import heartRed from "./heart_red.png";
 import presentImg from "./present.png";
 
-export const UnderBar = ({ productId }) => {
-  const [count, setCount] = useState(1);
-  const [liked, setLiked] = useState(false);
-  const [product, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // ✅ axios로 상품 정보 가져오기
-  useEffect(() => {
-    const fetchProductData = async () => {
-      try {
-        const { data } = await axios.get(`http://localhost:8080/Product/detail`, {
-          params: { pid: productId }
-        });
-        setProduct(data);
-      } catch (error) {
-        console.error("상품 데이터를 불러오는 데 실패했습니다.", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchProductData();
-  }, [productId]);
+const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
+  if (!product) return null;
 
   const handleIncrease = () => setCount(prev => prev + 1);
   const handleDecrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
   const toggleLike = () => setLiked(prev => !prev);
 
-  if (isLoading) return <div>상품 정보를 불러오는 중...</div>;
-  if (!product) return <div>상품을 찾을 수 없습니다.</div>;
-
-  const price = product.price || 0;
-  const total = (price * count).toLocaleString();
+  const totalPrice = (product.price * count).toLocaleString();
 
   return (
     <div className={styles.bottomBar}>
       <div className={styles.bottomBarContent}>
         <div className={styles.priceInfo}>
-          총 상품 금액 <span>{total}원</span>
+          총 상품 금액 <span>₩ {totalPrice}</span>
         </div>
 
         <div className={styles.controls}>
+          {/* 수량 조절 */}
           <div className={styles.qtyControl}>
             <button onClick={handleDecrease}>−</button>
             <span>{count}</span>
             <button onClick={handleIncrease}>＋</button>
           </div>
 
+          {/* 좋아요 */}
           <button className={styles.iconBtn} onClick={toggleLike}>
             <img
               src={liked ? heartRed : heartBlack}
@@ -61,6 +37,7 @@ export const UnderBar = ({ productId }) => {
             />
           </button>
 
+          {/* 선물하기 */}
           <button className={styles.giftBtn}>
             <img
               src={presentImg}
@@ -70,6 +47,7 @@ export const UnderBar = ({ productId }) => {
             선물하기
           </button>
 
+          {/* 장바구니 / 바로구매 */}
           <button className={styles.cartBtn}>장바구니</button>
           <button className={styles.buyBtn}>바로구매</button>
         </div>

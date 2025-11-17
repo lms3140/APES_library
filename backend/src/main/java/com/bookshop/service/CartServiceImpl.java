@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService{
 
         for (CartItemDto item : cartItems) {
             BookDetailDto book = bookRepository.findDetailByBookId(item.getBookId());
-            book.setQuantity(item.getQuatity());
+//            book.setQuantity(item.getQuatity());
             bookDetails.add(book);
         }
 

@@ -1,11 +1,13 @@
 package com.bookshop.dto;
 
 import com.bookshop.entity.BookDetail;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.sql.Date;
 
 @Data
+@AllArgsConstructor
 public class BookDetailDto {
     private Long bookId;
     private String title;
@@ -18,20 +20,4 @@ public class BookDetailDto {
     private String imageUrl;
     private String authors;
     private String translators;
-    private Integer quantity;
-
-    public BookDetailDto() {}
-    public BookDetailDto(BookDetail bookDetail) {
-        this.bookId = bookDetail.getBookId();
-        this.title = bookDetail.getTitle();
-        this.categoryName = bookDetail.getCategoryName();
-        this.subcategoryName = bookDetail.getSubcategoryName();
-        this.price = bookDetail.getPrice();
-        this.point = bookDetail.getPoint();
-        this.publishedDate = bookDetail.getPublishedDate();
-        this.description = bookDetail.getDescription();
-        this.imageUrl = bookDetail.getImageUrl();
-        this.authors = bookDetail.getAuthors();
-        this.translators = bookDetail.getTranslators();
-    }
 }
