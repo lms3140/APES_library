@@ -853,3 +853,6 @@ ORDER BY
 
 select * from member;
 select * from inquiry;
+select * from book;
+select * from author;
+select * from book_author;
