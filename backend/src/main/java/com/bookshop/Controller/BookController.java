@@ -16,9 +16,9 @@ public class BookController {
 
     private final BookService bookService;
 
-    @PostMapping("/detail")
-    public BookDetailDto getBookDetail(@RequestBody BookDetailDto bookDetailDto){
-        BookDetailDto result = bookService.findByBookIdDetail(bookDetailDto.getBookId());
+    @GetMapping("/detail/{bookId}")
+    public BookDetailDto getBookDetail(@PathVariable Long bookId){
+        BookDetailDto result = bookService.findByBookIdDetail(bookId);
         return result;
     }
     @PostMapping("/detail/title")

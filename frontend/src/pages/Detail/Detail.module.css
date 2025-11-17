@@ -1,11 +1,11 @@
-/* .container */
+/* container */
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding-bottom: 120px;
+    padding-bottom: 120px; /* 하단 바 공간 확보 */
 }
 
-/* .detailTop */
+/* detailTop */
 .detailTop {
     display: flex;
     gap: 20px;
@@ -16,13 +16,13 @@
     z-index: 50;
 }
 
-/* .hideHeader */
+/* hideHeader */
 .hideHeader {
     transform: translateY(-100%);
     opacity: 0;
 }
 
-/* .bookImage */
+/* bookImage */
 .bookImage {
     width: 120px;
     height: auto;
@@ -30,32 +30,32 @@
     border-radius: 6px;
 }
 
-/* .bookInfo */
+/* bookInfo */
 .bookInfo {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* .title */
+/* title */
 .title {
     font-size: 20px;
     font-weight: 700;
 }
 
-/* .author */
+/* author */
 .author {
     font-size: 14px;
     color: #555;
 }
 
-/* .price */
+/* price */
 .price {
     font-size: 18px;
     font-weight: 600;
 }
 
-/* .btnPurchase */
+/* btnPurchase */
 .btnPurchase {
     padding: 8px 16px;
     background-color: #6c63ff;
@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 
-/* .tabs */
+/* tabs */
 .tabs {
     display: flex;
     gap: 10px;
@@ -77,7 +77,7 @@
     z-index: 30;
 }
 
-/* .tabs button */
+/* tabs button */
 .tabs button {
     background: none;
     border: none;
@@ -86,13 +86,13 @@
     cursor: pointer;
 }
 
-/* .tabs button.active */
+/* tabs button active */
 .tabs button.active {
     border-bottom: 2px solid #6c63ff;
     color: #6c63ff;
 }
 
-/* .highlightTab */
+/* highlightTab */
 .highlightTab {
     font-weight: 700;
 }
@@ -104,7 +104,8 @@
     margin-top: 20px;
 }
 
-.basicInfoTable th, .basicInfoTable td {
+.basicInfoTable th,
+.basicInfoTable td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -120,7 +121,6 @@
     color: #555;
 }
 
-/* 짝수 번째 행 배경색 변경 */
 .basicInfoTable tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -141,7 +141,7 @@ h4.sectionTitle {
     margin-bottom: 20px;
 }
 
-/* 섹션 헤더 (클릭 영역) */
+/* 섹션 헤더 */
 .groupHeader {
     display: flex;
     justify-content: space-between;
@@ -183,7 +183,7 @@ h4.sectionTitle {
 
 /* 펼쳐진 상태 */
 .policyContent.open {
-    max-height: 1000px; /* 충분히 큰 값 */
+    max-height: 1000px;
     padding: 15px;
 }
 

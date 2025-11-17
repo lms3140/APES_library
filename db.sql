@@ -847,6 +847,8 @@ ORDER BY
     bc.display_order ASC,
     cb.display_order ASC;
 
+use book_store;
+
 
 select * from member;
 select * from inquiry;
@@ -869,3 +871,4 @@ LEFT JOIN member m ON p.member_id = m.member_id
 GROUP BY b.book_id, o.order_id, p.member_id;
 
 select * from book_sales_view;
+desc book_author;
