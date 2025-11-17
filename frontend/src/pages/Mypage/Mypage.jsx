@@ -1,14 +1,18 @@
 import { Link } from 'react-router-dom';
 import style from "../Mypage/Mypage.module.css";
 import { SnBMenu } from '../../components/Mypage/SnBMenu.jsx';
-import { BookSwiper } from '../../components/Mypage/BookSwiper.jsx';
 import { BenefitIcoGroup } from '../../components/Mypage/benefitIcoGroup.jsx';
 import snbMenuData from '../../data/Mypage/snbMenuData.json'
-import bookSwiperData from '../../data/Mypage/bookSwiperData.json'
 import benefitData from '../../data/Mypage/benefitData.json';
 import { BenefitSubGroup } from '../../components/Mypage/BenefitSubGroup.jsx';
+import { useState } from 'react';
+import { AlarmContent } from '../../components/Mypage/AlarmContent.jsx';
+import { RecommendContent } from '../../components/Mypage/RecommendContent.jsx';
 
 export function Mypage() {
+    const [activeTab, setActiveTab] = useState("recommend");
+    const [activeMenu, setActiveMent] = useState("kyobo");
+
     return (
         <main className={style.mypageMain}>
             <div className={style.containerWrapper}>
@@ -95,60 +99,52 @@ export function Mypage() {
                         <section className={style.sectionWrap}>
                             <div className={style.switchToggleWrapMy}>
                                 <div className={style.switchToggleHeader}>
-                                    <div className={style.switchToggleBox}>
-                                        <button type="button" className={style.btnSwitch} data-active="recommend">
+                                    <div className={style.toggleHeaderContainer}>
+                                        <div className={style.switchToggleBox}>
+                                        <button 
+                                            type="button" 
+                                            className={activeTab === "alarm" ? style.btnSwitchActive : style.btnSwitch}
+                                            onClick={() => setActiveTab("alarm")}
+                                        >
                                             <span className={style.text}>알림</span>
                                         </button>
-                                        <button type="button" className={style.btnSwitchActive}>
+                                        <button 
+                                            type="button" 
+                                            className={`${activeTab === "recommend" ? style.btnSwitchActive : style.btnSwitch} ${style.recom}`}
+                                            onClick={() => setActiveTab("recommend")}
+                                        >
                                             <span className={style.text}>추천</span>
                                         </button>
                                     </div>
-                                    <ul className={`${style.categoryTagList}`} data-active="recommend">
-                                        <li className={style.categoryItemActive}>
-                                            <button className={style.btnCategory} type="button">
-                                                <span className={style.text}>교보문고</span>
-                                            </button>
+                                    {activeTab === "recommend" && (
+                                    <ul className={style.categoryTagList}>
+                                        <li className={style.categoryItem}>
+                                        <button 
+                                            className={activeMenu === "kyobo" ? style.btnCategory : style.btnCategoryNone}
+                                            type='button'
+                                            onClick={() => setActiveMent("kyobo")}
+                                        >
+                                            <span className={style.text}>교보문고</span>
+                                        </button>
                                         </li>
                                         <li className={style.categoryItem}>
-                                            <button className={style.btnCategory} type="button">
-                                                <span className={style.text}>핫트랙스</span>
-                                            </button>
+                                        <button 
+                                            className={activeMenu === "hottracks" ? style.btnCategory : style.btnCategoryNone}
+                                            type='button'
+                                            onClick={() => setActiveMent("hottracks")}
+                                        >
+                                            <span className={style.text}>핫트랙스</span>
+                                        </button>
                                         </li>
                                     </ul>
+                                    )}
                                 </div>
-                                {/* 알림 */}
-                                <div className={style.switchToggleContentAlarm}>
-                                    <div className={`${style.noData} ${style.sizeSm}`}>
-                                        <div className={style.noDataDesc}>지난 7일간 맞춤 소식이 없습니다.</div>
-                                        <div className={style.btnWrap}>
-                                            <button className={style.btnSm}>
-                                                <span className={style.text}>맞춤 추천 보기</span>
-                                            </button>
-                                        </div>
+                                
+                                {activeTab === "alarm" && <AlarmContent setActiveTab={setActiveTab}/>}
+                                {activeTab === "recommend" && <RecommendContent />}
                                     </div>
-                                </div>
-                                {/* 추천 */}
-                                <div data-active="recommend" className={`${style.switchToggleContent} ${style.active}`}>
-                                    <div className={style.noData} style={{display: 'none'}}>
-                                        <div className={style.noDataDesc}>추천 상품이 없습니다.</div>
-                                    </div>
-                                    <div className={style.customSwiperWrap}>
-                                        <div className={`${style.swiperContainer} ${style.swiperContainerHorizontal}`}>
-                                            <ul className={style.prodBlurList} style={{ transitionDuration: '0ms', transform: 'translate3d(0px, 0px, 0px)' }}>
-                                                <BookSwiper items={bookSwiperData.books}/>
-
-                                            </ul>
-                                        </div>
-                                        <div className={style.swiperControlBox}>
-                                            <button className={style.swiperButtonPrev} type='button' tabIndex='0' role='button' aria-label='PreviousSlide' aria-disabled='false'>
-                                                <span className={style.hidden}>이전</span>
-                                            </button>
-                                            <button className={style.swiperButtonNext} type='button' tabIndex='0' role='button' aria-label='NextsSlide' aria-disabled='false'>
-                                                <span className={style.hidden}>다음</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                    
+                                
                             </div>
                             <div className={style.benefitInfoWrap}>
                                 <div className={style.benefitIcoGroup}>

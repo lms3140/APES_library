@@ -5,7 +5,7 @@ import style from "../../pages/Mypage/Mypage.module.css";
 
 export function BookSwiper({items}) {
    return (
-        <li className={`${style.ProdBlurItem} ${style.swiperSlide} ${style.swiperSlideVisible} ${style.swiperSlideActive}`}>
+        <li className={style.ProdBlurItem}>
             <div className={style.prodBlurWrap}>
                 {items.map((item, index) => (
                     <>
