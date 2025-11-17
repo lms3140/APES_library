@@ -1,0 +1,33 @@
+.container {
+  padding: 20px;
+  width: 1200px;
+  margin: 0 auto;  
+  align-items: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th,
+.td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.row:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.img {
+  width: 100px;
+}
+
+.sortButton {
+  all: unset;          /* 모든 기본 스타일 제거 */
+  cursor: pointer;     /* 마우스 오버 시 포인터로 변경 */
+  font-size: 0.8em;    /* 필요하면 크기 조정 */
+  margin-left: 4px;    /* 텍스트와 버튼 간 간격 */
+}

@@ -7,7 +7,7 @@ import { Point } from '../../components/Payment/Point.jsx'
 import { UsePoint } from '../../components/Payment/UsePoint.jsx'
 import { PaymentButton } from '../../components/Payment/PaymentButton.jsx'
 
-export default function Payment() {
+export function Payment() {
   const pointData = [
     {index: 1, label: '통합포인트', amount: 100},
     {index: 2, label: '예치금', amount: 1000},

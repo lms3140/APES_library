@@ -1,4 +1,4 @@
-import style from '../../pages/Payment/Payment.jsx'
+import style from '../../pages/Payment/Payment.module.css'
 
 export function OrderProduct () {
     return (

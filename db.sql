@@ -5,13 +5,12 @@ use book_store;
 -- SHOW tables;
 -- desc member;
 -- select * from member;
-select * from book;
+-- select * from order_detail;
 
 
 -- ============================================================
 -- 📚 카테고리 / 하위 카테고리
 -- ============================================================
-
 CREATE TABLE category (
   category_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   category_name VARCHAR(100) NOT NULL,
@@ -134,7 +133,6 @@ CREATE TABLE purchase_order (
   member_id BIGINT NOT NULL,
   address_id BIGINT NULL,
   order_status VARCHAR(20) NULL,
-  total_price INT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
@@ -148,7 +146,6 @@ CREATE TABLE order_detail (
   book_id BIGINT NOT NULL,
   quantity INT DEFAULT 1,
   unit_price INT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (order_id) REFERENCES purchase_order (order_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (book_id) REFERENCES book (book_id)
@@ -856,3 +853,19 @@ select * from inquiry;
 select * from book;
 select * from author;
 select * from book_author;
+
+CREATE VIEW book_sales_view AS
+SELECT 
+    b.book_id,
+    b.title,
+    b.image_url,
+    count(o.quantity) as total_sales_quantity,
+    sum(o.unit_price) as total_price,
+    m.user_id
+FROM book b
+LEFT JOIN order_detail o ON b.book_id = o.book_id
+LEFT JOIN purchase_order p ON o.order_id = p.order_id
+LEFT JOIN member m ON p.member_id = m.member_id
+GROUP BY b.book_id, o.order_id, p.member_id;
+
+select * from book_sales_view;
