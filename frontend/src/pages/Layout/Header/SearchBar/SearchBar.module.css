@@ -12,7 +12,7 @@
 
 .headerInputSelect {
   height: 48px;
-  width: 50px;
+  width: 100px;
   border: 1px solid transparent;
   border-radius: calc(48px / 2);
 }
@@ -23,7 +23,7 @@
 
 .headerInput {
   position: relative;
-  width: 560px;
+  width: 480px;
   height: 48px;
   box-sizing: border-box;
   border-radius: 280px;
@@ -56,4 +56,14 @@
   left: 4px;
   background-color: #eaeaea;
   transform: translateY(-50%);
+}
+
+.submitBtn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
