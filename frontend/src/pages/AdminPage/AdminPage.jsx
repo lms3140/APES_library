@@ -2,22 +2,23 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import styles from "./AdminPage.Module.css";
 import axios from "axios";
+import { BookSearch } from "../../components/AdminPage/BookSearch";
+import { SortingButtons } from "../../components/AdminPage/SortingButtons";
 
 export function AdminPage() {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const API_BASE = "http://localhost:8080/adminPage";
 
-    const getBooks = async () => {
-        const res = await axios.get(API_BASE);
-        return res.data;
-    };
+  const getBooks = async () => {
+      const res = await axios.get(API_BASE);
+      return res.data;
+  };
 
-    const getBookDetail = async (id) => {
-        const res = await axios.get(`${API_BASE}/${id}`);
-        return res.data;
-    };
+  const getBookDetail = async (id) => {
+      const res = await axios.get(`${API_BASE}/${bookId}`);
+      return res.data;
+  };
 
   useEffect(() => {
     load();
@@ -28,81 +29,45 @@ export function AdminPage() {
     setBooks(data);
   };
 
-  const sortBy = (key, direction) => {
-  const sortedBooks = [...books].sort((a, b) => {
-    if (a[key] < b[key]) return direction === "asc" ? -1 : 1;
-    if (a[key] > b[key]) return direction === "asc" ? 1 : -1;
-    return 0;
-  });
-  setBooks(sortedBooks);
-  setSortConfig({ key, direction });
-};
+  const handleSearch = async (type, keyword) => {
+    const res = await axios.get(`${API_BASE}/search`, {
+      params: { type, keyword }
+    });
+    setBooks(res.data);
+  }
+
+  const menuList = [
+  { label: "ID", key: "bookId", sortable: true },
+  { label: "책 제목", key: "title", sortable: true },
+  { label: "이미지", key: "image_url", sortable: false },
+  { label: "총 판매부수", key: "totalSalesQuantity", sortable: true },
+  { label: "총 판매금액", key: "totalPrice", sortable: true }
+];
+
+  
 
   return (
     <div className={styles.container}>
       <h1>AdminPage</h1>
       <h2>책 목록</h2>
 
+      <BookSearch />
+
       <table className={styles.table}>
         <thead>
           <tr>
-            <th className={styles.th}>ID
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("bookId", "asc")}
-              >
-                ▲
-              </button>
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("bookId", "desc")}
-              >
-                ▼
-              </button>
+            {menuList.map(menu => (
+              <th key={menu.label} className={styles.th}>
+                {menu.label}
+                {menu.sortable && (
+                  <SortingButtons 
+                  sortBY={menu.key}
+                  books={books}
+                  setBooks={setBooks}
+                />
+                )}
               </th>
-            <th className={styles.th}>책 제목 
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("title", "asc")}
-              >
-                ▲
-              </button>
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("title", "desc")}
-              >
-                ▼
-              </button>
-              </th>
-            <th className={styles.th}>이미지</th>
-            <th className={styles.th}>총 판매부수
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("totalSalesQuantity", "asc")}
-              >
-                ▲
-              </button>
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("totalSalesQuantity", "desc")}
-              >
-                ▼
-              </button>
-            </th>
-            <th className={styles.th}>총 판매금액
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("totalPrice", "asc")}
-              >
-                ▲
-              </button>
-              <button
-                className={styles.sortButton}
-                onClick={() => sortBy("totalPrice", "desc")}
-              >
-                ▼
-              </button>
-            </th>
+            ))}
           </tr>
         </thead>
 

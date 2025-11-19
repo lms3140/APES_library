@@ -33,8 +33,8 @@ export function Mypage() {
                             </ul>
                         </div>
                     </section>
-
                 </section>
+                
                 <section className={`${style.contentsWrap}`}>
                     <div className={style.contentsInner}>
                         <aside className={style.asideWrap}>

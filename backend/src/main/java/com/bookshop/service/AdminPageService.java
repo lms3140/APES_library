@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface AdminPageService {
     public List<AdminPageDto> findAllBooks();
+    public List<AdminPageDto> searchBooks();
+    public AdminPageDto findBookDetail(Long id);
 }
