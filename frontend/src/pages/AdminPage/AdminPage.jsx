@@ -99,8 +99,7 @@ export function AdminPage() {
 
         <tbody>
           {currentBooks.map((b) => (
-            <tr
-              key={b.id}
+            <tr key={`key=${b.bookId}-${b.title}`}
               className={styles.row}
               onClick={() => navigate(`/books/${b.id}`)}
             >
@@ -130,7 +129,7 @@ export function AdminPage() {
               {Array.from({ length: blockEnd - blockStart +1 },
                (_, i) => blockStart + i).map((page) => (
                 <button
-                  key={page}
+                  key={`page-${page}`}
                   className={`${styles.pageBtn} ${currentPage === page ? styles.activePage : ""}`}
                   onClick={() => setCurrentPage(page)}
                 >
