@@ -13,6 +13,7 @@ export default function Detail() {
 
   const [count, setCount] = useState(1);
   const [liked, setLiked] = useState(false);
+  const [activeTab, setActiveTab] = useState("info");
 
   if (isLoading) return <div>로딩중...</div>;
   if (isError || !data) return <div>상품을 찾을 수 없습니다.</div>;
@@ -28,9 +29,35 @@ export default function Detail() {
         </div>
       </div>
 
-      <ProductInfo description={data.description} />
-      <Review bookId={bookId} />
-      <ReturnPolicy />
+      {/* 탭 메뉴 */}
+      <div className={styles.tabMenu}>
+        <button
+          className={activeTab === "info" ? styles.active : ""}
+          onClick={() => setActiveTab("info")}
+        >
+          상품정보
+        </button>
+        <button
+          className={activeTab === "review" ? styles.active : ""}
+          onClick={() => setActiveTab("review")}
+        >
+          리뷰 ({data.reviewCount || 0})
+        </button>
+        <button
+          className={activeTab === "return" ? styles.active : ""}
+          onClick={() => setActiveTab("return")}
+        >
+          교환/반품/품절
+        </button>
+      </div>
+
+      {/* 탭 내용 */}
+      <div className={styles.tabContent}>
+        {activeTab === "info" && <ProductInfo bookId={bookId} />}
+        {activeTab === "review" && <Review bookId={bookId} />}
+        {activeTab === "return" && <ReturnPolicy />}
+      </div>
+
 
       {/* 하단 고정 바 */}
       <UnderBar
