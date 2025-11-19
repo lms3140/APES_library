@@ -159,9 +159,9 @@
 .filterBox {
   /* border: 1px solid #ddd; */
   /* background: #fafafa; */
-  padding-bottom: 12px;
+  padding: 20px 0 10px 0;
   border-bottom: 1px solid #eaeaea;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   /* border-radius: 2px; */
 }
 
@@ -170,10 +170,6 @@
   border-bottom: none;
   padding-bottom: 0;
   margin-bottom: 0;
-}
-
-.filterBox p {
-  font-size: 16px;
 }
 
 .filterBox button {
@@ -201,7 +197,7 @@
 }
 
 .filterCategory {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #d5d5d5;
   padding-bottom: 8px;
 }
 
@@ -211,7 +207,7 @@
   width: 100%;
   padding: 0 14px;
   margin-bottom: 6px;
-  border: 1px solid #eaeaea;
+  border: 1px solid #d5d5d5;
   background: #fff;
   border-radius: 5px;
   font-size: 15px;
@@ -229,27 +225,92 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 12px;
+  width: 100%;
+  /* margin-bottom: 12px; */
+  /* padding-top: 15px; */
+  font-weight: 700;
+}
+
+.filterOptionBtn {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .filterSmallTitle {
   font-size: 14px;
   font-weight: 700;
   color: #000;
+  /* margin-bottom: 10px; */
+}
+
+.subTitle {
+  font-size: 13px;
+  margin: 5px 0 10px 6px;
+  font-weight: 500;
+}
+
+.subTitle:nth-of-type(2) {
+  margin-top: 20px;
 }
 
 /* 체크박스 */
 .filterCheckbox {
   display: flex;
   align-items: center;
-  gap: 6px;
   margin: 6px 0;
-  font-size: 13px;
   color: #444;
+  font-size: 13px;
+  margin-left: 6px;
+  gap: 10px;
+  cursor: pointer;
 }
 
 .filterCheckbox input {
   accent-color: #36a420; /* 교보 초록색 톤 */
+}
+
+/* ================================
+  커스텀 체크박스 스타일
+================================*/
+/* 기본 체크박스 숨김 */
+.checkboxInput {
+  display: none;
+}
+
+/* 커스텀 체크박스 박스 */
+.checkboxCustom {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+
+  /* background-color: #f5f5f5; */
+  background-image: url("/images/etc/ico_checkbox_gray.png");
+  background-repeat: no-repeat;
+  background-position: center 8px;
+  background-size: 10px 7px;
+
+  transition: all 0.15s ease;
+}
+
+/* 체크된 상태 */
+.checkboxInput:checked + .checkboxCustom {
+  background-color: #5155ab; /* 남색 배경 */
+  border-color: #f2f2f2;
+
+  background-image: url("/images/etc/ico_checkbox_white.png");
+  background-size: 10px 7px;
 }
 
 /* =========================================
@@ -259,26 +320,68 @@
   width: 100%;
 }
 
-/* 정렬바(SearchSort용) */
+/* 정렬바 전체 */
 .sortBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 왼쪽 1개, 오른쪽 1개 */
   align-items: center;
   padding-bottom: 14px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 24px;
 }
 
-.sortLeft {
+/* 왼쪽 전체 N건 */
+.sortLeft h3 {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sortLeft span {
+  color: #3c9a17;
+}
+
+/* 오른쪽 묶음 */
+.sortRightWrapper {
+  display: flex;
+  align-items: center;
+  gap: 18px; /* 세 파란 박스 간 간격 */
+}
+
+/* 찜 + 장바구니 */
+.sortButtons {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.sortRight {
+/* 드롭다운 2개 */
+.sortDropdowns {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+}
+
+/* 아이콘 2개 */
+.sortIcons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sortButtons button,
+.sortIcons button {
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 /* =========================================
