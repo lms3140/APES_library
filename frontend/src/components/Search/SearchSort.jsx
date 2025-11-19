@@ -1,9 +1,6 @@
 import styles from "../../pages/Search/Search.module.css";
 import { useState } from "react";
 import { Dropdown } from "../../pages/Dropdown/Dropdown.jsx";
-import { ImMenu } from "react-icons/im";
-import { TfiLayoutGrid2Alt } from "react-icons/tfi";
-import { Link } from "react-router-dom";
 
 import heartIcon from "/images/etc/ico_heart.png";
 import cartIcon from "/images/etc/ico_cart.png";
@@ -11,13 +8,16 @@ import listGray from "/images/etc/ico_list_gray.png";
 import listBlack from "/images/etc/ico_list_black.png";
 import gridGray from "/images/etc/ico_grid_gray.png";
 import gridBlack from "/images/etc/ico_grid_black.png";
+import { useNavigate } from "react-router-dom";
 
 export function SearchSort({
   books,
   onLimitChange,
   viewType,
   onViewTypeChange,
+  selectedItems,
 }) {
+  const navigate = useNavigate();
   const sortOptions = ["인기순", "최신순", "낮은가격순", "높은가격순"];
   const selectedOptions = ["20개씩 보기", "50개씩 보기", "100개씩 보기"];
   const [sort, setSort] = useState("인기순"); //현재 선택된 정렬
@@ -29,6 +29,24 @@ export function SearchSort({
     const number = parseInt(value.replace("개씩 보기", "").trim());
     setLimit(number);
     onLimitChange(number);
+  };
+
+  const handleAddToCart = () => {
+    if (selectedItems.length === 0) {
+      alert("선택한 상품이 없습니다.");
+      return;
+    }
+
+    const selectedProducts = books.filter((book) =>
+      selectedItems.inclueds(book.id)
+    );
+
+    const existing = JSON.parse(localStorage.getItem("cart") || "[]");
+    const updated = [...existing, ...selectedProducts];
+    localStorage.setItem("cart", JSON.stringify(updated));
+
+    alert("선택한 상품을 장바구니에 담았어요.");
+    navigate("/cart");
   };
 
   return (
@@ -43,12 +61,11 @@ export function SearchSort({
           <button className={styles.heart}>
             <img src={heartIcon} alt="하트 이모지" />
           </button>
-          <Link to="/cart">
-            <button className={styles.cart}>
-              <img src={cartIcon} alt="장바구니 이모지" />
-              <span>장바구니 담기</span>
-            </button>
-          </Link>
+
+          <button className={styles.cart} onClick={handleAddToCart}>
+            <img src={cartIcon} alt="장바구니 이모지" />
+            <span>장바구니 담기</span>
+          </button>
         </div>
 
         <div className={styles.sortDropdowns}>

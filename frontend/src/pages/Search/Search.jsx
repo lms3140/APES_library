@@ -14,6 +14,7 @@ export function Search() {
   const [books, setBooks] = useState([]); //검색 결과 목록
   const [limit, setLimit] = useState(20);
   const [viewType, setViewType] = useState("list");
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const { currentPage, pageCount, currentItems, handlePageChange } =
     usePagination(books, limit);
@@ -30,6 +31,7 @@ export function Search() {
         `http://localhost:8080/api/search?keyword=${kw}`
       );
       const json = await response.json();
+      console.log("서버 응답:", json, Array.isArray(json));
       setBooks(json);
     } catch (err) {
       console.log("검색 오류", err);
@@ -58,6 +60,7 @@ export function Search() {
             onLimitChange={handleLimitChange}
             viewType={viewType}
             onViewTypeChange={setViewType}
+            selectedItems={selectedItems}
           />
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}
@@ -65,20 +68,28 @@ export function Search() {
             {/* 검색 결과 */}
             {currentItems &&
               currentItems.map((item) => (
-                <SearchItems key={item.id} item={item} viewType={viewType} />
+                <SearchItems
+                  key={item.bookId}
+                  item={item}
+                  viewType={viewType}
+                  selectedItems={selectedItems}
+                  setSelectedItems={setSelectedItems}
+                />
               ))}
           </div>
-        </div>
-        <div className={`${paginationStyles.pagination} ${styles.pagination}`}>
-          {books.length > limit ? (
-            <Pagination
-              pageCount={pageCount}
-              onPageChange={handlePageChange}
-              currentPage={currentPage}
-            />
-          ) : (
-            ""
-          )}
+          <div
+            className={`${paginationStyles.pagination} ${styles.pagination}`}
+          >
+            {books.length > limit ? (
+              <Pagination
+                pageCount={pageCount}
+                onPageChange={handlePageChange}
+                currentPage={currentPage}
+              />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>

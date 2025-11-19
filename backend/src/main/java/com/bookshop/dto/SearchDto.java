@@ -21,10 +21,13 @@ public class SearchDto {
     private String description;
     private String imageUrl;
     private List<String> authors;
+    private List<String> translators;
     private Long subcategoryId;
     private String subcategoryName;
     private Long categoryId;
     private String categoryName;
+    private long publisherId;
+    private String publisherName;
 
     public SearchDto() {}
     public SearchDto(Book book) {
@@ -41,6 +44,15 @@ public class SearchDto {
                 .stream()
                 .map(ba -> ba.getAuthor().getName())
                 .toList();
+        this.translators = book.getBookTranslators()
+                .stream()
+                .map(bt -> bt.getTranslator().getName())
+                .toList();
+
+        if(book.getPublisher() != null) {
+            this.publisherId = book.getPublisher().getPublisherId();
+            this.publisherName = book.getPublisher().getName();
+        }
 
         if(book.getSubcategory() != null) {
             this.subcategoryId = book.getSubcategory().getSubcategoryId();

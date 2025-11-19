@@ -117,3 +117,7 @@
 .colTitle:hover {
   text-decoration: underline;
 }
+
+.pagination {
+  margin: 30px 0;
+}

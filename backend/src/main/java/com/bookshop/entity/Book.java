@@ -32,4 +32,11 @@ public class Book extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<BookAuthor> bookAuthors = new ArrayList<>();
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<BookTranslator> bookTranslators = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="publisher_id")
+    private Publisher publisher;
 }
