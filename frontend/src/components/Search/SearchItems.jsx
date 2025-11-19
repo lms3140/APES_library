@@ -1,9 +1,9 @@
 import styles from "../../pages/Search/Search.module.css";
 import { Link } from "react-router-dom";
 
-export function SearchItems({ item }) {
+export function SearchItems({ item, viewType }) {
   return (
-    <div className={styles.itemBox}>
+    <div className={viewType === "list" ? styles.itemBox : styles.gridItem}>
       <img src={item.imageUrl} alt={item.title} />
 
       <div className={styles.itemInfo}>
@@ -12,15 +12,24 @@ export function SearchItems({ item }) {
           <Link to={`?keyword=${encodeURIComponent(item.authors)}`}>
             {item.authors}
           </Link>
-          저자(글)
+          {item.authors ? " 저자(글)" : ""}
         </p>
         <p>출판사</p>
-        <p>{item.price}원</p>
-        <p>{item.point}</p>
+        <p>{item.price.toLocaleString()}원</p>
+        <p>
+          {"("}
+          {item.point ? item.point.toLocaleString() : 0}p{")"}
+        </p>
       </div>
       <div>
-        <Link to="/cart">장바구니</Link>
-        <Link to="/payment">바로구매</Link>
+        {viewType === "list" ? (
+          <div>
+            <Link to="/cart">장바구니</Link>
+            <Link to="/payment">바로구매</Link>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

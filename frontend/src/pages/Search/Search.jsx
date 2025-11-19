@@ -12,9 +12,11 @@ export function Search() {
   const [params] = useSearchParams();
   const keyword = params.get("keyword");
   const [books, setBooks] = useState([]); //검색 결과 목록
+  const [limit, setLimit] = useState(20);
+  const [viewType, setViewType] = useState("list");
 
   const { currentPage, pageCount, currentItems, handlePageChange } =
-    usePagination(books, 20);
+    usePagination(books, limit);
 
   // keyword 바뀔 때마다 검색 실행
   useEffect(() => {
@@ -34,6 +36,11 @@ export function Search() {
     }
   };
 
+  //한번에 보이는 갯수 설정 함수(20개씩보기, 50개씩보기, ...)
+  const handleLimitChange = (value) => {
+    setLimit(value);
+  };
+
   return (
     <div className={styles.searchWrapper}>
       <h1 className={styles.resultTitle}>
@@ -46,20 +53,32 @@ export function Search() {
 
         {/* 오른쪽 */}
         <div className={styles.rightArea}>
-          <SearchSort books={books} />
-
-          {/* 검색 결과 */}
-          {currentItems &&
-            currentItems.map((item) => (
-              <SearchItems key={item.id} item={item} />
-            ))}
+          <SearchSort
+            books={books}
+            onLimitChange={handleLimitChange}
+            viewType={viewType}
+            onViewTypeChange={setViewType}
+          />
+          <div
+            className={viewType === "list" ? styles.listView : styles.gridView}
+          >
+            {/* 검색 결과 */}
+            {currentItems &&
+              currentItems.map((item) => (
+                <SearchItems key={item.id} item={item} viewType={viewType} />
+              ))}
+          </div>
         </div>
         <div className={`${paginationStyles.pagination} ${styles.pagination}`}>
-          <Pagination
-            pageCount={pageCount}
-            onPageChange={handlePageChange}
-            currentPage={currentPage}
-          />
+          {books.length > limit ? (
+            <Pagination
+              pageCount={pageCount}
+              onPageChange={handlePageChange}
+              currentPage={currentPage}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
