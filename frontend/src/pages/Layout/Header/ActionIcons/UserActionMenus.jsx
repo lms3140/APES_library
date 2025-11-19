@@ -12,7 +12,7 @@ export function UserActionMenus() {
           </Link>
         </li>
         <li>
-          <Link href="#" className={style.actionMyPageLink}>
+          <Link to={"/mypage"} className={style.actionMyPageLink}>
             <IoPersonSharp />
           </Link>
         </li>

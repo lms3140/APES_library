@@ -253,5 +253,155 @@ background-image: url('../../../public/images/mypage/btn_profile_setting@2x.png'
 }
 .sectionWrap {
   width: calc(100% - 216px);
-  
+  display: block;
+}
+.switchToggleHeader {
+  margin-bottom: 16px;
+  font-size: 0;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 245px;
+}
+.toggleHeaderContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+.switchToggleBox {
+  display: inline-flex;
+  height: 37px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  font-size: 0;
+  vertical-align: top;
+}
+.btnSwitch {
+  display: inline-block;
+  height: 100%;
+  padding: 0 16px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  color: #fff;
+  opacity: 0.6;
+  background: none;
+  vertical-align: top;
+  cursor: pointer;
+}
+.btnSwitchActive {
+  opacity: 1;
+  background-color: #4dac27;
+  display: inline-block;
+  height: 100%;
+  padding: 0 16px;
+  border-radius: 30px;
+  border: none;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  color: #fff;
+  vertical-align: top;
+  cursor: pointer;
+}
+.recom {
+  margin-left: -8px;
+}
+.switchToggleContentAlarm {
+  display: block;
+}
+.AlarmContent {
+  margin-top: -6px;
+  padding: 0 0 101px 0;
+}
+.noDataDesc {
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.noData {
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 10px;
+  background: url("../../../public/images/mypage/ico_nodata@2x.png");
+  background-size: 46px 46px;
+}
+.btnWrap {
+  margin-top: 20px;
+  display: block;
+  font-size: 0;
+  text-align: center;
+}
+.btnSm {
+  border-color: #f2f2f2;
+  border-radius: 38px;
+  color: #fff;
+  border: 1px solid;
+  flex-direction: row;
+  height: 38px;
+  background: none;
+  cursor: pointer;
+}
+.categoryTagList {
+  margin-left: 30px;
+  display: inline-block;
+  padding-top: 5px;
+  vertical-align: top;
+}
+.categoryItem {
+  display: inline-block;
+  margin-right: 30px;
+  vertical-align: top;
+}
+.btnCategory {
+  position: relative;
+  font-size: 15px;
+  line-height: 23px;
+  color: #fff;
+  border: none;
+  background: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btnCategoryNone {
+  position: relative;
+  font-size: 15px;
+  line-height: 23px;
+  color: #fff;
+  border: none;
+  background: none;
+  font-weight: 400;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.customSwiperWrap {
+  position: flex;
+}
+.swiperContainer {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+}
+.ProdBlurItem {
+  display: flex;
+  margin-left: 25px;
+  vertical-align: top;
+}
+.prodBlurWrap {
+
+}
+.blurImgBox {
+  overflow: hidden;
+  position: relative;
+  width: 311px;
+  min-height: 243px;
+  height: 243px;
+  border-radius: 16px;
+
 }

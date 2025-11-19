@@ -1,26 +1,37 @@
 import React from "react";
 import styles from "./Detail.module.css";
+import { useGetFetch } from "../../hooks/useGetFetch";
 
-export const ProductInfo = ({ book }) => {
-  // 책 정보가 없으면 기본값 지정
-  const title = book?.title || "제목 없음";
-  const authors = book?.authors || "저자 정보 없음";
-  const publisher = book?.publisher || "출판사 정보 없음";
+export const ProductInfo = ({ bookId }) => {
+  const url = `http://localhost:8080/Book/detail/${bookId}`;
+  const { data, isLoading, isError } = useGetFetch(url);
+
+  if (isLoading) return <div>상품 정보를 불러오는 중...</div>;
+  if (isError || !data) return <div>상품 정보를 불러오지 못했습니다.</div>;
+
+  // BookDetailDto 데이터 구조
+  const {
+    title,
+    categoryName,
+    subcategoryName,
+    price,
+    point,
+    publishedDate,
+    description,
+    imageUrl,
+    authors,
+    translators,
+  } = data;
 
   return (
     <div className={styles.detailSection}>
       <h3 className={styles.sectionTitle}>상품 정보</h3>
-
-      <img
-        src={book?.imageUrl || ""}
-        alt="책 상세 이미지"
-        className={styles.detailImage}
-      />
-
+      {/* 상세 설명 */}
       <div className={styles.description}>
-        <p>{data.description}</p>
+        <p>{description || "상세 설명이 제공되지 않았습니다."}</p>
       </div>
 
+      {/* 기본 정보 */}
       <h4 className={styles.sectionTitle}>기본 정보</h4>
       <table className={styles.basicInfoTable}>
         <tbody>
@@ -28,13 +39,37 @@ export const ProductInfo = ({ book }) => {
             <th>제목</th>
             <td>{title}</td>
           </tr>
+
           <tr>
             <th>저자</th>
             <td>{authors}</td>
           </tr>
+
+          {translators && (
+            <tr>
+              <th>역자</th>
+              <td>{translators}</td>
+            </tr>
+          )}
+
           <tr>
-            <th>출판사</th>
-            <td>{publisher}</td>
+            <th>카테고리</th>
+            <td>{categoryName} &gt; {subcategoryName}</td>
+          </tr>
+
+          <tr>
+            <th>출간일</th>
+            <td>{new Date(publishedDate).toLocaleDateString()}</td>
+          </tr>
+
+          <tr>
+            <th>가격</th>
+            <td>₩ {price.toLocaleString()}</td>
+          </tr>
+
+          <tr>
+            <th>포인트</th>
+            <td>{point.toLocaleString()}P</td>
           </tr>
         </tbody>
       </table>
