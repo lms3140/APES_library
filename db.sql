@@ -1,4 +1,4 @@
-drop database book_store;
+-- drop database book_store;
 create database book_store;
 use book_store;
 
@@ -282,33 +282,21 @@ ORDER BY
     bc.display_order ASC,
     cb.display_order ASC;
 
-drop view book_sales_view;
-CREATE VIEW admin_booksales_view AS
+CREATE VIEW book_sales_view AS
 SELECT 
     b.book_id,
     b.title,
     b.image_url,
     count(o.quantity) as total_sales_quantity,
-    sum(o.unit_price) as total_price
-    -- m.user_id
+    sum(o.unit_price) as total_price,
+    m.user_id
 FROM book b
 LEFT JOIN order_detail o ON b.book_id = o.book_id
--- LEFT JOIN purchase_order p ON o.order_id = p.order_id
--- LEFT JOIN member m ON p.member_id = m.member_id
-GROUP BY b.book_id, o.order_id;
--- , p.member_id;
+LEFT JOIN purchase_order p ON o.order_id = p.order_id
+LEFT JOIN member m ON p.member_id = m.member_id
+GROUP BY b.book_id, o.order_id, p.member_id;
 
-drop view admin_booksales_detail_view;
-CREATE VIEW admin_booksales_detail_view AS
-SELECT 
-    m.user_id,
-    p.created_at,
-    o.quantity,
-    o.unit_price,
-    o.book_id
-FROM purchase_order p
-LEFT JOIN member m ON m.member_id = p.member_id
-LEFT JOIN order_detail o ON o.order_id = p.order_id;
+select * from book;
+desc book;
 
-select * from admin_booksales_detail_view;
-select * from member;
+select * from category;

@@ -9,12 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookTranslator {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Id
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
     private Book book;
 
+    @Id
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="translator_id")
     private Translator translator;
 }

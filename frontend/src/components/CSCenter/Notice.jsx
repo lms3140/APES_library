@@ -50,7 +50,7 @@ export function Notice() {
         </ul>
       </nav>
 
-      <div className={paginationStyles.pagination}>
+      <div className={`${paginationStyles.pagination} ${styles.pagination}`}>
         <Pagination
           pageCount={pageCount}
           onPageChange={handlePageChange}
