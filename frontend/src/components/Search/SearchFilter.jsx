@@ -31,15 +31,6 @@ export function SearchFilter() {
         </div>
       </div>
 
-      <div className={styles.filterCategory}>
-        <button>교보문고</button>
-        <button>eBook</button>
-        <button>sam</button>
-        <button>핫트랙스</button>
-        <button>리뷰/책소개</button>
-        <button>CASTing</button>
-      </div>
-
       <form ref={formRef}>
         <div className={styles.filterBox}>
           <div className={styles.filterOptionGroup}>
