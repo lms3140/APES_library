@@ -300,3 +300,9 @@ select * from book;
 desc book;
 
 select * from category;
+select * from author;
+select * from publisher;
+desc publisher;
+desc book;
+desc author;
+select * from translator;
