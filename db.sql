@@ -1,4 +1,4 @@
-drop database book_store;
+-- drop database book_store;
 create database book_store;
 use book_store;
 
@@ -296,3 +296,7 @@ LEFT JOIN purchase_order p ON o.order_id = p.order_id
 LEFT JOIN member m ON p.member_id = m.member_id
 GROUP BY b.book_id, o.order_id, p.member_id;
 
+select * from book;
+desc book;
+
+select * from category;

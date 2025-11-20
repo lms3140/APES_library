@@ -12,9 +12,12 @@ export function Search() {
   const [params] = useSearchParams();
   const keyword = params.get("keyword");
   const [books, setBooks] = useState([]); //검색 결과 목록
+  const [limit, setLimit] = useState(20);
+  const [viewType, setViewType] = useState("list");
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const { currentPage, pageCount, currentItems, handlePageChange } =
-    usePagination(books, 20);
+    usePagination(books, limit);
 
   // keyword 바뀔 때마다 검색 실행
   useEffect(() => {
@@ -28,10 +31,16 @@ export function Search() {
         `http://localhost:8080/api/search?keyword=${kw}`
       );
       const json = await response.json();
+      console.log("서버 응답:", json, Array.isArray(json));
       setBooks(json);
     } catch (err) {
       console.log("검색 오류", err);
     }
+  };
+
+  //한번에 보이는 갯수 설정 함수(20개씩보기, 50개씩보기, ...)
+  const handleLimitChange = (value) => {
+    setLimit(value);
   };
 
   return (
@@ -46,20 +55,41 @@ export function Search() {
 
         {/* 오른쪽 */}
         <div className={styles.rightArea}>
-          <SearchSort books={books} />
-
-          {/* 검색 결과 */}
-          {currentItems &&
-            currentItems.map((item) => (
-              <SearchItems key={item.id} item={item} />
-            ))}
-        </div>
-        <div className={`${paginationStyles.pagination} ${styles.pagination}`}>
-          <Pagination
-            pageCount={pageCount}
-            onPageChange={handlePageChange}
-            currentPage={currentPage}
+          <SearchSort
+            books={books}
+            onLimitChange={handleLimitChange}
+            viewType={viewType}
+            onViewTypeChange={setViewType}
+            selectedItems={selectedItems}
           />
+          <div
+            className={viewType === "list" ? styles.listView : styles.gridView}
+          >
+            {/* 검색 결과 */}
+            {currentItems &&
+              currentItems.map((item) => (
+                <SearchItems
+                  key={item.bookId}
+                  item={item}
+                  viewType={viewType}
+                  selectedItems={selectedItems}
+                  setSelectedItems={setSelectedItems}
+                />
+              ))}
+          </div>
+          <div
+            className={`${paginationStyles.pagination} ${styles.pagination}`}
+          >
+            {books.length > limit ? (
+              <Pagination
+                pageCount={pageCount}
+                onPageChange={handlePageChange}
+                currentPage={currentPage}
+              />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>

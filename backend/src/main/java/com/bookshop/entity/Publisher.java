@@ -12,11 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Author {
-
+public class Publisher extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long authorId;
-
+    private long publisherId;
     private String name;
 }
