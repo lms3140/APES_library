@@ -306,3 +306,20 @@ desc publisher;
 desc book;
 desc author;
 select * from translator;
+
+select * from inquiry;
+select * from member;
+
+INSERT INTO member (
+  user_id, password, name, phone, email, birth, gender, role, point_balance
+) VALUES (
+  'admin',
+  'admin1234!', 
+  '관리자',
+  '010-0000-0000',
+  'admin@bookshop.com',
+  '1990-01-01',
+  'M',
+  'ADMIN',
+  999999999
+);

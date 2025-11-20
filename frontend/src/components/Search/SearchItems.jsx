@@ -36,11 +36,15 @@ export function SearchItems({
         />
         <span className={styles.checkboxCustom}></span>
       </label>
-      <img src={item.imageUrl} alt={item.title} />
+      <img
+        src={item.imageUrl}
+        alt={item.title}
+        onClick={() => navigate(`/detail/${item.bookId}`)}
+      />
 
       <div className={styles.itemInfo}>
         <div className={styles.info}>
-          <h4 onClick={() => navigate("/detail")}>
+          <h4 onClick={() => navigate(`/detail/${item.bookId}`)}>
             {"["}
             {item.categoryName}
             {"]"} {item.title}

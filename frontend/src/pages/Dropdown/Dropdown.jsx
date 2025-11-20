@@ -1,6 +1,10 @@
 import styles from "./Dropdown.module.css";
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * 사용법 SearchSort.jsx 참고!
+ */
+
 export function Dropdown({ options, selected, onChange }) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);

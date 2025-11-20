@@ -450,6 +450,7 @@
   object-fit: cover;
   flex-shrink: 0;
   border: 1px solid #f2f2f2;
+  cursor: pointer;
 }
 
 .itemInfo {
@@ -533,6 +534,7 @@
   border: 1px solid #eee;
   background: #fff;
   margin: 10px 0;
+  cursor: pointer;
   /* border-radius: 16px; */
 }
 

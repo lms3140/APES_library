@@ -16,19 +16,25 @@ export function SearchSort({
   viewType,
   onViewTypeChange,
   selectedItems,
+  onSortChange,
 }) {
   const navigate = useNavigate();
   const sortOptions = ["인기순", "최신순", "낮은가격순", "높은가격순"];
   const selectedOptions = ["20개씩 보기", "50개씩 보기", "100개씩 보기"];
-  const [sort, setSort] = useState("인기순"); //현재 선택된 정렬
+  const [sort, setSort] = useState("인기순");
   const [selected, setSelected] = useState(selectedOptions[0]); //기본으로 보이는 갯수
   const [limit, setLimit] = useState();
 
-  const handleChange = (value) => {
+  const handleDropdownChange = (value) => {
     setSelected(value);
     const number = parseInt(value.replace("개씩 보기", "").trim());
     setLimit(number);
     onLimitChange(number);
+  };
+
+  const handleSortChange = (value) => {
+    setSort(value);
+    onSortChange(value);
   };
 
   const handleAddToCart = () => {
@@ -38,7 +44,7 @@ export function SearchSort({
     }
 
     const selectedProducts = books.filter((book) =>
-      selectedItems.inclueds(book.id)
+      selectedItems.inclueds(book.bookId)
     );
 
     const existing = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -72,13 +78,13 @@ export function SearchSort({
           <Dropdown
             options={sortOptions}
             selected={sort}
-            onChange={(value) => setSort(value)}
+            onChange={handleSortChange}
           />
 
           <Dropdown
             options={selectedOptions}
             selected={selected}
-            onChange={handleChange}
+            onChange={handleDropdownChange}
           />
         </div>
 

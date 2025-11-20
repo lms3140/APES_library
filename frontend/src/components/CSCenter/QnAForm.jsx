@@ -61,7 +61,6 @@ export function QnAForm() {
       <h1>1:1 문의 접수</h1>
 
       <form className={styles.from} onSubmit={handleSubmit}>
-        {/* 문의유형 */}
         <div className={styles.fieldRow}>
           <label htmlFor="inquiryType" className={styles.label}>
             문의유형 <span className={styles.green}>*</span>
@@ -85,7 +84,6 @@ export function QnAForm() {
           </div>
         </div>
 
-        {/* 제목 */}
         <div className={styles.fieldRow}>
           <label htmlFor="title" className={styles.label}>
             내용 <span className={styles.green}>*</span>
@@ -102,7 +100,6 @@ export function QnAForm() {
           </div>
         </div>
 
-        {/* 내용 */}
         <div className={styles.fieldColumn}>
           <label htmlFor="contetn" className={styles.label}></label>
           <div>
@@ -120,12 +117,10 @@ export function QnAForm() {
               disabled={!isContentEnabled}
             ></textarea>
 
-            {/* 글자수 카운트 */}
             <span className={styles.charCount}>{content.length}/500</span>
           </div>
         </div>
 
-        {/* 연락처 / 이메일 */}
         <div className={styles.contactSection}>
           <div className={styles.border}>
             <p>문의에 대한 답변 등록 시 알려드립니다.</p>
@@ -134,7 +129,6 @@ export function QnAForm() {
                 연락처 <span className={styles.green}>*</span>
               </label>
 
-              {/* 오른쪽 내용 묶음 */}
               <div className={styles.contactBox}>
                 <div className={styles.contactType}>
                   <label>
@@ -174,7 +168,6 @@ export function QnAForm() {
           </div>
         </div>
 
-        {/* 버튼 */}
         <div className={styles.buttonGroup}>
           <button type="button" className={styles.cancelBtn}>
             취소

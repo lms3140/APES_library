@@ -9,7 +9,6 @@ import { StoreMap } from "../../components/StoreInfo/StoreMap.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { Coming } from "../../components/StoreInfo/Coming.jsx";
 import { Service } from "../../components/StoreInfo/Service.jsx";
-import { StoreDetailImage } from "../../components/StoreInfo/StoreDetailImage.jsx";
 
 export function StoreInfo() {
   const navigate = useNavigate();
@@ -54,53 +53,19 @@ export function StoreInfo() {
 
   return (
     <div className={styles.container}>
-      {info && selectedStore && (
-        <div className={styles.storeGrid}>
-          <div className={styles.topRow}>
-            <div className={styles.nameArea}>
-              <h1>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  className={styles.icon}
-                >
-                  <desc>위치 아이콘</desc>
-                  <path
-                    stroke="#000"
-                    d="M12 2.5a8.07 8.07 0 0 0-5.646 2.266A7.7 7.7 0 0 0 4 10.273C4 16.318 12 21.5 12 21.5s8-5.182 8-11.227a7.7 7.7 0 0 0-2.354-5.507A8.07 8.07 0 0 0 12 2.5Z"
-                  />
-                  <circle cx="12" cy="10.5" r="3" stroke="#8F603D" />
-                </svg>
-                {selectedStore.name}
-              </h1>
-            </div>
-
-            <div className={styles.tabArea}>
-              <StoreTab activeTab={activeTab} onTabChange={handleTabChange} />
-            </div>
-          </div>
-
-          <div className={styles.detailArea}>
+      <div className={styles.storeSection}>
+        <StoreTab activeTab={activeTab} onTabChange={handleTabChange} />
+        {info && (
+          <div className={styles.menuList}>
+            <StoreList
+              stores={info[activeTab]}
+              onStoreClick={handleStoreClick}
+              selectedStore={selectedStore}
+            />
             <StoreDetail store={selectedStore} />
           </div>
-
-          <div className={styles.rightArea}>
-            <div className={styles.listArea}>
-              <StoreList
-                stores={info[activeTab]}
-                onStoreClick={handleStoreClick}
-                selectedStore={selectedStore}
-              />
-            </div>
-
-            <div className={styles.imageArea}>
-              <StoreDetailImage store={selectedStore} />
-            </div>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <MenuList />
 

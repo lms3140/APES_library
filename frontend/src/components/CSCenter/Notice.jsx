@@ -18,6 +18,7 @@ export function Notice() {
     fetch();
   }, []);
 
+  //페이지네이션
   const { currentPage, pageCount, currentItems, handlePageChange, offset } =
     usePagination(data, 10);
 

@@ -15,9 +15,28 @@ export function Search() {
   const [limit, setLimit] = useState(20);
   const [viewType, setViewType] = useState("list");
   const [selectedItems, setSelectedItems] = useState([]);
+  const [sortOptions, setSortOptions] = useState("인기순");
 
-  const { currentPage, pageCount, currentItems, handlePageChange } =
-    usePagination(books, limit);
+  const sortBooks = (books, sort) => {
+    const sorted = [...books];
+    if (sort === "인기순") {
+      return sorted;
+    }
+    if (sort === "최신순") {
+      return sorted.sort(
+        (a, b) => new Date(b.publishedDate) - new Date(a.publishedDate)
+      );
+    }
+    if (sort === "낮은가격순") {
+      return sorted.sort((a, b) => a.price - b.price);
+    }
+    if (sort === "높은가격순") {
+      return sorted.sort((a, b) => b.price - a.price);
+    }
+    return sorted;
+  };
+
+  const sortedBooks = sortBooks(books, sortOptions);
 
   // keyword 바뀔 때마다 검색 실행
   useEffect(() => {
@@ -42,6 +61,10 @@ export function Search() {
     setLimit(value);
   };
 
+  //페이지네이션
+  const { currentPage, pageCount, currentItems, handlePageChange } =
+    usePagination(sortedBooks, limit);
+
   return (
     <div className={styles.searchWrapper}>
       <h1 className={styles.resultTitle}>
@@ -60,6 +83,7 @@ export function Search() {
             viewType={viewType}
             onViewTypeChange={setViewType}
             selectedItems={selectedItems}
+            onSortChange={setSortOptions}
           />
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}
