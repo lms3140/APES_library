@@ -9,8 +9,6 @@ export function SearchItems({
 }) {
   const navigate = useNavigate();
 
-  console.log("item.bookId:", item.bookId);
-
   const toggleCheck = () => {
     if (selectedItems.includes(item.bookId)) {
       setSelectedItems((prev) => prev.filter((id) => id !== item.bookId));
@@ -44,7 +42,7 @@ export function SearchItems({
         <div className={styles.info}>
           <h4 onClick={() => navigate("/detail")}>
             {"["}
-            {item.category}
+            {item.categoryName}
             {"]"} {item.title}
           </h4>
           <p>

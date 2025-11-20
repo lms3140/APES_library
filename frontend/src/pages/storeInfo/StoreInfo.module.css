@@ -1,40 +1,53 @@
-/* .container {
+.storeGrid {
   max-width: 1200px;
-  margin: 0 auto;
-  background: white;
-} */
+  margin: 20px auto 40px;
 
-.storeSection {
-  margin-inline: auto;
-  max-width: 1200px;
-  padding-top: 20px;
-  overflow: visible;
-  margin-bottom: 40px;
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  border-left: none;
-  border-right: none;
+  display: grid;
+  grid-template-columns: 380px 1fr; /* 왼쪽 빨강, 오른쪽 초록+노랑 */
+  grid-template-rows: auto 1fr; /* 1행: 핑크+파랑, 2행: 본문 */
+  row-gap: 32px;
 }
 
-.storeSection2 {
-  margin-inline: auto;
-  padding-top: 20px;
-  overflow: visible;
-  margin-bottom: 40px;
-  margin-left: auto;
+/* 1행을 flex로 묶음: 핑크 + 파랑 */
+.topRow {
+  grid-column: 1 / 3;
   display: flex;
-  flex-direction: column;
-  border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
-  border-left: none;
-  border-right: none;
 }
 
-.section {
-  margin-inline: auto;
-  max-width: 1200px;
-  margin-bottom: 40px;
-  overflow: visible;
-  position: relative;
+/* 핑크 */
+.nameArea {
+  flex: 0 0 380px;
+  border-right: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+}
+
+/* 파랑 */
+.tabArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+}
+
+/* 2행 왼쪽 — 빨강 */
+.detailArea {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  border-right: 1px solid #e5e5e5;
+  padding: 24px;
+}
+
+/* 2행 오른쪽 — 초록 + 노랑 스택 */
+.rightArea {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding: 24px;
 }

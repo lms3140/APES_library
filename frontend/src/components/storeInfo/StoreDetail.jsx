@@ -64,10 +64,6 @@ export function StoreDetail({ store }) {
           </button>
         </div>
       </div>
-
-      <div className={styles.imageSection}>
-        <img src={store?.image} alt="매장사진" className={styles.storeImage} />
-      </div>
     </div>
   );
 }

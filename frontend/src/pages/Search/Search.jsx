@@ -31,7 +31,6 @@ export function Search() {
         `http://localhost:8080/api/search?keyword=${kw}`
       );
       const json = await response.json();
-      console.log("서버 응답:", json, Array.isArray(json));
       setBooks(json);
     } catch (err) {
       console.log("검색 오류", err);
