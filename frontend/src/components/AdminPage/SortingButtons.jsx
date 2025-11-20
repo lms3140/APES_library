@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../../pages/AdminPage/AdminPage.module.css";
+import style from "../../pages/AdminPage/AdminPage.module.css";
 
 export function SortingButtons({sortBY, books, setBooks}) {
 
@@ -15,13 +15,13 @@ export function SortingButtons({sortBY, books, setBooks}) {
     return (
         <>
         <button
-            className={styles.sortButton}
+            className={style.sortButton}
             onClick={() => sortBy(sortBY, "asc")}
         >
         ▲
         </button>
         <button
-            className={styles.sortButton}
+            className={style.sortButton}
             onClick={() => sortBy(sortBY, "desc")}
         >
         ▼

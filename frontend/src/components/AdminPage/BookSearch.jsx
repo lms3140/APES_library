@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "../../pages/AdminPage/AdminPage.module.css";
+import style from "../../pages/AdminPage/AdminPage.module.css";
 import { FaSearch } from "react-icons/fa";
 
 export function BookSearch({ onSearch }) {
@@ -19,9 +19,9 @@ export function BookSearch({ onSearch }) {
     };
 
     return (
-        <div className={styles.bookSearchContainer}>
+        <div className={style.bookSearchContainer}>
             <select 
-                className={styles.bookSearchSelect}
+                className={style.bookSearchSelect}
                 value={searchType}
                 onChange={(e) => setSearchType(e.target.value)}
             >
@@ -29,7 +29,7 @@ export function BookSearch({ onSearch }) {
                 <option value="title">책 제목</option>
             </select>
             <input 
-                className={styles.bookSearch}
+                className={style.bookSearch}
                 placeholder="검색"
                 type="text"
                 value={keyword}
@@ -37,7 +37,7 @@ export function BookSearch({ onSearch }) {
                 onKeyDown={handleKeyPress}
             />
             <button
-                className={styles.searchBtn}
+                className={style.searchBtn}
                 onClick={handleSearch}
             >
                 <FaSearch />
