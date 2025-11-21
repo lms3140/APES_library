@@ -12,12 +12,12 @@
 }
 
 .slideControlButton {
-  color: red;
   width: calc(var(--spacing) * 11);
   height: calc(var(--spacing) * 11);
   border: 1px solid var(--color-gray-400);
   border-radius: var(--radius-3xl);
   position: absolute;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .slideControlPrevButton {
@@ -26,4 +26,8 @@
 .slideControlNextButton {
   top: calc(50% - calc(var(--spacing) * 11));
   right: 0;
+}
+
+.disabled {
+  color: #ccc;
 }

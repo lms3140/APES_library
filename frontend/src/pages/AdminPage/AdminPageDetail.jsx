@@ -8,7 +8,7 @@ export function AdminBookDetail() {
   const { bookId } = useParams();
   const [book, setBook] = useState(null);
 
-  const API_BASE = "http://localhost:8080/adminPage";
+  const API_BASE = "http://172.16.250.50:8080/adminPage";
 
   const loadBook = async () => {
     const res = await axios.get(`${API_BASE}/detail/${bookId}`);

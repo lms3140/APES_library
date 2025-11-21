@@ -11,7 +11,7 @@ import { Pagination } from "../../components/AdminPage/Pagination";
 export function AdminPage() {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
-  const API_BASE = "http://localhost:8080/adminPage";
+  const API_BASE = "http://172.16.250.50:8080/adminPage";
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
