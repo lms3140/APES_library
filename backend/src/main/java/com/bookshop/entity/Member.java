@@ -3,7 +3,6 @@ package com.bookshop.entity;
 import com.bookshop.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,31 +18,43 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
+    @Column(unique = true, nullable = false)
     private String userId;
-    private String password;
+
+    @Column(name = "password", nullable = false)
+    private String pwd;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String phone;
+
+    @Column(nullable = false)
     private String email;
+
     private LocalDate birth;
     private String gender;
-    private String role;
-    private Integer pointBalance;
+    private String role = "USER";
+
+    @Column(name = "point_balance")
+    private Integer pointBalance = 0;
 
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
     private LocalDateTime deletedAt;
 
-    public Member(MemberDto memberDto) {
-        this.memberId = memberDto.getMemberId();
-        this.userId = memberDto.getUserId();
-        this.password = memberDto.getPassword();
-        this.name = memberDto.getName();
-        this.phone = memberDto.getPhone();
-        this.email = memberDto.getEmail();
-        this.birth = memberDto.getBirth();
-        this.gender = memberDto.getGender();
-        this.role = memberDto.getRole();
-        this.pointBalance = memberDto.getPointBalance();
+    public Member(MemberDto dto) {
+        this.userId = dto.getUserId();
+        this.pwd = dto.getPwd();
+        this.name = dto.getName();
+        this.phone = dto.getPhone();
+        this.email = dto.getEmail();
+        this.birth = dto.getBirth();
+        this.gender = dto.getGender();
+        this.role = dto.getRole() != null ? dto.getRole() : "USER";
+        this.pointBalance = dto.getPointBalance() != null ? dto.getPointBalance() : 0;
     }
 }

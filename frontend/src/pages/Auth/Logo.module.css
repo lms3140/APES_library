@@ -7,7 +7,11 @@
 }
 
 /* 로고 */
-.logo img {
-    width: 160px;
-    margin-bottom: 30px;
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px; /* 원래 로고 높이에 맞춰 조절 */
+  font-size: 30px; /* 원하는 글자 크기 */
+  font-weight: bold;
 }

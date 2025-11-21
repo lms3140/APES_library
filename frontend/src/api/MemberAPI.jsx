@@ -1,28 +1,36 @@
-import { axiosData } from "../utils/dataFetch.js";
+import axios from "axios";
 
-/**
- * 로그인 요청 API
- * @param {string} memberId - 사용자가 입력한 회원 ID
- * @param {string} pwd - 사용자가 입력한 비밀번호
- * @returns {Object} 서버로부터 받은 로그인 결과 (JWT 토큰 등)
- */
-export const loginMember = async (memberId, pwd) => {
-  // 요청 URL (Spring Boot의 로그인 엔드포인트)
-  const url = "/member/login";
+const BASE_URL = "http://localhost:8080/member";
 
-  // 서버로 보낼 데이터
-  const data = {
-    memberId: memberId,
-    pwd: pwd,
-  };
-
-  // 공통 axiosPost() 유틸을 통해 POST 요청 수행
-  const jsonData = await axiosData(url, data);
-
-  // 서버 응답(JSON 형태)을 그대로 반환
-  return jsonData;
+// 회원가입
+export const signupMember = async (memberData) => {
+  try {
+    const res = await axios.post(`${BASE_URL}/signup`, memberData);
+    return res.data;
+  } catch (err) {
+    console.error("[API] 회원가입 실패:", err);
+    throw err;
+  }
 };
-// signupMember
-export const signupMember = async () => {
-  const url = "/member/signup";
+
+// 로그인
+export const loginMember = async (userId, pwd) => {
+  try {
+    const res = await axios.post(`${BASE_URL}/login`, { userId, pwd });
+    return res.data;
+  } catch (err) {
+    console.error("[API] 로그인 실패:", err);
+    throw err;
+  }
+};
+
+// 아이디 중복 체크
+export const checkUserId = async (userId) => {
+  try {
+    const res = await axios.post(`${BASE_URL}/idCheck`, { userId });
+    return res.data;
+  } catch (err) {
+    console.error("[API] 아이디 체크 실패:", err);
+    throw err;
+  }
 };

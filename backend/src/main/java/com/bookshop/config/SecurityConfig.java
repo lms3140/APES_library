@@ -1,12 +1,16 @@
 package com.bookshop.config;
 
+import com.bookshop.entity.Member;
+import com.bookshop.repository.MemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,21 +18,54 @@ import org.springframework.security.web.context.HttpSessionSecurityContextReposi
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 @Configuration
 @Profile("dev") // 개발 환경에서만 적용
 public class SecurityConfig {
 
+    // ===== PasswordEncoder =====
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    // ===== UserDetailsService =====
+    @Bean
+    public UserDetailsService userDetailsService(MemberRepository memberRepository) {
+        return username -> {
+            Member member = memberRepository.findByUserId(username)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            String role = member.getRole() != null ? member.getRole() : "USER";
+            return new User(
+                    member.getUserId(),
+                    member.getPwd(),
+                    List.of(new SimpleGrantedAuthority(member.getRole()))
+            );
+        };
+    }
+
+    // ===== AuthenticationManager (최신 방식) =====
+    @Bean
+    public AuthenticationManager authenticationManager(
+            org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration authenticationConfiguration
+    ) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    // ===== SecurityFilterChain =====
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)       // REST API이므로 CSRF 비활성화
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()   // 모든 요청 허용
+                        .requestMatchers("/member/**").permitAll()
+                        .anyRequest().authenticated()
                 );
-
         return http.build();
     }
 
+    // ===== CORS 설정 =====
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -36,24 +73,16 @@ public class SecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173")
-                        .allowedMethods("*");
+                        .allowedMethods("*")
+                        .allowCredentials(true)
+                        .allowedHeaders("*");
             }
         };
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // 비밀번호 암호화용
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
+    // ===== SecurityContextRepository =====
     @Bean
     public HttpSessionSecurityContextRepository securityContextRepository() {
         return new HttpSessionSecurityContextRepository();
     }
-
 }

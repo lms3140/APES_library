@@ -11,8 +11,8 @@ const SignupIntro = () => {
     return (
         <div className={cstyles.container}>
             <div className={cstyles.logo}>
-                <img src="#" alt="무슨문고 로고" />
-            </div>
+                    <span>무슨문고</span>
+                  </div>
 
             <button
                 className={styles.btnSignup}
