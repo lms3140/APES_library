@@ -7,12 +7,12 @@ const bannerImgNames = [
   { url: "./images/bannerImg/ad1.png" },
   { url: "./images/bannerImg/ad2.png" },
   { url: "./images/bannerImg/ad3.png" },
-  { url: "./images/bannerImg/ad4.png" },
 ];
 const eventBanner = [
-  { url: "./images/bannerImg/eb1.jpg", msg: "이번이 특가다!" },
-  { url: "./images/bannerImg/eb2.jpg", msg: "특가는 아니다!" },
-  { url: "./images/bannerImg/eb3.jpg", msg: "사실 뭔지모른다!" },
+  { url: "./images/bannerImg/eb1.png", msg: "시원한 생수" },
+  { url: "./images/bannerImg/eb2.png", msg: "이어폰!" },
+  { url: "./images/bannerImg/eb3.png", msg: "노트북" },
+  { url: "./images/bannerImg/eb4.png", msg: "볼펜" },
 ];
 
 const mainSwiperOptions = {
