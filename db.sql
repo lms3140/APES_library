@@ -300,3 +300,18 @@ select * from book;
 desc book;
 
 select * from category;
+
+drop view admin_booksales_detail_view;
+CREATE VIEW admin_booksales_detail_view AS
+SELECT 
+    m.user_id,
+    p.created_at,
+    o.quantity,
+    o.unit_price,
+    o.book_id
+FROM purchase_order p
+LEFT JOIN member m ON m.member_id = p.member_id
+LEFT JOIN order_detail o ON o.order_id = p.order_id;
+
+select * from admin_booksales_detail_view;
+select * from member;
