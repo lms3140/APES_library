@@ -8,8 +8,10 @@ import { route1 } from "./route1.jsx";
 import { route2 } from "./route2.jsx";
 import { route3 } from "./route3.jsx";
 import { NotFound } from "../pages/NotFound/NotFound.jsx";
+import { AuthRouter } from "./authRouter.jsx";
 
 export const router = createBrowserRouter([
+  //인증이 필요없는 페이지
   {
     element: <Layout />,
     children: [
@@ -21,13 +23,24 @@ export const router = createBrowserRouter([
         path: "/store-info/:pid",
         element: <StoreInfo />,
       },
+      // 라우터 분업
+      ...route1,
+      ...route2,
+      ...route3,
+    ],
+  },
+  // 인증이 필요한 페이지
+  {
+    element: (
+      <AuthRouter>
+        <Layout />
+      </AuthRouter>
+    ),
+    children: [
       {
         path: "/mypage",
         element: <Mypage />,
       },
-      ...route1,
-      ...route2,
-      ...route3,
     ],
   },
   {

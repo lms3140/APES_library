@@ -10,8 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
-import { useCallback, useState } from "react";
-
+import { useCallback, useEffect, useState } from "react";
 /**
  * 책 리스트를 쉽게 사용하기 위해 swiper 라이브러리를 래핑해 구현한 컴포넌트입니다.
  *
@@ -38,7 +37,7 @@ import { useCallback, useState } from "react";
  *  />
  */
 export function SwiperBook({ swiperOptions, bookList }) {
-  const { setSwiper, nextBtn, prevBtn } = useSwiperControl();
+  const { setSwiper, nextBtn, prevBtn, swiper } = useSwiperControl();
 
   return (
     <div className={styles.swiperBook}>
@@ -78,8 +77,12 @@ export function SwiperBook({ swiperOptions, bookList }) {
 // 배너 컨트롤을 커스텀훅에 위임
 // 아직은 SwiperBook.jsx에서 밖에 안쓰여서 여기에 작성
 const useSwiperControl = () => {
-  const [swiper, setSwiper] = useState();
+  const [swiper, setSwiper] = useState(null);
+
   const prevBtn = useCallback(() => swiper && swiper.slidePrev(), [swiper]);
   const nextBtn = useCallback(() => swiper && swiper.slideNext(), [swiper]);
-  return { prevBtn, nextBtn, setSwiper };
+  useEffect(() => {
+    console.log("what");
+  }, [swiper]);
+  return { prevBtn, nextBtn, setSwiper, swiper };
 };
