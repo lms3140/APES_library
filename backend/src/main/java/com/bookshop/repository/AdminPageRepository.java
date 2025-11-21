@@ -1,7 +1,9 @@
 package com.bookshop.repository;
 
+import com.bookshop.dto.AdminPageDetailDto;
 import com.bookshop.dto.AdminPageDto;
 import com.bookshop.entity.AdminPage;
+import com.bookshop.entity.AdminPageDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,7 +24,8 @@ public interface AdminPageRepository extends JpaRepository<AdminPage, Long> {
     List<AdminPage> findByBookId(@Param("keyword") Long keyword);
 
 
-//    @Query("""
-//            """)
-//    AdminPageDto findBookDetail();
+    @Query("""
+            SELECT apg from AdminPageDetail apg where apg.bookId = :bookId
+            """)
+    List<AdminPageDetail> findAdminBookDetail(@Param("bookId") Long bookId);
 }

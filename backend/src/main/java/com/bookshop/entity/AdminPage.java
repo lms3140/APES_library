@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "book_sales_view")
+@Table(name = "admin_booksales_view")
 public class AdminPage {
     @Id
     private Long bookId;
@@ -17,5 +17,4 @@ public class AdminPage {
     private String image_url;
     private Integer totalSalesQuantity;
     private Integer totalPrice;
-    private String userId;
 }

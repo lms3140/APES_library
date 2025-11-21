@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./Detail.module.css";
 import { useGetFetch } from "../../hooks/useGetFetch.js";
 import ProductInfo from "./ProductInfo";
@@ -7,13 +8,40 @@ import ReturnPolicy from "./ReturnPolicy";
 import UnderBar from "./UnderBar";
 
 export default function Detail() {
-  const bookId = 1;
+  const { bookId } = useParams(); // URL 파라미터에서 bookId 추출
   const url = `http://localhost:8080/Book/detail/${bookId}`;
   const { isLoading, isError, data } = useGetFetch(url);
 
   const [count, setCount] = useState(1);
   const [liked, setLiked] = useState(false);
+
+  // 섹션 ref
+  const infoRef = useRef(null);
+  const reviewRef = useRef(null);
+  const returnRef = useRef(null);
+
   const [activeTab, setActiveTab] = useState("info");
+
+  const scrollToSection = (ref, tabName) => {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+    setActiveTab(tabName);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 80;
+      const infoTop = infoRef.current?.offsetTop ?? 0;
+      const reviewTop = reviewRef.current?.offsetTop ?? 0;
+      const returnTop = returnRef.current?.offsetTop ?? 0;
+
+      if (scrollPos >= returnTop) setActiveTab("return");
+      else if (scrollPos >= reviewTop) setActiveTab("review");
+      else setActiveTab("info");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (isLoading) return <div>로딩중...</div>;
   if (isError || !data) return <div>상품을 찾을 수 없습니다.</div>;
@@ -29,37 +57,39 @@ export default function Detail() {
         </div>
       </div>
 
-      {/* 탭 메뉴 */}
       <div className={styles.tabMenu}>
         <button
           className={activeTab === "info" ? styles.active : ""}
-          onClick={() => setActiveTab("info")}
+          onClick={() => scrollToSection(infoRef, "info")}
         >
           상품정보
         </button>
         <button
           className={activeTab === "review" ? styles.active : ""}
-          onClick={() => setActiveTab("review")}
+          onClick={() => scrollToSection(reviewRef, "review")}
         >
           리뷰 ({data.reviewCount || 0})
         </button>
         <button
           className={activeTab === "return" ? styles.active : ""}
-          onClick={() => setActiveTab("return")}
+          onClick={() => scrollToSection(returnRef, "return")}
         >
           교환/반품/품절
         </button>
       </div>
 
-      {/* 탭 내용 */}
-      <div className={styles.tabContent}>
-        {activeTab === "info" && <ProductInfo bookId={bookId} />}
-        {activeTab === "review" && <Review bookId={bookId} />}
-        {activeTab === "return" && <ReturnPolicy />}
+      <div ref={infoRef} className={styles.tabContent}>
+        <ProductInfo bookId={bookId} />
       </div>
 
+      <div ref={reviewRef} className={styles.tabContent}>
+        <Review bookId={bookId} />
+      </div>
 
-      {/* 하단 고정 바 */}
+      <div ref={returnRef} className={styles.tabContent}>
+        <ReturnPolicy />
+      </div>
+
       <UnderBar
         product={data}
         count={count}

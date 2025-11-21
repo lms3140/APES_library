@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px 48px;
-  padding: 15px 0px;
+  padding: 15px 32px;
   background-color: #fff;
 }
 
@@ -45,24 +45,4 @@
 .storeItem.active {
   color: #000;
   font-weight: 700;
-}
-
-/* 반응형 */
-@media (max-width: 1024px) {
-  .listInner {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .listInner {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .listInner {
-    grid-template-columns: 1fr;
-  }
 }

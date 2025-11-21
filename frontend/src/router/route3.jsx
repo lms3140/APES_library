@@ -5,8 +5,8 @@
 import Login from "../pages/Auth/Login.jsx"
 import SignupIntro from "../pages/Auth/SignupIntro.jsx"
 import Signup from "../pages/Auth/Signup.jsx"
-
 import Detail from "../pages/Detail/Detail.jsx"
+import Cart from "../pages/Cart/Cart.jsx"
 
 export const route3= [
     {
@@ -22,7 +22,11 @@ export const route3= [
         element: <Signup/>,
     },
     {
-        path: "/detail",
+        path: "/detail/:bookId",
         element: <Detail/>,
+    },
+    {
+        path: "/cart",
+        element: <Cart/>,
     }
 ];

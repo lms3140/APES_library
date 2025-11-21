@@ -1,8 +1,11 @@
 package com.bookshop.Controller;
 
+import com.bookshop.dto.AdminPageDetailDto;
 import com.bookshop.dto.AdminPageDto;
+import com.bookshop.entity.AdminPageDetailResponse;
 import com.bookshop.service.AdminPageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,10 +31,15 @@ public class AdminPageController {
         return adminPageService.searchBooks(searchType, keyword);
     }
 
-//    @GetMapping("/{id}")
-//    public AdminPageDto getBookDetail(@PathVariable Long id) {
-//        return adminPageService.findBookDetail(id);
-//    }
+    @GetMapping("/detail/{bookId}")
+    public ResponseEntity<AdminPageDetailResponse> getAdminBookDetail(@PathVariable Long bookId) {
+        List<AdminPageDto> bookdata = adminPageService.findBookData(bookId);
+        List<AdminPageDetailDto> bookdataDetail = adminPageService.findAdminBookDetail(bookId);
+
+        return ResponseEntity.ok(
+                new AdminPageDetailResponse(bookdata, bookdataDetail)
+        );
+    }
 
 
 }

@@ -10,7 +10,6 @@ public class AdminPageDto {
     private String image_url;
     private Integer totalSalesQuantity;
     private Integer totalPrice;
-    private String userId;
 
     public AdminPageDto() {}
     public AdminPageDto(AdminPage adminPage) {
@@ -19,7 +18,6 @@ public class AdminPageDto {
         this.image_url = adminPage.getImage_url();
         this.totalSalesQuantity = adminPage.getTotalSalesQuantity();
         this.totalPrice = adminPage.getTotalPrice();
-        this.userId = adminPage.getUserId();
     }
 
 }

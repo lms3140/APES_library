@@ -36,6 +36,7 @@ public class SecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins("http://172.16.250.50:5173")
                         .allowedMethods("*");
             }
         };
