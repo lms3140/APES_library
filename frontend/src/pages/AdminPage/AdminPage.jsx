@@ -4,7 +4,7 @@ import styles from "./AdminPage.Module.css";
 import axios from "axios";
 import { BookSearch } from "../../components/AdminPage/BookSearch";
 import { SortingButtons } from "../../components/AdminPage/SortingButtons";
-// import Pagination from "rc-pagination";
+import Pagination from "rc-pagination";
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'rc-pagination/assets/index.css';
 
