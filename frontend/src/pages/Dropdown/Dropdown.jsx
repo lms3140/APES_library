@@ -1,3 +1,4 @@
+import { dropdownArrow } from "../../components/common/Svgs";
 import styles from "./Dropdown.module.css";
 import { useEffect, useRef, useState } from "react";
 
@@ -32,29 +33,7 @@ export function Dropdown({ options, selected, onChange }) {
     >
       <button onClick={() => setOpen((prev) => !prev)}>
         <span>{selected}</span>
-        <svg
-          className={styles.arrowIcon}
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="none"
-          stroke="#000"
-          viewBox="0 0 12 12"
-        >
-          <g clip-path="url(#a)">
-            <path
-              stroke="current"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m1.875 4.125 3.923 3.922L9.682 4.17"
-            />
-          </g>
-          <defs>
-            <clipPath id="a">
-              <path fill="#fff" d="M0 0h12v12H0z" />
-            </clipPath>
-          </defs>
-        </svg>
+        {dropdownArrow}
       </button>
 
       <ul className={open ? styles.openList : styles.closeList}>
