@@ -49,10 +49,16 @@ export default function Detail() {
   return (
     <div className={styles.detailContainer}>
       <div className={styles.detailTop}>
-        <img className={styles.bookImage} src={data.imageUrl} alt={data.title} />
+        <img
+          className={styles.bookImage}
+          src={data.imageUrl}
+          alt={data.title}
+        />
         <div className={styles.bookInfo}>
           <h2 className={styles.title}>{data.title}</h2>
-          <p className={styles.author}>{data.authors} | {data.publisher}</p>
+          <p className={styles.author}>
+            {data.authors} | {data.publisher}
+          </p>
           <p className={styles.price}>₩ {data.price.toLocaleString()}</p>
         </div>
       </div>
