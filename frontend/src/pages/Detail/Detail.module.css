@@ -1,29 +1,26 @@
-/* -------------------------------------- */
 /* 전체 컨테이너 (반응형 + 양옆 여백) */
-/* -------------------------------------- */
 .detailContainer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding-left: min(24px, 5vw); /* 좌측 여백 */
-    padding-right: min(24px, 5vw); /* 우측 여백 */
-    padding-bottom: 120px; /* 하단 고정바 공간 */
-    background: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: min(24px, 5vw);
+  padding-right: min(24px, 5vw);
+  padding-bottom: 120px; /* 하단 고정바 공간 */
+  background: #fff;
 }
 
-/* 상단 고정 탭 */
-.stickyTab {
-  position: sticky;
-  top: 0;
-  background: #fff;
+.tabMenu {
+  position: sticky;   /* 스크롤 시 고정 */
+  top: 0;             /* 상단 0 위치 */
+  background: #fff;   /* 배경색 */
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid #ddd;
-  height: 70px; /* 하단 고정 바와 동일 */
+  height: 60px;       /* 탭 높이 */
   align-items: center;
-  z-index: 100;
+  z-index: 1000;      /* 다른 요소 위에 표시 */
 }
 
-.stickyTab button {
+.tabMenu button {
   background: none;
   border: none;
   font-size: 16px;
@@ -32,141 +29,136 @@
   height: 100%;
   display: flex;
   align-items: center;
+  transition: color 0.3s, border-bottom 0.3s;
 }
 
-.stickyTab button.active {
+.tabMenu button.active {
   font-weight: 700;
-  color: #5e5ede; /* 활성화 색상 */
+  color: #5e5ede;         /* 활성화 색상 */
   border-bottom: 3px solid #5e5ede;
 }
 
-
-/* -------------------------------------- */
-/* 상단 상세 정보 */
-/* -------------------------------------- */
+/* 상세 정보 상단 영역 */
 .detailTop {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0; /* 좌우 여백은 container에서 처리됨 */
-    align-items: center;
-    background: #fff;
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  align-items: center;
+  background: #fff;
 }
 
 /* 책 이미지 */
 .bookImage {
-    width: 120px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 6px;
+  width: 120px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 /* 책 정보 텍스트 */
 .bookInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .title {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .author {
-    font-size: 14px;
-    color: #555;
+  font-size: 14px;
+  color: #555;
 }
 
 .price {
-    font-size: 18px;
-    font-weight: 600;
+  font-size: 18px;
+  font-weight: 600;
 }
 
-/* -------------------------------------- */
-/* 설명 텍스트 */
-/* -------------------------------------- */
+/* 탭 콘텐츠 섹션 마진 및 스크롤 마진(top에 sticky 탭 높이만큼 여유 공간) */
+.tabContent {
+  margin-bottom: 60px;
+  scroll-margin-top: 70px;
+}
+
+/* 이하 기존 스타일 유지 */
 .description {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-/* -------------------------------------- */
-/* 기본 정보 테이블 */
-/* -------------------------------------- */
 .basicInfoTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
 .basicInfoTable th,
 .basicInfoTable td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .basicInfoTable th {
-    background-color: #f4f4f4;
-    font-weight: 600;
+  background-color: #f4f4f4;
+  font-weight: 600;
 }
 
 .basicInfoTable td {
-    font-size: 14px;
-    color: #555;
+  font-size: 14px;
+  color: #555;
 }
 
 .basicInfoTable tr:nth-child(even) {
-    background-color: #fafafa;
+  background-color: #fafafa;
 }
 
-/* 섹션 제목 */
 .sectionTitle {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-/* -------------------------------------- */
-/* 접히는 섹션 (교환/반품 안내 등) */
-/* -------------------------------------- */
 .detailSection {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .groupHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .groupHeader:hover {
-    background-color: #ececec;
+  background-color: #ececec;
 }
 
 .iconToggle {
-    color: #6c63ff;
-    transition: transform 0.3s ease;
+  color: #6c63ff;
+  transition: transform 0.3s ease;
 }
 
 .policyContent {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.3s ease;
-    padding: 0 16px;
-    background-color: #fafafa;
-    border-radius: 0 0 8px 8px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.3s ease;
+  padding: 0 16px;
+  background-color: #fafafa;
+  border-radius: 0 0 8px 8px;
 }
 
 .policyContent.open {
-    max-height: 1000px;
-    padding: 16px;
+  max-height: 1000px;
+  padding: 16px;
 }
