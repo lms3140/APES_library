@@ -4,7 +4,6 @@
   padding: 36px 32px;
   align-items: flex-start;
   background-color: #fff;
-  border-top: 1px solid #e5e5e5;
   border-bottom: none;
 }
 
@@ -26,6 +25,8 @@
   flex: 0 0 360px;
   display: flex;
   flex-direction: column;
+  padding-top: 40px;
+  padding-right: 70px;
 }
 
 .header {
@@ -113,26 +114,8 @@
 }
 
 .storeImage {
-  width: 927px;
-  height: 376px;
+  width: 820px;
+  height: 320px;
   max-height: 380px;
-  border-radius: 4px;
   object-fit: cover;
-}
-
-@media (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .infoSection {
-    flex: 1;
-  }
-}
-
-@media (max-width: 768px) {
-  .title {
-    font-size: 32px;
-  }
 }

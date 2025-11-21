@@ -1,13 +1,27 @@
-.listContainer {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 20px 32px;
-  padding: 28px 32px;
-  background-color: #fff;
-  /* border-bottom: 1px solid #e5e5e5; */
-  width: 100%;
+/* 화면 끝까지 가는 가로선(회색 border) */
+.listOuter {
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
+/* 1200px 컨텐츠 박스 */
+.listInner {
+  max-width: 1200px;
+  margin: 0 150px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px 48px;
+  padding: 15px 32px;
+  background-color: #fff;
+}
+
+/* 기존 스타일 그대로 */
 .storeItem {
   padding: 0;
   font-size: 15px;
@@ -20,6 +34,8 @@
   font-weight: 400;
   line-height: 1.5;
   display: block;
+  width: 175px;
+  height: 22px;
 }
 
 .storeItem:hover {
@@ -29,23 +45,4 @@
 .storeItem.active {
   color: #000;
   font-weight: 700;
-}
-
-@media (max-width: 1024px) {
-  .listContainer {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .listContainer {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .listContainer {
-    grid-template-columns: 1fr;
-  }
 }

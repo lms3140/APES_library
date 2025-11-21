@@ -1,5 +1,5 @@
 import styles from "./SideBar.module.css";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function SideBar() {
   return (
@@ -46,7 +46,7 @@ export function SideBar() {
               >
                 <span>1:1 문의 내역</span>
               </NavLink>
-              {/* 마이페이지로 연결 */}
+              {/* 마이페이지-1:1문의 내역으로 연결해야함! */}
             </li>
           </ul>
         </li>

@@ -142,11 +142,6 @@
   margin: 0;
 }
 
-/* a,
-a:link,
-a:visited,
-a:hover,
-a:active  */
 .subTable :global(a),
 .subTable :global(a:hover),
 .subTable :global(a:visited),

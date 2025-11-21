@@ -14,7 +14,6 @@ export function Contact() {
       </div>
 
       <div className={styles.tableWrap}>
-        {/* 1. 주문배송 및 이용안내 */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>1. 주문배송 및 이용안내</h2>
           <div className={styles.subTable}>
@@ -28,7 +27,6 @@ export function Contact() {
           </div>
         </section>
 
-        {/* 2. 도서문의 */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>2. 도서문의</h2>
           <div className={styles.subTable}>
@@ -52,12 +50,10 @@ export function Contact() {
           </div>
         </section>
 
-        {/* 3. 매장 이용안내 — 가로 표 (왼쪽 1칸 span, 가운데/오른쪽 3행) */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>3. 매장 이용안내</h2>
 
           <div className={styles.storeGrid}>
-            {/* 왼쪽 최상위: 3행 span */}
             <div
               className={`${styles.cell} ${styles.level1Span} ${styles.noLeft}`}
             >
@@ -65,7 +61,6 @@ export function Contact() {
               <Link to="/store-info/001">매장 영업시간 안내</Link>
             </div>
 
-            {/* Row 1 */}
             <div className={`${styles.cell} ${styles.level2} ${styles.col2}`}>
               1. 서울
             </div>
@@ -88,7 +83,6 @@ export function Contact() {
               </ul>
             </div>
 
-            {/* Row 2 */}
             <div
               className={`${styles.cell} ${styles.level2} ${styles.col2}`}
               style={{ gridRow: 2 }}
@@ -113,7 +107,6 @@ export function Contact() {
               </ul>
             </div>
 
-            {/* Row 3 */}
             <div
               className={`${styles.cell} ${styles.level2} ${styles.col2}`}
               style={{ gridRow: 3 }}
@@ -141,7 +134,6 @@ export function Contact() {
                 <li>00. 기타문의 및 상담원 연결</li>
               </ul>
             </div>
-            {/* Row 4: 대학 구내서점 */}
             <div
               className={`${styles.cell} ${styles.level2} ${styles.col2}`}
               style={{ gridRow: 4 }}

@@ -16,7 +16,7 @@ export function StoreMap({ selectedStore }) {
     if (floors.length > 0) {
       setActiveFloor(floors[0].floorNumber || "default");
     }
-  }, [selectedStore]);
+  }, [selectedStore, floors]);
 
   // 층 데이터 찾기 (floorNumber가 완전히 다르더라도 index 기반 fallback)
   const currentFloor =

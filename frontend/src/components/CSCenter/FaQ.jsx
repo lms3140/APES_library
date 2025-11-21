@@ -1,3 +1,4 @@
+import { answerIcon, downArrowIcon, upArrowIcon } from "../common/Svgs.jsx";
 import styles from "./FaQ.module.css";
 import { useState } from "react";
 
@@ -24,54 +25,7 @@ export function FaQ() {
             도서는 구입할 수 없나요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 0 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 0 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -80,29 +34,7 @@ export function FaQ() {
             openIndex === 0 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               검색이 되지 않는 도서는 품절/절판일 경우가 대부분이므로 검색옵션
@@ -135,54 +67,7 @@ export function FaQ() {
             <span className={styles.q}>Q</span>eBook 선물하기란 무엇인가요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 1 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 1 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -191,29 +76,7 @@ export function FaQ() {
             openIndex === 1 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               eBook선물하기는 교보문고에서 판매하는 eBook(전자책)을 지인과
@@ -266,54 +129,7 @@ export function FaQ() {
             <span className={styles.q}>Q</span>교보페이란 무엇인가요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 2 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 2 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -322,29 +138,7 @@ export function FaQ() {
             openIndex === 2 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               교보페이는 스마일페이 기반의 결제 서비스로 온라인교보문고에서
@@ -368,54 +162,7 @@ export function FaQ() {
             받아볼 수 있나요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 3 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 3 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -424,29 +171,7 @@ export function FaQ() {
             openIndex === 3 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               1. <span>인터넷 주문가능 상태 주문접수 된 도서</span>는 결제가
@@ -481,54 +206,7 @@ export function FaQ() {
             있나요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 4 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 4 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -537,29 +215,7 @@ export function FaQ() {
             openIndex === 4 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               <span>
@@ -621,54 +277,7 @@ export function FaQ() {
             있나요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 5 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 5 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -677,29 +286,7 @@ export function FaQ() {
             openIndex === 5 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               각 상품별 재고량을 기준으로 상세 상품정보에 예상출고일이
@@ -747,54 +334,7 @@ export function FaQ() {
             <span className={styles.q}>Q</span>주문한 상품이 아직 안왔어요.
           </p>
           <span className={styles.icon}>
-            {openIndex === 6 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 6 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -803,29 +343,7 @@ export function FaQ() {
             openIndex === 6 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               주문하신 도서를 아직 못받아 보셨다면 다음 사항을 확인해 주십시오.
@@ -866,54 +384,7 @@ export function FaQ() {
             교환하고 싶습니다. 어떻게 해야하나요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 7 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 7 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -922,29 +393,7 @@ export function FaQ() {
             openIndex === 7 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               일반 택배로 배송 받으신 상품에 하자가 있는 경우, 인터넷
@@ -988,54 +437,7 @@ export function FaQ() {
             <span className={styles.q}>Q</span>상품의 재고를 확인할 수 있나요?
           </p>
           <span className={styles.icon}>
-            {openIndex === 8 ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <desc>위쪽 화살표 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="#000"
-                viewBox="0 0 12 12"
-              >
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            )}
+            {openIndex === 8 ? upArrowIcon : downArrowIcon}
           </span>
         </button>
 
@@ -1044,29 +446,7 @@ export function FaQ() {
             openIndex === 8 ? styles.open : ""
           }`}
         >
-          <div className={styles.arrow}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              fill="none"
-              stroke="#000"
-            >
-              <desc>답변 아이콘</desc>
-              <g clip-path="url(#a)">
-                <path
-                  stroke="current"
-                  stroke-linecap="round"
-                  d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                />
-              </g>
-              <defs>
-                <clipPath id="a">
-                  <path fill="#fff" d="M0 0h12v12H0z" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          <div className={styles.arrow}>{answerIcon}</div>
           <div className={styles.answer}>
             <p>
               모바일 앱이나 웹에서는 <span>도서</span>만 재고를 확인할 수
@@ -1097,54 +477,7 @@ export function FaQ() {
               [결제하기]를 누른 후 주문중으로 계속 표시될때
             </p>
             <span className={styles.icon}>
-              {openIndex === 9 ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  stroke="#000"
-                  viewBox="0 0 12 12"
-                >
-                  <desc>위쪽 화살표 아이콘</desc>
-                  <g clip-path="url(#a)">
-                    <path
-                      stroke="current"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M10.125 7.875 6.202 3.953 2.319 7.83"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="a">
-                      <path fill="#fff" d="M0 0h12v12H0z" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  fill="none"
-                  stroke="#000"
-                  class="transition-all"
-                >
-                  <g clip-path="url(#a)">
-                    <path
-                      stroke="current"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m1.875 4.125 3.923 3.922L9.682 4.17"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="a">
-                      <path fill="#fff" d="M0 0h12v12H0z" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              )}
+              {openIndex === 9 ? upArrowIcon : downArrowIcon}
             </span>
           </button>
 
@@ -1153,29 +486,7 @@ export function FaQ() {
               openIndex === 9 ? styles.open : ""
             }`}
           >
-            <div className={styles.arrow}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="12"
-                height="12"
-                fill="none"
-                stroke="#000"
-              >
-                <desc>답변 아이콘</desc>
-                <g clip-path="url(#a)">
-                  <path
-                    stroke="current"
-                    stroke-linecap="round"
-                    d="M3 2v6.5h6m0 0L7.385 7M9 8.5 7.385 10"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h12v12H0z" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
+            <div className={styles.arrow}>{answerIcon}</div>
             <div className={styles.answer}>
               <p>
                 결제창에서 오류가 발생하여 주문처리중 메세지가 계속 표시될 경우,

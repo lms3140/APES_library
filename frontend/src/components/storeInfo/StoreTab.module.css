@@ -1,13 +1,28 @@
-.tabContainer {
+/* 회색 라인(full width)을 담당하는 영역 */
+.tabOuter {
+  /* width: 100vw; */
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* 1200px 컨텐츠 영역 */
+.tabInner {
+  max-width: 1200px;
+  margin: 0 150px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 48px;
-  border-bottom: 1px solid #e5e5e5;
-  border-top: 1px solid #e5e5e5;
   padding: 0 32px;
-  background-color: #fff;
 }
 
+/* 버튼은 그대로 */
 .tab {
   background: none;
   border: none;
@@ -19,10 +34,7 @@
   font-weight: 400;
   transition: color 0.2s;
   white-space: nowrap;
-}
-
-.tab:hover {
-  color: #333;
+  text-align: left;
 }
 
 .tab.active {

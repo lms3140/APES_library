@@ -72,10 +72,8 @@ export function Search() {
       </h1>
 
       <div className={styles.searchContainer}>
-        {/* 왼쪽 필터 */}
         <SearchFilter />
 
-        {/* 오른쪽 */}
         <div className={styles.rightArea}>
           <SearchSort
             books={books}
@@ -88,7 +86,6 @@ export function Search() {
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}
           >
-            {/* 검색 결과 */}
             {currentItems &&
               currentItems.map((item) => (
                 <SearchItems
