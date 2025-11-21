@@ -24,10 +24,10 @@
   전체 레이아웃 (필터 + 오른쪽 리스트)
 ========================================= */
 .searchContainer {
-  display: grid;
+  display: flex;
   grid-template-columns: 170px 1fr; /* 왼쪽 고정폭 + 오른쪽 가변폭 */
   align-items: flex-start;
-  gap: 40px;
+  gap: 50px;
   margin-top: 20px;
   grid-template-rows: auto 1fr auto; /* 🔥 페이지네이션을 위한 행 */
 }
@@ -65,6 +65,7 @@
   line-height: 18px;
   text-align: left;
   gap: 10px;
+  cursor: pointer;
 }
 
 /* 필터 헤더 (필터 + 리셋 버튼) */
@@ -84,24 +85,6 @@
 .filterCategory {
   border-bottom: 1px solid #d5d5d5;
   padding-bottom: 8px;
-}
-
-/* 상단 카테고리 버튼들 (교보문고/eBook/sam...) */
-.filterArea > div > button {
-  display: block;
-  width: 100%;
-  padding: 0 14px;
-  margin-bottom: 6px;
-  border: 1px solid #d5d5d5;
-  background: #fff;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #222;
-  text-align: left;
-  cursor: pointer;
-  margin-bottom: 8px;
-  height: 50px;
 }
 
 /* 옵션 그룹 (검색조건/학습서필터/혜택조건) */
@@ -161,6 +144,19 @@
   accent-color: #36a420; /* 교보 초록색 톤 */
 }
 
+/* 토글 영역: DOM은 유지하되, 높이만 접기 */
+.toggleContent {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: 2000px; /* 충분히 크게 */
+}
+
+/* 접혔을 때 */
+.closed {
+  max-height: 0;
+  padding: 0 !important;
+}
+
 /* ================================
   커스텀 체크박스 스타일
 ================================*/
@@ -173,6 +169,7 @@
   width: 22px;
   height: 22px;
   cursor: pointer;
+  display: none;
 }
 
 /* 커스텀 체크박스 박스 */
@@ -453,6 +450,7 @@
   object-fit: cover;
   flex-shrink: 0;
   border: 1px solid #f2f2f2;
+  cursor: pointer;
 }
 
 .itemInfo {
@@ -536,6 +534,7 @@
   border: 1px solid #eee;
   background: #fff;
   margin: 10px 0;
+  cursor: pointer;
   /* border-radius: 16px; */
 }
 

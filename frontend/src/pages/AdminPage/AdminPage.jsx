@@ -32,14 +32,13 @@ export function AdminPage() {
   // );
 
   const getBooks = async () => {
-      const res = await axios.get(API_BASE);
-      return res.data;
+    const res = await axios.get(API_BASE);
+    return res.data;
   };
 
-
   const getBookDetail = async (id) => {
-      const res = await axios.get(`${API_BASE}/${bookId}`);
-      return res.data;
+    const res = await axios.get(`${API_BASE}/${bookId}`);
+    return res.data;
   };
 
   useEffect(() => {
@@ -54,21 +53,19 @@ export function AdminPage() {
 
   const handleSearch = async (searchType, keyword) => {
     const res = await axios.get(`${API_BASE}/search`, {
-      params: { searchType, keyword }
+      params: { searchType, keyword },
     });
     setBooks(res.data);
     setCurrentPage(1);
-  }
+  };
 
   const menuList = [
-  { label: "ID", key: "bookId", sortable: true },
-  { label: "책 제목", key: "title", sortable: true },
-  { label: "이미지", key: "image_url", sortable: false },
-  { label: "총 판매부수", key: "totalSalesQuantity", sortable: true },
-  { label: "총 판매금액", key: "totalPrice", sortable: true }
-];
-
-  
+    { label: "ID", key: "bookId", sortable: true },
+    { label: "책 제목", key: "title", sortable: true },
+    { label: "이미지", key: "image_url", sortable: false },
+    { label: "총 판매부수", key: "totalSalesQuantity", sortable: true },
+    { label: "총 판매금액", key: "totalPrice", sortable: true },
+  ];
 
   return (
     <div className={style.container}>
@@ -87,11 +84,11 @@ export function AdminPage() {
               <th key={menu.label} className={style.th}>
                 {menu.label}
                 {menu.sortable && (
-                  <SortingButtons 
-                  sortBY={menu.key}
-                  books={books}
-                  setBooks={setBooks}
-                />
+                  <SortingButtons
+                    sortBY={menu.key}
+                    books={books}
+                    setBooks={setBooks}
+                  />
                 )}
               </th>
             ))}

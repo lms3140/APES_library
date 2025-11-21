@@ -22,6 +22,7 @@ export function Main() {
         <h1>
           <span>교보문고 고객센터</span>입니다.
         </h1>
+
         <div className={styles.qnaSection}>
           <h2>1:1 문의</h2>
           <ul className={styles.qnaList}>
@@ -63,8 +64,8 @@ export function Main() {
                 </svg>
                 <p>문의 접수</p>
               </Link>
-              <Link to="#">
-                {/* 마이페이지로 연결 */}
+
+              <Link to="/mypage">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="48"
@@ -118,6 +119,7 @@ export function Main() {
             </li>
           </ul>
         </div>
+
         <div className={styles.noticeSection}>
           <h2>공지사항</h2>
           <Link to="/cscenter/notice">
@@ -144,7 +146,7 @@ export function Main() {
               </svg>
             </span>
           </Link>
-          {/* ✅ 헤더/총건수/페이지네이션 없이 list body 3개만 */}
+
           <ul className={noticeStyles.listBody}>
             {miniNotices.map((item, idx) => (
               <li key={item.id ?? idx} className={noticeStyles.noticeItem}>

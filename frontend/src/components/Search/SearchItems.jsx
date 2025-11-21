@@ -9,8 +9,6 @@ export function SearchItems({
 }) {
   const navigate = useNavigate();
 
-  console.log("item.bookId:", item.bookId);
-
   const toggleCheck = () => {
     if (selectedItems.includes(item.bookId)) {
       setSelectedItems((prev) => prev.filter((id) => id !== item.bookId));
@@ -38,13 +36,17 @@ export function SearchItems({
         />
         <span className={styles.checkboxCustom}></span>
       </label>
-      <img src={item.imageUrl} alt={item.title} />
+      <img
+        src={item.imageUrl}
+        alt={item.title}
+        onClick={() => navigate(`/detail/${item.bookId}`)}
+      />
 
       <div className={styles.itemInfo}>
         <div className={styles.info}>
-          <h4 onClick={() => navigate("/detail")}>
+          <h4 onClick={() => navigate(`/detail/${item.bookId}`)}>
             {"["}
-            {item.category}
+            {item.categoryName}
             {"]"} {item.title}
           </h4>
           <p>

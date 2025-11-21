@@ -300,6 +300,29 @@ select * from book;
 desc book;
 
 select * from category;
+select * from author;
+select * from publisher;
+desc publisher;
+desc book;
+desc author;
+select * from translator;
+
+select * from inquiry;
+select * from member;
+
+INSERT INTO member (
+  user_id, password, name, phone, email, birth, gender, role, point_balance
+) VALUES (
+  'admin',
+  'admin1234!', 
+  '관리자',
+  '010-0000-0000',
+  'admin@bookshop.com',
+  '1990-01-01',
+  'M',
+  'ADMIN',
+  999999999
+);
 
 drop view admin_booksales_detail_view;
 CREATE VIEW admin_booksales_detail_view AS
