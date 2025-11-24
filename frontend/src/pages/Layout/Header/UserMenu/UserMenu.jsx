@@ -1,9 +1,13 @@
 import { useState } from "react";
 import style from "./UserMenu.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 export function UserMenu() {
   const [isLogin, setIsLogin] = useState(false);
+  const member = useSelector((state) => state.member);
+  const dispatch = useDispatch();
+  console.log(member);
   return (
     <div className={style.userMenuContainer}>
       <div className={style.userMenuWrapper}>
