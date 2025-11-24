@@ -17,11 +17,11 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtServiceImpl jwtService;
+    private final JwtService jwtService;
 
     public MemberServiceImpl(MemberRepository memberRepository,
                              PasswordEncoder passwordEncoder,
-                             JwtServiceImpl jwtService) {
+                             JwtService jwtService) {
         this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;

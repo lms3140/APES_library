@@ -1,6 +1,7 @@
 package com.bookshop.Controller;
 
 import com.bookshop.dto.MemberDto;
+import com.bookshop.service.JwtService;
 import com.bookshop.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,9 +16,11 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberService memberService;
+    private final JwtService jwtService;  // JwtService를 주입받기
 
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, JwtService jwtService) {
         this.memberService = memberService;
+        this.jwtService = jwtService;
     }
 
     // ===== 로그인 =====
@@ -74,5 +77,27 @@ public class MemberController {
     public ResponseEntity<?> memberCheck(@RequestBody MemberDto memberDto) {
         Long result = memberService.memberCheck(memberDto.getUserId());
         return ResponseEntity.ok(Map.of("memberId", result));
+    }
+
+    // ===== JWT 검증 =====
+    @PostMapping("/validate-jwt")
+    public ResponseEntity<?> validateJwt(@RequestBody String token) {
+        boolean isValid = jwtService.validateToken(token);
+        if (isValid) {
+            return ResponseEntity.ok("JWT is valid");
+        } else {
+            return ResponseEntity.status(401).body("Invalid or expired JWT");
+        }
+    }
+
+    // ===== JWT에서 userId 추출 =====
+    @PostMapping("/extract-userid")
+    public ResponseEntity<?> extractUserId(@RequestBody String token) {
+        if (jwtService.validateToken(token)) {
+            String userId = jwtService.getUserId(token);
+            return ResponseEntity.ok(userId);
+        } else {
+            return ResponseEntity.status(401).body("Invalid or expired JWT");
+        }
     }
 }
