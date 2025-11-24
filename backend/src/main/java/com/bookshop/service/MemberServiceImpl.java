@@ -3,59 +3,89 @@ package com.bookshop.service;
 import com.bookshop.dto.MemberDto;
 import com.bookshop.entity.Member;
 import com.bookshop.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class MemberServiceImpl implements MemberService{
-    public final MemberRepository memberRepository;
-    public final PasswordEncoder passwordEncoder;
+public class MemberServiceImpl implements MemberService {
 
-    @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository, PasswordEncoder passwordEncoder){
+    private final AuthenticationManager authenticationManager;
+    private final HttpSessionSecurityContextRepository contextRepository;
+    private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public MemberServiceImpl(MemberRepository memberRepository,
+                             PasswordEncoder passwordEncoder,
+                             AuthenticationManager authenticationManager,
+                             HttpSessionSecurityContextRepository contextRepository) {
         this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.contextRepository = contextRepository;
     }
 
     @Override
-    public boolean login(MemberDto memberDto) {
-        String encodePwd = memberRepository.findPasswordByUserId(memberDto.getUserId()).orElse(null);
-        boolean result = passwordEncoder.matches(memberDto.getPassword(), encodePwd);
-        return result;
+    public boolean login(MemberDto dto, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Member member = memberRepository.findByUserId(dto.getUserId()).orElse(null);
+            if (member == null) return false;
+
+            Authentication authenticationRequest =
+                    new UsernamePasswordAuthenticationToken(dto.getUserId(), dto.getPwd());
+            Authentication authentication = authenticationManager.authenticate(authenticationRequest);
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            contextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
+
     @Override
-    public boolean signup(MemberDto memberDto) {
-        boolean result = false;
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if (session != null) session.invalidate();
 
-//        비밀번호 암호화 하지 않고 DB 입력한 대로 테스트 할 때 주석처리:
-        String encodePwd = passwordEncoder.encode(memberDto.getPassword());
-        memberDto.setPassword(encodePwd);
-
-//        ---------------------------------------------------------
-
-        Member member = new Member(memberDto);
-        Member saveMember = memberRepository.save(member);
-        if(saveMember != null) result = true;
-
-        return result;
+        Cookie jsession = new Cookie("JSESSIONID", null);
+        jsession.setPath("/");
+        jsession.setMaxAge(0);
+        jsession.setHttpOnly(true);
+        response.addCookie(jsession);
     }
+
+    @Override
+    public boolean signup(MemberDto dto) {
+        if (idCheck(dto.getUserId())) return false;
+
+        dto.setPwd(passwordEncoder.encode(dto.getPwd()));
+
+        Member saved = memberRepository.save(new Member(dto));
+
+        return saved != null;
+    }
+
     @Override
     public boolean idCheck(String userId) {
-        boolean result = true;
-        Long count = memberRepository.countByUserId(userId);
-        if (count == 0) result = false;
-        return result;
+        return memberRepository.countByUserId(userId) > 0;
     }
 
     @Override
     public Long memberCheck(String userId) {
-        Long result = 0L;
-        Long check = memberRepository.findByMemberId(userId).orElse(0L);
-        if (check != 0L) result = check;
-
-        return result;
+        return memberRepository.findByUserId(userId)
+                .map(Member::getMemberId)
+                .orElse(0L);
     }
 }

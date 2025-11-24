@@ -7,6 +7,7 @@ import SignupIntro from "../pages/Auth/SignupIntro.jsx"
 import Signup from "../pages/Auth/Signup.jsx"
 import Detail from "../pages/Detail/Detail.jsx"
 import Cart from "../pages/Cart/Cart.jsx"
+import { Home } from "../pages/Home/Home.jsx";
 
 export const route3= [
     {

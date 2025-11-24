@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.css";
 import cstyles from "./Logo.module.css";
 import Terms from "./Terms.jsx"; // 약관 컴포넌트
+import { signupMember } from "../../api/MemberAPI.jsx"; // 회원가입 API 호출
 
-const Signup = () => {
+export const Signup = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -27,14 +28,12 @@ const Signup = () => {
     const [idCheckResult, setIdCheckResult] = useState(null);
     const [pwdMatch, setPwdMatch] = useState(null);
 
-    // 입력값 변경 핸들러
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
 
         if (name === "pwd" || name === "pwdcheck") {
             const updatedForm = { ...formData, [name]: value };
             setFormData(updatedForm);
-
             if (updatedForm.pwd && updatedForm.pwdcheck) {
                 setPwdMatch(updatedForm.pwd === updatedForm.pwdcheck);
             } else {
@@ -70,17 +69,33 @@ const Signup = () => {
         });
     };
 
-    const handleIdCheck = () => {
+    // ===================== DB 연동 아이디 중복 확인 =====================
+    const handleIdCheck = async () => {
         if (!formData.id) {
             alert("아이디를 입력해주세요.");
             return;
         }
-        if (formData.id === "admin") {
-            setIdCheckResult("duplicate");
-        } else {
-            setIdCheckResult("available");
+
+        try {
+            const res = await fetch("http://localhost:8080/member/idCheck", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userId: formData.id }),
+            });
+
+            const data = await res.json();
+
+            if (data.message === "사용 가능한 아이디입니다.") {
+                setIdCheckResult("available");
+            } else {
+                setIdCheckResult("duplicate");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("아이디 중복 확인 중 오류가 발생했습니다.");
         }
     };
+    // ====================================================================
 
     const handleSendCode = () => {
         if (!formData.email) {
@@ -90,8 +105,21 @@ const Signup = () => {
         alert(`인증번호가 ${formData.email}로 발송되었습니다.`);
     };
 
-    const handleSubmit = (e) => {
+    const isRequiredFilled =
+        formData.id &&
+        formData.pwd &&
+        formData.pwdcheck &&
+        formData.name &&
+        formData.phone &&
+        formData.email &&
+        formData.birth &&
+        formData.gender &&
+        formData.agreeTerms &&
+        formData.agreePrivacy;
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (formData.pwd !== formData.pwdcheck) {
             alert("비밀번호가 일치하지 않습니다.");
             return;
@@ -107,35 +135,35 @@ const Signup = () => {
             return;
         }
 
-        console.log("회원가입 데이터:", formData);
-        alert("회원가입이 완료되었습니다!");
-        navigate("/login");
-    };
+        const submitData = {
+            userId: formData.id,
+            pwd: formData.pwd,
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            birth: formData.birth.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"),
+            gender: formData.gender,
+        };
 
-    const isRequiredFilled =
-        formData.id &&
-        formData.pwd &&
-        formData.pwdcheck &&
-        formData.name &&
-        formData.phone &&
-        formData.email &&
-        formData.birth &&
-        formData.gender &&
-        formData.agreeTerms &&
-        formData.agreePrivacy;
+        try {
+            await signupMember(submitData);
+            alert("회원가입이 완료되었습니다!");
+            navigate("/login");
+        } catch (err) {
+            console.error(err);
+            alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+        }
+    };
 
     return (
         <div className={cstyles.container}>
-            <div className={cstyles.logo}>
-                <img src="#" alt="무슨문고 로고" />
-            </div>
+            <div className={cstyles.logo}><span>무슨문고</span></div>
 
             <div className={styles.titleRow}>
                 <h2 className={styles.title}>회원가입</h2>
                 <p className={styles.stepInfo}>마지막 단계입니다!</p>
             </div>
 
-            {/* 회원정보 입력 */}
             <div className={styles.sectionRow}>
                 <h3 className={styles.sectionTitle}>회원정보 입력</h3>
                 <p className={styles.sectionInfo}>
@@ -145,9 +173,7 @@ const Signup = () => {
 
             <form onSubmit={handleSubmit} className={styles.form}>
                 {/* 아이디 */}
-                <label>
-                    아이디 <span className={styles.required}>*</span>
-                </label>
+                <label>아이디 <span className={styles.required}>*</span></label>
                 <div className={styles.inputRow}>
                     <input
                         name="id"
@@ -163,17 +189,11 @@ const Signup = () => {
                         중복확인
                     </button>
                 </div>
-                {idCheckResult === "available" && (
-                    <p className={styles.successMsg}>사용 가능한 아이디입니다.</p>
-                )}
-                {idCheckResult === "duplicate" && (
-                    <p className={styles.errorMsg}>이미 존재하는 아이디입니다.</p>
-                )}
+                {idCheckResult === "available" && <p className={styles.successMsg}>사용 가능한 아이디입니다.</p>}
+                {idCheckResult === "duplicate" && <p className={styles.errorMsg}>이미 존재하는 아이디입니다.</p>}
 
                 {/* 비밀번호 */}
-                <label>
-                    비밀번호 <span className={styles.required}>*</span>
-                </label>
+                <label>비밀번호 <span className={styles.required}>*</span></label>
                 <input
                     type="password"
                     name="pwd"
@@ -183,9 +203,7 @@ const Signup = () => {
                 />
 
                 {/* 비밀번호 확인 */}
-                <label>
-                    비밀번호 확인 <span className={styles.required}>*</span>
-                </label>
+                <label>비밀번호 확인 <span className={styles.required}>*</span></label>
                 <input
                     type="password"
                     name="pwdcheck"
@@ -193,17 +211,11 @@ const Signup = () => {
                     onChange={handleChange}
                     placeholder="비밀번호를 한 번 더 입력해주세요."
                 />
-                {pwdMatch === false && (
-                    <p className={styles.errorMsg}>비밀번호가 일치하지 않습니다.</p>
-                )}
-                {pwdMatch === true && (
-                    <p className={styles.successMsg}>비밀번호가 일치합니다.</p>
-                )}
+                {pwdMatch === false && <p className={styles.errorMsg}>비밀번호가 일치하지 않습니다.</p>}
+                {pwdMatch === true && <p className={styles.successMsg}>비밀번호가 일치합니다.</p>}
 
                 {/* 이름 */}
-                <label>
-                    이름 <span className={styles.required}>*</span>
-                </label>
+                <label>이름 <span className={styles.required}>*</span></label>
                 <input
                     name="name"
                     value={formData.name}
@@ -212,9 +224,7 @@ const Signup = () => {
                 />
 
                 {/* 휴대폰번호 */}
-                <label>
-                    휴대폰번호 <span className={styles.required}>*</span>
-                </label>
+                <label>휴대폰번호 <span className={styles.required}>*</span></label>
                 <input
                     name="phone"
                     value={formData.phone}
@@ -223,9 +233,7 @@ const Signup = () => {
                 />
 
                 {/* 이메일 */}
-                <label>
-                    이메일 <span className={styles.required}>*</span>
-                </label>
+                <label>이메일 <span className={styles.required}>*</span></label>
                 <div className={styles.emailWrapper}>
                     <input
                         name="email"
@@ -243,12 +251,10 @@ const Signup = () => {
                     </button>
                 </div>
 
-                {/* 생년월일 + 성별 가로 배치 */}
+                {/* 생년월일 + 성별 */}
                 <div className={styles.rowFlex}>
                     <div className={styles.flexItem}>
-                        <label>
-                            생년월일/성별 <span className={styles.required}>*</span>
-                        </label>
+                        <label>생년월일/성별 <span className={styles.required}>*</span></label>
                         <input
                             name="birth"
                             value={formData.birth}
@@ -263,23 +269,23 @@ const Signup = () => {
                         <div className={styles.segmentedControl}>
                             <button
                                 type="button"
-                                className={formData.gender === "male" ? styles.activeSegment : ""}
-                                onClick={() => setFormData({ ...formData, gender: "male" })}
+                                className={formData.gender === "m" ? styles.activeSegment : ""}
+                                onClick={() => setFormData({ ...formData, gender: "m" })}
                             >
-                                {formData.gender === "male" && "✔"}   남
+                                {formData.gender === "m" && "✔"} 남
                             </button>
                             <button
                                 type="button"
-                                className={formData.gender === "female" ? styles.activeSegment : ""}
-                                onClick={() => setFormData({ ...formData, gender: "female" })}
+                                className={formData.gender === "f" ? styles.activeSegment : ""}
+                                onClick={() => setFormData({ ...formData, gender: "f" })}
                             >
-                                {formData.gender === "female" && "✔"}  여
+                                {formData.gender === "f" && "✔"} 여
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* 약관 컴포넌트 */}
+                {/* 약관 */}
                 <Terms formData={formData} setFormData={setFormData} handleAllAgree={handleAllAgree} />
 
                 <button
