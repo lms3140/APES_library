@@ -5,9 +5,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface MemberService {
-    boolean login(MemberDto dto, HttpServletRequest request, HttpServletResponse response);
+    String login(MemberDto dto, HttpServletRequest request, HttpServletResponse response);
     void logout(HttpServletRequest request, HttpServletResponse response);
     boolean signup(MemberDto dto);
     boolean idCheck(String userId);
     Long memberCheck(String userId);
+    Long getCurrentMemberId(HttpServletRequest request);
 }

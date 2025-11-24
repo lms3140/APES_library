@@ -1,10 +1,9 @@
-package com.bookshop.Controller; // 소문자 패키지 권장
+package com.bookshop.Controller;
 
 import com.bookshop.dto.MemberDto;
 import com.bookshop.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,21 +11,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
-@CrossOrigin(origins = "http://localhost:5173") // React Vite
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class MemberController {
 
     private final MemberService memberService;
 
-    @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
-    }
-
-    // ===== 회원가입 =====
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody MemberDto memberDto) {
-        boolean result = memberService.signup(memberDto);
-        return ResponseEntity.ok(Map.of("signup", result));
     }
 
     // ===== 로그인 =====
@@ -34,10 +25,15 @@ public class MemberController {
     public ResponseEntity<?> login(@RequestBody MemberDto memberDto,
                                    HttpServletRequest request,
                                    HttpServletResponse response) {
+        String token = memberService.login(memberDto, request, response);
+        if (token == null) {
+            return ResponseEntity.ok(Map.of("login", false));
+        }
 
-        boolean result = memberService.login(memberDto, request, response);
+        // 로그인 성공 시 반환할 데이터
         return ResponseEntity.ok(Map.of(
-                "login", result,
+                "login", true,
+                "token", token,
                 "userId", memberDto.getUserId()
         ));
     }
@@ -49,6 +45,13 @@ public class MemberController {
         return ResponseEntity.ok(Map.of("logout", true));
     }
 
+    // ===== 회원가입 =====
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody MemberDto memberDto) {
+        boolean result = memberService.signup(memberDto);
+        return ResponseEntity.ok(Map.of("signup", result));
+    }
+
     // ===== 아이디 중복 체크 =====
     @PostMapping("/idCheck")
     public ResponseEntity<?> idCheck(@RequestBody Map<String, String> param) {
@@ -56,5 +59,20 @@ public class MemberController {
         boolean exists = memberService.idCheck(userId);
         String msg = exists ? "이미 사용중인 아이디입니다." : "사용 가능한 아이디입니다.";
         return ResponseEntity.ok(Map.of("message", msg));
+    }
+
+    // ===== 로그인 상태 확인 =====
+    @GetMapping("/status")
+    public ResponseEntity<?> loginStatus(HttpServletRequest request) {
+        Long memberId = memberService.getCurrentMemberId(request);
+        boolean isLogin = memberId != null;
+        return ResponseEntity.ok(Map.of("login", isLogin));
+    }
+
+    // ===== 회원 체크 =====
+    @PostMapping("/memberCheck")
+    public ResponseEntity<?> memberCheck(@RequestBody MemberDto memberDto) {
+        Long result = memberService.memberCheck(memberDto.getUserId());
+        return ResponseEntity.ok(Map.of("memberId", result));
     }
 }

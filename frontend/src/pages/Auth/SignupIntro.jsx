@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./SignupIntro.module.css";
 import cstyles from "./Logo.module.css";
 
-const SignupIntro = () => {
+export const SignupIntro = () => {
     const navigate = useNavigate();
 
     return (
