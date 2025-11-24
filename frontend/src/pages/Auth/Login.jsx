@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import cstyles from "./Logo.module.css";
 import styles from "./Login.module.css";
 
-const Login = () => {
+export const Login = () => {
   const [formData, setFormData] = useState({
     userId: "",
     pwd: "",

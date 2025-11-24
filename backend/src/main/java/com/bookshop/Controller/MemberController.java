@@ -1,7 +1,8 @@
-package com.bookshop.Controller; // 소문자 패키지 권장
+package com.bookshop.Controller;
 
 import com.bookshop.dto.MemberDto;
 import com.bookshop.service.MemberService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
-@CrossOrigin(origins = "http://localhost:5173") // React Vite
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true") // React Vite
 public class MemberController {
 
     private final MemberService memberService;
@@ -22,31 +23,49 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    // ===== 회원가입 =====
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody MemberDto memberDto) {
-        boolean result = memberService.signup(memberDto);
-        return ResponseEntity.ok(Map.of("signup", result));
-    }
-
     // ===== 로그인 =====
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody MemberDto memberDto,
+    public ResponseEntity<?> login(@RequestBody MemberDto member,
                                    HttpServletRequest request,
                                    HttpServletResponse response) {
+        boolean result = memberService.login(member, request, response);
+        if (result) {
+            // XSRF 토큰 초기화
+            Cookie xsrf = new Cookie("XSRF-TOKEN", null);
+            xsrf.setPath("/");
+            xsrf.setMaxAge(0);
+            xsrf.setHttpOnly(false);
+            response.addCookie(xsrf);
 
-        boolean result = memberService.login(memberDto, request, response);
-        return ResponseEntity.ok(Map.of(
-                "login", result,
-                "userId", memberDto.getUserId()
-        ));
+            return ResponseEntity.ok(Map.of(
+                    "login", true,
+                    "userId", member.getUserId()
+            ));
+        } else {
+            return ResponseEntity.ok(Map.of("login", false));
+        }
     }
 
     // ===== 로그아웃 =====
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
         memberService.logout(request, response);
+
+        // CSRF 토큰 초기화
+        Cookie xsrf = new Cookie("XSRF-TOKEN", null);
+        xsrf.setPath("/");
+        xsrf.setMaxAge(0);
+        xsrf.setHttpOnly(false);
+        response.addCookie(xsrf);
+
         return ResponseEntity.ok(Map.of("logout", true));
+    }
+
+    // ===== 회원가입 =====
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody MemberDto memberDto) {
+        boolean result = memberService.signup(memberDto);
+        return ResponseEntity.ok(Map.of("signup", result));
     }
 
     // ===== 아이디 중복 체크 =====
