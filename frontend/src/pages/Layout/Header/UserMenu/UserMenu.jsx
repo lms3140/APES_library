@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./UserMenu.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserId } from "../../../../store/memberSlice";
 
 export function UserMenu() {
   const [isLogin, setIsLogin] = useState(false);
+  // const member = useSelector((state) => state.member);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(setUserId("App"));
+  // }, []);
+  // console.log(member);
   return (
     <div className={style.userMenuContainer}>
       <div className={style.userMenuWrapper}>
