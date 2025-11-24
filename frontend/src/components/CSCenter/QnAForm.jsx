@@ -1,8 +1,9 @@
 import styles from "./QnAForm.module.css";
 import { useEffect, useState } from "react";
 import { axiosPost } from "../../utils/dataFetch.js";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import "../../css/swal.css";
 
 export function QnAForm() {
   const navigate = useNavigate();
@@ -37,13 +38,30 @@ export function QnAForm() {
     try {
       const data = { memberId: 1, title, content, status: "ready" };
       const url = "http://localhost:8080/inquiry/qna";
-      const aa = await axiosPost(url, data);
-      toast.info("문의가 접수 되었습니다.");
-      console.log(aa);
-      navigate("/mypage");
+      await axiosPost(url, data);
+      await Swal.fire({
+        title: "문의가 접수되었어요.",
+        text: "빠른 시간 내에 답변 드리겠습니다.",
+        confirmButtonText: "확인",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          htmlContainer: "customText",
+          confirmButton: "customConfirmButton",
+        },
+      });
+      // navigate("/mypage");
     } catch (e) {
       console.log(e);
-      toast.error("다시 시도해주세요.");
+      Swal.fire({
+        title: "다시 시도해주세요.",
+        confirmButtonText: "확인",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          confirmButton: "customConfirmButton",
+        },
+      });
     }
   };
 

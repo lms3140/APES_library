@@ -25,7 +25,7 @@
   flex: 1;
   background-color: #fff;
   border: 1px solid #eaeaea;
-  border-radius: 12px;
+  border-radius: 16px;
   /* overflow: hidden; */
   box-sizing: border-box;
 }
@@ -49,7 +49,8 @@
 .map {
   width: 598px;
   height: 410px;
-  border-radius: 8px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
   overflow: hidden;
 }
 

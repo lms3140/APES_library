@@ -4,13 +4,27 @@ import { TfiReload } from "react-icons/tfi";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 
-export function SearchFilter() {
+export function SearchFilter({ filters, onFilterChange }) {
+  const formRef = useRef(null);
   const [isSearchOpen, setIsSearchOpen] = useState(true);
   const [isStudyOpen, setIsStudyOpen] = useState(true);
   const [isBenefitOpen, setIsBenefitOpen] = useState(true);
 
-  const formRef = useRef(null);
+  //필터 기능 있는 부분 함수
+  const renderFilterCheckbox = (label, key) => (
+    <label className={styles.filterCheckbox}>
+      <input
+        type="checkbox"
+        checked={filters[key]}
+        onChange={() => onFilterChange({ ...filters, [key]: !filters[key] })}
+        className={styles.checkboxInput}
+      />
+      <span className={styles.checkboxCustom}></span>
+      {label}
+    </label>
+  );
 
+  //필터 기능 없는 부분 함수
   const renderCheckboxList = (items) => {
     return items.map((label, idx) => (
       <label key={idx} className={styles.filterCheckbox}>
@@ -49,7 +63,9 @@ export function SearchFilter() {
               !isSearchOpen ? styles.closed : ""
             }`}
           >
-            {renderCheckboxList(["상품명", "저자/역자", "출판사"])}
+            {renderFilterCheckbox("상품명", "title")}
+            {renderFilterCheckbox("저자/역자", "authors")}
+            {renderFilterCheckbox("출판사", "publisherName")}
           </div>
         </div>
         <div className={styles.filterBox}>
