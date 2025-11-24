@@ -1,13 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { checkLoginStatus } from "../api/MemberAPI.jsx";
 
 export function AuthRouter({ children }) {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(null); // null = 상태 확인 중
+  const [loading, setLoading] = useState(true);
 
-  // 로그인 안되어있다?
-  if (!isLogin) {
-    return <Navigate to={"/login"} />;
-  }
+  useEffect(() => {
+    const verifyLogin = async () => {
+      try {
+        const res = await checkLoginStatus(); // checkLoginStatus를 호출하여 로그인 상태 확인
+        setIsLogin(res.login);
+      } catch (err) {
+        setIsLogin(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    verifyLogin();
+  }, []);
+
+  if (loading) return <div>로딩 중...</div>; // 상태 확인 중
+
+  if (!isLogin) return <Navigate to="/login" replace />; // 로그인 안 됐으면 리다이렉트
 
   return <>{children}</>;
 }
