@@ -41,15 +41,24 @@ public class MemberServiceImpl implements MemberService {
             Member member = memberRepository.findByUserId(dto.getUserId()).orElse(null);
             if (member == null) return false;
 
+            // 1. 인증 요청
             Authentication authenticationRequest =
                     new UsernamePasswordAuthenticationToken(dto.getUserId(), dto.getPwd());
-            Authentication authentication = authenticationManager.authenticate(authenticationRequest);
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            contextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
+            // 2. 인증 처리
+            Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
+            System.out.println("인증 성공: " + authenticationResponse.getPrincipal());
+            System.out.println("권한: " + authenticationResponse.getAuthorities());
+
+            // 3. SecurityContext 명시적으로 생성 및 저장
+            var context = SecurityContextHolder.createEmptyContext();
+            context.setAuthentication(authenticationResponse);
+            SecurityContextHolder.setContext(context);
+            contextRepository.saveContext(context, request, response);
 
             return true;
         } catch (Exception e) {
+            System.out.println("로그인 실패: " + e.getMessage());
             return false;
         }
     }
@@ -71,9 +80,7 @@ public class MemberServiceImpl implements MemberService {
         if (idCheck(dto.getUserId())) return false;
 
         dto.setPwd(passwordEncoder.encode(dto.getPwd()));
-
         Member saved = memberRepository.save(new Member(dto));
-
         return saved != null;
     }
 

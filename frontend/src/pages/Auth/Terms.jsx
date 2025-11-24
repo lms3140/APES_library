@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Terms.module.css";
 
-const Terms = ({ formData, setFormData }) => {
+export const Terms = ({ formData, setFormData }) => {
     // 아코디언 열림 상태 관리
     const [openGroup, setOpenGroup] = useState({
         terms: false,
