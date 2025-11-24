@@ -16,6 +16,40 @@ export function Search() {
   const [viewType, setViewType] = useState("list");
   const [selectedItems, setSelectedItems] = useState([]);
   const [sortOptions, setSortOptions] = useState("인기순");
+  const [filters, setFilters] = useState({
+    title: false,
+    authors: false,
+    publisherName: false,
+  });
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+  };
+
+  const filterBooks = books.filter((book) => {
+    const isAllFalse =
+      !filters.title && !filters.authors && !filters.publisherName;
+    if (isAllFalse) return true;
+
+    const kw = keyword?.toLowerCase();
+    if (!kw) return true;
+
+    const title = book.title?.toLowerCase() || "";
+    const publisherName = book.publisherName?.toLowerCase() || "";
+    const authors = Array.isArray(book.authors) ? book.authors : [];
+
+    const matchTitle = title.includes(kw);
+    const matchAuthor =
+      filters.authors &&
+      authors.some((a) => (a?.toLowerCase() || "").includes(kw));
+    const matchPublisher = publisherName.includes(kw);
+
+    return (
+      (filters.title && matchTitle) ||
+      (filters.authors && matchAuthor) ||
+      (filters.publisherName && matchPublisher)
+    );
+  });
 
   const sortBooks = (books, sort) => {
     const sorted = [...books];
@@ -36,7 +70,7 @@ export function Search() {
     return sorted;
   };
 
-  const sortedBooks = sortBooks(books, sortOptions);
+  const sortedBooks = sortBooks(filterBooks, sortOptions);
 
   // keyword 바뀔 때마다 검색 실행
   useEffect(() => {
@@ -44,16 +78,13 @@ export function Search() {
     fetchBooks(keyword);
   }, [keyword]);
 
+  //백엔드 연결, 데이터 가져오기
   const fetchBooks = async (kw) => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/search?keyword=${kw}`
-      );
-      const json = await response.json();
-      setBooks(json);
-    } catch (err) {
-      console.log("검색 오류", err);
-    }
+    const response = await fetch(
+      `http://localhost:8080/api/search?keyword=${kw}`
+    );
+    const json = await response.json();
+    setBooks(json);
   };
 
   //한번에 보이는 갯수 설정 함수(20개씩보기, 50개씩보기, ...)
@@ -72,7 +103,7 @@ export function Search() {
       </h1>
 
       <div className={styles.searchContainer}>
-        <SearchFilter />
+        <SearchFilter filters={filters} onFilterChange={handleFilterChange} />
 
         <div className={styles.rightArea}>
           <SearchSort
@@ -82,6 +113,7 @@ export function Search() {
             onViewTypeChange={setViewType}
             selectedItems={selectedItems}
             onSortChange={setSortOptions}
+            filterBooks={filterBooks}
           />
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}

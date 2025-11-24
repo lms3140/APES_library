@@ -338,3 +338,8 @@ LEFT JOIN order_detail o ON o.order_id = p.order_id;
 
 select * from admin_booksales_detail_view;
 select * from member;
+
+select * from inquiry;
+delete from inquiry;
+
+set SQL_SAFE_UPDATES = 0;
