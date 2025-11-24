@@ -3,87 +3,79 @@ package com.bookshop.service;
 import com.bookshop.dto.MemberDto;
 import com.bookshop.entity.Member;
 import com.bookshop.repository.MemberRepository;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
-    private final AuthenticationManager authenticationManager;
-    private final HttpSessionSecurityContextRepository contextRepository;
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public MemberServiceImpl(MemberRepository memberRepository,
                              PasswordEncoder passwordEncoder,
-                             AuthenticationManager authenticationManager,
-                             HttpSessionSecurityContextRepository contextRepository) {
+                             JwtService jwtService) {
         this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-        this.contextRepository = contextRepository;
+        this.jwtService = jwtService;
     }
 
+    // ===== 로그인 (JWT 발급) =====
     @Override
-    public boolean login(MemberDto dto, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            Member member = memberRepository.findByUserId(dto.getUserId()).orElse(null);
-            if (member == null) return false;
+    public String login(MemberDto dto, HttpServletRequest request, HttpServletResponse response) {
+        Optional<Member> memberOpt = memberRepository.findByUserId(dto.getUserId());
+        if (memberOpt.isEmpty()) return null;
 
-            // 1. 인증 요청
-            Authentication authenticationRequest =
-                    new UsernamePasswordAuthenticationToken(dto.getUserId(), dto.getPwd());
+        Member member = memberOpt.get();
+        if (!passwordEncoder.matches(dto.getPwd(), member.getPwd())) return null;
 
-            // 2. 인증 처리
-            Authentication authenticationResponse = authenticationManager.authenticate(authenticationRequest);
-            System.out.println("인증 성공: " + authenticationResponse.getPrincipal());
-            System.out.println("권한: " + authenticationResponse.getAuthorities());
+        // JWT 생성
+        String token = jwtService.generateToken(member.getUserId());
 
-            // 3. SecurityContext 명시적으로 생성 및 저장
-            var context = SecurityContextHolder.createEmptyContext();
-            context.setAuthentication(authenticationResponse);
-            SecurityContextHolder.setContext(context);
-            contextRepository.saveContext(context, request, response);
-
-            return true;
-        } catch (Exception e) {
-            System.out.println("로그인 실패: " + e.getMessage());
-            return false;
-        }
+        // JWT를 Response Header에 넣기
+        response.setHeader("Authorization", "Bearer " + token);
+        return token;
     }
 
+    // ===== JWT 기반 회원 확인 =====
+    @Override
+    public Long getCurrentMemberId(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) return null;
+
+        String token = authHeader.substring(7);
+        if (!jwtService.validateToken(token)) return null;
+
+        String userId = jwtService.getUserId(token);
+        return memberRepository.findByUserId(userId)
+                .map(Member::getMemberId)
+                .orElse(null);
+    }
+
+    // ===== 로그아웃 =====
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
-        if (session != null) session.invalidate();
-
-        Cookie jsession = new Cookie("JSESSIONID", null);
-        jsession.setPath("/");
-        jsession.setMaxAge(0);
-        jsession.setHttpOnly(true);
-        response.addCookie(jsession);
+        // JWT는 서버에서 상태를 관리하지 않으므로, 클라이언트에서 삭제하면 로그아웃 처리됨
+        // 서버에서는 특별히 처리할 필요 없음
     }
 
+    // ===== 회원가입 =====
     @Override
     public boolean signup(MemberDto dto) {
         if (idCheck(dto.getUserId())) return false;
-
         dto.setPwd(passwordEncoder.encode(dto.getPwd()));
         Member saved = memberRepository.save(new Member(dto));
         return saved != null;
     }
 
+    // ===== 아이디 중복 체크 =====
     @Override
     public boolean idCheck(String userId) {
         return memberRepository.countByUserId(userId) > 0;

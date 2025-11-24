@@ -14,7 +14,6 @@ export const Login = () => {
     saveId: false
   });
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,30 +32,32 @@ export const Login = () => {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    if (!formData.userId) return setError("아이디를 입력해 주세요.");
-    if (!formData.pwd) return setError("비밀번호를 입력해 주세요.");
+  if (!formData.userId) return setError("아이디를 입력해 주세요.");
+  if (!formData.pwd) return setError("비밀번호를 입력해 주세요.");
 
-    try {
-      const res = await loginMember(formData.userId, formData.pwd);
+  try {
+    const res = await loginMember(formData.userId, formData.pwd);
 
-      if (res.login) {
-          console.log(res);
-          localStorage.setItem("userData",JSON.stringify({userId:res.userId}))
-        if (formData.saveId) localStorage.setItem("savedUserId", formData.userId)
-        else localStorage.removeItem("savedUserId");
-        alert("로그인 성공!");
-        navigate("/");
-      } else {
-        setError("아이디 또는 비밀번호가 올바르지 않습니다.");
-      }
-    } catch (err) {
-      console.error("로그인 실패:", err);
-      setError("서버 오류로 로그인할 수 없습니다.");
+    if (res.login) {
+      console.log(res);
+      localStorage.setItem("jwtToken", res.token); // 로그인 후 JWT 토큰을 localStorage에 저장
+
+      if (formData.saveId) localStorage.setItem("savedUserId", formData.userId);
+      else localStorage.removeItem("savedUserId");
+
+      alert("로그인 성공!");
+      navigate("/"); // 로그인 후 홈으로 리다이렉트
+    } else {
+      setError("아이디 또는 비밀번호가 올바르지 않습니다.");
     }
-  };
+  } catch (err) {
+    console.error("로그인 실패:", err);
+    setError("서버 오류로 로그인할 수 없습니다.");
+  }
+};
 
   return (
     <div className={cstyles.container}>
