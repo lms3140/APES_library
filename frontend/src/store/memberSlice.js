@@ -10,6 +10,7 @@ export const memberSlice = createSlice({
       state.userId = action.payload;
     },
   },
+
 });
 
 export const { setUserId } = memberSlice.actions;

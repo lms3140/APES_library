@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { FaRegUser } from "react-icons/fa6";
 import { FaLock } from "react-icons/fa";
 import { loginMember } from "../../api/MemberAPI.jsx";
 import { Link } from "react-router-dom";
+import { setUserId } from "../../store/memberSlice.js"
 import cstyles from "./Logo.module.css";
 import styles from "./Login.module.css";
 
@@ -15,13 +17,20 @@ export const Login = () => {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const savedId = localStorage.getItem("savedUserId");
     if (savedId) {
-      setFormData(prev => ({ ...prev, userId: savedId, saveId: true }));
+      setFormData(prev => ({ ...prev, userId: savedId, saveId: true }))
+     }
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      // JWT가 있으면 자동 로그인 처리 (서버 검증은 생략 가능)
+      const userId = localStorage.getItem("savedUserId") || "Unknown";
+      dispatch(setUserId(userId));
     }
-  }, []);
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -47,6 +56,9 @@ export const Login = () => {
 
       if (formData.saveId) localStorage.setItem("savedUserId", formData.userId);
       else localStorage.removeItem("savedUserId");
+
+      //Redux 상태에도 로그인한 사용자 ID 저장
+      dispatch(setUserId(formData.userId));
 
       alert("로그인 성공!");
       navigate("/"); // 로그인 후 홈으로 리다이렉트

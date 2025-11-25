@@ -23,6 +23,9 @@ public class MemberDto {
     private Integer pointBalance;
     private Integer changePoint;
 
+    // JWT Token을 위한 추가 필드
+    private String jwtToken;
+
     public MemberDto() {}
     public MemberDto(Member entity) {
         this.memberId = entity.getMemberId();
