@@ -17,9 +17,6 @@ public class InquiryController {
 
     @PostMapping("/qna")
     public Inquiry getQna(@RequestBody InquiryDto inquiryDto) {
-
-        System.out.println("데이터가 잘 나오나요?" + inquiryDto);
-        System.out.println(inquiryDto.getMemberId());
         return inquiryService.registerQna(inquiryDto);
     }
 

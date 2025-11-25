@@ -40,7 +40,6 @@ import { useCallback, useEffect, useState } from "react";
 export function SwiperBook({ swiperOptions, bookList }) {
   const { setSwiper, handlePrev, handleNext, isBeginning, isEnd } =
     useSwiperControl();
-  console.log(isBeginning, isEnd);
   return (
     <div className={styles.swiperBook}>
       <button

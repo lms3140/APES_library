@@ -1,0 +1,54 @@
+.customPopup {
+  width: 360px;
+  max-height: 750px;
+  border-radius: 16px;
+  padding: 0 37px 30px;
+}
+
+.customTitle {
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 22px;
+  color: #000;
+}
+
+.customText {
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  margin-top: 6px;
+  color: #595959;
+}
+
+.customConfirmButton {
+  background-color: #5055b1;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  border-radius: 8px;
+  justify-content: center;
+  width: 140px;
+  height: 44px;
+}
+
+.customConfirmButton:hover {
+  background-color: #2d2f78;
+}
+
+.customCancleButton {
+  background-color: #767676;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  border-radius: 8px;
+  justify-content: center;
+  width: 140px;
+  height: 44px;
+}
+
+.customCancleButton:hover {
+  background-color: #595959;
+}
