@@ -4,6 +4,8 @@ import { StepItemNum } from '../../components/Cart/stepItemNum.jsx';
 import ShippingInfoPopup from './ShippingInfoPopup.jsx';
 import styles from './Cart.module.css';
 
+import { useSelector } from 'react-redux'
+
 const Cart = () => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
