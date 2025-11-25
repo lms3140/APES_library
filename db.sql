@@ -1,4 +1,4 @@
--- drop database book_store;
+drop database book_store;
 create database book_store;
 use book_store;
 
@@ -126,6 +126,20 @@ CREATE TABLE address (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- ============================================================
+-- 🛒 장바구니
+-- ============================================================
+CREATE TABLE cart_item (
+  cart_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT NOT NULL,
+  book_id BIGINT NOT NULL,
+  quantity INT DEFAULT 1,
+  UNIQUE KEY unique_cart_item(user_id, book_id),
+  FOREIGN KEY (user_id) REFERENCES member(member_id) ON DELETE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES book(book_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -300,46 +314,5 @@ select * from book;
 desc book;
 
 select * from category;
-select * from author;
-select * from publisher;
-desc publisher;
-desc book;
-desc author;
-select * from translator;
 
-select * from inquiry;
 select * from member;
-
-INSERT INTO member (
-  user_id, password, name, phone, email, birth, gender, role, point_balance
-) VALUES (
-  'admin',
-  'admin1234!', 
-  '관리자',
-  '010-0000-0000',
-  'admin@bookshop.com',
-  '1990-01-01',
-  'M',
-  'ADMIN',
-  999999999
-);
-
-drop view admin_booksales_detail_view;
-CREATE VIEW admin_booksales_detail_view AS
-SELECT 
-    m.user_id,
-    p.created_at,
-    o.quantity,
-    o.unit_price,
-    o.book_id
-FROM purchase_order p
-LEFT JOIN member m ON m.member_id = p.member_id
-LEFT JOIN order_detail o ON o.order_id = p.order_id;
-
-select * from admin_booksales_detail_view;
-select * from member;
-
-select * from inquiry;
-delete from inquiry;
-
-set SQL_SAFE_UPDATES = 0;
