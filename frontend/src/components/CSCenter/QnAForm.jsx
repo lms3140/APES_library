@@ -50,7 +50,7 @@ export function QnAForm() {
           confirmButton: "customConfirmButton",
         },
       });
-      // navigate("/mypage");
+      navigate("/mypage");
     } catch (e) {
       console.log(e);
       Swal.fire({
@@ -161,7 +161,7 @@ export function QnAForm() {
 
                 <input
                   type="text"
-                  placeholder="유저 전화번호"
+                  placeholder="숫자만 입력해 주세요."
                   className={`${styles.input} ${styles.phoneInput}`}
                 />
 
@@ -180,7 +180,7 @@ export function QnAForm() {
                 type="email"
                 id="email"
                 className={styles.emailInput}
-                placeholder="유저 이메일"
+                placeholder="이메일을 입력해주세요."
               />
             </div>
           </div>

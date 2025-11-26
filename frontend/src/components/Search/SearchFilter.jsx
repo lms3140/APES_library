@@ -3,6 +3,7 @@ import styles from "../../pages/Search/Search.module.css";
 import { TfiReload } from "react-icons/tfi";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
+import { Checkbox } from "../../pages/CheckBox/CheckBox";
 
 export function SearchFilter({ filters, onFilterChange }) {
   const formRef = useRef(null);
@@ -12,26 +13,18 @@ export function SearchFilter({ filters, onFilterChange }) {
 
   //필터 기능 있는 부분 함수
   const renderFilterCheckbox = (label, key) => (
-    <label className={styles.filterCheckbox}>
-      <input
-        type="checkbox"
-        checked={filters[key]}
-        onChange={() => onFilterChange({ ...filters, [key]: !filters[key] })}
-        className={styles.checkboxInput}
-      />
-      <span className={styles.checkboxCustom}></span>
-      {label}
-    </label>
+    <Checkbox
+      checked={filters[key]}
+      onChange={() => onFilterChange({ ...filters, [key]: !filters[key] })}
+      labelStyle={styles.filterCheckbox}
+      label={label}
+    />
   );
 
   //필터 기능 없는 부분 함수
   const renderCheckboxList = (items) => {
     return items.map((label, idx) => (
-      <label key={idx} className={styles.filterCheckbox}>
-        <input type="checkbox" className={styles.checkboxInput} />
-        <span className={styles.checkboxCustom}></span>
-        {label}
-      </label>
+      <Checkbox labelStyle={styles.filterCheckbox} label={label} />
     ));
   };
 

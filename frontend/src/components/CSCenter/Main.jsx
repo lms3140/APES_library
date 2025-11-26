@@ -1,11 +1,12 @@
 import styles from "./Main.module.css";
 import noticeStyles from "./Notice.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { axiosData } from "../../utils/dataFetch.js";
 import { chatIcon, docIcon, plusIcon } from "../common/Svgs.jsx";
 
 export function Main() {
+  const navigate = useNavigate();
   const [miniNotices, setMiniNotices] = useState([]);
 
   useEffect(() => {
@@ -27,16 +28,17 @@ export function Main() {
           <h2>1:1 문의</h2>
           <ul className={styles.qnaList}>
             <li>
-              <Link to="/cscenter/qna-form">
+              <button onClick={() => navigate("/cscenter/qna-form")}>
                 {chatIcon}
                 <p>문의 접수</p>
-              </Link>
-
-              <Link to="/mypage">
+              </button>
+              <div className={styles.verticalDivider}></div>
+              <button onClick={() => navigate("/mypage")}>
                 {docIcon}
                 <p>문의 내역</p>
-              </Link>
+              </button>
             </li>
+
             <li>
               <h4>전화 상담</h4>
               <div>
@@ -48,6 +50,7 @@ export function Main() {
                 <p>점심 12:00~13:00 (교보문고 전화상담만 가능)</p>
               </div>
             </li>
+
             <li>
               <h4>보이는 ARS</h4>
               <p>평일 09:00~18:00 (주말 및 공휴일 휴무)</p>
