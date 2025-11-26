@@ -1,99 +1,67 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { StepItemNum } from '../../components/Cart/stepItemNum.jsx';
-import ShippingInfoPopup from './ShippingInfoPopup.jsx';
-import styles from './Cart.module.css';
-
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import styles from "./Cart.module.css";
+import { getCartItems, updateCartItemQuantity, removeCartItem } from "../../utils/cartStorage";
 
 const Cart = () => {
-  const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(1);
-  const [showPopup, setShowPopup] = useState(false);
-  const productPrice = 5500;
-  const shippingFee = 2500;
-  const discount = 4800;
-  const totalPrice = productPrice * quantity + shippingFee - discount;
-  const rewardPoint = Math.floor(totalPrice * 0.01);
-  const freeShippingThreshold = 9500;
+  const [cartItems, setCartItems] = useState([]);
 
-  const incrementQuantity = () => setQuantity(quantity + 1);
-  const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+  useEffect(() => {
+    setCartItems(getCartItems());
+  }, []);
+
+  const increment = (bookId) => {
+    const updated = cartItems.map(item => {
+      if (item.bookId === bookId) {
+        updateCartItemQuantity(bookId, item.quantity + 1);
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    setCartItems(updated);
+  };
+
+  const decrement = (bookId) => {
+    const updated = cartItems.map(item => {
+      if (item.bookId === bookId && item.quantity > 1) {
+        updateCartItemQuantity(bookId, item.quantity - 1);
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    });
+    setCartItems(updated);
+  };
+
+  const removeItem = (bookId) => {
+    removeCartItem(bookId);
+    setCartItems(getCartItems());
+  };
+
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalDiscount = Math.floor(totalPrice * 0.1); // 10% 할인
+  const finalPrice = totalPrice - totalDiscount;
 
   return (
     <div className={styles.cartLayout}>
-      {/* 좌측 상품 정보 */}
-      <div className={styles.leftArea}>
-        <h1>장바구니</h1>
-        {/* 장바구니 단계 표시 */}
-        <div className={styles.cartTopWrap}>
-          <div className={styles.rightArea}>
-            <div className={styles.rightAreaWrap}>
-              <ol className={styles.stepRoundTextList}>
-                <StepItemNum />
-              </ol>
+      {cartItems.map(item => (
+        <div key={item.bookId} className={styles.cartItem}>
+          <img src={item.imageUrl} alt={item.title} className={styles.bookImage} />
+          <div>
+            <h2>{item.title}</h2>
+            <p>가격: {item.price}원</p>
+            <p>할인 10%</p>
+            <div className={styles.quantityContainer}>
+              <button onClick={() => decrement(item.bookId)}>-</button>
+              <span>{item.quantity}</span>
+              <button onClick={() => increment(item.bookId)}>+</button>
+              <button onClick={() => removeItem(item.bookId)}>삭제</button>
             </div>
           </div>
         </div>
+      ))}
 
-        <div className={styles.cartItem}>
-          <div className={styles.productInfo}>
-            <h2>[서양도서] Diary of a Wimpy Kid #1</h2>
-            <p className={styles.price}>{productPrice}원</p>
-            <p className={styles.discount}>47% 할인</p>
-          </div>
-
-          <div className={styles.quantityContainer}>
-            <button className={styles.quantityButton} onClick={decrementQuantity}>-</button>
-            <span className={styles.quantity}>{quantity}</span>
-            <button className={styles.quantityButton} onClick={incrementQuantity}>+</button>
-          </div>
-        </div>
-
-        <div className={styles.deliveryInfo}>
-          <p>당일배송: 오늘(11/20, 목) 도착</p>
-        </div>
+      <div className={styles.summary}>
+        <p>총 합계: {finalPrice}원</p>
       </div>
-
-      {/* 우측 사이드바 */}
-      <div className={styles.sidebar}>
-        <h3>결제 정보</h3>
-        <div className={styles.sideRow}>상품 금액 <span>{productPrice * quantity}원</span></div>
-        <div className={styles.sideRow}>
-          배송비
-          <button
-            className={styles.helpButton}
-            onClick={() => setShowPopup(true)}
-          >
-            ?
-          </button>
-          <span>{shippingFee}원</span>
-        </div>
-        <div className={styles.sideRow}>상품 할인 <span>-{discount}원</span></div>
-
-        <hr />
-
-        <div className={styles.totalRow}>
-          결제 예정 금액
-          <span>{totalPrice}원</span>
-        </div>
-
-        <div className={styles.pointRow}>
-          적립 예정 포인트: <span>{rewardPoint}P</span>
-        </div>
-
-        <button
-          className={styles.orderButton}
-          onClick={() => navigate("/payment")}
-        >
-          주문하기
-        </button>
-      </div>
-
-      {/* 배송비 안내 팝업 */}
-      {showPopup && (
-        <ShippingInfoPopup onClose={() => setShowPopup(false)} />
-      )}
     </div>
   );
 };
