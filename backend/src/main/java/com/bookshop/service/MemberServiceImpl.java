@@ -87,4 +87,11 @@ public class MemberServiceImpl implements MemberService {
                 .map(Member::getMemberId)
                 .orElse(0L);
     }
+
+    @Override
+    public MemberDto getMemberInfo(String userId) {
+        return memberRepository.findByUserId(userId)
+                .map(MemberDto::new)
+                .orElse(null);
+    }
 }

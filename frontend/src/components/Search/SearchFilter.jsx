@@ -3,7 +3,7 @@ import styles from "../../pages/Search/Search.module.css";
 import { TfiReload } from "react-icons/tfi";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
-import { Checkbox } from "../../pages/CheckBox/CheckBox";
+import { Checkbox } from "../Checkbox/Checkbox";
 
 export function SearchFilter({ filters, onFilterChange }) {
   const formRef = useRef(null);

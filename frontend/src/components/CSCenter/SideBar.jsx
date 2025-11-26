@@ -4,15 +4,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 export function SideBar() {
   const navigate = useNavigate();
 
-  const handleLoginCheck = (path) => {
-    const token = localStorage.getItem("jwtToken");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-    navigate(path);
-  };
-
   return (
     <nav className={styles.sidebar}>
       <h1>고객센터</h1>

@@ -24,7 +24,7 @@ export const route1 = [
         path: "/cscenter/qna-form",
         element: (
           <AuthRouter>
-            <QnAForm />,
+            <QnAForm />
           </AuthRouter>
         ),
       },

@@ -1,0 +1,50 @@
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #111;
+}
+
+/* 기본 라디오 input 숨김 */
+.radioInput {
+  display: none;
+}
+
+/* 겉 원 */
+.radioCustom {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* 안쪽 점 — 항상 표시 */
+.radioCustom::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #ccc; /* 항상 회색 점 */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1); /* 항상 보임 */
+  transition: all 0.2s ease;
+}
+
+/* 체크된 상태 - 겉 원만 파란색 */
+.radioInput:checked + .radioCustom {
+  background-color: #5055b1;
+  border-color: #5055b1;
+}
+
+/* 체크 상태에서도 점 색은 그대로 회색 */
+.radioInput:checked + .radioCustom::after {
+  background-color: #bbb;
+}

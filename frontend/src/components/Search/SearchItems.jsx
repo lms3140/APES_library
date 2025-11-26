@@ -1,6 +1,6 @@
-import { Checkbox } from "../../pages/CheckBox/CheckBox";
 import styles from "../../pages/Search/Search.module.css";
 import { useNavigate } from "react-router-dom";
+import { Checkbox } from "../Checkbox/Checkbox";
 
 export function SearchItems({
   item,
