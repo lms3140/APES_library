@@ -1,4 +1,4 @@
--- drop database book_store;
+drop database book_store;
 create database book_store;
 use book_store;
 
@@ -136,13 +136,20 @@ CREATE TABLE purchase_order (
   order_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   member_id BIGINT NOT NULL,
   address_id BIGINT NULL,
-  order_status VARCHAR(20) NULL,
+
+  total_amount INT NOT NULL,
+  order_status VARCHAR(20) DEFAULT 'READY',
+  tid VARCHAR(50) NULL,
+  paid_at TIMESTAMP NULL,
+
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
   FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (address_id) REFERENCES address (address_id)
     ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE order_detail (
   order_detail_id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -324,7 +331,7 @@ INSERT INTO member (
   999999999
 );
 
-drop view admin_booksales_detail_view;
+-- drop view admin_booksales_detail_view;
 CREATE VIEW admin_booksales_detail_view AS
 SELECT 
     m.user_id,
@@ -338,8 +345,3 @@ LEFT JOIN order_detail o ON o.order_id = p.order_id;
 
 select * from admin_booksales_detail_view;
 select * from member;
-
-select * from inquiry;
-delete from inquiry;
-
-set SQL_SAFE_UPDATES = 0;
