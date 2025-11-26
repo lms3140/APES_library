@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // ← import 추가
 import styles from "./Cart.module.css";
 import { StepItemNum } from "../../components/Cart/StepItemNum.jsx";
 import {
@@ -12,7 +12,7 @@ import spinnerUp from "../../../public/images/detail/ico_spinner_up.png";
 import spinnerDown from "../../../public/images/detail/ico_spinner_down.png";
 
 import Swal from "sweetalert2";
-import "../../css/swal_cart.css"; // UnderBar 스타일 사용
+import "../../css/swal_cart.css";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -40,29 +40,33 @@ const Cart = () => {
     if (!item) return;
 
     if (item.quantity === 1) {
-      // 수량 1이면 삭제 확인 UnderBar 스타일 팝업
+      // 1️⃣ 수량이 1일 때 삭제 확인 팝업
       Swal.fire({
         html: `
-          <p class="cartPopupTitle">선택 상품을 삭제하시겠어요?</p>
+          <p class="cartPopupTitle"><strong>상품을 삭제하시겠어요?</strong></p>
           <div class="cartPopupBtnWrap">
-            <button id="cancelBtn" class="cartCancelButton">취소</button>
-            <button id="deleteBtn" class="cartConfirmButton">삭제</button>
+            <button id="cancelBtn" class="customCancleButton">취소</button>
+            <button id="deleteBtn" class="customConfirmButton">삭제</button>
           </div>
         `,
         showConfirmButton: false,
         showCancelButton: false,
-        customClass: { popup: "cartPopup" },
         allowOutsideClick: false,
+        customClass: { popup: "customPopup" },
         didRender: () => {
+          document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
           document.getElementById("deleteBtn").addEventListener("click", () => {
             removeItem(bookId);
             Swal.fire({
-              html: `<p class="cartPopupTitle">선택 상품이 삭제되었습니다.</p>`,
+              title: "선택 상품이 삭제되었습니다.",
               confirmButtonText: "확인",
-              customClass: { popup: "cartPopup", confirmButton: "cartConfirmButton" },
+              customClass: {
+                popup: "customPopup",
+                title: "customTitle",
+                confirmButton: "customConfirmButton",
+              },
             });
           });
-          document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
         },
       });
       return;
@@ -89,32 +93,8 @@ const Cart = () => {
   const finalPrice = totalPrice - totalDiscount;
   const totalPoints = Math.floor(totalPrice * 0.1);
 
-  const goToDetail = (bookId) => navigate(`/detail/${bookId}`);
-
-  const handleOrder = () => {
-    if (cartItems.length === 0) return;
-
-    Swal.fire({
-      html: `<p class="cartPopupTitle">${totalCount}개 상품을 주문하시겠어요?</p>
-             <div class="cartPopupBtnWrap">
-               <button id="cancelBtn" class="cartCancelButton">취소</button>
-               <button id="confirmBtn" class="cartConfirmButton">주문</button>
-             </div>`,
-      showConfirmButton: false,
-      showCancelButton: false,
-      customClass: { popup: "cartPopup" },
-      allowOutsideClick: false,
-      didRender: () => {
-        document.getElementById("confirmBtn").addEventListener("click", () => {
-          const orderData = cartItems.map((item) => ({
-            bookId: item.bookId,
-            quantity: item.quantity,
-          }));
-          navigate("/payment", { state: { orderItems: orderData } });
-        });
-        document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
-      },
-    });
+  const goToDetail = (bookId) => {
+    navigate(`/detail/${bookId}`);
   };
 
   return (
@@ -134,6 +114,7 @@ const Cart = () => {
             ) : (
               cartItems.map((item) => {
                 const discountedPrice = Math.floor(item.price * 0.9);
+
                 return (
                   <div key={item.bookId} className={styles.cartItem}>
                     <img
@@ -180,27 +161,33 @@ const Cart = () => {
                         <button
                           className={styles.deleteBtn}
                           onClick={() => {
+                            // 2️⃣ 삭제 버튼 클릭 시 팝업
                             Swal.fire({
                               html: `
-                                <p class="cartPopupTitle">선택 상품을 삭제하시겠어요?</p>
+                                <p class="cartPopupTitle"><strong>상품을 삭제하시겠어요?</strong></p>
                                 <div class="cartPopupBtnWrap">
-                                  <button id="cancelBtn" class="cartCancelButton">취소</button>
-                                  <button id="deleteBtn" class="cartConfirmButton">삭제</button>
-                                </div>`,
+                                  <button id="cancelBtn" class="customCancleButton">취소</button>
+                                  <button id="deleteBtn" class="customConfirmButton">삭제</button>
+                                </div>
+                              `,
                               showConfirmButton: false,
                               showCancelButton: false,
-                              customClass: { popup: "cartPopup" },
                               allowOutsideClick: false,
+                              customClass: { popup: "customPopup" },
                               didRender: () => {
+                                document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
                                 document.getElementById("deleteBtn").addEventListener("click", () => {
                                   removeItem(item.bookId);
                                   Swal.fire({
-                                    html: `<p class="cartPopupTitle">선택 상품이 삭제되었습니다.</p>`,
+                                    title: "선택 상품이 삭제되었습니다.",
                                     confirmButtonText: "확인",
-                                    customClass: { popup: "cartPopup", confirmButton: "cartConfirmButton" },
+                                    customClass: {
+                                      popup: "customPopup",
+                                      title: "customTitle",
+                                      confirmButton: "customConfirmButton",
+                                    },
                                   });
                                 });
-                                document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
                               },
                             });
                           }}
@@ -236,7 +223,42 @@ const Cart = () => {
               <span>₩ {finalPrice.toLocaleString()}</span>
             </p>
           </div>
-          <button className={styles.orderBtn} onClick={handleOrder}>
+
+          {/* 3️⃣ 주문하기 버튼 클릭 시 Payment 페이지로 책 ID와 수량 전달 */}
+          <button
+            className={styles.orderBtn}
+            onClick={async () => {
+              if (cartItems.length === 0) return;
+
+              const result = await Swal.fire({
+                html: `
+                  <p class="cartPopupTitle"><strong>${cartItems.length}개의 상품을 주문하시겠어요?</strong></p>
+                  <div class="cartPopupBtnWrap">
+                    <button id="cancelBtn" class="customCancleButton">취소</button>
+                    <button id="confirmBtn" class="customConfirmButton">확인</button>
+                  </div>
+                `,
+                showConfirmButton: false,
+                showCancelButton: false,
+                allowOutsideClick: false,
+                customClass: { popup: "customPopup" },
+                didRender: () => {
+                  document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
+                  document.getElementById("confirmBtn").addEventListener("click", () => Swal.close());
+                },
+              });
+
+              // 4️⃣ 확인 클릭 후 Payment 페이지로 이동하며 Cart 데이터 전달
+              navigate("/payment", {
+                state: {
+                  orderItems: cartItems.map(item => ({
+                    bookId: item.bookId,
+                    quantity: item.quantity
+                  })),
+                },
+              });
+            }}
+          >
             주문하기
           </button>
         </div>
