@@ -5,7 +5,7 @@ import { FaRegUser } from "react-icons/fa6";
 import { FaLock } from "react-icons/fa";
 import { loginMember } from "../../api/MemberAPI.jsx";
 import { Link } from "react-router-dom";
-import { setUserId } from "../../store/memberSlice.js"
+import { setIsLogin } from "../../store/memberSlice.js"
 import cstyles from "./Logo.module.css";
 import styles from "./Login.module.css";
 
@@ -28,7 +28,7 @@ export const Login = () => {
     if (token) {
       // JWT가 있으면 자동 로그인 처리 (서버 검증은 생략 가능)
       const userId = localStorage.getItem("savedUserId") || "Unknown";
-      dispatch(setUserId(userId));
+      dispatch(setIsLogin(true));
     }
   }, [dispatch]);
 
@@ -58,7 +58,7 @@ export const Login = () => {
       else localStorage.removeItem("savedUserId");
 
       //Redux 상태에도 로그인한 사용자 ID 저장
-      dispatch(setUserId(formData.userId));
+      dispatch(setIsLogin(true));
 
       alert("로그인 성공!");
       navigate("/"); // 로그인 후 홈으로 리다이렉트

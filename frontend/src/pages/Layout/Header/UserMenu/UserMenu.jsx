@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
 import style from "./UserMenu.module.css";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserId } from "../../../../store/memberSlice";
+import { setIsLogin } from "../../../../store/memberSlice";
 
 export function UserMenu() {
-  const [isLogin, setIsLogin] = useState(false);
-  // const member = useSelector((state) => state.member);
-  // const dispatch = useDispatch();
+  const islogin = useSelector((state) => state.member.isLogin);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(setUserId("App"));
-  // }, []);
-  // console.log(member);
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    dispatch(setIsLogin(false));
+  };
+
   return (
     <div className={style.userMenuContainer}>
       <div className={style.userMenuWrapper}>
         <ul className={style.userMenuList}>
           {/* 로그인 안했을 때 노출 */}
-          {isLogin ? (
+          {islogin ? (
             <>
               <li>
-                <Link to="#">로그아웃</Link>
+                <Link to={"/"} onClick={handleLogout}>
+                  로그아웃
+                </Link>
               </li>
             </>
           ) : (
