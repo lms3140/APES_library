@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { checkLoginStatus } from "../api/MemberAPI.jsx";
+import { useSelector } from "react-redux";
 
 export function AuthRouter({ children }) {
-  const [isLogin, setIsLogin] = useState(null); // null = 상태 확인 중
+  const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const verifyLogin = async () => {
       try {
-        const res = await checkLoginStatus(); // checkLoginStatus를 호출하여 로그인 상태 확인
+        const token = localStorage.getItem("jwtToken");
+        const res = await checkLoginStatus(token); // checkLoginStatus를 호출하여 로그인 상태 확인
         setIsLogin(res.login);
       } catch (err) {
         setIsLogin(false);
@@ -19,10 +20,8 @@ export function AuthRouter({ children }) {
     };
     verifyLogin();
   }, []);
-
   if (loading) return <div>로딩 중...</div>; // 상태 확인 중
 
-  if (!isLogin) return <Navigate to="/login" replace />; // 로그인 안 됐으면 리다이렉트
-
-  return <>{children}</>;
+  if (!loading && !isLogin) return <Navigate to="/login" replace />; // 로그인 안 됐으면 리다이렉트
+  if (isLogin) return <>{children}</>;
 }
