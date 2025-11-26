@@ -27,7 +27,7 @@ export function Payment() {
   const [activeTab, setActiveTab] = useState(0);
 
   const scrollToTab = () => {
-    cartRecommend.current?.scrollIntoView({ 
+    cartRecommend.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
@@ -37,7 +37,7 @@ export function Payment() {
     setActiveTab(tabIndex);
   };
 
-  
+
 
   return (
     <section className={style.contents}>
@@ -143,7 +143,7 @@ export function Payment() {
                   <div className={style.foldBoxHeader}>
                     <button type='button' className={style.btnFold}>컨텐츠 닫기</button>
                   </div>
-                  <div className={style.foldBoxContents}> 
+                  <div className={style.foldBoxContents}>
                     {/* 원본 교보문고 페이지 중 fold_box list부터 삭제 */}
                     <div className={style.tblProdWrap}>
                       <table className={style.tblProd}>
@@ -214,7 +214,7 @@ export function Payment() {
                   <div className={style.pointHeaderBox}>
                     <div className={style.headerText}>나의 통장</div>
                     <div className={style.numberValueBox}>
-                      
+
                       <span className={style.lable}>보유</span>
                       <Point amount={totalPoint}/>
                     </div>
@@ -365,8 +365,8 @@ export function Payment() {
               </div>
             </div>
             <div className={style.paymentBodyWrap}>
-              
-              
+
+
 
               <div className={style.paymentEtcWrap}>
                 <div className={style.paymentItemRowGroup}>
@@ -395,12 +395,12 @@ export function Payment() {
                       </div>
                     </div>
                   </div>
-                  
+
 
                 </div>
               </div>
 
-              
+
 
             </div>
           </div>
