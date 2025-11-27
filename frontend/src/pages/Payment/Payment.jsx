@@ -22,6 +22,7 @@ import paymentStyle from "./Payment.module.css";
 
 export function Payment() {
   const [paymentInfo, setPaymentInfo] = useState();
+
   return (
     <>
       <div className={paymentStyle.container}>
@@ -50,6 +51,8 @@ export function Payment() {
           })}
         </div>
       </div>
+      <div>{/* 포인트 사용 */}</div>
+      <div>{/* 결제 */}</div>
     </>
   );
 }
