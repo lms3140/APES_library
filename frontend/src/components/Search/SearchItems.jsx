@@ -1,5 +1,6 @@
 import styles from "../../pages/Search/Search.module.css";
 import { useNavigate } from "react-router-dom";
+import { Checkbox } from "../Checkbox/Checkbox";
 
 export function SearchItems({
   item,
@@ -27,15 +28,10 @@ export function SearchItems({
 
   return (
     <div className={viewType === "list" ? styles.itemBox : styles.gridItem}>
-      <label className={styles.checkboxWrap}>
-        <input
-          type="checkbox"
-          checked={selectedItems.includes(item.bookId)}
-          onChange={toggleCheck}
-          className={styles.checkboxInput}
-        />
-        <span className={styles.checkboxCustom}></span>
-      </label>
+      <Checkbox
+        checked={selectedItems.includes(item.bookId)}
+        onChange={toggleCheck}
+      />
       <img
         src={item.imageUrl}
         alt={item.title}

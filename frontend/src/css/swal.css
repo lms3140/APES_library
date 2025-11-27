@@ -1,3 +1,10 @@
+/**
+* 1. 모달창 필요한 곳에 Swal import
+* 2. 현재 css 파일 import
+* 3. Swal.fire()사용
+* 사용법 참고 : QnAForm.jsx, SearchSort.jsx
+*/
+
 .customPopup {
   width: 360px;
   max-height: 750px;

@@ -100,4 +100,26 @@ public class MemberController {
             return ResponseEntity.status(401).body("Invalid or expired JWT");
         }
     }
+
+    // ===== 로그인된 회원 정보 조회 (JWT 기반) =====
+    @GetMapping("/me")
+    public ResponseEntity<?> getMyInfo(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.substring(7);
+        String userId = jwtService.getUserId(token);
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).body("No token provided");
+        }
+
+        if (!jwtService.validateToken(token)) {
+            return ResponseEntity.status(401).body("Invalid token");
+        }
+
+        MemberDto memberDto = memberService.getMemberInfo(userId);
+        if (memberDto == null) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+
+        return ResponseEntity.ok(memberDto);
+    }
 }

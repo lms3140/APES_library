@@ -4,6 +4,9 @@ import { axiosPost } from "../../utils/dataFetch.js";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../../css/swal.css";
+import { Checkbox } from "../Checkbox/Checkbox.jsx";
+import { Radio } from "../RadioButton/Radio.jsx";
+import { Dropdown } from "../Dropdown/Dropdown.jsx";
 
 export function QnAForm() {
   const navigate = useNavigate();
@@ -12,6 +15,31 @@ export function QnAForm() {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [isSubmitActive, setIsSubmitActive] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [type, setType] = useState("phone");
+  const options = ["문의유형을 선택해주세요.", "배송/수령예정일안내"];
+  const [selectedOption, setSelectedOption] =
+    useState("문의유형을 선택해주세요.");
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const token = localStorage.getItem("jwtToken");
+      if (!token) return;
+
+      const res = await fetch("http://localhost:8080/member/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("회원 정보를 불러올 수 없습니다.");
+
+      const data = await res.json();
+      setPhone(data.phone);
+      setEmail(data.email);
+    };
+    fetchUserInfo();
+  }, []);
 
   // 문의유형 선택
   const handleInquiryChange = (e) => {
@@ -50,7 +78,7 @@ export function QnAForm() {
           confirmButton: "customConfirmButton",
         },
       });
-      // navigate("/mypage");
+      navigate("/mypage");
     } catch (e) {
       console.log(e);
       Swal.fire({
@@ -141,7 +169,9 @@ export function QnAForm() {
 
         <div className={styles.contactSection}>
           <div className={styles.border}>
-            <p>문의에 대한 답변 등록 시 알려드립니다.</p>
+            <p className={styles.contactTitle}>
+              문의에 대한 답변 등록 시 알려드립니다.
+            </p>
             <div className={styles.fieldRow}>
               <label className={styles.label}>
                 연락처 <span className={styles.green}>*</span>
@@ -149,26 +179,45 @@ export function QnAForm() {
 
               <div className={styles.contactBox}>
                 <div className={styles.contactType}>
-                  <label>
-                    <input type="radio" name="contactType" defaultChecked />
-                    휴대폰 번호
-                  </label>
-                  <label>
-                    <input type="radio" name="contactType" />
-                    전화번호
-                  </label>
+                  <Radio
+                    name={"phone"}
+                    label={"휴대폰 번호"}
+                    checked={type === "phone"}
+                    onChange={() => setType("phone")}
+                  />
+                  <Radio
+                    name={"tel"}
+                    label={"전화번호"}
+                    checked={type === "tel"}
+                    onChange={() => setType("tel")}
+                  />
                 </div>
 
                 <input
                   type="text"
-                  placeholder="유저 전화번호"
+                  placeholder="숫자만 입력해 주세요."
                   className={`${styles.input} ${styles.phoneInput}`}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
+                {!phone && (
+                  <p className={styles.warning}>
+                    <img
+                      src="../../../public/images/CSCenter/warningIcon.png"
+                      alt=""
+                    />
+                    연락처를 입력해주세요.
+                  </p>
+                )}
 
-                <label className={styles.checkboxLabel}>
-                  <input type="checkbox" defaultChecked />
-                  답변알림 요청 (답변이 등록되면 알림톡으로 알려드립니다.)
-                </label>
+                {type === "phone" && (
+                  <Checkbox
+                    labelStyle={styles.checkboxLabel}
+                    label={
+                      "답변알림 요청 (답변이 등록되면 알림톡으로 알려드립니다.)"
+                    }
+                  />
+                )}
               </div>
             </div>
 
@@ -180,7 +229,9 @@ export function QnAForm() {
                 type="email"
                 id="email"
                 className={styles.emailInput}
-                placeholder="유저 이메일"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="이메일을 입력해주세요."
               />
             </div>
           </div>

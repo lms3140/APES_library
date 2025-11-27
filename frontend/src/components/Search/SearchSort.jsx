@@ -1,8 +1,8 @@
 import styles from "../../pages/Search/Search.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Dropdown } from "../../pages/Dropdown/Dropdown.jsx";
 import Swal from "sweetalert2";
+import { Dropdown } from "../Dropdown/Dropdown.jsx";
 import "../../css/swal.css";
 
 import heartIcon from "/images/etc/ico_heart.png";
