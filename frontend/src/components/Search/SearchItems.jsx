@@ -1,14 +1,69 @@
 import styles from "../../pages/Search/Search.module.css";
 import { useNavigate } from "react-router-dom";
 import { Checkbox } from "../Checkbox/Checkbox";
+import Swal from "sweetalert2";
+
+import heartIcon from "/images/etc/ico_heart.png";
+import redHeartIcon from "/images/etc/ico_heart_red.png";
 
 export function SearchItems({
   item,
   viewType,
   selectedItems,
   setSelectedItems,
+  onAddToCart,
+  likedItems,
+  setLikedItems,
+  isLoggedIn,
 }) {
   const navigate = useNavigate();
+  const isLiked = likedItems.includes(item.bookId);
+
+  const toggleLike = () => {
+    if (!isLoggedIn) {
+      const result = Swal.fire({
+        title: "찜하기는 로그인 후 이용할 수 있어요.",
+        confirmButtonText: "로그인 하기",
+        cancelButtonText: "취소",
+        showCancelButton: true,
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          confirmButton: "customConfirmButton",
+          cancelButton: "customCancelButton",
+        },
+      });
+
+      if (result.isConfirmed) navigate("/login");
+      return;
+    }
+
+    if (isLiked) {
+      setLikedItems((prev) => prev.filter((id) => id !== item.bookId));
+      Swal.fire({
+        title: "찜 해제했어요.",
+        timer: 2000,
+        showConfirmButton: false,
+        customClass: {
+          popup: "likePopup",
+          title: "likeTitle",
+        },
+      });
+    } else {
+      setLikedItems((prev) => [...prev, item.bookId]);
+      const result = Swal.fire({
+        title: "찜 설정했어요.",
+        timer: 2000,
+        confirmButtonText: "바로가기",
+        customClass: {
+          popup: "likePopup",
+          title: "likeTitle",
+          confirmButton: "likeConfirmButton",
+        },
+      });
+      if (result.isConfirmed) navigate("/mypage");
+    }
+  };
 
   const toggleCheck = () => {
     if (selectedItems.includes(item.bookId)) {
@@ -51,7 +106,7 @@ export function SearchItems({
                 navigate(`?keyword=${encodeURIComponent(item.authors)}`)
               }
             >
-              {item.authors}
+              {item.authors}{" "}
             </span>
             {viewType === "list" ? " 저자(글)" : ""}
           </p>
@@ -77,14 +132,29 @@ export function SearchItems({
               ? `${item.point ? item.point.toLocaleString() : 0}p`
               : `(${item.point ? item.point.toLocaleString() : 0}p)`}
           </p>
+          {viewType === "grid" && (
+            <button
+              className={`${styles.gridHeart} ${isLiked ? styles.liked : ""}`}
+              onClick={toggleLike}
+            >
+              <img src={isLiked ? redHeartIcon : heartIcon} />
+            </button>
+          )}
         </div>
       </div>
       <div className={styles.itemInfoButton}>
         {viewType === "list" ? (
           <div className={styles.buttonGroup}>
             <button
+              className={`${styles.heartBtn} ${isLiked ? styles.liked : ""}`}
+              onClick={toggleLike}
+            >
+              <img src={isLiked ? redHeartIcon : heartIcon} />
+            </button>
+
+            <button
               type="button"
-              onClick={() => navigate("/cart")}
+              onClick={() => onAddToCart(item)}
               className={styles.cartBtn}
             >
               장바구니

@@ -6,7 +6,7 @@
 */
 
 .customPopup {
-  width: 360px;
+  width: 380px;
   max-height: 750px;
   border-radius: 16px;
   padding: 0 37px 30px;
@@ -44,7 +44,7 @@
   background-color: #2d2f78;
 }
 
-.customCancleButton {
+.customCancelButton {
   background-color: #767676;
   color: #fff;
   font-size: 14px;
@@ -56,6 +56,57 @@
   height: 44px;
 }
 
-.customCancleButton:hover {
+.customCancelButton:hover {
   background-color: #595959;
+}
+
+.likePopup {
+  width: 240px;
+  height: 48px;
+  padding: 12px, 26px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #292929e6;
+  border: 1px solid #292929;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16);
+  color: #fff;
+  gap: 8px;
+  padding: 0 16px !important;
+}
+
+.likeTitle {
+  display: inline-block !important;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  line-height: 22px;
+  justify-content: center;
+  margin-left: 15px;
+  padding: 0;
+}
+
+.likePopup .swal2-actions {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+}
+
+.likeConfirmButton {
+  background: none !important;
+  color: #cfcfcf;
+  font-size: 13px;
+  font-weight: 300;
+  padding: 0;
+  /* height: auto !important; */
+  /* width: auto !important; */
+  /* box-shadow: none !important; */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.likeConfirmButton:hover {
+  background-color: rgba(0, 0, 0, 0);
 }
