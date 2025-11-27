@@ -69,7 +69,7 @@ export const ProductInfo = ({ bookId }) => {
 
           <tr>
             <th>포인트</th>
-            <td>{point.toLocaleString()}P</td>
+            <td>{Math.floor(price * 0.1).toLocaleString()}P</td>
           </tr>
         </tbody>
       </table>

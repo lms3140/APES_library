@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./Review.module.css";
+import cloveron from "../../../public/images/detail/cloveron.png";
+import cloveroff from  "../../../public/images/detail/cloveroff.png";
+import pencilIcon from "../../../public/images/detail/ico_review.png";
 
 /**
  * Review.jsx
