@@ -154,51 +154,7 @@
 /* 접혔을 때 */
 .closed {
   max-height: 0;
-  padding: 0 !important;
-}
-
-/* ================================
-  커스텀 체크박스 스타일
-================================*/
-/* 기본 체크박스 숨김 */
-.checkboxInput {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-  display: none;
-}
-
-/* 커스텀 체크박스 박스 */
-.checkboxCustom {
-  width: 22px;
-  height: 22px;
-  display: inline-block;
-  flex-shrink: 0;
-  cursor: pointer;
-
-  border: 1px solid #d5d5d5;
-  border-radius: 4px;
-
-  /* background-color: #f5f5f5; */
-  background-image: url("/images/etc/ico_checkbox_gray.png");
-  background-repeat: no-repeat;
-  background-position: center 8px;
-  background-size: 10px 7px;
-
-  transition: all 0.15s ease;
-}
-
-/* 체크된 상태 */
-.checkboxInput:checked + .checkboxCustom {
-  background-color: #5155ab; /* 남색 배경 */
-  border-color: #f2f2f2;
-
-  background-image: url("/images/etc/ico_checkbox_white.png");
-  background-size: 10px 7px;
+  padding: 0;
 }
 
 /* =========================================
@@ -477,6 +433,31 @@
   transition: all 0.2s ease;
 }
 
+/* 찜(하트) 버튼 */
+.heartBtn {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.heartBtn img {
+  width: 18px;
+  height: 18px;
+  border: none;
+}
+
+/* 빨간 하트일 때 버튼 강조 */
+.heartBtn.liked {
+  border-color: #ff4b4b;
+}
+
 .itemInfoButton {
   display: flex;
   flex-direction: column; /* 장바구니 / 바로구매 세로 정렬 */
@@ -558,6 +539,25 @@
   margin: 2px 0;
   color: #555;
   font-size: 13px;
+}
+
+/* ===========================
+  GRID MODE HEART (포인트 옆)
+=========================== */
+.gridHeart {
+  margin-left: auto; /* 오른쪽 끝으로 밀기 */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.gridHeart img {
+  width: 18px;
+  height: 18px;
+  border: none;
 }
 
 /* =========================================

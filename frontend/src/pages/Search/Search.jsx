@@ -5,10 +5,13 @@ import { SearchFilter } from "../../components/Search/SearchFilter.jsx";
 import { SearchSort } from "../../components/Search/SearchSort.jsx";
 import { SearchItems } from "../../components/Search/SearchItems.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { usePagination } from "../../hooks/usePagination.js";
+import Swal from "sweetalert2";
+import { addCartItem } from "../../utils/cartStorage.js";
 
 export function Search() {
+  const navigate = useNavigate();
   const [params] = useSearchParams();
   const keyword = params.get("keyword");
   const [books, setBooks] = useState([]); //검색 결과 목록
@@ -16,6 +19,8 @@ export function Search() {
   const [viewType, setViewType] = useState("list");
   const [selectedItems, setSelectedItems] = useState([]);
   const [sortOptions, setSortOptions] = useState("인기순");
+  const [likedItems, setLikedItems] = useState([]);
+  const isLoggedIn = Boolean(localStorage.getItem("jwtToken"));
   const [filters, setFilters] = useState({
     title: false,
     authors: false,
@@ -96,6 +101,73 @@ export function Search() {
   const { currentPage, pageCount, currentItems, handlePageChange } =
     usePagination(sortedBooks, limit);
 
+  //카트 상품 추가
+  const handleAddToCart = async (item) => {
+    const hasSelected = selectedItems.length > 0;
+
+    if (hasSelected) {
+      const selectedBooks = books.filter((b) =>
+        selectedItems.includes(b.bookId)
+      );
+
+      selectedBooks.forEach((book) => {
+        addCartItem({
+          bookId: book.bookId,
+          title: book.title,
+          price: book.price,
+          imageUrl: book.imageUrl,
+          quantity: 1,
+        });
+      });
+
+      const result = await Swal.fire({
+        title: "선택한 상품을 장바구니에 담았어요.",
+        text: "장바구니로 이동하시겠어요?",
+        cancelButtonText: "취소",
+        showCancelButton: true,
+        confirmButtonText: "장바구니 보기",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          htmlContainer: "customText",
+          confirmButton: "customConfirmButton",
+          cancelButton: "customCancelButton",
+        },
+      });
+
+      if (result.isConfirmed) navigate("/cart");
+      return;
+    }
+
+    if (item) {
+      addCartItem({
+        bookId: item.bookId,
+        title: item.title,
+        price: item.price,
+        imageUrl: item.imageUrl,
+        quantity: 1,
+      });
+
+      const result = await Swal.fire({
+        title: "선택한 상품을 장바구니에 담았어요.",
+        text: "장바구니로 이동하시겠어요?",
+        cancelButtonText: "취소",
+        showCancelButton: true,
+        confirmButtonText: "장바구니 보기",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          htmlContainer: "customText",
+          confirmButton: "customConfirmButton",
+          cancelButton: "customCancelButton",
+        },
+      });
+
+      if (result.isConfirmed) navigate("/cart");
+      return;
+    }
+  };
+
   return (
     <div className={styles.searchWrapper}>
       <h1 className={styles.resultTitle}>
@@ -107,13 +179,12 @@ export function Search() {
 
         <div className={styles.rightArea}>
           <SearchSort
-            books={books}
             onLimitChange={handleLimitChange}
             viewType={viewType}
             onViewTypeChange={setViewType}
-            selectedItems={selectedItems}
             onSortChange={setSortOptions}
             filterBooks={filterBooks}
+            onAddToCart={handleAddToCart}
           />
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}
@@ -126,6 +197,10 @@ export function Search() {
                   viewType={viewType}
                   selectedItems={selectedItems}
                   setSelectedItems={setSelectedItems}
+                  onAddToCart={handleAddToCart}
+                  likedItems={likedItems}
+                  setLikedItems={setLikedItems}
+                  isLoggedIn={isLoggedIn}
                 />
               ))}
           </div>

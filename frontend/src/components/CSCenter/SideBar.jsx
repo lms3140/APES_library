@@ -1,7 +1,9 @@
 import styles from "./SideBar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export function SideBar() {
+  const navigate = useNavigate();
+
   return (
     <nav className={styles.sidebar}>
       <h1>고객센터</h1>
@@ -24,28 +26,28 @@ export function SideBar() {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/cscenter/qna-form"
+          <div
+            onClick={() => navigate("/cscenter/qna-form")}
             className={({ isActive }) => (isActive ? styles.active : "")}
           >
             <span>1:1 문의</span>
-          </NavLink>
+          </div>
           <ul>
             <li>
-              <NavLink
-                to="/cscenter/qna-form"
+              <div
+                onClick={() => navigate("/cscenter/qna-form")}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 <span>1:1 문의 접수</span>
-              </NavLink>
+              </div>
             </li>
             <li>
-              <NavLink
-                to="/mypage"
+              <div
+                onClick={() => navigate("/mypage")}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 <span>1:1 문의 내역</span>
-              </NavLink>
+              </div>
               {/* 마이페이지-1:1문의 내역으로 연결해야함! */}
             </li>
           </ul>

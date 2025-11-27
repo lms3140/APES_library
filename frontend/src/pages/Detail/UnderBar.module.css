@@ -150,10 +150,17 @@
 }
 
 /* 선물하기 버튼 */
+/*
 .giftBtn {
-  background: #f3f3f3;
-  border: 1.5px solid #ccc;
+  background: #fff;
+  color: #4a4a4a;
+  border: 1.5px solid #4a4a4a;
 }
+
+.giftBtn:hover {
+  background: #f0f0f0;
+}
+*/
 
 /* 장바구니 버튼 */
 .cartBtn {
@@ -168,13 +175,13 @@
 
 /* 바로구매 버튼 */
 .buyBtn {
-  background: #5e5ede;
+  background:#5156b2;
   color: #fff;
   border: 1.5px solid #5e5ede;
 }
 
 .buyBtn:hover {
-  background: #4a4acb;
+  background: #3f42a0;
 }
 
 /* 선물하기 아이콘 */

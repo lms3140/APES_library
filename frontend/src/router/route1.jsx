@@ -6,6 +6,7 @@ import { CsCenterLayout } from "../components/CSCenter/CsCenterLayout.jsx";
 import { CSCenter } from "../pages/CSCenter/CSCenter.jsx";
 import { Search } from "../pages/Search/Search.jsx";
 import { SearchFilter } from "../components/Search/SearchFilter.jsx";
+import { AuthRouter } from "./authRouter.jsx";
 
 export const route1 = [
   {
@@ -21,7 +22,11 @@ export const route1 = [
       },
       {
         path: "/cscenter/qna-form",
-        element: <QnAForm />,
+        element: (
+          <AuthRouter>
+            <QnAForm />
+          </AuthRouter>
+        ),
       },
       {
         path: "/cscenter/notice",

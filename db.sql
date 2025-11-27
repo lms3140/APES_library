@@ -130,6 +130,20 @@ CREATE TABLE address (
 
 
 -- ============================================================
+-- 🛒 장바구니
+-- ============================================================
+CREATE TABLE cart_item (
+  cart_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT NOT NULL,
+  book_id BIGINT NOT NULL,
+  quantity INT DEFAULT 1,
+  UNIQUE KEY unique_cart_item(user_id, book_id),
+  FOREIGN KEY (user_id) REFERENCES member(member_id) ON DELETE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES book(book_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- ============================================================
 -- 🧾 주문 / 주문 상세
 -- ============================================================
 CREATE TABLE purchase_order (
@@ -344,4 +358,6 @@ LEFT JOIN member m ON m.member_id = p.member_id
 LEFT JOIN order_detail o ON o.order_id = p.order_id;
 
 select * from admin_booksales_detail_view;
+select * from member;
+
 select * from member;

@@ -166,3 +166,22 @@ export const plusIcon = (
     </defs>
   </svg>
 );
+
+export const warningIcon = () => {
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="none"
+    stroke="#da2128"
+  >
+    <desc>경고 아이콘</desc>
+    <path
+      stroke="current"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M13.6 8A5.6 5.6 0 1 1 2.4 8a5.6 5.6 0 0 1 11.2 0"
+    />
+    <path stroke="current" stroke-linecap="round" d="M8 5.238V9m0 1.763h0" />
+  </svg>;
+};
