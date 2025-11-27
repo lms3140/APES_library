@@ -12,4 +12,5 @@ public class KakaoPayReadyResponseDto {
     private String android_app_scheme;
     private String ios_app_scheme;
     private String created_at;
+    private Long orderId;
 }

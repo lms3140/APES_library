@@ -152,6 +152,8 @@ CREATE TABLE purchase_order (
   address_id BIGINT NULL,
 
   total_amount INT NOT NULL,
+  original_amount INT NOT NULL,
+  earned_point int not null default 0,
   order_status VARCHAR(20) DEFAULT 'READY',
   tid VARCHAR(50) NULL,
   paid_at TIMESTAMP NULL,
@@ -177,6 +179,8 @@ CREATE TABLE order_detail (
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+drop table order_detail;
+drop table purchase_order;
 
 -- ============================================================
 -- 🗂 도서 컬렉션

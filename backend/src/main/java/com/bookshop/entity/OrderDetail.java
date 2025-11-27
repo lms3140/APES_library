@@ -1,6 +1,7 @@
 package com.bookshop.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,11 @@ public class OrderDetail extends BaseCreatedEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Book book;
+
+    public OrderDetail(PurchaseOrder order, Book book, Integer quantity, Integer unitPrice) {
+        this.order = order;
+        this.book = book;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
 }
