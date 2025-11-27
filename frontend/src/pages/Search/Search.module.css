@@ -433,6 +433,31 @@
   transition: all 0.2s ease;
 }
 
+/* 찜(하트) 버튼 */
+.heartBtn {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.heartBtn img {
+  width: 18px;
+  height: 18px;
+  border: none;
+}
+
+/* 빨간 하트일 때 버튼 강조 */
+.heartBtn.liked {
+  border-color: #ff4b4b;
+}
+
 .itemInfoButton {
   display: flex;
   flex-direction: column; /* 장바구니 / 바로구매 세로 정렬 */
@@ -514,6 +539,25 @@
   margin: 2px 0;
   color: #555;
   font-size: 13px;
+}
+
+/* ===========================
+  GRID MODE HEART (포인트 옆)
+=========================== */
+.gridHeart {
+  margin-left: auto; /* 오른쪽 끝으로 밀기 */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.gridHeart img {
+  width: 18px;
+  height: 18px;
+  border: none;
 }
 
 /* =========================================

@@ -1,9 +1,6 @@
 import styles from "../../pages/Search/Search.module.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { Dropdown } from "../Dropdown/Dropdown.jsx";
-import "../../css/swal.css";
 
 import heartIcon from "/images/etc/ico_heart.png";
 import cartIcon from "/images/etc/ico_cart.png";
@@ -13,15 +10,13 @@ import gridGray from "/images/etc/ico_grid_gray.png";
 import gridBlack from "/images/etc/ico_grid_black.png";
 
 export function SearchSort({
-  books,
   onLimitChange,
   viewType,
   onViewTypeChange,
-  selectedItems,
   onSortChange,
   filterBooks,
+  onAddToCart,
 }) {
-  const navigate = useNavigate();
   const sortOptions = ["인기순", "최신순", "낮은가격순", "높은가격순"];
   const selectedOptions = ["20개씩 보기", "50개씩 보기", "100개씩 보기"];
   const [sort, setSort] = useState("인기순");
@@ -40,45 +35,6 @@ export function SearchSort({
     onSortChange(value);
   };
 
-  const handleAddToCart = async () => {
-    if (selectedItems.length === 0) {
-      Swal.fire({
-        title: "선택한 상품이 없습니다.",
-        confirmButtonText: "확인",
-        customClass: {
-          popup: "customPopup",
-          title: "customTitle",
-          confirmButton: "customConfirmButton",
-        },
-      });
-      return;
-    }
-
-    const selectedProducts = books.filter((book) =>
-      selectedItems.inclueds(book.bookId)
-    );
-
-    const existing = JSON.parse(localStorage.getItem("cart") || "[]");
-    const updated = [...existing, ...selectedProducts];
-    localStorage.setItem("cart", JSON.stringify(updated));
-
-    const result = await Swal.fire({
-      title: "선택한 상품을 장바구니에 담았어요.",
-      text: "장바구니로 이동하시겠어요?",
-      confirmButtonText: "장바구니 보기",
-      cancelButtonText: "취소",
-      showCancelButton: true,
-      customClass: {
-        popup: "customPopup",
-        title: "customTitle",
-        htmlContainer: "customText",
-        confirmButton: "customConfirButton",
-        cancelButton: "custom-CancleButton",
-      },
-    });
-    if (result.isConfirmed) navigate("/cart");
-  };
-
   return (
     <div className={styles.sortBar}>
       <div className={styles.sortLeft}>
@@ -92,7 +48,7 @@ export function SearchSort({
             <img src={heartIcon} alt="하트 이모지" />
           </button>
 
-          <button className={styles.cart} onClick={handleAddToCart}>
+          <button className={styles.cart} onClick={() => onAddToCart()}>
             <img src={cartIcon} alt="장바구니 이모지" />
             <span>장바구니 담기</span>
           </button>

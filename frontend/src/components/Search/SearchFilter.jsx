@@ -24,7 +24,7 @@ export function SearchFilter({ filters, onFilterChange }) {
   //필터 기능 없는 부분 함수
   const renderCheckboxList = (items) => {
     return items.map((label, idx) => (
-      <Checkbox labelStyle={styles.filterCheckbox} label={label} />
+      <Checkbox key={idx} labelStyle={styles.filterCheckbox} label={label} />
     ));
   };
 
