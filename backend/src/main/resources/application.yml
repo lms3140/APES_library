@@ -1,0 +1,4 @@
+kakaopay:
+  host: "https://open-api.kakaopay.com"
+  secret-key: "DEVF4EE934460BC1A90B75A018DAD3A739C19D8A"   # test_secret_key_xxxxxx
+  cid: "TC0ONETIME"
