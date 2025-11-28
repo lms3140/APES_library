@@ -8,25 +8,25 @@ import listGray from "/images/etc/ico_list_gray.png";
 import listBlack from "/images/etc/ico_list_black.png";
 import gridGray from "/images/etc/ico_grid_gray.png";
 import gridBlack from "/images/etc/ico_grid_black.png";
+import { useSelector } from "react-redux";
+import { selectFilteredSortedBooks } from "../../store/searchSlice.js";
 
 export function SearchSort({
   onLimitChange,
   viewType,
   onViewTypeChange,
   onSortChange,
-  filterBooks,
-  onAddToCart,
+  addMultiToCart,
 }) {
   const sortOptions = ["인기순", "최신순", "낮은가격순", "높은가격순"];
   const selectedOptions = ["20개씩 보기", "50개씩 보기", "100개씩 보기"];
+  const sortedBooks = useSelector(selectFilteredSortedBooks);
   const [sort, setSort] = useState("인기순");
   const [selected, setSelected] = useState(selectedOptions[0]); //기본으로 보이는 갯수
-  const [limit, setLimit] = useState();
 
   const handleDropdownChange = (value) => {
     setSelected(value);
     const number = parseInt(value.replace("개씩 보기", "").trim());
-    setLimit(number);
     onLimitChange(number);
   };
 
@@ -39,7 +39,7 @@ export function SearchSort({
     <div className={styles.sortBar}>
       <div className={styles.sortLeft}>
         <h3>
-          전체 <span>{filterBooks.length}</span>건
+          전체 <span>{sortedBooks.length}</span>건
         </h3>
       </div>
       <div className={styles.sortRightWrapper}>
@@ -48,7 +48,7 @@ export function SearchSort({
             <img src={heartIcon} alt="하트 이모지" />
           </button>
 
-          <button className={styles.cart} onClick={() => onAddToCart()}>
+          <button className={styles.cart} onClick={() => addMultiToCart()}>
             <img src={cartIcon} alt="장바구니 이모지" />
             <span>장바구니 담기</span>
           </button>

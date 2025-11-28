@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import "../../css/swal.css";
 import { Checkbox } from "../Checkbox/Checkbox.jsx";
 import { Radio } from "../RadioButton/Radio.jsx";
-import { Dropdown } from "../Dropdown/Dropdown.jsx";
 
 export function QnAForm() {
   const navigate = useNavigate();
@@ -18,9 +17,6 @@ export function QnAForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("phone");
-  const options = ["문의유형을 선택해주세요.", "배송/수령예정일안내"];
-  const [selectedOption, setSelectedOption] =
-    useState("문의유형을 선택해주세요.");
 
   useEffect(() => {
     const fetchUserInfo = async () => {

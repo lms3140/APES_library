@@ -3,9 +3,14 @@ import styles from "../../pages/Search/Search.module.css";
 import { TfiReload } from "react-icons/tfi";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
-import { Checkbox } from "../Checkbox/Checkbox";
+import { Checkbox } from "../Checkbox/Checkbox.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilters } from "../../store/searchSlice.js";
 
-export function SearchFilter({ filters, onFilterChange }) {
+export function SearchFilter() {
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.search.filters);
+
   const formRef = useRef(null);
   const [isSearchOpen, setIsSearchOpen] = useState(true);
   const [isStudyOpen, setIsStudyOpen] = useState(true);
@@ -15,7 +20,14 @@ export function SearchFilter({ filters, onFilterChange }) {
   const renderFilterCheckbox = (label, key) => (
     <Checkbox
       checked={filters[key]}
-      onChange={() => onFilterChange({ ...filters, [key]: !filters[key] })}
+      onChange={() =>
+        dispatch(
+          setFilters({
+            ...filters,
+            [key]: !filters[key],
+          })
+        )
+      }
       labelStyle={styles.filterCheckbox}
       label={label}
     />

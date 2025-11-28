@@ -1,190 +1,119 @@
 import styles from "./Search.module.css";
 import paginationStyles from "../Pagination/Pagination.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SearchFilter } from "../../components/Search/SearchFilter.jsx";
 import { SearchSort } from "../../components/Search/SearchSort.jsx";
 import { SearchItems } from "../../components/Search/SearchItems.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { usePagination } from "../../hooks/usePagination.js";
-import Swal from "sweetalert2";
-import { addCartItem } from "../../utils/cartStorage.js";
+import { confirmSwal, infoSwal } from "../../api/api.js";
+import {
+  selectFilteredSortedBooks,
+  setFilters,
+  setLimit,
+  setSortOptions,
+  setViewType,
+  toggleSelected,
+} from "../../store/searchSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBooks } from "../../store/bookSlice.js";
+import { addToCart } from "../../store/cartSlice.js";
+import { toggleLike } from "../../store/likedSlice.js";
 
 export function Search() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const keyword = params.get("keyword");
-  const [books, setBooks] = useState([]); //검색 결과 목록
-  const [limit, setLimit] = useState(20);
-  const [viewType, setViewType] = useState("list");
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [sortOptions, setSortOptions] = useState("인기순");
-  const [likedItems, setLikedItems] = useState([]);
+  const filters = useSelector((state) => state.search.filters);
+  const limit = useSelector((state) => state.search.limit);
+  const viewType = useSelector((state) => state.search.viewType);
+  const selectedItems = useSelector((state) => state.search.selectedItems);
+  const likedItems = useSelector((state) => state.liked.likedItems);
+  const sortedBooks = useSelector(selectFilteredSortedBooks);
   const isLoggedIn = Boolean(localStorage.getItem("jwtToken"));
-  const [filters, setFilters] = useState({
-    title: false,
-    authors: false,
-    publisherName: false,
-  });
-
-  const handleFilterChange = (newFilters) => {
-    setFilters(newFilters);
-  };
-
-  const filterBooks = books.filter((book) => {
-    const isAllFalse =
-      !filters.title && !filters.authors && !filters.publisherName;
-    if (isAllFalse) return true;
-
-    const kw = keyword?.toLowerCase();
-    if (!kw) return true;
-
-    const title = book.title?.toLowerCase() || "";
-    const publisherName = book.publisherName?.toLowerCase() || "";
-    const authors = Array.isArray(book.authors) ? book.authors : [];
-
-    const matchTitle = title.includes(kw);
-    const matchAuthor =
-      filters.authors &&
-      authors.some((a) => (a?.toLowerCase() || "").includes(kw));
-    const matchPublisher = publisherName.includes(kw);
-
-    return (
-      (filters.title && matchTitle) ||
-      (filters.authors && matchAuthor) ||
-      (filters.publisherName && matchPublisher)
-    );
-  });
-
-  const sortBooks = (books, sort) => {
-    const sorted = [...books];
-    if (sort === "인기순") {
-      return sorted;
-    }
-    if (sort === "최신순") {
-      return sorted.sort(
-        (a, b) => new Date(b.publishedDate) - new Date(a.publishedDate)
-      );
-    }
-    if (sort === "낮은가격순") {
-      return sorted.sort((a, b) => a.price - b.price);
-    }
-    if (sort === "높은가격순") {
-      return sorted.sort((a, b) => b.price - a.price);
-    }
-    return sorted;
-  };
-
-  const sortedBooks = sortBooks(filterBooks, sortOptions);
 
   // keyword 바뀔 때마다 검색 실행
   useEffect(() => {
-    if (!keyword) return;
-    fetchBooks(keyword);
-  }, [keyword]);
-
-  //백엔드 연결, 데이터 가져오기
-  const fetchBooks = async (kw) => {
-    const response = await fetch(
-      `http://localhost:8080/api/search?keyword=${kw}`
-    );
-    const json = await response.json();
-    setBooks(json);
-  };
-
-  //한번에 보이는 갯수 설정 함수(20개씩보기, 50개씩보기, ...)
-  const handleLimitChange = (value) => {
-    setLimit(value);
-  };
+    if (keyword) {
+      dispatch(fetchBooks(keyword));
+    }
+  }, [keyword, dispatch]);
 
   //페이지네이션
   const { currentPage, pageCount, currentItems, handlePageChange } =
     usePagination(sortedBooks, limit);
 
-  //카트 상품 추가
-  const handleAddToCart = async (item) => {
-    const hasSelected = selectedItems.length > 0;
+  //아이템 하나 담기
+  const addSingleToCart = async (item) => {
+    const title = "선택한 상품을 장바구니에 담았어요.";
+    const text = "장바구니로 이동하시겠어요?";
+    const confirmButtonText = "장바구니 보기";
 
-    if (hasSelected) {
-      const selectedBooks = books.filter((b) =>
-        selectedItems.includes(b.bookId)
-      );
-
-      selectedBooks.forEach((book) => {
-        addCartItem({
-          bookId: book.bookId,
-          title: book.title,
-          price: book.price,
-          imageUrl: book.imageUrl,
-          quantity: 1,
-        });
-      });
-
-      const result = await Swal.fire({
-        title: "선택한 상품을 장바구니에 담았어요.",
-        text: "장바구니로 이동하시겠어요?",
-        cancelButtonText: "취소",
-        showCancelButton: true,
-        confirmButtonText: "장바구니 보기",
-        customClass: {
-          popup: "customPopup",
-          title: "customTitle",
-          htmlContainer: "customText",
-          confirmButton: "customConfirmButton",
-          cancelButton: "customCancelButton",
-        },
-      });
-
-      if (result.isConfirmed) navigate("/cart");
-      return;
-    }
-
-    if (item) {
-      addCartItem({
+    dispatch(
+      addToCart({
         bookId: item.bookId,
         title: item.title,
         price: item.price,
         imageUrl: item.imageUrl,
         quantity: 1,
-      });
+      })
+    );
 
-      const result = await Swal.fire({
-        title: "선택한 상품을 장바구니에 담았어요.",
-        text: "장바구니로 이동하시겠어요?",
-        cancelButtonText: "취소",
-        showCancelButton: true,
-        confirmButtonText: "장바구니 보기",
-        customClass: {
-          popup: "customPopup",
-          title: "customTitle",
-          htmlContainer: "customText",
-          confirmButton: "customConfirmButton",
-          cancelButton: "customCancelButton",
-        },
-      });
+    const result = await confirmSwal(title, text, confirmButtonText);
+    if (result.isConfirmed) navigate("/cart");
+  };
 
-      if (result.isConfirmed) navigate("/cart");
+  //아이템 여러개 담기
+  const addMultiToCart = async () => {
+    const title = "선택한 상품을 장바구니에 담았어요.";
+    const text = "장바구니로 이동하시겠어요?";
+    const confirmButtonText = "장바구니 보기";
+
+    if (selectedItems.length === 0) {
+      await infoSwal("선택한 상품이 없습니다.", "확인");
       return;
     }
+
+    selectedItems.forEach((bookId) => {
+      const book = sortedBooks.find((b) => b.bookId === bookId);
+      if (!book) return;
+
+      dispatch(
+        addToCart({
+          bookId: book.bookId,
+          title: book.title,
+          price: book.price,
+          imageUrl: book.imageUrl,
+          quantity: 1,
+        })
+      );
+    });
+
+    const result = await confirmSwal(title, text, confirmButtonText);
+    if (result.isConfirmed) navigate("/cart");
   };
 
   return (
     <div className={styles.searchWrapper}>
       <h1 className={styles.resultTitle}>
-        <span>'{keyword}'</span>에 대한 {books.length}개의 검색 결과
+        <span>'{keyword}'</span>에 대한 {sortedBooks.length}개의 검색 결과
       </h1>
 
       <div className={styles.searchContainer}>
-        <SearchFilter filters={filters} onFilterChange={handleFilterChange} />
+        <SearchFilter
+          filters={filters}
+          onFilterChange={(newFilters) => dispatch(setFilters(newFilters))}
+        />
 
         <div className={styles.rightArea}>
           <SearchSort
-            onLimitChange={handleLimitChange}
+            onLimitChange={(v) => dispatch(setLimit(v))}
             viewType={viewType}
-            onViewTypeChange={setViewType}
-            onSortChange={setSortOptions}
-            filterBooks={filterBooks}
-            onAddToCart={handleAddToCart}
+            onViewTypeChange={(v) => dispatch(setViewType(v))}
+            onSortChange={(v) => dispatch(setSortOptions(v))}
+            addMultiToCart={addMultiToCart}
           />
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}
@@ -196,10 +125,10 @@ export function Search() {
                   item={item}
                   viewType={viewType}
                   selectedItems={selectedItems}
-                  setSelectedItems={setSelectedItems}
-                  onAddToCart={handleAddToCart}
+                  toggleSelect={(id) => dispatch(toggleSelected(id))}
+                  addSingleToCart={addSingleToCart}
                   likedItems={likedItems}
-                  setLikedItems={setLikedItems}
+                  toggleLike={(id) => dispatch(toggleLike(id))}
                   isLoggedIn={isLoggedIn}
                 />
               ))}
@@ -207,7 +136,7 @@ export function Search() {
           <div
             className={`${paginationStyles.pagination} ${styles.pagination}`}
           >
-            {books.length > limit ? (
+            {sortedBooks.length > limit ? (
               <Pagination
                 pageCount={pageCount}
                 onPageChange={handlePageChange}
