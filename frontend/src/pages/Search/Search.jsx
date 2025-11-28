@@ -7,8 +7,8 @@ import { SearchItems } from "../../components/Search/SearchItems.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { usePagination } from "../../hooks/usePagination.js";
-import Swal from "sweetalert2";
 import { addCartItem } from "../../utils/cartStorage.js";
+import { callSwal } from "../../api/api.js";
 
 export function Search() {
   const navigate = useNavigate();
@@ -104,6 +104,9 @@ export function Search() {
   //카트 상품 추가
   const handleAddToCart = async (item) => {
     const hasSelected = selectedItems.length > 0;
+    const title = "선택한 상품을 장바구니에 담았어요.";
+    const text = "장바구니로 이동하시겠어요?";
+    const confirmButtonText = "장바구니 보기";
 
     if (hasSelected) {
       const selectedBooks = books.filter((b) =>
@@ -119,21 +122,7 @@ export function Search() {
           quantity: 1,
         });
       });
-
-      const result = await Swal.fire({
-        title: "선택한 상품을 장바구니에 담았어요.",
-        text: "장바구니로 이동하시겠어요?",
-        cancelButtonText: "취소",
-        showCancelButton: true,
-        confirmButtonText: "장바구니 보기",
-        customClass: {
-          popup: "customPopup",
-          title: "customTitle",
-          htmlContainer: "customText",
-          confirmButton: "customConfirmButton",
-          cancelButton: "customCancelButton",
-        },
-      });
+      const result = await callSwal(title, text, confirmButtonText);
 
       if (result.isConfirmed) navigate("/cart");
       return;
@@ -148,20 +137,7 @@ export function Search() {
         quantity: 1,
       });
 
-      const result = await Swal.fire({
-        title: "선택한 상품을 장바구니에 담았어요.",
-        text: "장바구니로 이동하시겠어요?",
-        cancelButtonText: "취소",
-        showCancelButton: true,
-        confirmButtonText: "장바구니 보기",
-        customClass: {
-          popup: "customPopup",
-          title: "customTitle",
-          htmlContainer: "customText",
-          confirmButton: "customConfirmButton",
-          cancelButton: "customCancelButton",
-        },
-      });
+      const result = await callSwal(title, text, confirmButtonText);
 
       if (result.isConfirmed) navigate("/cart");
       return;
