@@ -1,0 +1,86 @@
+.row {
+  display: grid;
+  grid-template-columns: 150px 400px 80px;
+  padding-bottom: 30px;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 30px;
+}
+
+.label {
+  font-size: 15px;
+  color: #111;
+  font-weight: 500;
+}
+
+.valueWrapper {
+  position: relative;
+}
+
+.border {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputBox {
+  position: relative;
+  width: 400px;
+}
+
+.input {
+  width: 400px;
+  height: 20px;
+  padding: 10px 40px 10px 12px;
+  font-size: 13px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-45%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.6;
+  padding: 0;
+}
+
+.valueText {
+  font-size: 15px;
+  color: #111;
+}
+
+.editBtn {
+  background: white;
+  border: 1px solid #5155ab;
+  color: #5155ab;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 35px;
+  width: 55px;
+}
+
+.editBtn:hover {
+  background-color: #efeff7;
+}
+
+.info {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.4;
+}
+
+.error {
+  color: #d12a2a;
+  font-size: 13px;
+}

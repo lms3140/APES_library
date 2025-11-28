@@ -1,0 +1,91 @@
+.pageWrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 50px auto 120px;
+  font-family: "Pretendard", sans-serif;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: #111;
+  border-bottom: 1px solid #000;
+  padding-bottom: 20px;
+}
+
+.group {
+  padding-top: 30px;
+  border-bottom: 1px solid #e5e5e5;
+  /* margin-bottom: 10px; */
+}
+
+.quitGroup {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.quitGroup p {
+  font-size: 13px;
+  color: #595959;
+}
+
+.quitGroup button {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  height: 25px;
+  justify-content: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quitGroup button:hover {
+  background-color: #f2f2f2;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0 30px;
+}
+
+.cancelBtn,
+.confirmBtn {
+  width: 200px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelBtn {
+  background-color: #767676;
+  color: #fff;
+}
+
+.cancelBtn:hover {
+  background-color: #595959;
+}
+
+.confirmBtn {
+  background-color: #5055b1;
+  color: #fff;
+}
+
+.confirmBtn:hover {
+  background-color: #2d3078;
+}
