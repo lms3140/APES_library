@@ -1,0 +1,33 @@
+.content {
+}
+.myPageSection {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.myPageCard {
+  width: 280px;
+  height: 150px;
+  background-color: #eeeefe;
+  padding-left: 20px;
+  border-radius: 20px;
+}
+
+.myPageCard img {
+  height: 50px;
+}
+
+.inquiryContainer {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.inquiryList {
+  padding: 0;
+}
+.inquiryItem {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}

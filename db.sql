@@ -150,13 +150,22 @@ CREATE TABLE purchase_order (
   order_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   member_id BIGINT NOT NULL,
   address_id BIGINT NULL,
-  order_status VARCHAR(20) NULL,
+
+  total_amount INT NOT NULL,
+  original_amount INT NOT NULL,
+  earned_point int not null default 0,
+  order_status VARCHAR(20) DEFAULT 'READY',
+  tid VARCHAR(50) NULL,
+  paid_at TIMESTAMP NULL,
+
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
   FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (address_id) REFERENCES address (address_id)
     ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE order_detail (
   order_detail_id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -170,6 +179,8 @@ CREATE TABLE order_detail (
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+drop table order_detail;
+drop table purchase_order;
 
 -- ============================================================
 -- 🗂 도서 컬렉션
@@ -314,5 +325,43 @@ select * from book;
 desc book;
 
 select * from category;
+select * from author;
+select * from publisher;
+desc publisher;
+desc book;
+desc author;
+select * from translator;
+
+select * from inquiry;
+select * from member;
+
+INSERT INTO member (
+  user_id, password, name, phone, email, birth, gender, role, point_balance
+) VALUES (
+  'admin',
+  'admin1234!', 
+  '관리자',
+  '010-0000-0000',
+  'admin@bookshop.com',
+  '1990-01-01',
+  'M',
+  'ADMIN',
+  999999999
+);
+
+-- drop view admin_booksales_detail_view;
+CREATE VIEW admin_booksales_detail_view AS
+SELECT 
+    m.user_id,
+    p.created_at,
+    o.quantity,
+    o.unit_price,
+    o.book_id
+FROM purchase_order p
+LEFT JOIN member m ON m.member_id = p.member_id
+LEFT JOIN order_detail o ON o.order_id = p.order_id;
+
+select * from admin_booksales_detail_view;
+select * from member;
 
 select * from member;
