@@ -5,7 +5,6 @@ import styles from "./Layout.module.css";
 import { FixedHeader } from "./Header/HeaderVariant/FixedHeader";
 import { UserMenu } from "./Header/UserMenu/UserMenu";
 import { HeaderLayout } from "./HeaderLayout";
-import "react-toastify/dist/ReactToastify.css";
 
 export function Layout() {
   return (

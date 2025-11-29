@@ -1,0 +1,8 @@
+.container {
+  height: 100px;
+  background-color: salmon;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -26,7 +26,7 @@ import axios from "axios";
  *
  */
 export const useGetFetch = (url) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState();
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
