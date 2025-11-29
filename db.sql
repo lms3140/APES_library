@@ -307,33 +307,79 @@ ORDER BY
     bc.display_order ASC,
     cb.display_order ASC;
 
-CREATE VIEW book_sales_view AS
+
+-- 모든 책의 판매
+CREATE OR REPLACE VIEW book_sales_stats_view AS
 SELECT 
     b.book_id,
     b.title,
     b.image_url,
-    count(o.quantity) as total_sales_quantity,
-    sum(o.unit_price) as total_price,
-    m.user_id
+    
+    COALESCE(SUM(od.quantity), 0) AS total_sales_quantity,
+    COALESCE(SUM(od.quantity * od.unit_price), 0) AS total_sales_amount,
+
+    MIN(b.published_date) AS published_date  -- 선택: 필요 없으면 삭제 가능
 FROM book b
-LEFT JOIN order_detail o ON b.book_id = o.book_id
-LEFT JOIN purchase_order p ON o.order_id = p.order_id
-LEFT JOIN member m ON p.member_id = m.member_id
-GROUP BY b.book_id, o.order_id, p.member_id;
+LEFT JOIN order_detail od 
+    ON b.book_id = od.book_id
+LEFT JOIN purchase_order po
+    ON od.order_id = po.order_id 
+    AND po.order_status = 'PAID'  -- 결제 완료된 주문만 집계
+GROUP BY 
+    b.book_id, b.title, b.image_url;
+    
+-- 프로젝트 요약
+CREATE OR REPLACE VIEW admin_summary_view AS
+SELECT 
+    -- 총 매출 (quantity × unit_price)
+    COALESCE(SUM(od.quantity * od.unit_price), 0) AS total_revenue,
 
-select * from book;
-desc book;
+    -- 총 판매량
+    COALESCE(SUM(od.quantity), 0) AS total_quantity,
 
-select * from category;
-select * from author;
-select * from publisher;
-desc publisher;
-desc book;
-desc author;
-select * from translator;
+    -- 판매된 책 종류 수 (판매기록이 있는 book_id의 distinct 개수)
+    COALESCE(COUNT(DISTINCT od.book_id), 0) AS sold_book_count,
 
-select * from inquiry;
-select * from member;
+    -- 전체 등록된 책 개수 (옵션)
+    (SELECT COUNT(*) FROM book) AS total_book_count
+
+FROM order_detail od
+JOIN purchase_order po 
+    ON po.order_id = od.order_id
+    AND po.order_status = 'PAID';    
+
+select * from admin_summary_view;
+
+-- top5 가장 많이 팔린 책
+CREATE VIEW top5_quantity_view AS
+SELECT 
+    b.book_id,
+    b.title,
+    b.image_url,
+    SUM(od.quantity) AS total_quantity
+FROM order_detail od
+JOIN purchase_order po ON od.order_id = po.order_id
+JOIN book b ON od.book_id = b.book_id
+WHERE po.order_status = 'PAID'
+GROUP BY b.book_id
+ORDER BY total_quantity DESC
+LIMIT 5;
+
+-- 매출 top5
+CREATE VIEW top5_revenue_view AS
+SELECT 
+    b.book_id,
+    b.title,
+    b.image_url,
+    SUM(od.quantity * od.unit_price) AS total_revenue
+FROM order_detail od
+JOIN purchase_order po ON od.order_id = po.order_id
+JOIN book b ON od.book_id = b.book_id
+WHERE po.order_status = 'PAID'
+GROUP BY b.book_id
+ORDER BY total_revenue DESC
+LIMIT 5;
+
 
 INSERT INTO member (
   user_id, password, name, phone, email, birth, gender, role, point_balance
@@ -348,7 +394,7 @@ INSERT INTO member (
   'ADMIN',
   999999999
 );
-
+use book_store;
 -- drop view admin_booksales_detail_view;
 CREATE VIEW admin_booksales_detail_view AS
 SELECT 
@@ -365,3 +411,5 @@ select * from admin_booksales_detail_view;
 select * from member;
 
 select * from member;
+
+

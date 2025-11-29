@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import paymentStyle from "./Payment.module.css";
+import axios from "axios";
 
 export function Payment() {
   const [bookList, setBookList] = useState([
@@ -26,7 +27,9 @@ export function Payment() {
     // 포인트 들고오기
   }, []);
 
-  const handlePayment = () => {};
+  const handlePayment = () => {
+    const resp = axios("http://localhost:8080/");
+  };
 
   return (
     <>

@@ -1,9 +1,8 @@
-package com.bookshop.repository;
+package com.bookshop.repository.Admin;
 
-import com.bookshop.dto.AdminPageDetailDto;
 import com.bookshop.dto.AdminPageDto;
-import com.bookshop.entity.AdminPage;
-import com.bookshop.entity.AdminPageDetail;
+import com.bookshop.entity.Admin.AdminPage;
+import com.bookshop.entity.Admin.AdminPageDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -2,7 +2,6 @@ import style from "./SearchBar.module.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
-import { toast } from "react-toastify";
 
 export function SearchBar() {
   const { register, handleSubmit } = useForm();

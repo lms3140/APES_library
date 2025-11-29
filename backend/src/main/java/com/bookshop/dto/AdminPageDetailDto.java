@@ -1,6 +1,6 @@
 package com.bookshop.dto;
 
-import com.bookshop.entity.AdminPageDetail;
+import com.bookshop.entity.Admin.AdminPageDetail;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;

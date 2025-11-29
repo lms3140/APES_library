@@ -1,9 +1,8 @@
-package com.bookshop.entity;
+package com.bookshop.entity.Admin;
 
 import com.bookshop.dto.AdminPageDetailDto;
 import com.bookshop.dto.AdminPageDto;
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.List;
 @Data

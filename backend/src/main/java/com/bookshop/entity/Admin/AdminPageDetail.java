@@ -1,4 +1,4 @@
-package com.bookshop.entity;
+package com.bookshop.entity.Admin;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
