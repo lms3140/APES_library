@@ -1,29 +1,26 @@
 package com.bookshop.config;
 
-import com.bookshop.entity.Member;
-import com.bookshop.repository.MemberRepository;
+import com.bookshop.security.JwtAuthenticationFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.List;
-
+@RequiredArgsConstructor
 @Configuration
 @Profile("dev") // 개발 환경에서만 적용
 public class SecurityConfig {
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     // ===== PasswordEncoder =====
     @Bean
@@ -31,20 +28,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // ===== UserDetailsService =====
-    @Bean
-    public UserDetailsService userDetailsService(MemberRepository memberRepository) {
-        return username -> {
-            Member member = memberRepository.findByUserId(username)
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-            String role = member.getRole() != null ? member.getRole() : "USER";
-            return new User(
-                    member.getUserId(),
-                    member.getPwd(),
-                    List.of(new SimpleGrantedAuthority(member.getRole()))
-            );
-        };
-    }
 
     // ===== AuthenticationManager (최신 방식) =====
     @Bean
@@ -58,6 +41,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
