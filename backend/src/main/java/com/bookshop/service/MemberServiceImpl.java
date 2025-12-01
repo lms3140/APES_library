@@ -94,4 +94,25 @@ public class MemberServiceImpl implements MemberService {
                 .map(MemberDto::new)
                 .orElse(null);
     }
+
+    // 회원 정보 수정
+    public boolean updateMember(String userId, MemberDto updateReq) {
+        Optional<Member> memberOpt = memberRepository.findByUserId(userId);
+        if (memberOpt.isEmpty()) return false;
+        Member member = memberOpt.get();
+
+        // 필요한 필드만 수정
+        if (updateReq.getPwd() != null && !updateReq.getPwd().isBlank()) {
+            member.setPwd(passwordEncoder.encode(updateReq.getPwd()));
+        }
+        if (updateReq.getEmail() != null) {
+            member.setEmail(updateReq.getEmail());
+        }
+        if (updateReq.getPhone() != null) {
+            member.setPhone(updateReq.getPhone());
+        }
+
+        // JPA 저장 (트랜잭션 안이라 자동 flush)
+        return true;
+    }
 }

@@ -2,13 +2,15 @@ import Swal from "sweetalert2";
 import "../css/swal.css";
 
 //confirm 버튼만 있는 swal
-export async function infoSwal(title, confirmButtonText) {
+export async function infoSwal(title, text, confirmButtonText) {
   return await Swal.fire({
     title,
+    text,
     confirmButtonText,
     customClass: {
       popup: "customPopup",
       title: "customTitle",
+      htmlContainer: "customText",
       confirmButton: "customConfirmButton",
     },
   });

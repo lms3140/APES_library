@@ -4,10 +4,9 @@ import com.bookshop.dto.InquiryDto;
 import com.bookshop.entity.Inquiry;
 import com.bookshop.service.InquiryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/inquiry")
@@ -16,8 +15,13 @@ public class InquiryController {
     private final InquiryService inquiryService;
 
     @PostMapping("/qna")
-    public Inquiry getQna(@RequestBody InquiryDto inquiryDto) {
-        return inquiryService.registerQna(inquiryDto);
+    public Inquiry getQna(@RequestBody InquiryDto dto) {
+        return inquiryService.registerQna(dto);
+    }
+
+    @GetMapping("/member")
+    public List<Inquiry> getMyInquiries() {
+        return inquiryService.getMyInquiries();
     }
 
 }

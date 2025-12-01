@@ -10,6 +10,10 @@ export function Profile() {
   const [passwordError, setPasswordError] = useState("");
   const [pwVisible, setPwVisible] = useState(false);
   const [pwCheckVisible, setPwCheckVisible] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [newPhone, setNewPhone] = useState("");
+  const [editEmail, setEditEmail] = useState(false);
+  const [editPhone, setEditPhone] = useState(false);
 
   useEffect(() => {
     const fetchInfo = async () => {
@@ -22,13 +26,10 @@ export function Profile() {
       });
 
       const json = await res.json();
-      console.log(json);
       setMember(json);
     };
     fetchInfo();
   }, []);
-
-  console.log(localStorage.getItem("jwtToken"));
 
   useEffect(() => {
     if (password && passwordCheck && password !== passwordCheck) {
@@ -37,6 +38,13 @@ export function Profile() {
       setPasswordError("");
     }
   }, [password, passwordCheck]);
+
+  useEffect(() => {
+    if (member) {
+      setNewEmail(member.email);
+      setNewPhone(member.phone);
+    }
+  }, [member]);
 
   const handleUpdate = async () => {
     if (passwordError) {
@@ -53,9 +61,9 @@ export function Profile() {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        password: password,
-        email: member.email,
-        phone: member.phone,
+        pwd: password,
+        email: newEmail,
+        phone: newPhone,
       }),
     });
 
@@ -113,8 +121,36 @@ export function Profile() {
             label="생년월일/성별"
             value={`${member?.birth} / ${member?.gender === "m" ? "남" : "여"}`}
           />
-          <InfoRow label="이메일" value={member?.email} buttonText="변경" />
-          <InfoRow label="휴대폰번호" value={member?.phone} buttonText="변경" />
+          <InfoRow
+            label="이메일"
+            value={newEmail}
+            editMode={editEmail}
+            buttonText="변경"
+            placeholder="이메일을 입력해주세요."
+            onChange={(e) => setNewEmail(e.target.value)}
+            onToggleEdit={() => {
+              setEditEmail((prev) => {
+                const next = !prev;
+                if (next) setNewEmail("");
+                return next;
+              });
+            }}
+          />
+          <InfoRow
+            label="휴대폰번호"
+            value={newPhone}
+            editMode={editPhone}
+            buttonText="변경"
+            placeholder="전화번호를 입력해주세요."
+            onChange={(e) => setNewPhone(e.target.value)}
+            onToggleEdit={() => {
+              setEditPhone((prev) => {
+                const next = !prev;
+                if (next) setNewPhone("");
+                return next;
+              });
+            }}
+          />
         </div>
       </section>
 

@@ -1,16 +1,44 @@
 .sideBar {
   width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 20px; */
   padding: 10px;
 }
 .userInfo {
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 5px;
+  padding: 20px;
   box-sizing: border-box;
 }
 .menuList {
-  padding: 0;
+  padding: 5px;
   box-sizing: border-box;
+}
+
+.menuList li {
+  padding: 10px;
+}
+
+.profileImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profileImage img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.point {
+  font-size: 15px;
+  font-weight: 500;
 }
