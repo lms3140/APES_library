@@ -6,6 +6,8 @@ import com.bookshop.entity.Member;
 import com.bookshop.repository.AddressRepository;
 import com.bookshop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +19,10 @@ public class AddressServiceImpl implements AddressService{
     @Override
     public Address createAddress(AddressDto dto){
 
-        Member member = memberRepository.findById(dto.getMemberId())
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = auth.getName();
+
+        Member member = memberRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("회원 없음"));
 
         Address address = new Address();
