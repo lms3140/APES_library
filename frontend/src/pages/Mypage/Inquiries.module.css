@@ -1,0 +1,59 @@
+/* 전체 wrapper */
+.inquiriesContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 80px;
+  font-family: "Pretendard", sans-serif;
+}
+
+/* 상단 헤더 영역 */
+.topArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* 왼쪽 설명 문구 */
+.noticeText {
+  color: #666;
+  font-size: 14px;
+}
+
+/* 문의하기 버튼 */
+.inquiryButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  border: 1px solid #3c9a17;
+  color: #3c9a17;
+  padding: 6px12px;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.inquiryButton img {
+  width: 18px;
+  height: 18px;
+}
+
+.inquiryButton:hover {
+  background-color: rgba(60, 154, 23, 0.05);
+}
+
+/* nodata 영역 */
+.noDataWrap {
+  text-align: center;
+  margin-top: 80px;
+  color: #666;
+}
+
+.noDataWrap img {
+  width: 90px;
+  margin-bottom: 12px;
+}

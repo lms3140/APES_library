@@ -19,7 +19,7 @@ public class AddressController {
     @PostMapping
     public String createAddress(@AuthenticationPrincipal Member member,
                                 @RequestBody AddressDto dto) {
-        addressService.createAddress(member, dto);
+        addressService.createAddress(dto);
         return "OK";
     }
 }
