@@ -122,4 +122,32 @@ public class MemberController {
 
         return ResponseEntity.ok(memberDto);
     }
+
+    // ===== 회원 정보 수정 =====
+    @PutMapping("/update")
+    public ResponseEntity<?> updateMember(
+            @RequestHeader("Authorization") String authHeader,
+            @RequestBody MemberDto updateReq
+    ) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).body("No token provided");
+        }
+
+        String token = authHeader.substring(7);
+        if (!jwtService.validateToken(token)) {
+            return ResponseEntity.status(401).body("Invalid or expired token");
+        }
+
+        // JWT → userId 추출
+        String userId = jwtService.getUserId(token);
+
+        // 회원 정보 수정 처리
+        boolean success = memberService.updateMember(userId, updateReq);
+
+        if (success) {
+            return ResponseEntity.ok(Map.of("update", true));
+        } else {
+            return ResponseEntity.status(404).body("User not found");
+        }
+    }
 }

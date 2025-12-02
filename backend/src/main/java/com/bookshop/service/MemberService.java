@@ -12,4 +12,5 @@ public interface MemberService {
     Long memberCheck(String userId);
     Long getCurrentMemberId(HttpServletRequest request);
     MemberDto getMemberInfo(String userId);
+    boolean updateMember(String userId, MemberDto updateReq);
 }

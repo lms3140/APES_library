@@ -29,10 +29,6 @@ public class Inquiry extends BaseTimeEntity {
 
     public Inquiry() {}
     public Inquiry(InquiryDto dto) {
-//        this.inquiryId = dto.getInquiryId();
-        Member m = new Member();
-        m.setMemberId(dto.getMemberId());
-        this.member = m;
 
         this.title = dto.getTitle();
         this.content = dto.getContent();

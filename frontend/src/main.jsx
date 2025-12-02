@@ -4,6 +4,8 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
+import Modal from "react-modal";
+Modal.setAppElement("#root");
 
 import "./css/global.css";
 createRoot(document.getElementById("root")).render(
