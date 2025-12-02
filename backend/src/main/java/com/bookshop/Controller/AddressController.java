@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddressController {
     private final AddressService addressService;
 
-    @PostMapping
+    @PostMapping("/create")
     public String createAddress(@RequestBody AddressDto dto) {
-
         addressService.createAddress(dto);
         return "OK";
+    }
+
+    @PostMapping("/get")
+    public AddressDto getAddress(@RequestBody AddressDto dto) {
+        return addressService.getAddress(dto.getAddressId());
     }
 }

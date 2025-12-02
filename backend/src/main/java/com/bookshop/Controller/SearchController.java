@@ -1,7 +1,9 @@
 package com.bookshop.Controller;
 
+import com.bookshop.dto.InquiryDto;
 import com.bookshop.dto.SearchDto;
 import com.bookshop.entity.Book;
+import com.bookshop.service.InquiryService;
 import com.bookshop.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

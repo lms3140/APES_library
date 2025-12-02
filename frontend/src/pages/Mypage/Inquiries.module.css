@@ -2,8 +2,12 @@
 .inquiriesContainer {
   width: 100%;
   max-width: 1200px;
-  margin: 40px auto 80px;
+  margin: 0 0 120px 50px;
   font-family: "Pretendard", sans-serif;
+}
+
+.inquiriesContainer h1 {
+  margin-bottom: 0;
 }
 
 /* 상단 헤더 영역 */
@@ -11,8 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  padding: 16px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #e5e5e5;
 }
 
@@ -20,6 +23,7 @@
 .noticeText {
   color: #666;
   font-size: 14px;
+  margin-bottom: 0;
 }
 
 /* 문의하기 버튼 */
@@ -28,22 +32,25 @@
   align-items: center;
   gap: 6px;
   font-size: 14px;
-  border: 1px solid #3c9a17;
-  color: #3c9a17;
-  padding: 6px12px;
-  border-radius: 4px;
-  background: none;
+  font-weight: 600;
+  color: #fff;
+  padding: 6px 19px;
+  border-radius: 8px;
+  background: #5055b1;
+  border: 1px solid #5055b1;
   cursor: pointer;
   transition: 0.15s ease;
+  height: 44px;
+  width: 130px;
 }
 
 .inquiryButton img {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
 }
 
 .inquiryButton:hover {
-  background-color: rgba(60, 154, 23, 0.05);
+  background-color: #2d2f78;
 }
 
 /* nodata 영역 */

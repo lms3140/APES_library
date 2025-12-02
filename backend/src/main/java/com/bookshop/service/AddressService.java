@@ -6,4 +6,5 @@ import com.bookshop.entity.Member;
 
 public interface AddressService {
     Address createAddress(AddressDto dto);
+    AddressDto getAddress(long addressId);
 }
