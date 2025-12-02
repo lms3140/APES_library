@@ -60,7 +60,7 @@ public class JwtServiceImpl implements JwtService {
     public JwtServiceImpl() {
 
         // Windows 환경변수: tokenKey
-        SECRET_KEY = System.getenv("tokenKey");
+        SECRET_KEY = System.getenv("MY_SECRET_TOKEN");
         System.out.println("SECRET_KEY = " + SECRET_KEY);
         if (SECRET_KEY == null || SECRET_KEY.length() < 32) {
             throw new IllegalStateException(
