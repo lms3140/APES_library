@@ -8,6 +8,7 @@ import com.bookshop.entity.Wishlist;
 import com.bookshop.repository.BookRepository;
 import com.bookshop.repository.MemberRepository;
 import com.bookshop.repository.WishlistRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -72,6 +73,7 @@ public class WishlistServiceImpl implements WishlistService {
         return 0;
     }
 
+    @Transactional
     @Override
     public WishlistRespDto toggleWishlist(Long bookId) {
 
