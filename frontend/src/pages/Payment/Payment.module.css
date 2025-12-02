@@ -1,4 +1,195 @@
-.container {
-  background-color: saddlebrown;
-  background-color: rgba(0, 0, 0, 0);
+/* 전체 컨테이너 */
+.contents {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background: #fff;
+}
+
+/* 상단 영역: 제목 + 단계 표시 */
+.paymentTopWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.titleWrap {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.stepWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+/* 좌우 레이아웃: 주문상품 + 결제 요약 */
+.paymentLayout {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+/* 좌측: 주문상품 + 배송지 + 포인트 */
+.leftArea {
+  flex: 1;
+}
+
+/* 주문상품 박스 */
+.paymentBox {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+}
+
+.empty {
+  padding: 40px 0;
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+/* 주문상품 아이템 */
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.orderListItem {
+  display: flex;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.orderListItem:last-child {
+  border-bottom: none;
+}
+
+.orderListItem img {
+  width: 100px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.orderListItem h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* 배송지/포인트 입력 영역 */
+.addressBox,
+.pointsBox {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+.addressBox h2,
+.pointsBox h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.addressBox button,
+.pointsBox label {
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.addressBox button:hover {
+  color: #5156b2;
+}
+
+/* 우측: 결제 요약 + 포인트 */
+.rightArea {
+  width: 300px;
+  background: #fafafa;
+  padding: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.summary {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+.finalPrice {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.orderBtn {
+  width: 100%;
+  padding: 14px 0;
+  background: #5156b2;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.orderBtn:hover {
+  background: #3f42a0;
+}
+
+/* 배송지 수정 버튼 */
+.editAddressBtn {
+  margin-top: 15px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5156b2;
+  background: #fff;
+  border: 1px solid #5156b2;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.editAddressBtn:hover {
+  background-color: #5156b2;
+  color: #fff;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .paymentLayout {
+    flex-direction: column;
+  }
+
+  .rightArea {
+    width: 100%;
+  }
+
+  .paymentTopWrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }

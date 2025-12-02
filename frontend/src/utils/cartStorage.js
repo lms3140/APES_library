@@ -41,7 +41,7 @@ export const clearCart = () => {
   localStorage.removeItem(CART_KEY);
 };
 
-// 🔹 새로 추가: 장바구니에 같은 상품이 있는지 확인
+// 장바구니에 같은 상품이 있는지 확인
 export const isInCart = (bookId) => {
   const cart = getCartItems();
   return cart.some(i => i.bookId === bookId);
