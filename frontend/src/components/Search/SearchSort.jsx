@@ -2,12 +2,12 @@ import styles from "../../pages/Search/Search.module.css";
 import { useState } from "react";
 import { Dropdown } from "../Dropdown/Dropdown.jsx";
 
-import heartIcon from "/images/etc/ico_heart.png";
-import cartIcon from "/images/etc/ico_cart.png";
-import listGray from "/images/etc/ico_list_gray.png";
-import listBlack from "/images/etc/ico_list_black.png";
-import gridGray from "/images/etc/ico_grid_gray.png";
-import gridBlack from "/images/etc/ico_grid_black.png";
+import heartIcon from "/images/search/ico_heart.png";
+import cartIcon from "/images/search/ico_cart.png";
+import listGray from "/images/search/ico_list_gray.png";
+import listBlack from "/images/search/ico_list_black.png";
+import gridGray from "/images/search/ico_grid_gray.png";
+import gridBlack from "/images/search/ico_grid_black.png";
 import { useSelector } from "react-redux";
 import { selectFilteredSortedBooks } from "../../store/searchSlice.js";
 

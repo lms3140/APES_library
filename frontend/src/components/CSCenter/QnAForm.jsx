@@ -62,7 +62,7 @@ export function QnAForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = { memberId, title, content, status: "ready" };
+      const data = { memberId, title, content, status: "준비중" };
       const url = "http://localhost:8080/inquiry/qna";
       await axiosPost(url, data);
       await infoSwal(
@@ -70,7 +70,7 @@ export function QnAForm() {
         "빠른 시간 내에 답변 드리겠습니다.",
         "확인"
       );
-      navigate("/mypage");
+      navigate("/mypage/inquiries");
     } catch (e) {
       console.log(e);
       infoSwal("다시 시도해주세요", "", "확인");

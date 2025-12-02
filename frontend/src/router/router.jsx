@@ -9,13 +9,14 @@ import { route2 } from "./route2.jsx";
 import { route3 } from "./route3.jsx";
 import { NotFound } from "../pages/NotFound/NotFound.jsx";
 import { AuthRouter } from "./authRouter.jsx";
-import { Orders } from "../pages/Mypage/Orders/Orders.jsx";
-import { WishList } from "../pages/Mypage/WishList/WishList.jsx";
-import { Profile } from "../pages/Mypage/Profile/Profile.jsx";
-import { Reviews } from "../pages/Mypage/Reviews/Reviews.jsx";
-import { Addresses } from "../pages/Mypage/Addresses/Addresses.jsx";
-import { Inquiries } from "../pages/Mypage/inquiries/inquiries.jsx";
-import { MyPageHome } from "../pages/Mypage/MyPageHome/MyPageHome.jsx";
+import { Orders } from "../pages/Mypage/Orders.jsx";
+
+import { WishList } from "../pages/Mypage/WishList.jsx";
+import { Profile } from "../pages/Mypage/Profile.jsx";
+import { Reviews } from "../pages/Mypage/Reviews.jsx";
+import { Addresses } from "../pages/Mypage/Addresses.jsx";
+import { Inquiries } from "../pages/Mypage/Inquiries.jsx";
+import { MyPageHome } from "../pages/Mypage/MyPageHome.jsx";
 
 export const router = createBrowserRouter([
   //인증이 필요없는 페이지

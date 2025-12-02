@@ -21,7 +21,8 @@ const searchSlice = createSlice({
       state.keyword = action.payload;
     },
     setFilters: (state, action) => {
-      state.filters = action.payload;
+      const { key } = action.payload;
+      state.filters[key] = !state.filters[key];
     },
     setSortOptions: (state, action) => {
       state.sortOptions = action.payload;

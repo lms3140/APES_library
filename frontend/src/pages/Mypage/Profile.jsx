@@ -1,7 +1,7 @@
 import styles from "./Profile.module.css";
 import { InfoRow } from "./InfoRow.jsx";
 import { useEffect, useState } from "react";
-import { infoSwal } from "../../../api/api.js";
+import { infoSwal } from "../../api/api.js";
 
 export function Profile() {
   const [member, setMember] = useState(null);

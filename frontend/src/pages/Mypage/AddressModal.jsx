@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { infoSwal } from "../../../api/api.js";
+import { infoSwal } from "../../api/api.js";
 import styles from "./AddressModal.module.css";
 import Modal from "react-modal";
-import { Checkbox } from "../../../components/Checkbox/Checkbox.jsx";
+import { Checkbox } from "../../components/Checkbox/Checkbox.jsx";
 import DaumPostcode from "react-daum-postcode";
 import { CiSearch } from "react-icons/ci";
 

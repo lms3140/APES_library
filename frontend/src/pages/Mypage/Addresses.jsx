@@ -1,5 +1,5 @@
 import styles from "./Addresses.module.css";
-import { Radio } from "../../../components/RadioButton/Radio.jsx";
+import { Radio } from "../../components/RadioButton/Radio.jsx";
 import { AddressModal } from "./AddressModal.jsx";
 import { useState } from "react";
 
