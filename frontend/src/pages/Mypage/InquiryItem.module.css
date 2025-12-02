@@ -1,0 +1,110 @@
+.itemWrap {
+  border-bottom: 1px solid #eee;
+  padding: 20px 0;
+}
+
+/* 헤더 영역 */
+.header {
+  display: grid;
+  grid-template-columns: 160px 1fr 140px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.left {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 상태 (예: 준비중) */
+.status {
+  padding: 4px 8px;
+  background-color: #eef3ff;
+  color: #4a6dd6;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* 카테고리 */
+.category {
+  color: #666;
+  font-size: 14px;
+}
+
+/* 제목 + Q 아이콘 */
+.titleArea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qIcon {
+  display: inline-block;
+  background-color: #4a6dd6;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 15px;
+  color: #111;
+  font-weight: 500;
+}
+
+/* 날짜 + 화살표 */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.date {
+  font-size: 13px;
+  color: #999;
+}
+
+/* 열린 컨텐츠 박스 */
+.contentBox {
+  margin-top: 16px;
+  padding: 16px;
+  background-color: #fafafa;
+  border-radius: 6px;
+}
+
+.content {
+  white-space: pre-line;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.buttonArea {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.editBtn,
+.deleteBtn {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.editBtn:hover,
+.deleteBtn:hover {
+  background-color: #f0f0f0;
+}

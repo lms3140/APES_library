@@ -314,7 +314,7 @@ SELECT
     b.book_id,
     b.title,
     b.image_url,
-    
+
     COALESCE(SUM(od.quantity), 0) AS total_sales_quantity,
     COALESCE(SUM(od.quantity * od.unit_price), 0) AS total_sales_amount,
 
@@ -327,7 +327,7 @@ LEFT JOIN purchase_order po
     AND po.order_status = 'PAID'  -- 결제 완료된 주문만 집계
 GROUP BY 
     b.book_id, b.title, b.image_url;
-    
+
 -- 프로젝트 요약
 CREATE OR REPLACE VIEW admin_summary_view AS
 SELECT 
@@ -401,7 +401,7 @@ SELECT
     m.user_id,
     p.created_at,
     o.quantity,
-    o.unit_price,
+    o.unit_price,	
     o.book_id
 FROM purchase_order p
 LEFT JOIN member m ON m.member_id = p.member_id
@@ -411,5 +411,3 @@ select * from admin_booksales_detail_view;
 select * from member;
 
 select * from member;
-
-

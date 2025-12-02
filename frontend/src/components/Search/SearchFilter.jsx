@@ -20,14 +20,7 @@ export function SearchFilter() {
   const renderFilterCheckbox = (label, key) => (
     <Checkbox
       checked={filters[key]}
-      onChange={() =>
-        dispatch(
-          setFilters({
-            ...filters,
-            [key]: !filters[key],
-          })
-        )
-      }
+      onChange={() => dispatch(setFilters({ key }))}
       labelStyle={styles.filterCheckbox}
       label={label}
     />

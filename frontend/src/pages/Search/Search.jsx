@@ -10,7 +10,7 @@ import { usePagination } from "../../hooks/usePagination.js";
 import { confirmSwal, infoSwal } from "../../api/api.js";
 import {
   selectFilteredSortedBooks,
-  setFilters,
+  setKeyword,
   setLimit,
   setSortOptions,
   setViewType,
@@ -26,17 +26,18 @@ export function Search() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const keyword = params.get("keyword");
-  const filters = useSelector((state) => state.search.filters);
   const limit = useSelector((state) => state.search.limit);
   const viewType = useSelector((state) => state.search.viewType);
   const selectedItems = useSelector((state) => state.search.selectedItems);
   const likedItems = useSelector((state) => state.liked.likedItems);
   const sortedBooks = useSelector(selectFilteredSortedBooks);
+  const originalBooks = useSelector((state) => state.books.books);
   const isLoggedIn = Boolean(localStorage.getItem("jwtToken"));
 
   // keyword 바뀔 때마다 검색 실행
   useEffect(() => {
     if (keyword) {
+      dispatch(setKeyword(keyword));
       dispatch(fetchBooks(keyword));
     }
   }, [keyword, dispatch]);
@@ -98,14 +99,11 @@ export function Search() {
   return (
     <div className={styles.searchWrapper}>
       <h1 className={styles.resultTitle}>
-        <span>'{keyword}'</span>에 대한 {sortedBooks.length}개의 검색 결과
+        <span>'{keyword}'</span>에 대한 {originalBooks.length}개의 검색 결과
       </h1>
 
       <div className={styles.searchContainer}>
-        <SearchFilter
-          filters={filters}
-          onFilterChange={(newFilters) => dispatch(setFilters(newFilters))}
-        />
+        <SearchFilter />
 
         <div className={styles.rightArea}>
           <SearchSort

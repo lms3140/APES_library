@@ -1,0 +1,193 @@
+/* 배경 오버레이 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+/* 메인 모달 */
+.modal {
+  width: 520px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* 공통 타이틀 */
+.header,
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h3,
+.postHeader h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.closeBtn {
+  font-size: 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* LABEL */
+.label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* 입력창 */
+.input {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 16px;
+  font-size: 15px;
+  outline: none;
+}
+
+/* 주소 전체 박스 */
+.addressBox {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  background: #fff;
+  height: 48px;
+  margin-bottom: 10px;
+}
+
+/* address1 input (왼쪽 영역) */
+.address1 {
+  flex: 1;
+  border: none;
+  background: #f5f5f5; /* 회색 배경 */
+  font-size: 15px;
+  padding-left: 12px;
+  cursor: default;
+}
+
+.address1::placeholder {
+  color: #aaa;
+}
+
+/* 주소 찾기 / 주소 변경 버튼 */
+.searchBtn {
+  min-width: 90px;
+  height: 34px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+/* 기본배송지 */
+.checkboxWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 20px;
+}
+
+/* 저장 버튼 */
+.saveBtn {
+  width: 100%;
+  background: #a7a5f7;
+  padding: 14px 0;
+  border: none;
+  font-size: 17px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* 주소 검색 모달 */
+.postcodeModal {
+  width: 520px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.postBody {
+  height: 500px;
+  overflow-y: auto;
+}
+.addressSearchBox {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 14px;
+  cursor: pointer;
+  font-size: 15px;
+  background: #fff;
+}
+
+.searchIcon {
+  font-size: 18px;
+  color: #666;
+}
+
+.searchText {
+  color: #444;
+}
+
+/* ========== 주소 선택 후 UI ========== */
+
+/* 주소 + 주소변경 버튼 있는 윗줄 */
+.addressTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* 주소 변경 버튼 */
+.changeBtn {
+  padding: 6px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 주소 input + 상세주소 input 공통 */
+.addressInput {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+/* 선택된 주소 input - 회색 배경 */
+.addressInput[readonly] {
+  background: #f8f8f8;
+  cursor: default;
+}

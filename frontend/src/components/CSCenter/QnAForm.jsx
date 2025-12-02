@@ -2,10 +2,9 @@ import styles from "./QnAForm.module.css";
 import { useEffect, useState } from "react";
 import { axiosPost } from "../../utils/dataFetch.js";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import "../../css/swal.css";
 import { Checkbox } from "../Checkbox/Checkbox.jsx";
 import { Radio } from "../RadioButton/Radio.jsx";
+import { infoSwal } from "../../api/api.js";
 
 export function QnAForm() {
   const navigate = useNavigate();
@@ -17,6 +16,7 @@ export function QnAForm() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("phone");
+  const [memberId, setMemberId] = useState(null);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -26,6 +26,7 @@ export function QnAForm() {
       const res = await fetch("http://localhost:8080/member/me", {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       });
       if (!res.ok) throw new Error("회원 정보를 불러올 수 없습니다.");
@@ -33,6 +34,7 @@ export function QnAForm() {
       const data = await res.json();
       setPhone(data.phone);
       setEmail(data.email);
+      setMemberId(data.memberId);
     };
     fetchUserInfo();
   }, []);
@@ -60,32 +62,18 @@ export function QnAForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = { memberId: 1, title, content, status: "ready" };
+      const data = { memberId, title, content, status: "준비중" };
       const url = "http://localhost:8080/inquiry/qna";
       await axiosPost(url, data);
-      await Swal.fire({
-        title: "문의가 접수되었어요.",
-        text: "빠른 시간 내에 답변 드리겠습니다.",
-        confirmButtonText: "확인",
-        customClass: {
-          popup: "customPopup",
-          title: "customTitle",
-          htmlContainer: "customText",
-          confirmButton: "customConfirmButton",
-        },
-      });
-      navigate("/mypage");
+      await infoSwal(
+        "문의가 접수되었어요.",
+        "빠른 시간 내에 답변 드리겠습니다.",
+        "확인"
+      );
+      navigate("/mypage/inquiries");
     } catch (e) {
       console.log(e);
-      Swal.fire({
-        title: "다시 시도해주세요.",
-        confirmButtonText: "확인",
-        customClass: {
-          popup: "customPopup",
-          title: "customTitle",
-          confirmButton: "customConfirmButton",
-        },
-      });
+      infoSwal("다시 시도해주세요", "", "확인");
     }
   };
 
@@ -198,10 +186,7 @@ export function QnAForm() {
                 />
                 {!phone && (
                   <p className={styles.warning}>
-                    <img
-                      src="../../../public/images/CSCenter/warningIcon.png"
-                      alt=""
-                    />
+                    <img src="/images/CSCenter/warningIcon.png" alt="" />
                     연락처를 입력해주세요.
                   </p>
                 )}

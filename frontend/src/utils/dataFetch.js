@@ -21,8 +21,13 @@ export const axiosGet = async (url) => {
 };
 
 export const axiosPost = async (url, formData) => {
+  const token = localStorage.getItem("jwtToken");
+
   const response = await axios.post(url, formData, {
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
   return response.data;
 };

@@ -59,20 +59,15 @@ public class JwtServiceImpl implements JwtService {
      */
     public JwtServiceImpl() {
 
-        // SECRET_KEY가 없거나 너무 짧으면 JWT 서명에 사용할 수 없으므로,
-        // Bean 생성이 실패하지 않도록 안전한 랜덤 키를 자동 생성함
+        // Windows 환경변수: tokenKey
+        SECRET_KEY = System.getenv("MY_SECRET_TOKEN");
+        System.out.println("SECRET_KEY = " + SECRET_KEY);
         if (SECRET_KEY == null || SECRET_KEY.length() < 32) {
-            System.out.println("[WARN] JWT_SECRET_KEY 환경변수가 없거나 짧아서 랜덤 키를 생성합니다.");
-
-            // 안전한 HS256용 랜덤 SecretKey 생성
-            byte[] randomKey = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
-
-            // Base64 Encoding 없이 바로 바이트 배열을 사용 (HS256 안전 규격 충족)
-            SECRET_KEY = new String(randomKey);
+            throw new IllegalStateException(
+                    "환경변수 tokenKey가 없거나 32자 미만입니다. 반드시 설정해야 합니다."
+            );
         }
 
-        // SECRET_KEY 문자열을 바이트 배열로 변환하여
-        // 서명에 사용할 HMAC SHA-256 Key 객체 생성
         this.key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 

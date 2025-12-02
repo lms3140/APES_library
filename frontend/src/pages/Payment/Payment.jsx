@@ -27,10 +27,9 @@ export function Payment() {
   const [usePoints, setUsePoints] = useState(false);
   const [userPoints, setUserPoints] = useState(1000); // 예시로 1000P 설정
 
-  // 주소 데이터 불러오기 (기존 useGetFetch 훅 사용)
-  const { data: addressDataFromApi, isLoading, isError } = useGetFetch(
-    "http://localhost:8080/getUserAddress" // 예시 API URL
-  );
+
+
+
 
   // 장바구니에서 주문 항목들 불러오기
   const [bookList, setBookList] = useState([]);
@@ -49,78 +48,92 @@ export function Payment() {
     );
   }, [cartItems, location.state]);
 
+useEffect(()=>{
+        async function getAddressList(){
+            const token = localStorage.getItem("jwtToken");
+            const response = await axios.post(
+                  'http://localhost:8080/address/list',{}, // 요청을 보낼 URL
+                  {
+                    headers: {
+                      'Authorization': `Bearer ${token}`, // Authorization 헤더에 Bearer 토큰 추가
+                      'Content-Type': 'application/json', // 필요한 경우 추가적인 헤더도 설정
+                    },
+                  }
+                );
+            console.log(response.data);
+            }
+        getAddressList();
+    },[])
+
   // 총 금액, 할인, 포인트 등 계산
   const totalPrice = bookList.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const totalDiscount = Math.floor(totalPrice * 0.1);
   const totalPoints = Math.floor(totalPrice * 0.1);
   const finalPrice = totalPrice - totalDiscount - (usePoints ? userPoints : 0);
 
-  // 결제 처리 함수
+  // 카카오 결제 준비 함수
   const handlePayment = async () => {
     try {
-      await axios.post("http://localhost:8080/payment", {
-        orderItems: bookList,
-        usePoints,
-        totalPrice: finalPrice,
-        address: addressData,
+      // 결제 준비 요청 보내기
+      const response = await axios.post("http://localhost:8080/payment/ready", {
+        userId: "user123", // 실제 사용자 ID로 변경
+        itemName: "주문상품", // 실제 상품명으로 변경
+        totalAmount: finalPrice,
+        books: bookList.map((book) => ({
+          bookId: book.book_id,
+          quantity: book.quantity,
+        })),
+        addressId: 1, // 배송지 ID
+        point: usePoints ? userPoints : 0,
       });
 
-      if (usePoints) setUserPoints((prev) => prev - userPoints);
+      // 카카오페이 리디렉션 URL로 이동
+      const redirectUrl = response.data.redirectUrl;
+      window.location.href = redirectUrl;  // 카카오페이 결제 페이지로 리디렉션
 
-      dispatch(resetCart()); // 결제 완료 후 장바구니 초기화
-      navigate("/order-complete", { state: { finalPrice } }); // 주문 완료 페이지로 이동
     } catch (error) {
-      console.error("결제 실패:", error);
+      console.error("결제 준비 실패:", error);
+      Swal.fire("결제 준비 실패", "다시 시도해 주세요.", "error");
     }
   };
-
-  // 배송지 정보가 없거나 에러가 발생한 경우, 기본값을 사용하도록 설정
-  useEffect(() => {
-    if (addressDataFromApi) {
-      setAddressData({
-        recipientName: addressDataFromApi.recipient_name || "받는사람",
-        phone: addressDataFromApi.phone || "휴대폰 번호",
-        addressLine1: addressDataFromApi.address_line1 || "주소",
-        addressLine2: addressDataFromApi.address_line2 || "자세한주소",
-        zipCode: addressDataFromApi.zip_code || "우편번호",
-      });
-    }
-  }, [addressDataFromApi]);
 
   // 배송지 수정 팝업
-  const handleEditAddress = () => {
-    Swal.fire({
-      title: "배송지 수정",
-      html: `
-        <input id="swal-recipient" class="swal2-input" placeholder="받는사람" value="${addressData.recipientName}" />
-        <input id="swal-phone" class="swal2-input" placeholder="휴대폰 번호" value="${addressData.phone}" />
-        <input id="swal-address1" class="swal2-input" placeholder="주소" value="${addressData.addressLine1}" />
-        <input id="swal-address2" class="swal2-input" placeholder="자세한 주소" value="${addressData.addressLine2}" />
-        <input id="swal-zipcode" class="swal2-input" placeholder="우편번호" value="${addressData.zipCode}" />
-      `,
-      focusConfirm: false,
-      preConfirm: () => {
-        const recipientName = document.getElementById("swal-recipient").value;
-        const phone = document.getElementById("swal-phone").value;
-        const addressLine1 = document.getElementById("swal-address1").value;
-        const addressLine2 = document.getElementById("swal-address2").value;
-        const zipCode = document.getElementById("swal-zipcode").value;
+const handleEditAddress = () => {
+  Swal.fire({
+    title: "배송지 수정",
+    html: `
+      <input id="swal-recipient" class="swal2-input" placeholder="받는사람" value="${addressData.recipientName}" />
+      <input id="swal-phone" class="swal2-input" placeholder="휴대폰 번호" value="${addressData.phone}" />
+      <input id="swal-address1" class="swal2-input" placeholder="주소" value="${addressData.addressLine1}" />
+      <input id="swal-address2" class="swal2-input" placeholder="자세한 주소" value="${addressData.addressLine2}" />
+      <input id="swal-zipcode" class="swal2-input" placeholder="우편번호" value="${addressData.zipCode}" />
+    `,
+    focusConfirm: false,
+    preConfirm: () => {
+      const recipientName = document.getElementById("swal-recipient").value;
+      const phone = document.getElementById("swal-phone").value;
+      const addressLine1 = document.getElementById("swal-address1").value;
+      const addressLine2 = document.getElementById("swal-address2").value;
+      const zipCode = document.getElementById("swal-zipcode").value;
 
-        if (!recipientName || !phone || !addressLine1 || !addressLine2 || !zipCode) {
-          Swal.showValidationMessage("모든 필드를 입력해주세요.");
-          return false;
-        }
+      if (!recipientName || !phone || !addressLine1 || !addressLine2 || !zipCode) {
+        Swal.showValidationMessage("모든 필드를 입력해주세요.");
+        return false;
+      }
+    },
+    showCancelButton: true,
+    confirmButtonText: "확인",
+    cancelButtonText: "취소",
+    customClass: {
+      popup: "customPopup",           // 팝업 스타일
+      title: "customTitle",           // 타이틀 스타일
+      htmlContainer: "customText",    // 텍스트 스타일
+      confirmButton: "customConfirmButton", // 확인 버튼 스타일
+      cancelButton: "customCancelButton",   // 취소 버튼 스타일
+    },
+  });
+};
 
-        setAddressData({
-          recipientName,
-          phone,
-          addressLine1,
-          addressLine2,
-          zipCode,
-        });
-      },
-    });
-  };
 
   return (
     <section className={paymentStyle.contents}>
@@ -135,9 +148,9 @@ export function Payment() {
         <div className={paymentStyle.leftArea}>
           <div className={paymentStyle.addressBox}>
             <h2>배송지</h2>
-            {isLoading ? (
+            {false ? (
               <p>로딩중...</p>
-            ) : isError ? (
+            ) : false ? (
               <p>배송지 정보 불러오기 실패</p>
             ) : (
               <div>

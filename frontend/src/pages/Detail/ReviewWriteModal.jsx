@@ -29,7 +29,7 @@ export default function ReviewWriteModal({ bookId, memberId, onClose, onSuccess 
 
     try {
       // 🔹 JWT 토큰 가져오기 (localStorage 혹은 cookie)
-      const token = localStorage.getItem("accessToken"); // 토큰 이름에 맞게 수정
+      const token = localStorage.getItem("jwtToken"); // 토큰 이름에 맞게 수정
       if (!token) throw new Error("로그인이 필요합니다.");
 
       // 🔹 axios POST 요청 + Authorization 헤더 추가

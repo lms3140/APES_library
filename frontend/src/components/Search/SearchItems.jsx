@@ -2,8 +2,8 @@ import styles from "../../pages/Search/Search.module.css";
 import { useNavigate } from "react-router-dom";
 import { Checkbox } from "../Checkbox/Checkbox";
 
-import heartIcon from "/images/etc/ico_heart.png";
-import redHeartIcon from "/images/etc/ico_heart_red.png";
+import heartIcon from "/images/search/ico_heart.png";
+import redHeartIcon from "/images/search/ico_heart_red.png";
 import { confirmSwal, likeSwal, unlikeSwal } from "../../api/api";
 
 export function SearchItems({
