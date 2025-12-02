@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // ← import 추가
+import { useNavigate } from "react-router-dom";
 import styles from "./Cart.module.css";
 import { StepItemNum } from "../../components/Cart/StepItemNum.jsx";
 import {
@@ -8,11 +8,8 @@ import {
   removeCartItem,
 } from "../../utils/cartStorage";
 
-import spinnerUp from "../../../public/images/detail/ico_spinner_up.png";
-import spinnerDown from "../../../public/images/detail/ico_spinner_down.png";
-
 import Swal from "sweetalert2";
-import "../../css/swal_cart.css";
+import "../../css/swal.css";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -24,9 +21,11 @@ const Cart = () => {
 
   const totalCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  const increment = (bookId) => {
+  // 아이템 수량 증가
+  const handleIncrease = (bookId) => {
     const item = cartItems.find((i) => i.bookId === bookId);
     if (!item) return;
+
     updateCartItemQuantity(bookId, item.quantity + 1);
     setCartItems((prev) =>
       prev.map((i) =>
@@ -35,40 +34,13 @@ const Cart = () => {
     );
   };
 
-  const decrement = (bookId) => {
+  // 아이템 수량 감소
+  const handleDecrease = (bookId) => {
     const item = cartItems.find((i) => i.bookId === bookId);
     if (!item) return;
 
     if (item.quantity === 1) {
-      // 1️⃣ 수량이 1일 때 삭제 확인 팝업
-      Swal.fire({
-        html: `
-          <p class="cartPopupTitle"><strong>상품을 삭제하시겠어요?</strong></p>
-          <div class="cartPopupBtnWrap">
-            <button id="cancelBtn" class="customCancleButton">취소</button>
-            <button id="deleteBtn" class="customConfirmButton">삭제</button>
-          </div>
-        `,
-        showConfirmButton: false,
-        showCancelButton: false,
-        allowOutsideClick: false,
-        customClass: { popup: "customPopup" },
-        didRender: () => {
-          document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
-          document.getElementById("deleteBtn").addEventListener("click", () => {
-            removeItem(bookId);
-            Swal.fire({
-              title: "선택 상품이 삭제되었습니다.",
-              confirmButtonText: "확인",
-              customClass: {
-                popup: "customPopup",
-                title: "customTitle",
-                confirmButton: "customConfirmButton",
-              },
-            });
-          });
-        },
-      });
+      handleRemoveItem(bookId); // 수량 1이면 삭제 팝업
       return;
     }
 
@@ -80,9 +52,39 @@ const Cart = () => {
     );
   };
 
+  // 아이템 삭제
   const removeItem = (bookId) => {
     removeCartItem(bookId);
     setCartItems((prev) => prev.filter((i) => i.bookId !== bookId));
+  };
+
+  // Swal 삭제 팝업
+  const handleRemoveItem = async (bookId) => {
+    const result = await Swal.fire({
+      title: "선택 상품을 삭제하시겠어요?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+      customClass: {
+        popup: "customPopup",
+        title: "customTitle",
+        confirmButton: "customConfirmButton",
+        cancelButton: "customCancelButton",
+      },
+    });
+
+    if (result.isConfirmed) {
+      removeItem(bookId);
+      Swal.fire({
+        title: "선택 상품이 삭제되었습니다.",
+        confirmButtonText: "확인",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          confirmButton: "customConfirmButton",
+        },
+      });
+    }
   };
 
   const totalPrice = cartItems.reduce(
@@ -95,6 +97,35 @@ const Cart = () => {
 
   const goToDetail = (bookId) => {
     navigate(`/detail/${bookId}`);
+  };
+
+  // 주문하기 버튼
+  const handleOrder = async () => {
+    if (cartItems.length === 0) return;
+
+    const result = await Swal.fire({
+      title: `${cartItems.length}개의 상품을 주문하시겠어요?`,
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+      customClass: {
+        popup: "customPopup",
+        title: "customTitle",
+        confirmButton: "customConfirmButton",
+        cancelButton: "customCancelButton",
+      },
+    });
+
+    if (result.isConfirmed) {
+      navigate("/payment", {
+        state: {
+          orderItems: cartItems.map((item) => ({
+            bookId: item.bookId,
+            quantity: item.quantity,
+          })),
+        },
+      });
+    }
   };
 
   return (
@@ -142,55 +173,37 @@ const Cart = () => {
                         </span>
                       </div>
 
+                      {/* 수량 조절 */}
                       <div className={styles.quantityContainer}>
                         <div className={styles.qtyControlWrapper}>
                           <button
                             className={styles.qtyBtn}
-                            onClick={() => decrement(item.bookId)}
+                            onClick={() => handleDecrease(item.bookId)}
                           >
-                            <img src={spinnerDown} alt="감소" />
+                            <img
+                              src="/images/detail/ico_spinner_down.png"
+                              alt="감소"
+                            />
                           </button>
-                          <span className={styles.qtyValue}>{item.quantity}</span>
+
+                          <span className={styles.qtyValue}>
+                            {item.quantity}
+                          </span>
+
                           <button
                             className={styles.qtyBtn}
-                            onClick={() => increment(item.bookId)}
+                            onClick={() => handleIncrease(item.bookId)}
                           >
-                            <img src={spinnerUp} alt="증가" />
+                            <img
+                              src="/images/detail/ico_spinner_up.png"
+                              alt="증가"
+                            />
                           </button>
                         </div>
+
                         <button
                           className={styles.deleteBtn}
-                          onClick={() => {
-                            // 2️⃣ 삭제 버튼 클릭 시 팝업
-                            Swal.fire({
-                              html: `
-                                <p class="cartPopupTitle"><strong>상품을 삭제하시겠어요?</strong></p>
-                                <div class="cartPopupBtnWrap">
-                                  <button id="cancelBtn" class="customCancleButton">취소</button>
-                                  <button id="deleteBtn" class="customConfirmButton">삭제</button>
-                                </div>
-                              `,
-                              showConfirmButton: false,
-                              showCancelButton: false,
-                              allowOutsideClick: false,
-                              customClass: { popup: "customPopup" },
-                              didRender: () => {
-                                document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
-                                document.getElementById("deleteBtn").addEventListener("click", () => {
-                                  removeItem(item.bookId);
-                                  Swal.fire({
-                                    title: "선택 상품이 삭제되었습니다.",
-                                    confirmButtonText: "확인",
-                                    customClass: {
-                                      popup: "customPopup",
-                                      title: "customTitle",
-                                      confirmButton: "customConfirmButton",
-                                    },
-                                  });
-                                });
-                              },
-                            });
-                          }}
+                          onClick={() => handleRemoveItem(item.bookId)}
                         >
                           삭제
                         </button>
@@ -224,41 +237,7 @@ const Cart = () => {
             </p>
           </div>
 
-          {/* 3️⃣ 주문하기 버튼 클릭 시 Payment 페이지로 책 ID와 수량 전달 */}
-          <button
-            className={styles.orderBtn}
-            onClick={async () => {
-              if (cartItems.length === 0) return;
-
-              const result = await Swal.fire({
-                html: `
-                  <p class="cartPopupTitle"><strong>${cartItems.length}개의 상품을 주문하시겠어요?</strong></p>
-                  <div class="cartPopupBtnWrap">
-                    <button id="cancelBtn" class="customCancleButton">취소</button>
-                    <button id="confirmBtn" class="customConfirmButton">확인</button>
-                  </div>
-                `,
-                showConfirmButton: false,
-                showCancelButton: false,
-                allowOutsideClick: false,
-                customClass: { popup: "customPopup" },
-                didRender: () => {
-                  document.getElementById("cancelBtn").addEventListener("click", () => Swal.close());
-                  document.getElementById("confirmBtn").addEventListener("click", () => Swal.close());
-                },
-              });
-
-              // 4️⃣ 확인 클릭 후 Payment 페이지로 이동하며 Cart 데이터 전달
-              navigate("/payment", {
-                state: {
-                  orderItems: cartItems.map(item => ({
-                    bookId: item.bookId,
-                    quantity: item.quantity
-                  })),
-                },
-              });
-            }}
-          >
+          <button className={styles.orderBtn} onClick={handleOrder}>
             주문하기
           </button>
         </div>

@@ -1,4 +1,4 @@
-import style from '../../pages/Payment/Payment.module.css'
+import style from './StepItemNum.module.css';
 
 
 export function StepItemNum () {
