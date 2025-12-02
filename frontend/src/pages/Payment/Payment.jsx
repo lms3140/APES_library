@@ -3,34 +3,6 @@ import paymentStyle from "./Payment.module.css";
 import axios from "axios";
 
 export function Payment() {
-  const [bookList, setBookList] = useState([
-    {
-      book_id: 1,
-      imageUrl:
-        "https://image.aladin.co.kr/product/37609/38/cover200/k842032742_1.jpg",
-      title: "픽미업 1",
-      quantity: "갯수",
-      price: "가격",
-    },
-  ]);
-  const [addressData, setAddressData] = useState({
-    recipientName: "받는사람",
-    phone: "휴대폰 번호",
-    addressLine1: "주소",
-    addressLine2: "자세한주소",
-    addressLine2: "자세한주소",
-    zipCode: "우편번호",
-  });
-
-  useEffect(() => {
-    // 어드레스 들고오기
-    // 포인트 들고오기
-  }, []);
-
-  const handlePayment = () => {
-    const resp = axios("http://localhost:8080/");
-  };
-
   return (
     <>
       <div className={paymentStyle.container}>

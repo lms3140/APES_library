@@ -17,8 +17,8 @@ public class AddressController {
     private final AddressService addressService;
 
     @PostMapping
-    public String createAddress(@AuthenticationPrincipal Member member,
-                                @RequestBody AddressDto dto) {
+    public String createAddress(@RequestBody AddressDto dto) {
+
         addressService.createAddress(dto);
         return "OK";
     }
