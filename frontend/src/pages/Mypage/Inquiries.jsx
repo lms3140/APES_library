@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Inquiries.module.css";
+import { InquiryList } from "./InquiryList";
 
 export function Inquiries() {
+  const navigate = useNavigate();
   const [inquiries, setInquiries] = useState([]);
 
   useEffect(() => {
@@ -27,11 +30,17 @@ export function Inquiries() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.inquiriesContainer}>
       <h1>1:1문의</h1>
-      <div>
-        <p>1:1문의내역 조회는 최대 3년까지 가능합니다.</p>
-        <button>
+
+      <div className={styles.topArea}>
+        <p className={styles.noticeText}>
+          1:1문의내역 조회는 최대 3년까지 가능합니다.
+        </p>
+        <button
+          className={styles.inquiryButton}
+          onClick={() => navigate("/cscenter/qna-form")}
+        >
           <img
             src="/images/mypage/ico_comment_white.png"
             alt="문의하기버튼아이콘"
@@ -40,14 +49,13 @@ export function Inquiries() {
         </button>
       </div>
       {inquiries.length === 0 ? (
-        <div>
+        <div className={styles.noDataWrap}>
           <img src="/images/mypage/ico_nodata.png" alt="nodata" />
           <p>해당 기간 문의 내역이 없습니다.</p>
         </div>
       ) : (
-        <div></div>
+        <InquiryList inquiries={inquiries} />
       )}
-      <div></div>
     </div>
   );
 }

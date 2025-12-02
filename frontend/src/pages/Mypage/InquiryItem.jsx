@@ -10,7 +10,6 @@ export function InquiryItem({ inquiry }) {
       <div className={styles.header} onClick={() => setIsOpen(!isOpen)}>
         <div className={styles.left}>
           <span className={styles.status}>{inquiry.status}</span>
-          <span className={styles.category}>{inquiry.inquiryType}</span>
         </div>
 
         <div className={styles.titleArea}>

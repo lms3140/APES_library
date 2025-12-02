@@ -49,7 +49,6 @@ export function Orders() {
           <button>문장수집</button>
         </div>
 
-        {/* 주문내역이 없을 시 아이콘 출력 */}
         <div>
           <img src="/images/mypage/ico_nodata.png" />
           <p>주문한 상품이 없습니다.</p>

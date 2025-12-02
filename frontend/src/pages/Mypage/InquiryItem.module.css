@@ -1,11 +1,12 @@
 .itemWrap {
   border-bottom: 1px solid #eee;
-  padding: 16px 0;
+  padding: 20px 0;
 }
 
+/* 헤더 영역 */
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 160px 1fr 140px;
   align-items: center;
   cursor: pointer;
 }
@@ -13,85 +14,97 @@
 .left {
   display: flex;
   gap: 8px;
-  font-size: 14px;
+  align-items: center;
 }
 
+/* 상태 (예: 준비중) */
 .status {
-  padding: 2px 8px;
-  background: #e6e9ff;
-  color: #4a4edb;
-  border-radius: 12px;
+  padding: 4px 8px;
+  background-color: #eef3ff;
+  color: #4a6dd6;
+  border-radius: 4px;
   font-size: 12px;
+  font-weight: 600;
 }
 
+/* 카테고리 */
 .category {
-  color: #999;
+  color: #666;
   font-size: 14px;
 }
 
+/* 제목 + Q 아이콘 */
 .titleArea {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 1;
-  margin-left: 16px;
 }
 
 .qIcon {
-  width: 24px;
-  height: 24px;
-  background: #5b6bff;
-  color: white;
+  display: inline-block;
+  background-color: #4a6dd6;
+  color: #fff;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+  font-size: 12px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 14px;
+  align-items: center;
 }
 
 .title {
-  font-size: 16px;
+  font-size: 15px;
+  color: #111;
   font-weight: 500;
-  color: #222;
 }
 
+/* 날짜 + 화살표 */
 .right {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #666;
+  justify-content: flex-end;
 }
 
-/* 펼침 영역 */
+.date {
+  font-size: 13px;
+  color: #999;
+}
+
+/* 열린 컨텐츠 박스 */
 .contentBox {
-  background: #f5f5f7;
+  margin-top: 16px;
   padding: 16px;
-  border-radius: 8px;
-  margin-top: 12px;
+  background-color: #fafafa;
+  border-radius: 6px;
 }
 
 .content {
-  font-size: 15px;
-  margin-bottom: 12px;
-}
-
-.guideBox {
-  font-size: 13px;
+  white-space: pre-line;
   color: #444;
-  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .buttonArea {
+  margin-top: 16px;
   display: flex;
+  gap: 10px;
   justify-content: flex-end;
-  gap: 12px;
 }
 
 .editBtn,
 .deleteBtn {
-  background: none;
-  border: none;
-  color: #666;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+}
+
+.editBtn:hover,
+.deleteBtn:hover {
+  background-color: #f0f0f0;
 }

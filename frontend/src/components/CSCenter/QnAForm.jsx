@@ -186,10 +186,7 @@ export function QnAForm() {
                 />
                 {!phone && (
                   <p className={styles.warning}>
-                    <img
-                      src="../../../public/images/CSCenter/warningIcon.png"
-                      alt=""
-                    />
+                    <img src="/images/CSCenter/warningIcon.png" alt="" />
                     연락처를 입력해주세요.
                   </p>
                 )}
