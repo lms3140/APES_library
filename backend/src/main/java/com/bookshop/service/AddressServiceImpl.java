@@ -107,26 +107,5 @@ public class AddressServiceImpl implements AddressService{
 
         List<Address> updated = addressRepository.findByMember_MemberId(member.getMemberId());
         return updated.stream().map(AddressDto::new).toList();
-
-    }
-
-    @Override
-    public List<AddressDto> getAddressList() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String userId = auth.getName();
-
-        // userId로 해당 회원의 주소 리스트를 가져옴
-        List<Address> addresses = addressRepository.findByMemberUserId(userId);
-
-        // Address를 AddressDto로 변환하여 반환
-        return addresses.stream()
-                .map(address -> new AddressDto(
-                        address.getRecipientName(),
-                        address.getPhone(),
-                        address.getAddressLine1(),
-                        address.getAddressLine2(),
-                        address.getZipCode()
-                ))
-                .collect(Collectors.toList());
     }
 }
