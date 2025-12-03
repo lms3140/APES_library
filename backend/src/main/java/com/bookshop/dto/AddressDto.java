@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class AddressDto {
+    private long addressId;
     private long memberId;
     private String recipientName;
     private String phone;
@@ -18,10 +18,21 @@ public class AddressDto {
     private String zipCode;
 
     public AddressDto(Address address) {
+        this.addressId = address.getAddressId();
+        this.memberId = address.getMember().getMemberId();
         this.recipientName = address.getRecipientName();
         this.phone = address.getPhone();
         this.addressLine1 = address.getAddressLine1();
         this.addressLine2 = address.getAddressLine2();
         this.zipCode = address.getZipCode();
     }
+    // 생성자, getter, setter
+    public AddressDto(String recipientName, String phone, String addressLine1, String addressLine2, String zipCode) {
+        this.recipientName = recipientName;
+        this.phone = phone;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.zipCode = zipCode;
+    }
+
 }

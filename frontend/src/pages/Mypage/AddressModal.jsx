@@ -29,7 +29,7 @@ export function AddressModal({ isOpen, onClose }) {
     const token = localStorage.getItem("jwtToken");
 
     const body = {
-      addressName,
+      addressName: addressName,
       recipientName: recipient,
       phone,
       zipCode,
@@ -39,7 +39,7 @@ export function AddressModal({ isOpen, onClose }) {
     };
 
     try {
-      const res = await fetch("http://localhost:8080/address", {
+      const res = await fetch("http://localhost:8080/address/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

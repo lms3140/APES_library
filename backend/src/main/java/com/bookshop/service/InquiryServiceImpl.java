@@ -39,4 +39,10 @@ public class InquiryServiceImpl implements InquiryService{
 
         return inquiryRepository.findByMember(member);
     }
+
+    @Override
+    public int deleteInquiry(long inquiryId) {
+        inquiryRepository.deleteById(inquiryId);
+        return 1;
+    }
 }

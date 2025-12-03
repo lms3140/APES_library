@@ -1,12 +1,13 @@
 .itemWrap {
   border-bottom: 1px solid #eee;
   padding: 20px 0;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 /* 헤더 영역 */
 .header {
   display: grid;
-  grid-template-columns: 160px 1fr 140px;
+  grid-template-columns: 160px 1fr auto;
   align-items: center;
   cursor: pointer;
 }
@@ -20,11 +21,12 @@
 /* 상태 (예: 준비중) */
 .status {
   padding: 4px 8px;
-  background-color: #eef3ff;
-  color: #4a6dd6;
-  border-radius: 4px;
+  background-color: #ededf6;
+  color: #565a9c;
+  border-radius: 16px;
   font-size: 12px;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 
 /* 카테고리 */
@@ -42,15 +44,15 @@
 
 .qIcon {
   display: inline-block;
-  background-color: #4a6dd6;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  background-color: #474c98;
   color: #fff;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 24px;
 }
 
 .title {
@@ -76,8 +78,8 @@
 .contentBox {
   margin-top: 16px;
   padding: 16px;
-  background-color: #fafafa;
-  border-radius: 6px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
 }
 
 .content {
@@ -85,6 +87,7 @@
   color: #444;
   font-size: 14px;
   line-height: 1.6;
+  margin: 0;
 }
 
 .buttonArea {
@@ -94,17 +97,14 @@
   justify-content: flex-end;
 }
 
-.editBtn,
 .deleteBtn {
-  border: 1px solid #ddd;
-  background: #fff;
-  padding: 6px 12px;
+  border: none;
+  background: none;
   font-size: 13px;
-  border-radius: 4px;
   cursor: pointer;
+  color: #767676;
 }
 
-.editBtn:hover,
 .deleteBtn:hover {
   background-color: #f0f0f0;
 }

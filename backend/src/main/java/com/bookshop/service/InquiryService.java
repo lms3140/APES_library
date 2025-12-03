@@ -8,4 +8,5 @@ import java.util.List;
 public interface InquiryService {
     public Inquiry registerQna(InquiryDto dto);
     public List<Inquiry> getMyInquiries();
+    public int deleteInquiry(long inquiryId);
 }

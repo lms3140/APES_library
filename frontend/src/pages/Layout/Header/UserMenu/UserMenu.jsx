@@ -67,7 +67,7 @@ export function UserMenu() {
             <Link to="/store-info/001">매장안내</Link>
           </li>
           <li>
-            <Link to="#">고객센터</Link>
+            <Link to="/cscenter">고객센터</Link>
           </li>
         </ul>
       </div>

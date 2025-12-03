@@ -10,16 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/address")
 public class AddressController {
     private final AddressService addressService;
 
-    @PostMapping
+    @PostMapping("/create")
     public String createAddress(@RequestBody AddressDto dto) {
-
         addressService.createAddress(dto);
         return "OK";
+    }
+
+    @PostMapping("/get")
+    public AddressDto getAddress(@RequestBody AddressDto dto) {
+        return addressService.getAddress(dto.getAddressId());
+    }
+    @PostMapping("/list")
+    public List<AddressDto> getAddress() {
+        return addressService.getAddressList();
     }
 }
