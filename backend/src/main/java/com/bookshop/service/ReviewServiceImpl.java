@@ -7,9 +7,9 @@ import com.bookshop.entity.Review;
 import com.bookshop.repository.BookRepository;
 import com.bookshop.repository.MemberRepository;
 import com.bookshop.repository.ReviewRepository;
-import com.bookshop.service.ReviewService;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,9 +51,13 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ReviewDto createReview(Long bookId, Long memberId, Integer rating, String content) {
+    public ReviewDto createReview(Long bookId, Integer rating, String content) {
         Book book = bookRepository.findById(bookId).orElseThrow();
-        Member member = memberRepository.findById(memberId).orElseThrow();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = auth.getName();
+
+        Member member = memberRepository.findByUserId(userId).orElseThrow();
 
         Review review = new Review();
         review.setBook(book);
@@ -65,7 +69,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         return ReviewDto.builder()
                 .reviewId(saved.getReviewId())
-                .memberId(memberId)
+                .memberId(member.getMemberId())
                 .bookId(bookId)
                 .rating(rating)
                 .content(content)
