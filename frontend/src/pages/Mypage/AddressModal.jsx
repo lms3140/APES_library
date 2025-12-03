@@ -6,7 +6,7 @@ import { Checkbox } from "../../components/Checkbox/Checkbox.jsx";
 import DaumPostcode from "react-daum-postcode";
 import { CiSearch } from "react-icons/ci";
 
-export function AddressModal({ isOpen, onClose }) {
+export function AddressModal({ isOpen, onClose, onSaved }) {
   const [addressName, setAddressName] = useState("");
   const [recipient, setRecipient] = useState("");
   const [phone, setPhone] = useState("");
@@ -19,7 +19,7 @@ export function AddressModal({ isOpen, onClose }) {
   const closePostcode = () => setIsPostcodeOpen(false);
 
   const handleComplete = (data) => {
-    setZipcode(data.zonecode);
+    setZipcode(data.zipCode);
     setAddress1(data.address);
     closePostcode();
   };
@@ -55,10 +55,19 @@ export function AddressModal({ isOpen, onClose }) {
 
       infoSwal("주소가 등록되었습니다.", "", "확인");
       onClose();
+      onSaved();
     } catch (err) {
       console.error("API error", err);
     }
   };
+
+  const isFormValid =
+    addressName.trim() &&
+    recipient.trim() &&
+    phone.trim() &&
+    zipCode.trim() &&
+    address1.trim() &&
+    address2.trim();
 
   return (
     <>
@@ -71,11 +80,11 @@ export function AddressModal({ isOpen, onClose }) {
         <div className={styles.header}>
           <h3>배송지 추가</h3>
           <button className={styles.closeBtn} onClick={onClose}>
-            ✕
+            <img src="/images/mypage/btn_close.png" alt="" />
           </button>
         </div>
 
-        <div>
+        <div className={styles.inputContainer}>
           <label className={styles.label}>배송지명</label>
           <input
             type="text"
@@ -105,12 +114,14 @@ export function AddressModal({ isOpen, onClose }) {
         <div>
           <label className={styles.label}>주소</label>
           {!address1 && (
-            <div className={styles.addressSearchBox} onClick={openPostcode}>
-              <span className={styles.searchIcon}>
-                <CiSearch />
-              </span>
-              <span className={styles.searchText}>주소 찾기</span>
-            </div>
+            <button className={styles.addressSearchBox} onClick={openPostcode}>
+              <div className={styles.addressSearchBoxText}>
+                <span className={styles.searchIcon}>
+                  <CiSearch />
+                </span>
+                <span className={styles.searchText}>주소 찾기</span>
+              </div>
+            </button>
           )}
 
           {address1 && (
@@ -138,13 +149,22 @@ export function AddressModal({ isOpen, onClose }) {
           )}
         </div>
 
-        <div>
-          <Checkbox />
+        <div className={styles.checkboxWrap}>
+          <Checkbox
+            checked={isDefault}
+            onChange={() => setIsDefault(!isDefault)}
+          />
           <p>기본배송지로 설정</p>
         </div>
 
-        <div>
-          <button className={styles.saveBtn} onClick={handleSave}>
+        <div className={styles.saveBtnWrap}>
+          <button
+            className={`${styles.saveBtn} ${
+              !isFormValid ? styles.disabled : ""
+            }`}
+            onClick={handleSave}
+            disabled={!isFormValid}
+          >
             저장
           </button>
         </div>
@@ -159,12 +179,12 @@ export function AddressModal({ isOpen, onClose }) {
         <div className={styles.header}>
           <h3>주소 찾기</h3>
           <button className={styles.closeBtn} onClick={closePostcode}>
-            ✕
+            <img src="/images/mypage/btn_close.png" alt="" />
           </button>
         </div>
 
         <div className={styles.postcodeBody}>
-          <DaumPostcode onComplete={handleComplete} width={"400px"} />
+          <DaumPostcode onComplete={handleComplete} />
         </div>
       </Modal>
     </>

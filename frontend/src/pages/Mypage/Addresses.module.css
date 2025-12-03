@@ -1,7 +1,7 @@
 .wrapper {
   width: 100%;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 0 120px 0;
   font-family: "Pretendard", sans-serif;
 }
 
@@ -11,135 +11,187 @@
   margin-bottom: 24px;
 }
 
-/* ---------------------------------- */
-/* 기본 배송지 */
-/* ---------------------------------- */
+/* ============================= */
+/*  기본 배송지 박스             */
+/* ============================= */
 .defaultBox {
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 24px;
-  background-color: #fff;
-  margin-bottom: 40px;
-}
-
-.defaultHeader {
+  border: none;
+  border-radius: 16px;
+  padding: 30px;
+  background: #f7f7f7;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.defaultLabel {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.defaultInfo {
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.notice {
-  font-size: 14px;
-  color: #777;
-}
-
-.noDefault {
-  color: #999;
-}
-
-/* ---------------------------------- */
-/* 목록 상단 */
-/* ---------------------------------- */
-.listHeader {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.count span {
-  color: #3c9a17;
-  font-weight: 700;
-}
-
-.limit {
-  font-size: 14px;
-  color: #999;
-}
-
-.addBtn {
-  margin-left: auto;
-  padding: 6px 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
-}
-
-/* ---------------------------------- */
-/* 주소 리스트 */
-/* ---------------------------------- */
-.listContainer {
-  border-top: 1px solid #eaeaea;
-}
-
-.item {
-  display: flex;
   align-items: flex-start;
-  padding: 20px 0;
-  border-bottom: 1px solid #eee;
 }
 
-.radioWrap {
-  margin-right: 16px;
-}
-
-.radioCustom {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.itemInfo {
+.defaultLeft {
   flex: 1;
 }
 
 .itemTitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
+  gap: 8px;
 }
 
 .defaultTag {
+  background: #fff;
+  color: #484c93;
+  border: 1px solid #484c93;
+  padding: 2px 7px;
+  border-radius: 20px;
   font-size: 12px;
+  font-weight: 400;
+}
+
+.itemText {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 0 0;
+  color: #222;
+}
+
+.itemText2 {
+  color: #595959;
+  font-size: 13px;
+  margin: 8px 0 0 0;
+}
+
+.defaultNotice {
+  margin: 14px 0;
+  font-size: 14px;
+  color: #777;
+  line-height: 1.5;
+}
+
+.defaultNotice p {
+  margin: 0 0 5px 0;
+  text-decoration: dotted;
+}
+
+.editBtn {
+  border: 1px solid #ccc;
+  padding: 6px 14px;
+  background: #fff;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+/* ============================= */
+/* 리스트 헤더                   */
+/* ============================= */
+/* 전체 영역: 왼쪽 고정 + 오른쪽 그룹 오른쪽 정렬 */
+.listTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 왼쪽 "0개" */
+.countText {
+  font-size: 16px;
+  font-weight: 600;
   color: #3c9a17;
-  border: 1px solid #3c9a17;
-  padding: 2px 6px;
-  border-radius: 4px;
+}
+
+/* 오른쪽 그룹 묶음 (문구 + 버튼) */
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* 두 요소 사이 여백 */
+}
+
+/* 안내문구 */
+.maxText {
+  font-size: 13px;
+  color: #767676;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.maxText span {
+  color: #474c98;
+}
+
+/* 버튼 */
+.addBtn {
+  padding: 6px 14px;
+  color: #474c98;
+  font-size: 13px;
+  border: 1px solid #474c98;
+  background: #fff;
+  border-radius: 6px;
+  white-space: nowrap;
+  height: 38px;
+}
+
+.addBtn img {
+  width: 12px;
+  height: 12px;
+}
+
+.divider {
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* ============================= */
+/* 주소 리스트                   */
+/* ============================= */
+.listContainer {
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.itemInfo {
+  flex: 1;
+  margin-left: 14px;
 }
 
 .itemBtns {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
-.editBtn,
 .deleteBtn {
-  border: 1px solid #ccc;
-  padding: 4px 12px;
-  border-radius: 4px;
+  padding: 6px 14px;
+  border-radius: 6px;
   background: #fff;
+  border: 1px solid #ccc;
 }
 
+/* ============================= */
+/* 기본배송지 설정 버튼          */
+/* ============================= */
 .submitBtn {
-  margin: 40px auto;
+  margin: 32px auto;
   display: block;
-  padding: 12px 30px;
-  background: #6a6af0;
-  color: #fff;
-  border-radius: 8px;
+  padding: 14px 36px;
   font-size: 16px;
+  background-color: #5055b1;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  height: 50px;
+  font-weight: 700;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.submitBtn:hover {
+  background-color: #2d3078;
+}
+
+.disabled {
+  background: #a7a9d4;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
