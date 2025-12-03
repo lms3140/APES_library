@@ -1,14 +1,13 @@
 package com.bookshop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class OrderDetail extends BaseCreatedEntity {
+public class OrderDetail {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderDetailId;
@@ -17,9 +16,11 @@ public class OrderDetail extends BaseCreatedEntity {
     private Integer unitPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="order_id")
     private PurchaseOrder order;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="book_id")
     private Book book;
 
     public OrderDetail(PurchaseOrder order, Book book, Integer quantity, Integer unitPrice) {

@@ -14,7 +14,7 @@ public class OrderHistoryDto {
     private Integer originalAmount;
     private LocalDateTime paidAt;
 
-    private AddressDto addressDto;
+    private AddressDto address;
     private List<OrderItemDto> items;
 
 

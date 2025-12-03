@@ -6,8 +6,9 @@ export function Test() {
     const testCall = async () => {
       const token = localStorage.getItem("jwtToken");
 
-      const resp = await axios("http://localhost:8080/test/Auth", {
+      const resp = await axios("http://localhost:8080/order-history/get", {
         headers: { Authorization: `Bearer ${token}` },
+        method: "POST",
       });
       console.log(resp.data);
     };

@@ -35,9 +35,9 @@ public class OrderHistoryServiceImpl implements OrderHistoryService{
 
 
         List<OrderHistoryDto> result = new ArrayList<>();
-        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findByMemberIdOrderByCreatedAtDesc(member.getMemberId());
+        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findByMemberMemberIdOrderByCreatedAtDesc(member.getMemberId());
         for(PurchaseOrder order:purchaseOrders){
-            List<OrderDetail> orderDetails = orderDetailRepository.findByOrderIdWithBook(order.getOrderId());
+            List<OrderDetail> orderDetails = orderDetailRepository.findByOrderOrderId(order.getOrderId());
 
             List<OrderItemDto> list = orderDetails.stream()
                     .map(OrderItemDto::new)
@@ -48,7 +48,7 @@ public class OrderHistoryServiceImpl implements OrderHistoryService{
                     .orderStatus(order.getOrderStatus())
                     .originalAmount(order.getOriginalAmount())
                     .paidAt(order.getPaidAt())
-                    .addressDto(new AddressDto(order.getAddress()))
+                    .address(new AddressDto(order.getAddress()))
                     .items(list).build();
             result.add(dto);
         }

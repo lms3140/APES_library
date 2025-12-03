@@ -33,9 +33,11 @@ public class PurchaseOrder extends BaseCreatedEntity {
     private LocalDateTime paidAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id")
     private Address address;
 
     // 편의 생성자
