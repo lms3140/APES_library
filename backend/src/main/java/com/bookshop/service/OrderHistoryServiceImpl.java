@@ -1,6 +1,6 @@
 package com.bookshop.service;
 
-import com.bookshop.dto.AddressDto;
+import com.bookshop.dto.HistoryAddressDto;
 import com.bookshop.dto.OrderHistoryDto;
 import com.bookshop.dto.OrderItemDto;
 import com.bookshop.entity.Member;
@@ -48,7 +48,7 @@ public class OrderHistoryServiceImpl implements OrderHistoryService{
                     .orderStatus(order.getOrderStatus())
                     .originalAmount(order.getOriginalAmount())
                     .paidAt(order.getPaidAt())
-                    .address(new AddressDto(order.getAddress()))
+                    .address(new HistoryAddressDto(order.getAddress()))
                     .items(list).build();
             result.add(dto);
         }

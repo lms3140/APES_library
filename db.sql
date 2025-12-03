@@ -114,6 +114,7 @@ CREATE TABLE member (
   deleted_at TIMESTAMP NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+drop table address;
 CREATE TABLE address (
   address_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   member_id BIGINT NOT NULL,
@@ -125,11 +126,10 @@ CREATE TABLE address (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   address_name varchar(7) null,
-  is_default boolean not null
+  is_default boolean not null,
   FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 -- ============================================================
 -- 🛒 장바구니
