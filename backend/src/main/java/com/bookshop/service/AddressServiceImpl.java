@@ -37,7 +37,14 @@ public class AddressServiceImpl implements AddressService{
         address.setZipCode(dto.getZipCode());
 
         return addressRepository.save(address);
+    }
 
+    @Override
+    public AddressDto getAddress(long addressId) {
+        Address address = addressRepository.findById(addressId)
+                .orElseThrow(()->new RuntimeException("모야"));
+        AddressDto dto = new AddressDto(address);
+        return dto;
     }
 
     @Override

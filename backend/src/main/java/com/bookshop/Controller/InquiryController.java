@@ -24,4 +24,9 @@ public class InquiryController {
         return inquiryService.getMyInquiries();
     }
 
+    @PostMapping("/delete")
+    public int delete(@RequestBody InquiryDto dto) {
+        return inquiryService.deleteInquiry(dto.getInquiryId());
+    }
+
 }
