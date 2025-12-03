@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addCartItem, getCartItems } from "../utils/cartStorage";
+import { addCartItem, getCartItems, clearCart } from "../utils/cartStorage";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -11,8 +11,12 @@ const cartSlice = createSlice({
       addCartItem(action.payload);
       state.items = getCartItems();
     },
+    resetCart: (state) => {
+      clearCart();     // localStorage 초기화
+      state.items = []; // Redux 상태 초기화
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, resetCart } = cartSlice.actions;
 export default cartSlice.reducer;
