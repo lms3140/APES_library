@@ -1,5 +1,6 @@
 .swiperBook {
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .bookSlide {
@@ -30,4 +31,15 @@
 
 .disabled {
   color: #ccc;
+}
+
+.title {
+  text-overflow: ellipsis;
+  height: 50px;
+  display: inline-block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }

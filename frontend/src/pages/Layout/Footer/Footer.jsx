@@ -1,7 +1,30 @@
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 export function Footer() {
+  const countRef = useRef(0);
+  const [count, setCount] = useState(0);
+  const [noticeData, setNoticeData] = useState(null);
+  useEffect(() => {
+    async function callNotice() {
+      const resp = await axios("/data/csCenterNotice.json");
+      setNoticeData(resp.data);
+    }
+    callNotice();
+  }, []);
+
+  useEffect(() => {
+    if (noticeData === null) {
+      return;
+    }
+    const interval = setInterval(() => {
+      setCount((prev) => (prev >= noticeData.length - 1 ? 0 : prev + 1));
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [noticeData]);
+
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.noticeWrapper}>
@@ -9,7 +32,7 @@ export function Footer() {
           <li>
             <Link to={"#"}>공지사항</Link>
             <div>
-              <Link>2025년 추석 연휴 비빔밥 무료제공 안내</Link>
+              <Link>{noticeData && noticeData[count]?.title}</Link>
             </div>
           </li>
           <li>

@@ -31,7 +31,7 @@ export function SearchBar() {
           />
         </div>
         <button className={style.submitBtn}>
-          <IoSearch />
+          <IoSearch fontSize={"1.5rem"} />
         </button>
       </form>
     </div>

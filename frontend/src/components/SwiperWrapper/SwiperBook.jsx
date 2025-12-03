@@ -73,7 +73,7 @@ export function SwiperBook({ swiperOptions, bookList }) {
                     alt={book.bookName}
                   />
                 </Link>
-                <span>{book.title}</span>
+                <span className={styles.title}>{book.title}</span>
               </div>
             </SwiperSlide>
           );

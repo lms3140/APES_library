@@ -101,4 +101,5 @@ img {
   --width-50: 200px;
   --width-75: 300px;
   --width-300: 1200px;
+  --swiper-theme-color: var(--color-green-700);
 }
