@@ -108,13 +108,12 @@ export function AddressModal({ isOpen, onClose, onSaved }) {
         <div>
           <label className={styles.label}>주소</label>
           {!address1 && (
-            <button className={styles.addressSearchBox} onClick={openPostcode}>
-              <div className={styles.addressSearchBoxText}>
-                <span className={styles.searchIcon}>
-                  <CiSearch />
-                </span>
-                <span className={styles.searchText}>주소 찾기</span>
-              </div>
+            <button
+              className={styles.addressSearchButton}
+              onClick={openPostcode}
+            >
+              <img src="/images/mypage/ico_search.png" alt="돋보기 아이콘" />
+              주소 찾기
             </button>
           )}
 
@@ -178,7 +177,7 @@ export function AddressModal({ isOpen, onClose, onSaved }) {
         </div>
 
         <div className={styles.postcodeBody}>
-          <DaumPostcode onComplete={handleComplete} />
+          <DaumPostcode onComplete={handleComplete} heigth={"100%"} />
         </div>
       </Modal>
     </>
