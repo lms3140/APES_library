@@ -1,0 +1,24 @@
+.listContainer {
+  display: grid;
+  width: 900px;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  align-items: center;
+  border: 1px solid var(--color-gray-400);
+  border-radius: 20px;
+  padding: 1rem;
+  box-sizing: border-box;
+  place-items: center;
+  margin-bottom: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.listContainer img {
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
+  background-color: #eeee;
+}
+
+.title {
+  font-weight: var(--font-weight-bold);
+}
