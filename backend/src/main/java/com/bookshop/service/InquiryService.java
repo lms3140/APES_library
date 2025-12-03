@@ -6,7 +6,7 @@ import com.bookshop.entity.Inquiry;
 import java.util.List;
 
 public interface InquiryService {
-    public Inquiry registerQna(InquiryDto dto);
-    public List<Inquiry> getMyInquiries();
-    public int deleteInquiry(long inquiryId);
+    Inquiry registerQna(InquiryDto dto);
+    List<Inquiry> getMyInquiries();
+    int deleteInquiry(long inquiryId);
 }

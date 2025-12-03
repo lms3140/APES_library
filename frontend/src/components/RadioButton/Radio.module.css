@@ -46,5 +46,5 @@
 
 /* 체크 상태에서도 점 색은 그대로 회색 */
 .radioInput:checked + .radioCustom::after {
-  background-color: #bbb;
+  background-color: #fff;
 }

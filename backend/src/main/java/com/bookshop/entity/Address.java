@@ -20,6 +20,8 @@ public class Address extends BaseTimeEntity {
     private String addressLine1;
     private String addressLine2;
     private String zipCode;
+    private String addressName;
+    private boolean isDefault;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -31,12 +33,17 @@ public class Address extends BaseTimeEntity {
                    String phone,
                    String addressLine1,
                    String addressLine2,
-                   String zipCode) {
+                   String zipCode,
+                   String addressName,
+                   boolean isDefault) {
         this.member = member;
         this.recipientName = recipientName;
         this.phone = phone;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.zipCode = zipCode;
+        this.addressName = addressName;
+        this.isDefault = isDefault;
     }
+
 }

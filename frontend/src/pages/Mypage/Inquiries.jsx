@@ -51,7 +51,7 @@ export function Inquiries() {
       {inquiries.length === 0 ? (
         <div className={styles.noDataWrap}>
           <img src="/images/mypage/ico_nodata.png" alt="nodata" />
-          <p>해당 기간 문의 내역이 없습니다.</p>
+          <p>문의 내역이 없습니다.</p>
         </div>
       ) : (
         <InquiryList inquiries={inquiries} setInquiries={setInquiries} />
