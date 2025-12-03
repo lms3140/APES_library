@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
     List<Address> findByMember_MemberId(Long memberId);
+    List<Address> findByMemberUserId(String userId);
 }

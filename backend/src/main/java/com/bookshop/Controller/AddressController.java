@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/address")
@@ -48,5 +50,9 @@ public class AddressController {
     @PostMapping("/delete")
     public List<AddressDto> deleteAddress(@RequestBody AddressDto dto) {
         return addressService.deleteAddress(dto.getAddressId());
+    }
+    @PostMapping("/list")
+    public List<AddressDto> getAddress() {
+        return addressService.getAddressList();
     }
 }

@@ -11,4 +11,6 @@ public interface AddressService {
     List<AddressDto> setDefaultAddress(long addressId);
     List<AddressDto> getAddressList(Long memberId);
     List<AddressDto> deleteAddress(long addressId);
+    AddressDto getAddress(long addressId);
+    List<AddressDto> getAddressList();
 }
