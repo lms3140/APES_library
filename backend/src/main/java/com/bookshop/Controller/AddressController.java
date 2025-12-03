@@ -51,8 +51,4 @@ public class AddressController {
     public List<AddressDto> deleteAddress(@RequestBody AddressDto dto) {
         return addressService.deleteAddress(dto.getAddressId());
     }
-    @PostMapping("/list")
-    public List<AddressDto> getAddress() {
-        return addressService.getAddressList();
-    }
 }

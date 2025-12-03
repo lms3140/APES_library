@@ -19,7 +19,7 @@ export function AddressModal({ isOpen, onClose, onSaved }) {
   const closePostcode = () => setIsPostcodeOpen(false);
 
   const handleComplete = (data) => {
-    setZipcode(data.zipCode);
+    setZipcode(data.zonecode);
     setAddress1(data.address);
     closePostcode();
   };
@@ -61,13 +61,7 @@ export function AddressModal({ isOpen, onClose, onSaved }) {
     }
   };
 
-  const isFormValid =
-    addressName.trim() &&
-    recipient.trim() &&
-    phone.trim() &&
-    zipCode.trim() &&
-    address1.trim() &&
-    address2.trim();
+  const isFormValid = addressName.trim() && recipient.trim() && phone.trim();
 
   return (
     <>

@@ -33,13 +33,4 @@ public class AddressDto {
         this.addressName = address.getAddressName();
         this.isDefault = address.isDefault();
     }
-    // 생성자, getter, setter
-    public AddressDto(String recipientName, String phone, String addressLine1, String addressLine2, String zipCode) {
-        this.recipientName = recipientName;
-        this.phone = phone;
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-        this.zipCode = zipCode;
-    }
-
 }
