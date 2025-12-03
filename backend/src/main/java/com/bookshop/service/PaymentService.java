@@ -7,6 +7,8 @@ import com.bookshop.repository.*;
 import com.bookshop.storage.TidStorage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,10 +36,12 @@ public class PaymentService {
         int totalQuantity = 0;
         int originalAmount = 0;
         int earnedPoint = 0;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = auth.getName();
 
         List<PayItemDto> bookList = paymentReadyRequestDto.getBooks();
 
-        Member member = memberRepository.findByUserId(paymentReadyRequestDto.getUserId())
+        Member member = memberRepository.findByUserId(userId)
                 .orElseThrow(()-> new RuntimeException("회원 찾는중 오류"));
         Address address = addressRepository.findById(paymentReadyRequestDto.getAddressId())
                 .orElseThrow(()->new RuntimeException("주소 찾는중 오류"));

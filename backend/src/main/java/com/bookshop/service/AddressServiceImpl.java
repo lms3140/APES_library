@@ -10,6 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService{
@@ -42,5 +45,25 @@ public class AddressServiceImpl implements AddressService{
                 .orElseThrow(()->new RuntimeException("모야"));
         AddressDto dto = new AddressDto(address);
         return dto;
+    }
+
+    @Override
+    public List<AddressDto> getAddressList() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = auth.getName();
+
+        // userId로 해당 회원의 주소 리스트를 가져옴
+        List<Address> addresses = addressRepository.findByMemberUserId(userId);
+
+        // Address를 AddressDto로 변환하여 반환
+        return addresses.stream()
+                .map(address -> new AddressDto(
+                        address.getRecipientName(),
+                        address.getPhone(),
+                        address.getAddressLine1(),
+                        address.getAddressLine2(),
+                        address.getZipCode()
+                ))
+                .collect(Collectors.toList());
     }
 }
