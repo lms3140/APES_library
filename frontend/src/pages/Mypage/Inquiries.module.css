@@ -2,12 +2,14 @@
 .inquiriesContainer {
   width: 100%;
   max-width: 1200px;
-  margin: 0 0 120px 50px;
+  margin: 0 0 120px 30px;
   font-family: "Pretendard", sans-serif;
 }
 
 .inquiriesContainer h1 {
   margin-bottom: 0;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 /* 상단 헤더 영역 */
@@ -61,6 +63,12 @@
 }
 
 .noDataWrap img {
-  width: 90px;
+  width: 46px;
   margin-bottom: 12px;
+}
+
+.noDataWrap p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
