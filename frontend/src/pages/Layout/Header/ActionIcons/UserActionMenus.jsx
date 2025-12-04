@@ -20,7 +20,7 @@ export function UserActionMenus() {
           </Link>
         </li>
         <li>
-          <Link to={"/mypage"} className={style.actionMyPageLink}>
+          <Link to={"/mypage/orders"} className={style.actionMyPageLink}>
             <IoPersonSharp />
           </Link>
         </li>
