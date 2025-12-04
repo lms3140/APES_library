@@ -39,7 +39,7 @@ public class JwtServiceImpl implements JwtService {
      * 지금은 1시간(60분)을 의미함.
      * System.currentTimeMillis()는 현재 시간을 밀리초로 제공.
      */
-    private final long EXPIRATION_MS = 1000L * 60 * 60;
+    private final long EXPIRATION_MS = 1000L * 60 * 60 * 12;
 
     /**
      * 실제 서명을 위한 Key 객체.

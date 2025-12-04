@@ -1,3 +1,186 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Checkbox } from "../../components/Checkbox/Checkbox.jsx";
+import styles from "./WishList.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../store/cartSlice.js";
+import { confirmSwal, infoSwal } from "../../api/api.js";
+import { selectFilteredSortedBooks } from "../../store/searchSlice.js";
+
 export function WishList() {
-  return <></>;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [wishList, setWishList] = useState([]);
+  const sortedBooks = useSelector(selectFilteredSortedBooks);
+  const selectedItems = useSelector((state) => state.search.selectedItems);
+
+  useEffect(() => {
+    const fetchWish = async () => {
+      const token = localStorage.getItem("jwtToken");
+      const res = await fetch("http://localhost:8080/wishlist/get", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      setWishList(data);
+      console.log(data);
+    };
+    fetchWish();
+  }, []);
+
+  //아이템 하나 담기
+  const addSingleToCart = async (item) => {
+    const title = "선택한 상품을 장바구니에 담았어요.";
+    const text = "장바구니로 이동하시겠어요?";
+    const confirmButtonText = "장바구니 보기";
+
+    dispatch(
+      addToCart({
+        bookId: item.bookId,
+        title: item.title,
+        price: item.price,
+        imageUrl: item.imageUrl,
+        quantity: 1,
+      })
+    );
+
+    const result = await confirmSwal(title, text, confirmButtonText);
+    if (result.isConfirmed) navigate("/cart");
+  };
+
+  //아이템 여러개 담기
+  const addMultiToCart = async () => {
+    const title = "선택한 상품을 장바구니에 담았어요.";
+    const text = "장바구니로 이동하시겠어요?";
+    const confirmButtonText = "장바구니 보기";
+
+    if (selectedItems.length === 0) {
+      await infoSwal("선택한 상품이 없습니다.", "확인");
+      return;
+    }
+
+    selectedItems.forEach((bookId) => {
+      const book = sortedBooks.find((b) => b.bookId === bookId);
+      if (!book) return;
+
+      dispatch(
+        addToCart({
+          bookId: book.bookId,
+          title: book.title,
+          price: book.price,
+          imageUrl: book.imageUrl,
+          quantity: 1,
+        })
+      );
+    });
+
+    const result = await confirmSwal(title, text, confirmButtonText);
+    if (result.isConfirmed) navigate("/cart");
+  };
+
+  const handleDeleteWishList = async (bookId) => {
+    const result = await confirmSwal(
+      "선택한 상품/콘텐츠를 삭제하시겠습니까?",
+      "",
+      "확인"
+    );
+    if (!result.isConfirmed) return;
+
+    const token = localStorage.getItem("jwtToken");
+    const res = await fetch("http://localhost:8080/wishlist/delete", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ bookId }),
+    });
+
+    const updated = await res.json();
+    setWishList(updated);
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <h1>찜</h1>
+      <p className={styles.topBox}>
+        관심 있는 상품을 찜해두면 언제든 쉽게 구매할 수 있어요.
+      </p>
+
+      {wishList.length > 0 ? (
+        <div>
+          <div className={styles.topBar}>
+            <div className={styles.leftArea}>
+              <Checkbox />
+              <h3>
+                찜한 상품 <span>{selectedItems.length}</span>/{wishList.length}
+              </h3>
+            </div>
+
+            <div className={styles.rightArea}>
+              <button>선택삭제</button>
+              <button>
+                <img src="/images/search/ico_cart.png" alt="" />
+                장바구니에 담기
+              </button>
+            </div>
+          </div>
+
+          {wishList.map((wish) => (
+            <div key={wish.bookId} className={styles.item}>
+              <Checkbox />
+              <img
+                className={styles.bookImg}
+                src={wish.imageUrl}
+                alt={wish.title}
+                onClick={() => navigate(`/detail/${wish.bookId}`)}
+              />
+
+              <div className={styles.itemInfo}>
+                <h4 onClick={() => navigate(`/detail/${wish.bookId}`)}>
+                  [{wish.categoryName}] {wish.title}
+                </h4>
+
+                <p>
+                  <span
+                    onClick={() =>
+                      navigate(
+                        `/search?keyword=${encodeURIComponent(wish.authors)}`
+                      )
+                    }
+                  >
+                    {wish.authors.join(", ")}
+                  </span>{" "}
+                  ･ {wish.publisherName}
+                </p>
+                <div className={styles.priceRow}>
+                  <p className={styles.itemInfoPrice}>
+                    <span>{wish.price.toLocaleString()}</span>원{" "}
+                    <div className={styles.divider}></div>
+                    {wish.point.toLocaleString()}p
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles.itemButtons}>
+                <button type="button" onClick={() => addSingleToCart(wish)}>
+                  장바구니
+                </button>
+                <button type="button">바로구매</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.noData}>
+          <img src="/images/mypage/ico_nodata.png" alt="" />
+          <p>찜한 상품이 없습니다.</p>
+          <p>교보문고의 다양한 상품과 콘텐츠를 둘러보세요!</p>
+          <button onClick={() => navigate("/")}>계속 쇼핑하기</button>
+        </div>
+      )}
+    </div>
+  );
 }

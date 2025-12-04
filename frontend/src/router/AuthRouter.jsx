@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { checkLoginStatus } from "../api/MemberAPI.jsx";
-import { useSelector } from "react-redux";
 
 export function AuthRouter({ children }) {
   const [isLogin, setIsLogin] = useState(false);

@@ -9,7 +9,8 @@ import java.util.List;
 public interface WishlistService {
      List<BookDto> getWishlist();
      int addWishlist(Long bookId);
+     List<BookDto> addWishlists(List<Long> bookIds);
      int deleteWishlist(Long bookId);
-
-    WishlistRespDto toggleWishlist(Long bookId);
+     boolean existWish(Long bookId);
+     WishlistRespDto toggleWishlist(Long bookId);
 }

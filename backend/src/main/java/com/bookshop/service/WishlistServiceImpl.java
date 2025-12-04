@@ -15,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +41,8 @@ public class WishlistServiceImpl implements WishlistService {
                 .toList();
     }
 
+
+
     @Override
     public int addWishlist(Long bookId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -58,6 +62,44 @@ public class WishlistServiceImpl implements WishlistService {
     }
 
     @Override
+    public List<BookDto> addWishlists(List<Long> bookIds) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = auth.getName();
+
+        Member member = memberRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("유저 못찾음"));
+
+        // 1) ID 목록으로 Book 조회
+        List<Book> books = bookRepository.findAllById(bookIds);
+
+        // 2) 이미 존재하는 wishlist 조회
+        List<Wishlist> existing = wishlistRepository
+                .findByMemberMemberIdAndBookBookIdIn(member.getMemberId(), bookIds);
+
+        Set<Long> existingBookIds = existing.stream()
+                .map(w -> w.getBook().getBookId())
+                .collect(Collectors.toSet());
+
+        // 3) 신규 책만 필터링
+        List<Book> newBooks = books.stream()
+                .filter(book -> !existingBookIds.contains(book.getBookId()))
+                .toList();
+
+        // 4) Wishlist 엔티티 생성 후 저장
+        List<Wishlist> toInsert = newBooks.stream()
+                .map(book -> new Wishlist(member, book))
+                .collect(Collectors.toList());
+
+        if (!toInsert.isEmpty()) {
+            wishlistRepository.saveAll(toInsert);
+        }
+
+        // 5) BookDto로 변환해 반환
+        return newBooks.stream()
+                .map(BookDto::new)
+                .collect(Collectors.toList());
+    }
+    @Override
     public int deleteWishlist(Long bookId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = auth.getName();
@@ -71,6 +113,19 @@ public class WishlistServiceImpl implements WishlistService {
         }
 
         return 0;
+    }
+
+    @Override
+    public boolean existWish(Long bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = auth.getName();
+        Member member = memberRepository.findByUserId(userId)
+                .orElseThrow(()->new RuntimeException("유저 못찾음"));
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(()->new RuntimeException("책 못찾음"));
+
+
+        return wishlistRepository.existsByMemberMemberIdAndBookBookId(member.getMemberId(),book.getBookId());
     }
 
     @Transactional

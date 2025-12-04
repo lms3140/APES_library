@@ -1,39 +1,44 @@
 package com.bookshop.dto;
 
-
 import com.bookshop.entity.Book;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class BookDto {
-
+public class BookResponseDto {
     private Long bookId;
     private String title;
     private Integer price;
     private Integer point;
     private String imageUrl;
-    private String categoryName;
+
+    private String categoryName;  // 필요하다면
     private String publisherName;
-    private List<String> authors;
 
+    private List<String> authors;       // ⭐ 저자 추가
 
-    // Book → DTO 변환용 생성자
-    public BookDto(Book book) {
+    public BookResponseDto(Book book) {
         this.bookId = book.getBookId();
         this.title = book.getTitle();
         this.price = book.getPrice();
         this.point = book.getPoint();
         this.imageUrl = book.getImageUrl();
+
         this.publisherName = book.getPublisher().getName();
-        this.categoryName = book.getSubcategory().getCategory().getCategoryName();
-        this.authors = book.getBookAuthors().stream().map(ba -> ba.getAuthor().getName()).toList();
+        this.categoryName = book.getSubcategory()
+                .getCategory()
+                .getCategoryName();
+
+
+        // ⭐ BookAuthor → Author.name
+        this.authors = book.getBookAuthors()
+                .stream()
+                .map(ba -> ba.getAuthor().getName())
+                .toList();
+
     }
 }
