@@ -1,5 +1,6 @@
 package com.bookshop.dto;
 
+import com.bookshop.entity.OrderDetail;
 import lombok.Data;
 
 @Data
@@ -17,5 +18,13 @@ public class OrderItemDto {
         this.imageUrl = imageUrl;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
+    }
+    public OrderItemDto(OrderDetail orderDetail){
+        this.bookId = orderDetail.getBook().getBookId();
+        this.title = orderDetail.getBook().getTitle();
+        this.imageUrl = orderDetail.getBook().getImageUrl();
+        this.quantity = orderDetail.getQuantity();
+        this.unitPrice = orderDetail.getUnitPrice();
+
     }
 }

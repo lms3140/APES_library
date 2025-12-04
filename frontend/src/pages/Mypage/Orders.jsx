@@ -1,57 +1,47 @@
+import { useEffect, useState } from "react";
+import { OrderHistoryItemList } from "./OrderHistory/OrderHistoryItmeList";
+import { OrderHistoryAddress } from "./OrderHistory/OrderHistoryAddress";
+import { OrderHistoryPayment } from "./OrderHistory/OrderHistoryPayment";
+import axios from "axios";
+import dayjs from "dayjs";
+import style from "./Orders.module.css";
+
 export function Orders() {
+  const [historyData, setHistoryData] = useState();
+  useEffect(() => {
+    const testCall = async () => {
+      const token = localStorage.getItem("jwtToken");
+
+      const resp = await axios("http://localhost:8080/order-history/get", {
+        headers: { Authorization: `Bearer ${token}` },
+        method: "POST",
+      });
+      setHistoryData(resp.data);
+    };
+    testCall();
+  }, []);
+
   return (
     <div>
       <div>
-        <h1>주문/배송 내역</h1>
-        <p>* 최근 1개월 주문내역 입니다.</p>
-      </div>
-
-      <div>
         <div>
-          <h3>주문내역</h3>
-        </div>
-        <div>
-          <h3>0</h3>
-          <p>준비중</p>
-        </div>
-        <div>
-          <h3>0</h3>
-          <p>배송중</p>
-        </div>
-        <div>
-          <h3>0</h3>
-          <p>배송완료</p>
-        </div>
-        <div>
-          <h3>0</h3>
-          <p>취소</p>
-        </div>
-        <div>
-          <h3>0</h3>
-          <p>교환/반품</p>
-        </div>
-      </div>
-
-      <div>
-        {/* 주문내역이 있을 시 데이터 출력 */}
-        <div>
-          {"주문날짜 (주문번호)"}
-          <a href="#">상세보기 {">"}</a>
-          <a href="#">{"쓰레기통아이콘"} 주문내역에서 삭제</a>
-        </div>
-        <div>
-          {"책이미지"}
-          {"[국내도서]책제목"}
-          {"수량"}
-          {"가격"}
-          {"상태(배송완료, 준비중, 배송중, ..."}
-          <button>리뷰작성</button>
-          <button>문장수집</button>
-        </div>
-
-        <div>
-          <img src="/images/mypage/ico_nodata.png" />
-          <p>주문한 상품이 없습니다.</p>
+          {historyData ? (
+            historyData?.map((data) => {
+              return (
+                <div className={style.card} key={data.orderId}>
+                  <h1>{dayjs(data.paidAt).format("YYYY-MM-DD")}(배송중)</h1>
+                  <div>
+                    <OrderHistoryItemList itmes={data.items} />
+                    <h1>배송지</h1>
+                    <OrderHistoryAddress address={data.address} />
+                  </div>
+                  <hr />
+                </div>
+              );
+            })
+          ) : (
+            <div>구매한 상품이 없습니다</div>
+          )}
         </div>
 
         <nav>
