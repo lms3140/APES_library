@@ -21,7 +21,7 @@ public class PaymentController {
 
     @PostMapping("/approve")
     public KakaoPayApproveResponseDto approve(@RequestBody String orderId,
-                                              @RequestBody String userId,
+//                                              @RequestBody String userId,
                                               @RequestParam("pg_token") String pgToken) {
         return paymentService.approve(orderId, pgToken);
     }

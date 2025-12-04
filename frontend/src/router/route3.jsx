@@ -7,7 +7,8 @@ import SignupIntro from "../pages/Auth/SignupIntro.jsx"
 import Signup from "../pages/Auth/Signup.jsx"
 import Detail from "../pages/Detail/Detail.jsx"
 import Cart from "../pages/Cart/Cart.jsx"
-import { Home } from "../pages/Home/Home.jsx";
+import PaymentApprove from "../pages/Payment/PaymentApprove.jsx";
+import { OrderComplete } from "../pages/Payment/OrderComplete.jsx";
 
 export const route3= [
     {
@@ -29,5 +30,13 @@ export const route3= [
     {
         path: "/cart",
         element: <Cart/>,
+    },
+    {
+        path: "/payment/approve",
+        element: <PaymentApprove/>,
+    },
+    {
+        path: "/order/complete",
+        element: <OrderComplete/>,
     }
 ];
