@@ -68,7 +68,7 @@ export function SearchItems({
                 navigate(`?keyword=${encodeURIComponent(item.authors)}`)
               }
             >
-              {item.authors}{" "}
+              {item.authors.join(", ")}{" "}
             </span>
             {viewType === "list" ? " 저자(글)" : ""}
           </p>

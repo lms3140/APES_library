@@ -44,9 +44,7 @@ export function MyPageSidebar() {
       </div>
       <nav>
         <ul className={styles.menuList}>
-          <li>
-            <Link to="/mypage">마이페이지</Link>
-          </li>
+          <h3>마이페이지</h3>
           <li>
             <Link to="/mypage/orders">구매목록</Link>
           </li>

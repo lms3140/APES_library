@@ -68,9 +68,9 @@ export function Profile() {
     });
 
     if (res.ok) {
-      infoSwal("회원정보가 수정되었습니다,", "확인");
+      infoSwal("회원정보가 수정되었습니다,", "", "확인");
     } else {
-      infoSwal("수정 중 오류가 발생했습니다.", "확인");
+      infoSwal("수정 중 오류가 발생했습니다.", "", "확인");
     }
   };
 
