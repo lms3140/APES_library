@@ -1,14 +1,22 @@
 import { BsCart2 } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux";
 import { IoPersonSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import style from "./UserActionMenus.module.css";
 export function UserActionMenus() {
+  const cart = useSelector((state) => state.cart.items);
+  console.log(cart.length);
   return (
     <div>
       <ul className={style.actionList}>
         <li>
-          <Link className={style.actionCartLink} to={"#"}>
+          <Link className={style.actionCartLink} to={"/cart"}>
             <img src="/images/search/ico_cart.png" alt="" />
+            {cart && (
+              <p className={style.cartBadge}>
+                {cart.length !== 0 ? cart.length : 0}
+              </p>
+            )}
           </Link>
         </li>
         <li>

@@ -17,6 +17,7 @@ export function SearchSort({
   onViewTypeChange,
   onSortChange,
   addMultiToCart,
+  addMultiWish,
 }) {
   const sortOptions = ["인기순", "최신순", "낮은가격순", "높은가격순"];
   const selectedOptions = ["20개씩 보기", "50개씩 보기", "100개씩 보기"];
@@ -44,7 +45,7 @@ export function SearchSort({
       </div>
       <div className={styles.sortRightWrapper}>
         <div className={styles.sortButtons}>
-          <button className={styles.heart}>
+          <button className={styles.heart} onClick={() => addMultiWish()}>
             <img src={heartIcon} alt="하트 이모지" />
           </button>
 

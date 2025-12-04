@@ -1,6 +1,6 @@
 import styles from "./Search.module.css";
 import paginationStyles from "../Pagination/Pagination.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SearchFilter } from "../../components/Search/SearchFilter.jsx";
 import { SearchSort } from "../../components/Search/SearchSort.jsx";
 import { SearchItems } from "../../components/Search/SearchItems.jsx";
@@ -19,7 +19,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks } from "../../store/bookSlice.js";
 import { addToCart } from "../../store/cartSlice.js";
-import { toggleLike } from "../../store/likedSlice.js";
+import {
+  addMultipleLikes,
+  setItems,
+  toggleLike,
+} from "../../store/likedSlice.js";
+import axios from "axios";
 
 export function Search() {
   const dispatch = useDispatch();
@@ -42,9 +47,37 @@ export function Search() {
     }
   }, [keyword, dispatch]);
 
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    const getList = async () => {
+      const resp = await axios.get("http://localhost:8080/wishlist/get", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(setItems(resp.data));
+    };
+    getList();
+  }, []);
+
   //페이지네이션
   const { currentPage, pageCount, currentItems, handlePageChange } =
     usePagination(sortedBooks, limit);
+
+  const addMultiWish = async () => {
+    const token = localStorage.getItem("jwtToken");
+    const resp = await axios.post(
+      "http://localhost:8080/wishlist/add-multi",
+      selectedItems,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(resp.data);
+    dispatch(addMultipleLikes(resp.data));
+  };
 
   //아이템 하나 담기
   const addSingleToCart = async (item) => {
@@ -112,6 +145,7 @@ export function Search() {
             onViewTypeChange={(v) => dispatch(setViewType(v))}
             onSortChange={(v) => dispatch(setSortOptions(v))}
             addMultiToCart={addMultiToCart}
+            addMultiWish={addMultiWish}
           />
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}
