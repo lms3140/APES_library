@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import paymentStyle from "./Payment.module.css";
+import paymentStyle from "./Order.module.css";
 import { StepItemNum } from "../../components/Cart/StepItemNum.jsx";
 
 export function OrderComplete() {

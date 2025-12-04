@@ -141,23 +141,17 @@
 }
 
 .orderBtn {
-  height: 50px;
-  width: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 14px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
+  width: 100%;
+  padding: 14px 0;
   background: #5156b2;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
   border-radius: 6px;
+  border: none;
   cursor: pointer;
-  white-space: nowrap;
-  box-sizing: border-box;
-  margin: 20px 0; /* 위아래 20px, 좌우 0px */
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
 }
 
 .orderBtn:hover {

@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -81,13 +82,30 @@ public class ReviewServiceImpl implements ReviewService {
     public Object getReviewSummary(Long bookId) {
         List<Review> reviews = reviewRepository.findByBook_BookIdOrderByCreatedAtDesc(bookId);
 
-        long count = reviews.size();
-        double avg = reviews.stream().mapToInt(Review::getRating).average().orElse(0);
+        long totalReviews = reviews.size();
+        double averageRating = reviews.stream().mapToInt(Review::getRating).average().orElse(0);
 
-        // 평점 요약 정보 반환
-        return new Object() {
-            public final long totalReviews = count;
-            public final double averageRating = avg;
-        };
+        // 평점별 갯수 계산
+        long count1 = reviews.stream().filter(r -> r.getRating() == 1).count();
+        long count2 = reviews.stream().filter(r -> r.getRating() == 2).count();
+        long count3 = reviews.stream().filter(r -> r.getRating() == 3).count();
+        long count4 = reviews.stream().filter(r -> r.getRating() == 4).count();
+        long count5 = reviews.stream().filter(r -> r.getRating() == 5).count();
+
+        Map<Integer, Long> ratingCounts = Map.of(
+                1, count1,
+                2, count2,
+                3, count3,
+                4, count4,
+                5, count5
+        );
+
+        // 프론트로 반환
+        return Map.of(
+                "totalReviews", totalReviews,
+                "averageRating", averageRating,
+                "ratingCounts", ratingCounts
+        );
     }
+
 }

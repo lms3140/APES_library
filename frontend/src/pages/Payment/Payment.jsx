@@ -4,53 +4,62 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { resetCart } from "../../store/cartSlice.js";
+import { clearCart as clearLocalCart } from "../../utils/cartStorage.js";
 import paymentStyle from "./Payment.module.css";
 import { StepItemNum } from "../../components/Cart/StepItemNum.jsx";
 import { AddressModal } from "../Mypage/AddressModal.jsx";
 
 export function Payment() {
-  const cartItems = useSelector((state) => state.cart.items); // Redux에서 장바구니 가져오기
+  const cartItems = useSelector((state) => state.cart.items); // Redux 장바구니
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ===== 배송지 정보 상태 =====
+  // ===== 배송지 정보 =====
   const [addressData, setAddressData] = useState({
     recipientName: "",
     phone: "",
     addressLine1: "",
     addressLine2: "",
     zipCode: "",
-    addressId: 1, // 기본값
+    addressId: 1,
   });
 
-  // ===== 모달 상태 =====
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // ===== 포인트 상태 =====
   const [usePoints, setUsePoints] = useState(false);
   const [userPoints, setUserPoints] = useState(1000);
 
   // ===== 주문 상품 리스트 =====
   const [bookList, setBookList] = useState([]);
 
-  // ===== location.state에서 주문 상품 가져오기 =====
+  // location.state에서 바로 구매/장바구니 결제 상품 가져오기
   useEffect(() => {
-    setBookList(
-      location.state?.orderItems?.map((item) => {
-        const book = cartItems.find((b) => b.bookId === item.bookId) || {};
-        return {
+    if (location.state?.orderItems) {
+      // 바로 구매인 경우
+      setBookList(
+        location.state.orderItems.map((item) => ({
           book_id: item.bookId,
-          imageUrl: book?.imageUrl || "",
-          title: book?.title || "제목 없음", // 안전하게 기본값 설정
           quantity: item.quantity || 1,
-          price: book?.price || 0, // 안전하게 기본값 0
-        };
-      }) || []
-    );
+          title: item.title || "제목 없음",
+          price: item.price || 0,
+          imageUrl: item.imageUrl || "",
+        }))
+      );
+    } else {
+      // 장바구니 결제인 경우
+      setBookList(
+        cartItems.map((book) => ({
+          book_id: book.bookId,
+          quantity: book.quantity || 1,
+          title: book.title,
+          price: book.price,
+          imageUrl: book.imageUrl,
+        }))
+      );
+    }
   }, [cartItems, location.state]);
 
-  // ===== 배송지 정보 가져오기 (API) =====
+  // 배송지 API
   const fetchAddress = async () => {
     try {
       const token = localStorage.getItem("jwtToken");
@@ -87,7 +96,7 @@ export function Payment() {
   const totalPoints = Math.floor(totalPrice * 0.1);
   const finalPrice = totalPrice - totalDiscount - (usePoints ? userPoints : 0);
 
-  // ===== 결제 요청 함수 =====
+  // ===== 결제 준비 & 카카오 결제 이동 =====
   const handlePayment = async () => {
     try {
       const token = localStorage.getItem("jwtToken");
@@ -97,7 +106,6 @@ export function Payment() {
           ? `${firstTitle} 외 ${bookList.length - 1}개`
           : firstTitle;
 
-      // API 요청 body 구성
       const response = await axios.post(
         "http://localhost:8080/payment/ready",
         {
@@ -106,17 +114,16 @@ export function Payment() {
           point: 0,
           books: bookList.map((book) => ({
             bookId: book.book_id,
-            quantity: book.quantity || 1,
+            quantity: book.quantity,
           })),
-          totalAmount: finalPrice || 0,
-          addressId: addressData.addressId ?? 1,
+          totalAmount: finalPrice,
+          addressId: addressData.addressId,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
 
-      // 카카오 결제페이지 URL
       const redirectUrl =
         response.data?.next_redirect_pc_url || response.data?.redirectUrl;
 
@@ -129,14 +136,14 @@ export function Payment() {
       }
 
       // orderId, tid 로컬 저장
-      if (response.data?.orderId) {
-        localStorage.setItem("orderId", response.data.orderId);
-      }
-      if (response.data?.tid) {
-        localStorage.setItem("tid", response.data.tid);
-      }
+      if (response.data?.orderId) localStorage.setItem("orderId", response.data.orderId);
+      if (response.data?.tid) localStorage.setItem("tid", response.data.tid);
 
-      // 카카오 결제 페이지로 이동
+      // ===== 결제 완료 시 장바구니 초기화 =====
+      dispatch(resetCart()); // Redux 초기화
+      clearLocalCart(); // 로컬스토리지 초기화
+
+      // 카카오 결제 페이지 이동
       window.location.href = redirectUrl;
     } catch (error) {
       console.error("결제 준비 실패:", error);
@@ -149,7 +156,7 @@ export function Payment() {
 
   return (
     <section className={paymentStyle.contents}>
-      {/* ===== 상단 스텝 표시 ===== */}
+      {/* 상단 스텝 */}
       <div className={paymentStyle.paymentTopWrap}>
         <p className={paymentStyle.titleWrap}>주문/결제</p>
         <ul className={paymentStyle.stepWrapper}>
@@ -158,9 +165,8 @@ export function Payment() {
       </div>
 
       <div className={paymentStyle.paymentLayout}>
-        {/* ===== 좌측: 배송지/상품/포인트 ===== */}
+        {/* 좌측: 배송지/주문상품/포인트 */}
         <div className={paymentStyle.leftArea}>
-          {/* 배송지 */}
           <div className={paymentStyle.addressBox}>
             <h2>배송지</h2>
             <div>
@@ -182,7 +188,6 @@ export function Payment() {
             </div>
           </div>
 
-          {/* 주문 상품 */}
           <div className={paymentStyle.paymentBox}>
             <h2>주문상품</h2>
             <div className={paymentStyle.orderList}>
@@ -191,7 +196,7 @@ export function Payment() {
                   <img src={book.imageUrl} alt={book.title} />
                   <div>
                     <h2>{book.title}</h2>
-                    <p>수량: {book.quantity || 0}</p>
+                    <p>수량: {book.quantity}</p>
                     <p>가격: ₩ {(book.price || 0).toLocaleString()}</p>
                   </div>
                 </div>
@@ -199,10 +204,9 @@ export function Payment() {
             </div>
           </div>
 
-          {/* 포인트 사용 */}
           <div className={paymentStyle.pointsBox}>
             <h2>포인트 사용</h2>
-            <p>보유 포인트: {userPoints || 0}P</p>
+            <p>보유 포인트: {userPoints}P</p>
             <label>
               <input
                 type="checkbox"
@@ -214,7 +218,7 @@ export function Payment() {
           </div>
         </div>
 
-        {/* ===== 우측: 결제 요약 ===== */}
+        {/* 우측: 결제 요약 */}
         <div className={paymentStyle.rightArea}>
           <div className={paymentStyle.summary}>
             <p>
@@ -239,14 +243,12 @@ export function Payment() {
             </p>
           </div>
 
-          {/* 결제 버튼 */}
           <button className={paymentStyle.orderBtn} onClick={handlePayment}>
             결제하기
           </button>
         </div>
       </div>
 
-      {/* 배송지 모달 */}
       {isModalOpen && (
         <AddressModal
           isOpen={isModalOpen}

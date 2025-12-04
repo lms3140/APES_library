@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resetCart } from "../../store/cartSlice.js";
+import { clearCart } from "../../utils/cartStorage";
 
 export default function PaymentApprove() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function PaymentApprove() {
         const data = await response.json();
 
         // 결제 성공 시 장바구니 초기화
-        dispatch(resetCart());
+        clearCart(); // localStorage 장바구니 초기화
 
         // OrderComplete 페이지로 이동
         navigate("/order/complete", {
