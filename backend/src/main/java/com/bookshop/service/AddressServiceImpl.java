@@ -32,10 +32,16 @@ public class AddressServiceImpl implements AddressService{
     @Override
     @Transactional
     public Address createAddress(AddressDto dto){
-
         Member member = getLoginMember();
-        boolean isDefault = addressRepository
-                .findByMember_MemberId(member.getMemberId())
+        long memberId = member.getMemberId();
+
+        if(dto.isDefault()) {
+            List<Address> existing = addressRepository.findByMember_MemberId(memberId);
+            existing.forEach(addr -> addr.setDefault(false));
+        }
+
+        boolean isFirstAddress = addressRepository
+                .findByMember_MemberId(memberId)
                 .isEmpty();
 
         Address address = Address.builder()
@@ -46,7 +52,7 @@ public class AddressServiceImpl implements AddressService{
                 .addressLine2(dto.getAddressLine2())
                 .zipCode(dto.getZipCode())
                 .addressName(dto.getAddressName())
-                .isDefault(isDefault)
+                .isDefault(dto.isDefault() || isFirstAddress)
                 .build();
 
         return addressRepository.save(address);

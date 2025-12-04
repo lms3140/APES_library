@@ -11,9 +11,6 @@
   margin-bottom: 24px;
 }
 
-/* ============================= */
-/*  기본 배송지 박스             */
-/* ============================= */
 .defaultBox {
   border: none;
   border-radius: 16px;
@@ -62,14 +59,13 @@
 
 .defaultNotice {
   margin: 14px 0;
-  font-size: 14px;
-  color: #777;
+  font-size: 13px;
+  color: #595959;
   line-height: 1.5;
 }
 
 .defaultNotice p {
   margin: 0 0 5px 0;
-  text-decoration: dotted;
 }
 
 .editBtn {
@@ -81,42 +77,34 @@
   font-size: 14px;
 }
 
-/* ============================= */
-/* 리스트 헤더                   */
-/* ============================= */
-/* 전체 영역: 왼쪽 고정 + 오른쪽 그룹 오른쪽 정렬 */
 .listTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* 왼쪽 "0개" */
 .countText {
   font-size: 16px;
   font-weight: 600;
   color: #3c9a17;
 }
 
-/* 오른쪽 그룹 묶음 (문구 + 버튼) */
 .rightGroup {
   display: flex;
   align-items: center;
-  gap: 16px; /* 두 요소 사이 여백 */
+  gap: 16px;
 }
 
-/* 안내문구 */
 .maxText {
   font-size: 13px;
   color: #767676;
-  white-space: nowrap; /* 줄바꿈 방지 */
+  white-space: nowrap;
 }
 
 .maxText span {
   color: #474c98;
 }
 
-/* 버튼 */
 .addBtn {
   padding: 6px 14px;
   color: #474c98;
@@ -135,12 +123,9 @@
 
 .divider {
   border: none;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #000;
 }
 
-/* ============================= */
-/* 주소 리스트                   */
-/* ============================= */
 .listContainer {
   width: 100%;
 }
@@ -169,9 +154,6 @@
   border: 1px solid #ccc;
 }
 
-/* ============================= */
-/* 기본배송지 설정 버튼          */
-/* ============================= */
 .submitBtn {
   margin: 32px auto;
   display: block;
@@ -193,5 +175,4 @@
 .disabled {
   background: #a7a9d4;
   cursor: not-allowed;
-  opacity: 0.7;
 }

@@ -20,7 +20,11 @@ export function Addresses() {
       },
     });
 
-    const data = await res.json();
+    let data = await res.json();
+
+    data = data.sort((a, b) =>
+      a.isDefault === b.isDefault ? 0 : a.isDefault ? -1 : 1
+    );
     setAddresses(data);
 
     setSelectedAddressId(null);
@@ -46,7 +50,12 @@ export function Addresses() {
       body: JSON.stringify({ addressId: selectedAddressId }),
     });
 
-    const updated = await res.json();
+    let updated = await res.json();
+
+    updated = updated.sort((a, b) =>
+      a.isDefault === b.isDefault ? 0 : a.isDefault ? -1 : 1
+    );
+
     setAddresses(updated);
 
     // 기본배송지 자동 선택
