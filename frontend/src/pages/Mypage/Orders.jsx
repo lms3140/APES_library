@@ -14,7 +14,7 @@ export function Orders() {
 
       const resp = await axios("http://localhost:8080/order-history/get", {
         headers: { Authorization: `Bearer ${token}` },
-        method: "POST",
+        method: "GET",
       });
       setHistoryData(resp.data);
     };
