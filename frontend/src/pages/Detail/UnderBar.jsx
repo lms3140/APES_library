@@ -5,54 +5,50 @@ import Swal from "sweetalert2";
 import "../../css/swal.css";
 import { addCartItem, isInCart } from "../../utils/cartStorage.js";
 import { useNavigate } from "react-router-dom";
+import { useWishlist } from "../../hooks/useWishlist.js";
 
 const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
   const navigate = useNavigate();
-
   if (!product) return null;
+  const { isWish, toggleWish } = useWishlist(product.bookId);
 
   // 수량 증가/감소
-  const handleIncrease = () => setCount(prev => prev + 1);
-  const handleDecrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
-
-  // 좋아요 토글
-  const toggleLike = () => setLiked(prev => !prev);
+  const handleIncrease = () => setCount((prev) => prev + 1);
+  const handleDecrease = () => setCount((prev) => (prev > 1 ? prev - 1 : 1));
 
   // 총 금액 계산
   const totalPrice = (product.price * count).toLocaleString();
 
   // 장바구니 버튼 클릭
-const handleAddToCart = async () => {
-  const existingItem = isInCart(product.bookId);
-  addCartItem({ ...product, quantity: count });
+  const handleAddToCart = async () => {
+    const existingItem = isInCart(product.bookId);
+    addCartItem({ ...product, quantity: count });
 
-  const title = existingItem
-    ? "이미 장바구니에 담긴 상품이에요. 수량이 추가 되었어요."
-    : "선택한 상품을 장바구니에 담았어요.";
+    const title = existingItem
+      ? "이미 장바구니에 담긴 상품이에요. 수량이 추가 되었어요."
+      : "선택한 상품을 장바구니에 담았어요.";
 
-  const result = await Swal.fire({
-    title: title,
-    text: "장바구니로 이동하시겠어요?",
-    confirmButtonText: "장바구니 보기",
-    cancelButtonText: "취소",
-    showCancelButton: true,
-    customClass: {
-      popup: "customPopup",
-      title: "customTitle",
-      htmlContainer: "customText",
-      confirmButton: "customConfirmButton",
-      cancelButton: "customCancelButton",
-    },
-  });
+    const result = await Swal.fire({
+      title: title,
+      text: "장바구니로 이동하시겠어요?",
+      confirmButtonText: "장바구니 보기",
+      cancelButtonText: "취소",
+      showCancelButton: true,
+      customClass: {
+        popup: "customPopup",
+        title: "customTitle",
+        htmlContainer: "customText",
+        confirmButton: "customConfirmButton",
+        cancelButton: "customCancelButton",
+      },
+    });
 
-  if (result.isConfirmed) navigate("/cart");
-};
-
+    if (result.isConfirmed) navigate("/cart");
+  };
 
   return (
     <div className={styles.bottomBar}>
       <div className={styles.bottomBarContent}>
-
         {/* 가격 영역 */}
         <div className={styles.priceInfo}>
           <span className={styles.label}>총 상품 금액</span>
@@ -63,7 +59,6 @@ const handleAddToCart = async () => {
         {/* 조작 버튼 영역 */}
         <div className={styles.controls}>
           <div className={styles.leftControls}>
-
             {/* 수량 조절 */}
             <div className={styles.qtyControlWrapper}>
               <button className={styles.qtyBtn} onClick={handleDecrease}>
@@ -78,10 +73,10 @@ const handleAddToCart = async () => {
             </div>
 
             {/* 좋아요 */}
-            <button className={styles.iconBtn} onClick={toggleLike}>
+            <button className={styles.iconBtn} onClick={toggleWish}>
               <img
                 src={
-                  liked
+                  isWish
                     ? "/images/detail/heart_red.png"
                     : "/images/detail/heart_black.png"
                 }
@@ -99,7 +94,6 @@ const handleAddToCart = async () => {
             <button className={styles.buyBtn}>바로구매</button>
           </div>
         </div>
-
       </div>
     </div>
   );

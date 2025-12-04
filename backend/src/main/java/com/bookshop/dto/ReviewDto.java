@@ -13,6 +13,7 @@ public class ReviewDto {
 
     private Long reviewId;
     private Long memberId;
+    private String userId;
     private Long bookId;
     private Integer rating;
     private String content;
@@ -20,12 +21,13 @@ public class ReviewDto {
 
     @Builder
     public ReviewDto(Long reviewId, Long memberId, Long bookId,
-                     Integer rating, String content, String createdAt) {
+                     Integer rating, String content, String createdAt,String userId) {
         this.reviewId = reviewId;
         this.memberId = memberId;
         this.bookId = bookId;
         this.rating = rating;
         this.content = content;
         this.createdAt = createdAt;
+        this.userId = userId;
     }
 }

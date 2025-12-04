@@ -1,6 +1,7 @@
 package com.bookshop.Controller;
 
 import com.bookshop.dto.BookDto;
+import com.bookshop.dto.WishlistDto;
 import com.bookshop.dto.WishlistRespDto;
 import com.bookshop.entity.Wishlist;
 import com.bookshop.service.WishlistService;
@@ -21,6 +22,11 @@ public class WishlistController {
         return wishlistService.getWishlist();
     }
 
+    @PostMapping("/exists")
+    public boolean getWishOne(@RequestBody WishlistDto dto){
+        return wishlistService.existWish(dto.getBookId());
+    }
+
     @PostMapping("/add")
     public WishlistRespDto addWishlist(@RequestBody Long bookId) {
 
@@ -31,6 +37,11 @@ public class WishlistController {
         }
 
         return new WishlistRespDto(true, "찜에 추가되었습니다.");
+    }
+
+    @PostMapping("/add-multi")
+    public List<BookDto> addMultiWis(@RequestBody List<Long> ids){
+        return wishlistService.addWishlists(ids);
     }
 
     @DeleteMapping("/delete")
@@ -46,8 +57,8 @@ public class WishlistController {
     }
 
     @PostMapping("/toggle")
-    public WishlistRespDto toggleWishlist(@RequestBody Long bookId) {
-        return wishlistService.toggleWishlist(bookId);
+    public WishlistRespDto toggleWishlist(@RequestBody WishlistDto dto) {
+        return wishlistService.toggleWishlist(dto.getBookId());
     }
 
 
