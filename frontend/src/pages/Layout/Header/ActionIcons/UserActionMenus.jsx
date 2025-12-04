@@ -8,7 +8,7 @@ export function UserActionMenus() {
       <ul className={style.actionList}>
         <li>
           <Link className={style.actionCartLink} to={"#"}>
-            <BsCart2 />
+            <img src="/images/search/ico_cart.png" alt="" />
           </Link>
         </li>
         <li>

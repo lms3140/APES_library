@@ -1,5 +1,6 @@
 package com.bookshop.Controller;
 
+import com.bookshop.dto.ReviewCreateReqDto;
 import com.bookshop.dto.ReviewDto;
 import com.bookshop.service.ReviewService;
 
@@ -36,11 +37,8 @@ public class ReviewController {
     // 리뷰 작성
     @PostMapping
     public ReviewDto createReview(
-            @RequestParam Long bookId,
-            @RequestParam Long memberId,
-            @RequestParam Integer rating,
-            @RequestParam String content
-    ) {
-        return reviewService.createReview(bookId, memberId, rating, content);
+            @RequestBody ReviewCreateReqDto dto
+            ) {
+        return reviewService.createReview(dto.getBookId(), dto.getRating(), dto.getContent());
     }
 }

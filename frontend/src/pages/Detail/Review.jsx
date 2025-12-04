@@ -14,6 +14,8 @@ import ReviewSummary from "./ReviewSummary";
 import { Dropdown } from "../../components/Dropdown/Dropdown.jsx";
 
 import styles from "./Review.module.css";
+import axios from "axios";
+import dayjs from "dayjs";
 
 export default function Review({ bookId }) {
   const [reviews, setReviews] = useState([]);
@@ -28,8 +30,10 @@ export default function Review({ bookId }) {
   /** 리뷰 목록 조회 */
   const fetchReviews = async (sortParam = sort) => {
     try {
-      const data = await axiosData(`/api/reviews?book_id=${bookId}&sort=${sortParam}`);
-      setReviews(Array.isArray(data) ? data : []);
+      const data = await axios(
+        `http://localhost:8080/api/reviews?book_id=${bookId}&sort=${sortParam}`
+      );
+      setReviews(Array.isArray(data.data) ? data.data : []);
     } catch (e) {
       console.error(e);
       setReviews([]);
@@ -39,8 +43,11 @@ export default function Review({ bookId }) {
   /** 리뷰 요약 조회 */
   const fetchSummary = async () => {
     try {
-      const data = await axiosData(`/api/reviews/summary?book_id=${bookId}`);
+      const data = await axiosData(
+        `http://localhost:8080/api/reviews/summary?book_id=${bookId}`
+      );
       setSummary(data);
+      console.log(data);
     } catch (e) {
       console.error(e);
       setSummary(null);
@@ -62,12 +69,9 @@ export default function Review({ bookId }) {
 
   return (
     <div className={styles.reviewSection}>
-
       {/* 🔹 1. 상단 헤더 영역 */}
       <div className={styles.headerRow}>
-        <h3 className={styles.sectionTitle}>
-          리뷰
-        </h3>
+        <h3 className={styles.sectionTitle}>리뷰</h3>
 
         <button
           className={styles.writeButton}
@@ -100,40 +104,40 @@ export default function Review({ bookId }) {
       ) : reviews.length === 0 ? (
         <p className={styles.noReview}>아직 리뷰가 없습니다.</p>
       ) : (
-        reviews.map((review) => (
-          <div key={review.review_id} className={styles.reviewCard}>
-            <div className={styles.reviewHeader}>
-              <span className={styles.memberId}>{review.member_id}</span>
+        reviews.map((review) => {
+          return (
+            <div key={review.reviewId} className={styles.reviewCard}>
+              <div className={styles.reviewHeader}>
+                <span className={styles.memberId}>{review.memberId}</span>
 
-              <span className={styles.rating}>
-                {[...Array(5)].map((_, i) => (
-                  <img
-                    key={i}
-                    src={
-                      i < review.rating
-                        ? "/images/detail/cloveron.png"
-                        : "/images/detail/cloveroff.png"
-                    }
-                    alt={i < review.rating ? "on" : "off"}
-                    className={styles.clover}
-                  />
-                ))}
-              </span>
-            </div>
-
-            <p className={styles.content}>{review.content}</p>
-
-            {/* 🔹 리뷰 작성 시간 표시 */}
-            <span className={styles.date}>
-              {new Date(review.created_at).toLocaleString()}
-              {/*
+                <span className={styles.rating}>
+                  {[...Array(5)].map((_, i) => (
+                    <img
+                      key={i}
+                      src={
+                        i < review.rating
+                          ? "/images/detail/cloveron.png"
+                          : "/images/detail/cloveroff.png"
+                      }
+                      alt={i < review.rating ? "on" : "off"}
+                      className={styles.clover}
+                    />
+                  ))}
+                </span>
+              </div>
+              <p className={styles.content}>{review.content}</p>
+              {/* 🔹 리뷰 작성 시간 표시 */}
+              <span className={styles.date}>
+                {dayjs(review.created_at).format("YYYY-MM-DD")}
+                {/*
                 - API에서 내려오는 review.created_at 사용
                 - toLocaleString()으로 YYYY.MM.DD HH:MM:SS 형태로 표시
                 - 사용자 입장에서 언제 작성했는지 정확하게 확인 가능
               */}
-            </span>
-          </div>
-        ))
+              </span>
+            </div>
+          );
+        })
       )}
 
       {/* 🔹 4. 리뷰 작성 모달 */}
