@@ -57,10 +57,15 @@ const Cart = () => {
     });
     if (result.isConfirmed) {
       removeItem(bookId);
-      Swal.fire({
-        title: "선택 상품이 삭제되었습니다.",
-        confirmButtonText: "확인",
-      });
+       Swal.fire({
+            title: "선택 상품이 삭제되었습니다.",
+            confirmButtonText: "확인",
+            customClass: {
+              popup: "customPopup",
+              title: "customTitle",
+              confirmButton: "customConfirmButton",
+            },
+          });
     }
   };
 
