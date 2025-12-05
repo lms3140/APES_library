@@ -144,6 +144,7 @@ CREATE TABLE cart_item (
   FOREIGN KEY (book_id) REFERENCES book(book_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+drop table cart_item;
 
 -- ============================================================
 -- 🧾 주문 / 주문 상세
@@ -412,12 +413,13 @@ LEFT JOIN order_detail o ON o.order_id = p.order_id;
 select * from admin_booksales_detail_view;
 select * from member;
 
-select * from member;
+select * from review;
 
 select * from address;
 desc address;
 
-
+select * from order_detail;
+select * from purchase_order;
 select * from inquiry;
 
 

@@ -37,6 +37,46 @@
   flex: 1;
 }
 
+/* 배송지 카드 형태 */
+.itemInfo {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  background-color: #fafafa;
+}
+
+.itemTitle {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.defaultTag {
+  background: #fff;
+  color: #484c93;
+  border: 1px solid #484c93;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.itemText {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.itemText2 {
+  font-size: 13px;
+  color: #595959;
+}
+
 /* 주문상품 박스 */
 .paymentBox {
   border: 1px solid #e5e5e5;
