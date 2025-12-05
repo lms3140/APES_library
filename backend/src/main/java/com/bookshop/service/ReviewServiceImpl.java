@@ -47,6 +47,7 @@ public class ReviewServiceImpl implements ReviewService {
                         .rating(r.getRating())
                         .content(r.getContent())
                         .createdAt(r.getCreatedAt().toString())
+                        .userId(r.getMember().getUserId())
                         .build()
         ).collect(Collectors.toList());
     }

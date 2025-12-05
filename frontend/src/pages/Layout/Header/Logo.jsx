@@ -6,9 +6,9 @@ import headerStyle from "./Header.module.css";
 export function Logo() {
   return (
     <div className={headerStyle.logoWrapper}>
-      <h1 className={headerStyle.logo}>
-        <Link to={"/"}>무슨문고</Link>
-      </h1>
+      <Link to={"/"}>
+        <img src="/images/logo.png" alt="로고" className={headerStyle.logo} />
+      </Link>
     </div>
   );
 }

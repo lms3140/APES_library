@@ -105,10 +105,11 @@ export default function Review({ bookId }) {
         <p className={styles.noReview}>아직 리뷰가 없습니다.</p>
       ) : (
         reviews.map((review) => {
+          console.log(review);
           return (
             <div key={review.reviewId} className={styles.reviewCard}>
               <div className={styles.reviewHeader}>
-                <span className={styles.memberId}>{review.memberId}</span>
+                <span className={styles.memberId}>{review.userId}</span>
 
                 <span className={styles.rating}>
                   {[...Array(5)].map((_, i) => (

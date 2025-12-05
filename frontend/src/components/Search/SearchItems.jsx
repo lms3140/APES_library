@@ -5,20 +5,24 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import heartIcon from "/images/search/ico_heart.png";
 import redHeartIcon from "/images/search/ico_heart_red.png";
 import { confirmSwal, likeSwal, unlikeSwal } from "../../api/api";
+import { useWishlist } from "../../hooks/useWishlist";
+import { useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 export function SearchItems({
   item,
   viewType,
   selectedItems,
   toggleSelect,
-  likedItems,
   toggleLike,
   isLoggedIn,
   addSingleToCart,
 }) {
+  const likedItems = useSelector((state) => state.liked.likedItems);
   const navigate = useNavigate();
-  const isLiked = likedItems.includes(item.bookId);
-
+  const isLiked = Boolean(likedItems.find((p) => p.bookId === item.bookId));
+  const { isWish, toggleWish } = useWishlist(item.bookId);
   const handleLike = async () => {
     if (!isLoggedIn) {
       const result = await confirmSwal(
@@ -32,7 +36,9 @@ export function SearchItems({
     }
 
     toggleLike(item.bookId);
-    isLiked ? likeSwal : unlikeSwal;
+    toggleWish();
+    console.log(isLiked);
+    isWish ? likeSwal : unlikeSwal;
   };
 
   const handleCheck = () => toggleSelect(item.bookId);
@@ -68,7 +74,7 @@ export function SearchItems({
                 navigate(`?keyword=${encodeURIComponent(item.authors)}`)
               }
             >
-              {item.authors}{" "}
+              {item.authors.join(", ")}{" "}
             </span>
             {viewType === "list" ? " 저자(글)" : ""}
           </p>

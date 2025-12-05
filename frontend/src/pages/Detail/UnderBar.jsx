@@ -4,18 +4,16 @@ import Swal from "sweetalert2";
 import "../../css/swal.css";
 import { addCartItem, isInCart } from "../../utils/cartStorage.js";
 import { useNavigate } from "react-router-dom";
+import { useWishlist } from "../../hooks/useWishlist.js";
 
 const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
   const navigate = useNavigate();
-
   if (!product) return null;
+  const { isWish, toggleWish } = useWishlist(product.bookId);
 
   // 수량 증가/감소
-  const handleIncrease = () => setCount(prev => prev + 1);
-  const handleDecrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
-
-  // 좋아요 토글
-  const toggleLike = () => setLiked(prev => !prev);
+  const handleIncrease = () => setCount((prev) => prev + 1);
+  const handleDecrease = () => setCount((prev) => (prev > 1 ? prev - 1 : 1));
 
   // 총 금액 계산
   const totalPrice = (product.price * count).toLocaleString();
@@ -105,9 +103,13 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
             </div>
 
             {/* 좋아요 */}
-            <button className={styles.iconBtn} onClick={toggleLike}>
+            <button className={styles.iconBtn} onClick={toggleWish}>
               <img
-                src={liked ? "/images/detail/heart_red.png" : "/images/detail/heart_black.png"}
+                src={
+                  isWish
+                    ? "/images/detail/heart_red.png"
+                    : "/images/detail/heart_black.png"
+                }
                 alt="heart"
                 className={styles.heartIcon}
               />
