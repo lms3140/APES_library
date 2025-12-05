@@ -30,8 +30,8 @@ export const useWishlist = (bookId) => {
       }
     );
 
-    const res = resp.data;
-    setIsWish(res.wished);
+    setIsWish((prev) => !prev);
+    return resp.data;
   };
   return { isWish, toggleWish };
 };

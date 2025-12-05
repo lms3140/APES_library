@@ -5,7 +5,11 @@ import styles from "./WishList.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cartSlice.js";
 import { confirmSwal, infoSwal } from "../../api/api.js";
-import { selectFilteredSortedBooks } from "../../store/searchSlice.js";
+import {
+  clearSelected,
+  selectFilteredSortedBooks,
+  toggleSelected,
+} from "../../store/searchSlice.js";
 
 export function WishList() {
   const dispatch = useDispatch();
@@ -25,10 +29,17 @@ export function WishList() {
 
       const data = await res.json();
       setWishList(data);
-      console.log(data);
     };
     fetchWish();
   }, []);
+
+  const handleSelectAll = () => {
+    if (selectedItems.length === wishList.length) {
+      dispatch(clearSelected());
+    } else {
+      wishList.forEach((item) => dispatch(toggleSelected(item.bookId)));
+    }
+  };
 
   //아이템 하나 담기
   const addSingleToCart = async (item) => {
@@ -62,15 +73,15 @@ export function WishList() {
     }
 
     selectedItems.forEach((bookId) => {
-      const book = sortedBooks.find((b) => b.bookId === bookId);
-      if (!book) return;
+      const item = wishList.find((w) => w.bookId === bookId);
+      if (!item) return;
 
       dispatch(
         addToCart({
-          bookId: book.bookId,
-          title: book.title,
-          price: book.price,
-          imageUrl: book.imageUrl,
+          bookId: item.bookId,
+          title: item.title,
+          price: item.price,
+          imageUrl: item.imageUrl,
           quantity: 1,
         })
       );
@@ -90,16 +101,40 @@ export function WishList() {
 
     const token = localStorage.getItem("jwtToken");
     const res = await fetch("http://localhost:8080/wishlist/delete", {
-      method: "DELETE",
+      method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ bookId }),
+      body: JSON.stringify(bookId),
     });
 
-    const updated = await res.json();
+    await res.json();
+
+    const res2 = await fetch("http://localhost:8080/wishlist/get", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const updated = await res2.json();
     setWishList(updated);
+  };
+
+  const handleBuyNow = () => {
+    navigate("/payment", {
+      state: {
+        orderItems: [
+          {
+            bookId: wishList.bookId,
+            quantity: 1,
+            title: wishList.title,
+            price: wishList.price,
+            imageUrl: wishList.imageUrl,
+          },
+        ],
+      },
+    });
   };
 
   return (
@@ -113,15 +148,23 @@ export function WishList() {
         <div>
           <div className={styles.topBar}>
             <div className={styles.leftArea}>
-              <Checkbox />
+              <Checkbox
+                checked={
+                  wishList.length > 0 &&
+                  selectedItems.length === wishList.length
+                }
+                onChange={handleSelectAll}
+              />
               <h3>
                 찜한 상품 <span>{selectedItems.length}</span>/{wishList.length}
               </h3>
             </div>
 
             <div className={styles.rightArea}>
-              <button>선택삭제</button>
-              <button>
+              <button onClick={() => handleDeleteWishList(selectedItems)}>
+                선택삭제
+              </button>
+              <button onClick={() => addMultiToCart()}>
                 <img src="/images/search/ico_cart.png" alt="" />
                 장바구니에 담기
               </button>
@@ -130,7 +173,10 @@ export function WishList() {
 
           {wishList.map((wish) => (
             <div key={wish.bookId} className={styles.item}>
-              <Checkbox />
+              <Checkbox
+                checked={selectedItems.includes(wish.bookId)}
+                onChange={() => dispatch(toggleSelected(wish.bookId))}
+              />
               <img
                 className={styles.bookImg}
                 src={wish.imageUrl}
@@ -159,7 +205,7 @@ export function WishList() {
                   <p className={styles.itemInfoPrice}>
                     <span>{wish.price.toLocaleString()}</span>원{" "}
                     <div className={styles.divider}></div>
-                    {wish.point.toLocaleString()}p
+                    {wish.point === null ? 0 : wish.point.toLocaleString()}p
                   </p>
                 </div>
               </div>
@@ -168,7 +214,9 @@ export function WishList() {
                 <button type="button" onClick={() => addSingleToCart(wish)}>
                   장바구니
                 </button>
-                <button type="button">바로구매</button>
+                <button type="button" onClick={handleBuyNow}>
+                  바로구매
+                </button>
               </div>
             </div>
           ))}
@@ -176,7 +224,7 @@ export function WishList() {
       ) : (
         <div className={styles.noData}>
           <img src="/images/mypage/ico_nodata.png" alt="" />
-          <p>찜한 상품이 없습니다.</p>
+          <p className={styles.noDataInfo}>찜한 상품이 없습니다.</p>
           <p>교보문고의 다양한 상품과 콘텐츠를 둘러보세요!</p>
           <button onClick={() => navigate("/")}>계속 쇼핑하기</button>
         </div>

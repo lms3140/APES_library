@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReviewDto {
 
+    private String imageUrl;
+    private String title;
+    private String authors;
     private Long reviewId;
     private Long memberId;
     private String userId;
@@ -20,8 +23,11 @@ public class ReviewDto {
     private String createdAt;
 
     @Builder
-    public ReviewDto(Long reviewId, Long memberId, Long bookId,
+    public ReviewDto(String imageUrl, String title, String authors, Long reviewId, Long memberId, Long bookId,
                      Integer rating, String content, String createdAt,String userId) {
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.authors = authors;
         this.reviewId = reviewId;
         this.memberId = memberId;
         this.bookId = bookId;

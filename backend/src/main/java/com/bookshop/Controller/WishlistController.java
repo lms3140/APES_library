@@ -39,21 +39,26 @@ public class WishlistController {
         return new WishlistRespDto(true, "찜에 추가되었습니다.");
     }
 
+    @PostMapping("/delete")
+    public WishlistRespDto deleteWishlist(@RequestBody List<Long> bookId) {
+
+        int successCount = 0;
+
+        for (Long id : bookId) {
+            int res = wishlistService.deleteWishlist(id);
+            if (res == 1) successCount++;
+        }
+
+        if (successCount == 0) {
+            return new WishlistRespDto(false, "삭제된 항목이 없습니다.");
+        }
+
+        return new WishlistRespDto(true, "선택한 항목이 삭제되었습니다.");
+    }
+
     @PostMapping("/add-multi")
     public List<BookDto> addMultiWis(@RequestBody List<Long> ids){
         return wishlistService.addWishlists(ids);
-    }
-
-    @DeleteMapping("/delete")
-    public WishlistRespDto deleteWishlist(@RequestBody Long bookId) {
-
-        int res = wishlistService.deleteWishlist(bookId);
-
-        if (res != 1) {
-            return new WishlistRespDto(false, "찜 삭제에 실패했습니다.");
-        }
-
-        return new WishlistRespDto(true, "찜에서 삭제되었습니다.");
     }
 
     @PostMapping("/toggle")

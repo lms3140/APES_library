@@ -1,0 +1,155 @@
+.reviewWrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: "Pretendard", sans-serif;
+}
+
+/* 제목 */
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.subText {
+  color: #777;
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 28px;
+}
+
+/* --------------------------------------------------
+   리뷰 카드
+-------------------------------------------------- */
+.reviewCard {
+  border-top: 1px solid #e5e5e5;
+  padding: 28px 0 32px 0;
+}
+
+/* --------------------------------------------------
+   책 정보
+-------------------------------------------------- */
+.bookInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.bookImage {
+  width: 70px;
+  height: 105px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.bookTextArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bookTitle {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #111;
+}
+
+.bookAuthors {
+  font-size: 14px;
+  color: #666;
+}
+
+/* --------------------------------------------------
+   구매리뷰 + 별점 영역
+-------------------------------------------------- */
+.metaTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.reviewType {
+  font-weight: 700;
+  font-size: 15px;
+  color: #5055b1; /* 교보문고 파란색 */
+}
+
+/* --------------------------------------------------
+   아이디 · 날짜 · 삭제
+-------------------------------------------------- */
+.metaBottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 14px;
+}
+
+.metaBottom .divider {
+  width: 1px;
+  height: 12px;
+  background: #ccc;
+}
+
+.metaBottom button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.metaBottom button:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------
+   리뷰 내용
+-------------------------------------------------- */
+.reviewContent {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* --------------------------------------------------
+   데이터 없음
+-------------------------------------------------- */
+.noData {
+  text-align: center;
+  padding: 120px 0;
+}
+
+.noData img {
+  width: 46px;
+  height: 46px;
+  opacity: 0.7;
+}
+
+.noDataInfo {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.noData button {
+  margin-top: 20px;
+  padding: 12px 22px;
+  background: #5055b1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.noData button:hover {
+  background: #333a99;
+}

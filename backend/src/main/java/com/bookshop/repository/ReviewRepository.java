@@ -10,4 +10,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByBook_BookIdOrderByCreatedAtDesc(Long bookId);
     List<Review> findByBook_BookIdOrderByCreatedAtAsc(Long bookId);
+    List<Review> findByMember_MemberId(Long memberId);
 }

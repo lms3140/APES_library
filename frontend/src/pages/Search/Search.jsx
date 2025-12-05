@@ -1,13 +1,13 @@
 import styles from "./Search.module.css";
 import paginationStyles from "../Pagination/Pagination.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SearchFilter } from "../../components/Search/SearchFilter.jsx";
 import { SearchSort } from "../../components/Search/SearchSort.jsx";
 import { SearchItems } from "../../components/Search/SearchItems.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { usePagination } from "../../hooks/usePagination.js";
-import { confirmSwal, infoSwal } from "../../api/api.js";
+import { confirmSwal, infoSwal, likeSwal } from "../../api/api.js";
 import {
   selectFilteredSortedBooks,
   setKeyword,
@@ -65,6 +65,11 @@ export function Search() {
     usePagination(sortedBooks, limit);
 
   const addMultiWish = async () => {
+    if (selectedItems.length === 0) {
+      await infoSwal("선택한 상품이 없습니다.", "", "확인");
+      return;
+    }
+
     const token = localStorage.getItem("jwtToken");
     const resp = await axios.post(
       "http://localhost:8080/wishlist/add-multi",
@@ -75,8 +80,12 @@ export function Search() {
         },
       }
     );
-    console.log(resp.data);
-    dispatch(addMultipleLikes(resp.data));
+
+    if (resp.status === 200) {
+      dispatch(addMultipleLikes(resp.data));
+      const result = likeSwal();
+      if ((await result).isConfirmed) navigate("/mypage/wishlist");
+    }
   };
 
   //아이템 하나 담기
@@ -106,7 +115,7 @@ export function Search() {
     const confirmButtonText = "장바구니 보기";
 
     if (selectedItems.length === 0) {
-      await infoSwal("선택한 상품이 없습니다.", "확인");
+      await infoSwal("선택한 상품이 없습니다.", "", "확인");
       return;
     }
 

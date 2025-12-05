@@ -109,4 +109,32 @@ public class ReviewServiceImpl implements ReviewService {
         );
     }
 
+    public List<ReviewDto> getMyReviews() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = auth.getName();
+
+        Member member = memberRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("회원정보를 찾을 수 없습니다."));
+        List<Review> reviews = reviewRepository.findByMember_MemberId(member.getMemberId());
+
+        return reviews.stream()
+                .map(r -> ReviewDto.builder()
+                        .imageUrl(r.getBook().getImageUrl())
+                        .title(r.getBook().getTitle())
+                        .authors(
+                                r.getBook().getBookAuthors().stream()
+                                        .map(ba -> ba.getAuthor().getName())
+                                        .collect(Collectors.joining(", "))
+                        )
+                        .reviewId(r.getReviewId())
+                        .memberId(member.getMemberId())
+                        .bookId(r.getBook().getBookId())
+                        .rating(r.getRating())
+                        .content(r.getContent())
+                        .createdAt(r.getCreatedAt().toString())
+                        .userId(userId)
+                        .build()
+                ).toList();
+    }
+
 }
