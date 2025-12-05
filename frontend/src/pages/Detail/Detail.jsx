@@ -74,7 +74,7 @@ export default function Detail() {
           className={activeTab === "review" ? styles.active : ""}
           onClick={() => scrollToSection(reviewRef, "review")}
         >
-          리뷰 ({data.reviewCount || 0})
+          리뷰
         </button>
         <button
           className={activeTab === "return" ? styles.active : ""}

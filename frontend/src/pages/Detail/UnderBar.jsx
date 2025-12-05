@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./UnderBar.module.css";
-
 import Swal from "sweetalert2";
 import "../../css/swal.css";
 import { addCartItem, isInCart } from "../../utils/cartStorage.js";
@@ -46,6 +45,39 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
     if (result.isConfirmed) navigate("/cart");
   };
 
+  // 바로 구매 버튼 클릭
+  const handleBuyNow = async () => {
+    const result = await Swal.fire({
+      title: "바로 구매하시겠습니까?",
+      text: "선택한 상품을 결제 페이지로 이동합니다.",
+      confirmButtonText: "결제 진행",
+      cancelButtonText: "취소",
+      showCancelButton: true,
+      customClass: {
+        popup: "customPopup",
+        title: "customTitle",
+        htmlContainer: "customText",
+        confirmButton: "customConfirmButton",
+        cancelButton: "customCancelButton",
+      },
+    });
+
+    if (result.isConfirmed) {
+      // Payment 페이지로 state 전송
+      navigate("/payment", {
+        state: {
+          orderItems: [{
+            bookId: product.bookId,
+            quantity: count,
+            title: product.title,
+            price: product.price,
+            imageUrl: product.imageUrl,
+          }],
+        },
+      });
+    }
+  };
+
   return (
     <div className={styles.bottomBar}>
       <div className={styles.bottomBarContent}>
@@ -64,9 +96,7 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
               <button className={styles.qtyBtn} onClick={handleDecrease}>
                 <img src="/images/detail/ico_spinner_down.png" alt="감소" />
               </button>
-
               <span className={styles.qtyValue}>{count}</span>
-
               <button className={styles.qtyBtn} onClick={handleIncrease}>
                 <img src="/images/detail/ico_spinner_up.png" alt="증가" />
               </button>
@@ -86,12 +116,14 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
             </button>
           </div>
 
-          {/* 장바구니 & 구매 */}
+          {/* 장바구니 & 바로 구매 */}
           <div className={styles.rightButtons}>
             <button className={styles.cartBtn} onClick={handleAddToCart}>
               장바구니
             </button>
-            <button className={styles.buyBtn}>바로구매</button>
+            <button className={styles.buyBtn} onClick={handleBuyNow}>
+              바로구매
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,98 @@
+/* Order.module.css */
+
+/* 전체 컨테이너 */
+.contents {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background: #fff;
+}
+
+/* 상단 영역: 제목 + 단계 표시 */
+.paymentTopWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.titleWrap {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.stepWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+/* 좌우 레이아웃: 주문 완료 메시지 영역 */
+.paymentLayout {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+/* 좌측: 주문 완료 메시지 */
+.leftArea {
+  flex: 1;
+}
+
+.leftArea h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.leftArea p {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+/* 주문번호가 없을 때 */
+.leftArea .noOrderId {
+  color: #888;
+}
+
+/* 홈으로 가기 버튼 */
+.orderBtn {
+  height: 50px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #5156b2;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+  margin: 20px 0; /* 위아래 20px */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.orderBtn:hover {
+  background: #3f42a0;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .paymentLayout {
+    flex-direction: column;
+  }
+
+  .paymentTopWrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .orderBtn {
+    width: 100%;
+  }
+}
