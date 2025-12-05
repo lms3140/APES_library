@@ -6,5 +6,5 @@ import lombok.Data;
 public class CartItemDto {
     private Long memberId;   // 회원 ID
     private Long bookId;     // 도서 ID
-    private Integer quatity; // 수량
+    private Integer quantity; // 수량
 }

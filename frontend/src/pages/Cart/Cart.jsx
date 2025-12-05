@@ -57,15 +57,15 @@ const Cart = () => {
     });
     if (result.isConfirmed) {
       removeItem(bookId);
-       Swal.fire({
-            title: "선택 상품이 삭제되었습니다.",
-            confirmButtonText: "확인",
-            customClass: {
-              popup: "customPopup",
-              title: "customTitle",
-              confirmButton: "customConfirmButton",
-            },
-          });
+      Swal.fire({
+        title: "선택 상품이 삭제되었습니다.",
+        confirmButtonText: "확인",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          confirmButton: "customConfirmButton",
+        },
+      });
     }
   };
 
@@ -78,6 +78,10 @@ const Cart = () => {
     navigate(`/detail/${bookId}`);
   };
 
+  /** ---------------------------------------
+   * ✔ 수정 포인트
+   * price와 title을 넘겨줘야 결제 페이지에서 오류가 없음
+   --------------------------------------- */
   const handleOrder = async () => {
     if (cartItems.length === 0) return;
     const result = await Swal.fire({
@@ -86,18 +90,24 @@ const Cart = () => {
       confirmButtonText: "확인",
       cancelButtonText: "취소",
       customClass: {
-            popup: "customPopup",
-            title: "customTitle",
-            confirmButton: "customConfirmButton",
-            cancelButton: "customCancelButton",
+        popup: "customPopup",
+        title: "customTitle",
+        confirmButton: "customConfirmButton",
+        cancelButton: "customCancelButton",
       },
     });
+
     if (result.isConfirmed) {
       navigate("/payment", {
         state: {
           orderItems: cartItems.map((item) => ({
             bookId: item.bookId,
             quantity: item.quantity,
+
+            // ⭐⭐ 추가된 부분 ⭐⭐
+            title: item.title,
+            price: item.price,
+            imageUrl: item.imageUrl,
           })),
         },
       });
@@ -139,7 +149,9 @@ const Cart = () => {
                         <span className={styles.discountedPrice}>
                           ₩ {discountedPrice.toLocaleString()}
                         </span>
-                        <span className={styles.originalPrice}>₩ {item.price.toLocaleString()}</span>
+                        <span className={styles.originalPrice}>
+                          ₩ {item.price.toLocaleString()}
+                        </span>
                       </div>
 
                       <div className={styles.quantityContainer}>
@@ -158,7 +170,10 @@ const Cart = () => {
                             +
                           </button>
                         </div>
-                        <button className={styles.deleteBtn} onClick={() => handleRemoveItem(item.bookId)}>
+                        <button
+                          className={styles.deleteBtn}
+                          onClick={() => handleRemoveItem(item.bookId)}
+                        >
                           삭제
                         </button>
                       </div>
