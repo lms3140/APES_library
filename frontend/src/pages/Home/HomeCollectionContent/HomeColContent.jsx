@@ -3,7 +3,7 @@ import contentStyle from "./HomeColContent.module.css";
 import { useGetFetch } from "../../../hooks/useGetFetch";
 
 export function HomeColContent() {
-  const url = "http://localhost:8080/BookCollection/all";
+  const url = "http://localhost:8080/book-collection/all";
   const { isLoading, isError, data } = useGetFetch(url);
 
   if (isLoading || (data && data.length === 0)) {

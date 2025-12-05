@@ -21,45 +21,4 @@ public class BookController {
         BookDetailDto result = bookService.findByBookIdDetail(bookId);
         return result;
     }
-    @PostMapping("/detail/title")
-    public String getBookTitle(@RequestBody BookDetailDto bookDetailDto) {
-        String result = "";
-        result = bookService.findByBookIdDetail(bookDetailDto.getBookId()).getTitle();
-        return result;
-    }
-
-    @PostMapping("/detail/author")
-    public String getBookAuthor(@RequestBody BookDetailDto bookDetailDto) {
-        String result = "";
-        result = bookService.findByBookIdDetail(bookDetailDto.getBookId()).getAuthors();
-        return result;
-    }
-
-    @PostMapping("/detail/price")
-    public Integer getBookPrice(@RequestBody BookDetailDto bookDetailDto) {
-        Integer result = 0;
-        result = bookService.findByBookIdDetail(bookDetailDto.getBookId()).getPrice();
-        return result;
-    }
-
-    @PostMapping("/detail/point")
-    public Integer getBookPoint(@RequestBody BookDetailDto bookDetailDto) {
-        Integer result = 0;
-        result = bookService.findByBookIdDetail(bookDetailDto.getBookId()).getPoint();
-        return result;
-    }
-
-    @PostMapping("/detail/imageUrl")
-    public String getBookImageUrl(@RequestBody BookDetailDto bookDetailDto) {
-        String result = "";
-        result = bookService.findByBookIdDetail(bookDetailDto.getBookId()).getImageUrl();
-        return result;
-    }
-
-    @PostMapping("/detail/description")
-    public String getBookDescription(@RequestBody BookDetailDto bookDetailDto) {
-        String result = "";
-        result = bookService.findByBookIdDetail(bookDetailDto.getBookId()).getDescription();
-        return result;
-    }
 }
