@@ -29,7 +29,6 @@ export function WishList() {
 
       const data = await res.json();
       setWishList(data);
-      console.log(data);
     };
     fetchWish();
   }, []);
@@ -122,6 +121,22 @@ export function WishList() {
     setWishList(updated);
   };
 
+  const handleBuyNow = () => {
+    navigate("/payment", {
+      state: {
+        orderItems: [
+          {
+            bookId: wishList.bookId,
+            quantity: 1,
+            title: wishList.title,
+            price: wishList.price,
+            imageUrl: wishList.imageUrl,
+          },
+        ],
+      },
+    });
+  };
+
   return (
     <div className={styles.wrapper}>
       <h1>찜</h1>
@@ -190,7 +205,7 @@ export function WishList() {
                   <p className={styles.itemInfoPrice}>
                     <span>{wish.price.toLocaleString()}</span>원{" "}
                     <div className={styles.divider}></div>
-                    {wish.point.toLocaleString()}p
+                    {wish.point === null ? 0 : wish.point.toLocaleString()}p
                   </p>
                 </div>
               </div>
@@ -199,7 +214,9 @@ export function WishList() {
                 <button type="button" onClick={() => addSingleToCart(wish)}>
                   장바구니
                 </button>
-                <button type="button">바로구매</button>
+                <button type="button" onClick={handleBuyNow}>
+                  바로구매
+                </button>
               </div>
             </div>
           ))}

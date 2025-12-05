@@ -7,7 +7,7 @@ import { SearchItems } from "../../components/Search/SearchItems.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { usePagination } from "../../hooks/usePagination.js";
-import { confirmSwal, infoSwal } from "../../api/api.js";
+import { confirmSwal, infoSwal, likeSwal } from "../../api/api.js";
 import {
   selectFilteredSortedBooks,
   setKeyword,
@@ -19,7 +19,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks } from "../../store/bookSlice.js";
 import { addToCart } from "../../store/cartSlice.js";
-import { toggleLike } from "../../store/likedSlice.js";
+import {
+  addMultipleLikes,
+  setItems,
+  toggleLike,
+} from "../../store/likedSlice.js";
+import axios from "axios";
 
 export function Search() {
   const dispatch = useDispatch();
@@ -42,9 +47,46 @@ export function Search() {
     }
   }, [keyword, dispatch]);
 
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+    const getList = async () => {
+      const resp = await axios.get("http://localhost:8080/wishlist/get", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(setItems(resp.data));
+    };
+    getList();
+  }, []);
+
   //페이지네이션
   const { currentPage, pageCount, currentItems, handlePageChange } =
     usePagination(sortedBooks, limit);
+
+  const addMultiWish = async () => {
+    if (selectedItems.length === 0) {
+      await infoSwal("선택한 상품이 없습니다.", "", "확인");
+      return;
+    }
+
+    const token = localStorage.getItem("jwtToken");
+    const resp = await axios.post(
+      "http://localhost:8080/wishlist/add-multi",
+      selectedItems,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (resp.status === 200) {
+      dispatch(addMultipleLikes(resp.data));
+      const result = likeSwal();
+      if ((await result).isConfirmed) navigate("/mypage/wishlist");
+    }
+  };
 
   //아이템 하나 담기
   const addSingleToCart = async (item) => {
@@ -73,7 +115,7 @@ export function Search() {
     const confirmButtonText = "장바구니 보기";
 
     if (selectedItems.length === 0) {
-      await infoSwal("선택한 상품이 없습니다.", "확인");
+      await infoSwal("선택한 상품이 없습니다.", "", "확인");
       return;
     }
 
@@ -112,6 +154,7 @@ export function Search() {
             onViewTypeChange={(v) => dispatch(setViewType(v))}
             onSortChange={(v) => dispatch(setSortOptions(v))}
             addMultiToCart={addMultiToCart}
+            addMultiWish={addMultiWish}
           />
           <div
             className={viewType === "list" ? styles.listView : styles.gridView}

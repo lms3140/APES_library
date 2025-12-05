@@ -41,4 +41,9 @@ public class ReviewController {
             ) {
         return reviewService.createReview(dto.getBookId(), dto.getRating(), dto.getContent());
     }
+
+    @GetMapping("/my")
+    public List<ReviewDto> getMyReviews() {
+        return reviewService.getMyReviews();
+    }
 }

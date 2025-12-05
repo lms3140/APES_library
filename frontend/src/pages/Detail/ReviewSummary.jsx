@@ -42,7 +42,7 @@ export default function ReviewSummary({ summary }) {
         <div className={styles.totalNumber}>{totalReviews}개</div>
       </div>
 
-      {/* 오른쪽: 평점 막대 (항상 더미 기반) */}
+      {/* 오른쪽: 평점 막대*/}
       <div className={styles.right}>
         {[5, 4, 3, 2, 1].map((rate) => {
           const count = ratingCounts[rate] ?? 0;

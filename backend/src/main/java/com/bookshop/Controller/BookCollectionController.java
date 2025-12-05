@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/BookCollection")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
-public class BookCollectionController {
+public class    BookCollectionController {
 
     private final BookCollectionService bookCollectionService;
 

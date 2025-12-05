@@ -5,21 +5,25 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import heartIcon from "/images/search/ico_heart.png";
 import redHeartIcon from "/images/search/ico_heart_red.png";
 import { confirmSwal, likeSwal, unlikeSwal } from "../../api/api";
+import { useWishlist } from "../../hooks/useWishlist";
+import { useSelector } from "react-redux";
 
 export function SearchItems({
   item,
   viewType,
   selectedItems,
   toggleSelect,
-  likedItems,
   toggleLike,
   isLoggedIn,
   addSingleToCart,
 }) {
+  const likedItems = useSelector((state) => state.liked.likedItems);
   const navigate = useNavigate();
-  const isLiked = likedItems.includes(item.bookId);
+  const isLiked = Boolean(likedItems.find((p) => p.bookId === item.bookId));
+  const { isWish, toggleWish } = useWishlist(item.bookId);
 
   const handleLike = async () => {
+    // 로그인 여부 검사
     if (!isLoggedIn) {
       const result = await confirmSwal(
         "찜하기는 로그인 후 이용할 수 있어요.",
@@ -30,9 +34,23 @@ export function SearchItems({
       if (result.isConfirmed) navigate("/login");
       return;
     }
+    const wasWish = isWish;
 
-    toggleLike(item.bookId);
-    isLiked ? likeSwal : unlikeSwal;
+    try {
+      await toggleWish(); // /wishlist/toggle 호출됨
+
+      toggleLike(item.bookId);
+
+      if (!wasWish) {
+        const result = await likeSwal(); // 찜 추가됨
+        if (result.isConfirmed) navigate("/mypage/wishlist");
+      } else {
+        await unlikeSwal(); // 찜 삭제됨
+      }
+    } catch (error) {
+      console.error("찜 처리 중 오류 발생:", error);
+      alert("찜 처리 중 오류가 발생했습니다.");
+    }
   };
 
   const handleCheck = () => toggleSelect(item.bookId);
@@ -40,6 +58,22 @@ export function SearchItems({
     if (!dateString) return "";
     const [year, month, day] = dateString.split("-");
     return `${year}년 ${month.padStart(2, "0")}월 ${day.padStart(2, "0")}일`;
+  };
+
+  const handleBuyNow = () => {
+    navigate("/payment", {
+      state: {
+        orderItems: [
+          {
+            bookId: item.bookId,
+            quantity: 1,
+            title: item.title,
+            price: item.price,
+            imageUrl: item.imageUrl,
+          },
+        ],
+      },
+    });
   };
 
   return (
@@ -125,7 +159,7 @@ export function SearchItems({
             </button>
             <button
               type="button"
-              onClick={() => navigate("/payment")}
+              onClick={handleBuyNow}
               className={styles.buyBtn}
             >
               바로구매

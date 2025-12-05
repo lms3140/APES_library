@@ -79,7 +79,7 @@ public class PaymentService {
         req.setQuantity(totalQuantity); // body로 받아온 갯수
         req.setTotal_amount(resultOrder.getTotalAmount()); // 계산된 총 가격
         req.setTax_free_amount(0); // 이 프로젝트에선 무조건 0임
-        req.setApproval_url(FRONT + "/payment/success");
+        req.setApproval_url(FRONT + "/order/complete");
         req.setCancel_url(FRONT + "/payment/cancel");
         req.setFail_url(FRONT + "/payment/fail");
 
@@ -113,6 +113,11 @@ public class PaymentService {
             member.setPointBalance(member.getPointBalance() + order.getEarnedPoint());
             purchaseOrderRepository.save(order);
             memberRepository.save(member);
+
+            //총 결제 금액 추가
+            response.setTotal_amount(order.getTotalAmount());
+            response.setPartner_order_id(order.getOrderId().toString());
+
             return response;
         } catch (Exception e){
             order.error();

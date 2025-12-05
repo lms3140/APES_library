@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./Reviews.module.css";
+import dayjs from "dayjs";
+import { StarRating } from "../../components/StarRating/StarRating.jsx";
 
 export function Reviews() {
   const navigate = useNavigate();
@@ -8,44 +11,70 @@ export function Reviews() {
   useEffect(() => {
     const fetchReviews = async () => {
       const token = localStorage.getItem("jwtToken");
-      const res = await fetch("http://localhost8080/");
+      const res = await fetch("http://localhost:8080/api/reviews/my", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      setReviews(data);
     };
+    fetchReviews();
   }, []);
 
+  const maskUserId = (id) => {
+    if (!id) return "";
+    return id.substring(0, 2) + "*".repeat(id.length - 2);
+  };
+
+  const formatDate = (date) => {
+    return dayjs(date).format("YYYY.MM.DD");
+  };
+
   return (
-    <div>
-      <h1>Klover 리뷰</h1>
-      <p>* 기간 및 조건 내 작성한 리뷰 조회 가능합니다.</p>
+    <div className={styles.reviewWrapper}>
+      <h1 className={styles.title}>Klover 리뷰</h1>
+      <p className={styles.subText}>
+        * 기간 및 조건 내 작성한 리뷰 조회 가능합니다.
+      </p>
 
       {reviews.length > 0 ? (
-        <div>
-          <div>
-            <img src={"이미지"} alt="책이미지" />
-            <div>
-              <p>책제목</p>
-              <p>저자</p>
+        reviews.map((review) => (
+          <div className={styles.reviewCard} key={review.reviewId}>
+            <div className={styles.bookInfo}>
+              <img
+                src={review.imageUrl}
+                alt={review.title}
+                className={styles.bookImage}
+              />
+              <div className={styles.bookTextArea}>
+                <p className={styles.bookTitle}>{review.title}</p>
+                <p className={styles.bookAuthors}>{review.authors}</p>
+              </div>
             </div>
-          </div>
 
-          <div>
-            <div>
-              <p>구매리뷰</p>
-              <p>별점</p>
+            <div className={styles.metaTop}>
+              <p className={styles.reviewType}>구매리뷰</p>
+              <StarRating rating={review.rating} />
             </div>
-            <div>
+
+            <div className={styles.metaBottom}>
               <p>
-                아이디(앞 두글자만 보이고 나머지 **처리) <div></div> 작성날짜{" "}
-                <div></div> <button>삭제</button>
+                {maskUserId(review.userId)}{" "}
+                <div className={styles.divider}></div>{" "}
+                {formatDate(review.createdAt)}{" "}
+                <div className={styles.divider}></div> <button>삭제</button>
               </p>
             </div>
-          </div>
 
-          <div>리뷰내용</div>
-        </div>
+            <div className={styles.reviewContent}>{review.content}</div>
+          </div>
+        ))
       ) : (
-        <div>
+        <div className={styles.noData}>
           <img src="/images/mypage/ico_nodata.png" alt="" />
-          <p>작성한 리뷰가 없습니다.</p>
+          <p className={styles.noDataInfo}>작성한 리뷰가 없습니다.</p>
           <p>교보문고의 다양한 상품과 콘텐츠를 둘러보세요!</p>
           <button onClick={() => navigate("/")}>둘러보기</button>
         </div>
