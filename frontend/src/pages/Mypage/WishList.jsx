@@ -140,9 +140,11 @@ export function WishList() {
   return (
     <div className={styles.wrapper}>
       <h1>찜</h1>
-      <p className={styles.topBox}>
-        관심 있는 상품을 찜해두면 언제든 쉽게 구매할 수 있어요.
-      </p>
+      <div className={styles.top}>
+        <p className={styles.topBox}>
+          관심 있는 상품을 찜해두면 언제든 쉽게 구매할 수 있어요.
+        </p>
+      </div>
 
       {wishList.length > 0 ? (
         <div>

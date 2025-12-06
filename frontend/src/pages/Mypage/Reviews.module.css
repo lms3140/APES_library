@@ -1,47 +1,46 @@
 .reviewWrapper {
   width: 100%;
-  max-width: 900px;
-  margin: 40px auto;
-  font-family: "Pretendard", sans-serif;
+  max-width: 1200px;
+  margin: 0 0 120px 30px;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: #111;
 }
 
-/* 제목 */
 .title {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 4px;
+  line-height: 1.3;
+  margin-bottom: 0;
 }
 
 .subText {
-  color: #777;
-  font-size: 14px;
+  padding-bottom: 14px;
   text-align: right;
-  margin-bottom: 28px;
+  font-size: 13px;
+  color: #767676;
+  border-bottom: 1px solid #000;
+  margin-bottom: 0;
 }
 
-/* --------------------------------------------------
-   리뷰 카드
--------------------------------------------------- */
 .reviewCard {
-  border-top: 1px solid #e5e5e5;
-  padding: 28px 0 32px 0;
+  padding: 20px 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-/* --------------------------------------------------
-   책 정보
--------------------------------------------------- */
 .bookInfo {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 22px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 10px 10px 10px;
 }
 
 .bookImage {
-  width: 70px;
-  height: 105px;
+  width: 62px;
+  border: 1px solid #eee;
   object-fit: cover;
-  border: 1px solid #ddd;
 }
 
 .bookTextArea {
@@ -51,91 +50,96 @@
 }
 
 .bookTitle {
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: #111;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
 }
 
 .bookAuthors {
-  font-size: 14px;
-  color: #666;
+  font-size: 12px;
+  color: #595959;
+  margin-top: 5px;
 }
 
-/* --------------------------------------------------
-   구매리뷰 + 별점 영역
--------------------------------------------------- */
+.metaWrapper {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 10px;
+}
+
 .metaTop {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
 .reviewType {
+  font-size: 14px;
   font-weight: 700;
-  font-size: 15px;
-  color: #5055b1; /* 교보문고 파란색 */
+  color: #5055b1;
+  margin-right: 10px;
 }
 
-/* --------------------------------------------------
-   아이디 · 날짜 · 삭제
--------------------------------------------------- */
 .metaBottom {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  margin-bottom: 14px;
   font-size: 13px;
   color: #888;
-  margin-bottom: 14px;
 }
 
-.metaBottom .divider {
+.metaBottom p {
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  display: inline-block;
+  font-size: 0;
   width: 1px;
-  height: 12px;
-  background: #ccc;
+  height: 9px;
+  background-color: #d5d5d5;
+  margin: 5px 6px 0 8px;
+  vertical-align: top;
+  box-sizing: border-box;
 }
 
 .metaBottom button {
-  background: none;
   border: none;
+  background: none;
+  padding: 0;
+  font-size: 13px;
   color: #666;
   cursor: pointer;
-  font-size: 13px;
-  padding: 0;
 }
 
 .metaBottom button:hover {
   text-decoration: underline;
 }
 
-/* --------------------------------------------------
-   리뷰 내용
--------------------------------------------------- */
 .reviewContent {
+  margin: 20px 0 30px 0;
   font-size: 15px;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 20px;
+  line-height: 1.7;
+  color: #111;
+  padding: 0 10px;
 }
 
-/* --------------------------------------------------
-   데이터 없음
--------------------------------------------------- */
 .noData {
   text-align: center;
-  padding: 120px 0;
+  padding: 180px 0;
 }
 
 .noData img {
   width: 46px;
   height: 46px;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
-.noDataInfo {
+.noData p {
   font-size: 15px;
-  font-weight: 600;
+  color: #444;
   margin-bottom: 10px;
 }
 
@@ -147,9 +151,17 @@
   border: none;
   border-radius: 6px;
   font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 .noData button:hover {
-  background: #333a99;
+  background-color: #2c307c;
+  border-color: #2c307c;
+}
+
+.noDataInfo {
+  font-size: 14px;
+  font-weight: 600;
 }

@@ -7,6 +7,8 @@ import com.bookshop.entity.Review;
 import com.bookshop.repository.BookRepository;
 import com.bookshop.repository.MemberRepository;
 import com.bookshop.repository.ReviewRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +28,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final BookRepository bookRepository;
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
     @Override
     public List<ReviewDto> getReviews(Long bookId, String sort) {
@@ -132,9 +135,24 @@ public class ReviewServiceImpl implements ReviewService {
                         .rating(r.getRating())
                         .content(r.getContent())
                         .createdAt(r.getCreatedAt().toString())
-                        .userId(userId)
+                        .userId(r.getMember().getUserId())
                         .build()
                 ).toList();
     }
 
+    @Override
+    @Transactional
+    public void deleteReview(Long reviewId, HttpServletRequest request) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("리뷰가 존재하지 않습니다."));
+        Long currentMemberId = memberService.getCurrentMemberId(request);
+        if(currentMemberId == null) {
+            throw new IllegalArgumentException("로그인 정보가 없습니다.");
+        }
+
+        if(!review.getMember().getMemberId().equals(currentMemberId)) {
+            throw new IllegalArgumentException("본인이 작성한 리뷰만 삭제할 수 있습니다");
+        }
+        reviewRepository.deleteById(reviewId);
+    }
 }
