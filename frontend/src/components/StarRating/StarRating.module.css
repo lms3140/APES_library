@@ -1,10 +1,10 @@
-.starWrapper {
+.cloverWrapper {
   display: flex;
   gap: 2px;
   align-items: center;
 }
 
-.starImg {
-  width: 20px;
-  height: 20px;
+.cloverImg {
+  width: 14px;
+  height: 14px;
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Reviews.module.css";
 import dayjs from "dayjs";
 import { StarRating } from "../../components/StarRating/StarRating.jsx";
+import { confirmSwal } from "../../api/api.js";
 
 export function Reviews() {
   const navigate = useNavigate();
@@ -22,6 +23,27 @@ export function Reviews() {
     };
     fetchReviews();
   }, []);
+
+  const handleDelete = async (reviewId) => {
+    const result = await confirmSwal("삭제하시겠습니까?", "", "확인");
+    if (!result.isConfirmed) return;
+
+    const token = localStorage.getItem("jwtToken");
+    try {
+      await fetch("http://localhost:8080/api/reviews/delete", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ reviewId }),
+      });
+
+      setReviews((prev) => prev.filter((r) => r.reviewId !== reviewId));
+    } catch (e) {
+      console.log("삭제실패 :: ", e);
+    }
+  };
 
   const maskUserId = (id) => {
     if (!id) return "";
@@ -54,18 +76,23 @@ export function Reviews() {
               </div>
             </div>
 
-            <div className={styles.metaTop}>
-              <p className={styles.reviewType}>구매리뷰</p>
-              <StarRating rating={review.rating} />
-            </div>
+            <div className={styles.metaWrapper}>
+              <div className={styles.metaTop}>
+                <p className={styles.reviewType}>구매리뷰</p>
+                <StarRating rating={review.rating} />
+              </div>
 
-            <div className={styles.metaBottom}>
-              <p>
-                {maskUserId(review.userId)}{" "}
-                <div className={styles.divider}></div>{" "}
-                {formatDate(review.createdAt)}{" "}
-                <div className={styles.divider}></div> <button>삭제</button>
-              </p>
+              <div className={styles.metaBottom}>
+                <p>
+                  {maskUserId(review.userId)}{" "}
+                  <div className={styles.divider}></div>{" "}
+                  {formatDate(review.createdAt)}{" "}
+                  <div className={styles.divider}></div>{" "}
+                  <button onClick={() => handleDelete(review.reviewId)}>
+                    삭제
+                  </button>
+                </p>
+              </div>
             </div>
 
             <div className={styles.reviewContent}>{review.content}</div>

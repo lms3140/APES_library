@@ -4,10 +4,13 @@ import com.bookshop.dto.ReviewCreateReqDto;
 import com.bookshop.dto.ReviewDto;
 import com.bookshop.service.ReviewService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 리뷰 관련 REST API
@@ -45,5 +48,12 @@ public class ReviewController {
     @GetMapping("/my")
     public List<ReviewDto> getMyReviews() {
         return reviewService.getMyReviews();
+    }
+
+    @PostMapping("/delete")
+    public String deleteReview(@RequestBody Map<String, Long> body, HttpServletRequest request) {
+        Long reviewId = body.get("reviewId");
+        reviewService.deleteReview(reviewId, request);
+        return "OK";
     }
 }

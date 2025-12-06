@@ -1,6 +1,8 @@
 package com.bookshop.service;
 
 import com.bookshop.dto.ReviewDto;
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 /**
@@ -12,4 +14,5 @@ public interface ReviewService {
     // 리뷰 요약 데이터 (평균, 개수 등)
     Object getReviewSummary(Long bookId);
     List<ReviewDto> getMyReviews();
+    void deleteReview(Long reviewId, HttpServletRequest request);
 }
