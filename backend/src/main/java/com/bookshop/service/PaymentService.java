@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -79,7 +78,7 @@ public class PaymentService {
         req.setQuantity(totalQuantity); // body로 받아온 갯수
         req.setTotal_amount(resultOrder.getTotalAmount()); // 계산된 총 가격
         req.setTax_free_amount(0); // 이 프로젝트에선 무조건 0임
-        req.setApproval_url(FRONT + "/order/complete");
+        req.setApproval_url(FRONT + "/order/complete/"+resultOrder.getOrderId());
         req.setCancel_url(FRONT + "/payment/cancel");
         req.setFail_url(FRONT + "/payment/fail");
 
@@ -94,9 +93,11 @@ public class PaymentService {
     public KakaoPayApproveResponseDto approve(
                                            String orderId,
                                            String pgToken) {
-
         PurchaseOrder order = purchaseOrderRepository.findById(Long.valueOf(orderId))
                 .orElseThrow(()-> new RuntimeException("order 아이디를 찾지못했습니다."));
+        if(order.getOrderStatus().equals("PAID")){
+            throw new RuntimeException("이미 결제가 된 사항입니다.");
+        }
         Member member = memberRepository.findByUserId(order.getMember().getUserId())
                 .orElseThrow(()->new RuntimeException("유저못찾음"));
 
@@ -106,7 +107,6 @@ public class PaymentService {
         req.setPartner_order_id(orderId);
         req.setPartner_user_id(order.getMember().getUserId());
         req.setPg_token(pgToken);
-
         try{
             KakaoPayApproveResponseDto response = kakaoPayClient.approve(req);
             order.approve();

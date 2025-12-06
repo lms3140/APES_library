@@ -1,14 +1,39 @@
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  useLocation,
+  Link,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import paymentStyle from "./Order.module.css";
 import { StepItemNum } from "../../components/Cart/StepItemNum.jsx";
+import axios from "axios";
 
 export function OrderComplete() {
-  const location = useLocation(); // navigate에서 전달된 state 가져오기
-
+  const { orderId } = useParams();
+  const [searchParams] = useSearchParams();
   // 결제 완료 정보 가져오기, 기본값 처리
-  const finalPrice = Number(location.state?.finalPrice ?? 0);
-  const orderId = location.state?.orderId ?? "";
+
+  useEffect(() => {
+    async function callPost() {
+      const token = localStorage.getItem("jwtToken");
+      const resp = await axios.post(
+        `http://localhost:8080/payment/approve`,
+        {
+          orderId,
+          pgToken: searchParams.get("pg_token"),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(resp.data);
+    }
+    callPost();
+  }, []);
 
   return (
     <section className={paymentStyle.contents}>
@@ -34,7 +59,6 @@ export function OrderComplete() {
           <Link to="/mypage/orders" className={paymentStyle.orderBtn}>
             구매 목록
           </Link>
-
         </div>
       </div>
     </section>
