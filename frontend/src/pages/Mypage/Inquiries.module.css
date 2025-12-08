@@ -3,7 +3,6 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 0 120px 30px;
-  font-family: "Pretendard", sans-serif;
 }
 
 .inquiriesContainer h1 {
@@ -43,7 +42,7 @@
   cursor: pointer;
   transition: 0.15s ease;
   height: 44px;
-  width: 130px;
+  width: 135px;
 }
 
 .inquiryButton img {

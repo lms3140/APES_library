@@ -1,7 +1,6 @@
 .mainContainer {
   display: flex;
   justify-content: center;
-  font-family: "Pretendard", "Noto Sans KR", sans-serif;
   color: #111;
   width: 100%;
   max-width: 1200px;
