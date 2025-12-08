@@ -1,50 +1,35 @@
 import { useEffect, useState } from "react";
-import { OrderHistoryItemList } from "./OrderHistory/OrderHistoryItmeList";
-import { OrderHistoryAddress } from "./OrderHistory/OrderHistoryAddress";
-import { OrderHistoryPayment } from "./OrderHistory/OrderHistoryPayment";
-import axios from "axios";
-import dayjs from "dayjs";
 import style from "./Orders.module.css";
+import { OrderItems } from "./OrderItems";
 
 export function Orders() {
-  const [historyData, setHistoryData] = useState();
-  useEffect(() => {
-    const testCall = async () => {
-      const token = localStorage.getItem("jwtToken");
+  const [orders, setOrders] = useState([]);
 
-      const resp = await axios("http://localhost:8080/order-history/get", {
-        headers: { Authorization: `Bearer ${token}` },
-        method: "GET",
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const token = localStorage.getItem("jwtToken");
+      const res = await fetch("http://localhost:8080/order-history/get", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      setHistoryData(resp.data);
+
+      const data = await res.json();
+      setOrders(data);
     };
-    testCall();
+    fetchOrders();
   }, []);
 
   return (
     <div className={style.container}>
       <h1 className={style.title}>주문/배송 목록</h1>
       <div>
-        {historyData ? (
-          historyData?.map((data) => {
-            return (
-              <div className={style.card} key={data.orderId}>
-                <h1 className={style.orderHeader}>
-                  {dayjs(data.paidAt).format("YYYY-MM-DD")}(배송중)
-                </h1>
-                <div className={style.orderBody}>
-                  <OrderHistoryItemList itmes={data.items} />
-                  <h1>배송지</h1>
-                  <OrderHistoryAddress address={data.address} />
-                </div>
-                <hr className={style.orderBody} />
-              </div>
-            );
-          })
+        {orders && orders.length > 0 ? (
+          <OrderItems orders={orders} />
         ) : (
           <div className={style.emptyBox}>
             <img src="/images/mypage/ico_nodata.png" alt="" />
-            <div>주문한 상품이 없습니다.</div>
+            <p>주문한 상품이 없습니다.</p>
           </div>
         )}
       </div>
