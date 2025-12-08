@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import "../../css/swal.css";
 import { resetCart } from "../../store/cartSlice.js";
 import { clearCart as clearLocalCart } from "../../utils/cartStorage.js";
 import paymentStyle from "./Payment.module.css";
@@ -157,6 +158,11 @@ export function Payment() {
         Swal.fire({
           title: "결제 준비 실패",
           confirmButtonText: "확인",
+          customClass: {
+            popup: "customPopup",
+            title: "customTitle",
+            confirmButton: "customConfirmButton",
+          },
         });
         return;
       }
@@ -173,9 +179,15 @@ export function Payment() {
       window.location.href = redirectUrl;
     } catch (err) {
       console.error("결제 준비 실패", err);
-      Swal.fire({
+
+      await Swal.fire({
         title: "결제 준비 실패",
         confirmButtonText: "확인",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          confirmButton: "customConfirmButton",
+        },
       });
     }
   };
