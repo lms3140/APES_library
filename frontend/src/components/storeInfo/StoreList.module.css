@@ -1,19 +1,24 @@
 /* 화면 끝까지 가는 가로선(회색 border) */
 .listOuter {
-  border-bottom: 1px solid #e5e5e5;
+  position: relative;
   background: #fff;
 
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
-/* 1200px 컨텐츠 박스 */
+.listOuter::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  background: #e5e5e5;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
 .listInner {
   max-width: 1200px;
-  margin: 0 150px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px 48px;

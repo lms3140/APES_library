@@ -1,21 +1,32 @@
-/* 회색 라인(full width)을 담당하는 영역 */
 .tabOuter {
-  /* width: 100vw; */
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
-  background: #fff;
-
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  background: #fff;
 }
+
+.tabOuter::before,
+.tabOuter::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.tabOuter::before {
+  top: 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.tabOuter::after {
+  bottom: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
 
 /* 1200px 컨텐츠 영역 */
 .tabInner {
   max-width: 1200px;
-  margin: 0 150px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 48px;

@@ -2,8 +2,6 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 0 120px 30px;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color: #111;
 }
 
@@ -17,10 +15,10 @@
 .subText {
   padding-bottom: 14px;
   text-align: right;
-  font-size: 13px;
   color: #767676;
   border-bottom: 1px solid #000;
   margin-bottom: 0;
+  font-size: 13px;
 }
 
 .reviewCard {
