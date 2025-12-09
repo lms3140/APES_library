@@ -3,11 +3,7 @@ import { AdminPage } from "../pages/AdminPage/AdminPage.jsx";
 import { Payment } from "../pages/Payment/Payment.jsx";
 import { Test } from "../pages/Test/Test.jsx";
 
-export const route2 = [
-  {
-    path: "/payment",
-    element: <Payment />,
-  },
+export const testRoute = [
   {
     path: "/adminpage",
     element: <AdminPage />,

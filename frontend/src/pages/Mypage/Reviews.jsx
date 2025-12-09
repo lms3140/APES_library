@@ -47,13 +47,19 @@ export function Reviews() {
 
   const maskUserId = (id) => {
     if (!id) return "";
-    return id.substring(0, 2) + "*".repeat(id.length - 2);
+
+    // id 2자 초과 분기 추가
+    if (id.length > 2) {
+      return id.substring(0, 2) + "*".repeat(id.length - 2);
+    } else {
+      return id;
+    }
   };
 
   const formatDate = (date) => {
     return dayjs(date).format("YYYY.MM.DD");
   };
-
+  console.log(reviews);
   return (
     <div className={styles.reviewWrapper}>
       <h1 className={styles.title}>Klover 리뷰</h1>
@@ -62,7 +68,7 @@ export function Reviews() {
       </p>
 
       {reviews.length > 0 ? (
-        reviews.map((review) => (
+        reviews?.map((review) => (
           <div className={styles.reviewCard} key={review.reviewId}>
             <div className={styles.bookInfo}>
               <img

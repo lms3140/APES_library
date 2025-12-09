@@ -1,11 +1,9 @@
-import { BsCart2 } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
 import { IoPersonSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import style from "./UserActionMenus.module.css";
 export function UserActionMenus() {
   const cart = useSelector((state) => state.cart.items);
-  console.log(cart.length);
   return (
     <div>
       <ul className={style.actionList}>

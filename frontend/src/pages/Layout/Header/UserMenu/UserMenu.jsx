@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import style from "./UserMenu.module.css";
-import { Link, redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { setIsLogin } from "../../../../store/memberSlice";
+import style from "./UserMenu.module.css";
+import { infoSwal } from "../../../../api/api";
 
 export function UserMenu() {
   const islogin = useSelector((state) => state.member.isLogin);
@@ -11,6 +11,7 @@ export function UserMenu() {
   const handleLogout = () => {
     localStorage.removeItem("jwtToken");
     dispatch(setIsLogin(false));
+    infoSwal("로그아웃 완료", "로그아웃이 완료되었습니다", "확인");
   };
 
   return (
