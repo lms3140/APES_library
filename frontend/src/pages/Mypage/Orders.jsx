@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import style from "./Orders.module.css";
 import { OrderItems } from "./OrderItems";
+import { confirmSwal } from "../../api/api";
 
 export function Orders() {
   const [orders, setOrders] = useState([]);
@@ -20,12 +21,38 @@ export function Orders() {
     fetchOrders();
   }, []);
 
+  const handleDeleteOrders = async (orderId) => {
+    const result = await confirmSwal(
+      "주문,배송 목록에서 삭제하시겠습니까? 삭제된 주문은 주문배송 목록에서 노출되지 않으며, 복구가 불가능합니다. 교환/반품 신청은 고객센터를 통해 문의해주세요.",
+      "",
+      "확인"
+    );
+    if (!result.isConfirmed) return;
+
+    const token = localStorage.getItem("jwtToken");
+    const res = await fetch(
+      `http://localhost:8080/order-history/delete/${orderId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ orderId }),
+      }
+    );
+
+    await res.json();
+
+    setOrders((prev) => prev.filter((order) => order.orderId !== orderId));
+  };
+
   return (
     <div className={style.container}>
       <h1 className={style.title}>주문/배송 목록</h1>
       <div>
         {orders && orders.length > 0 ? (
-          <OrderItems orders={orders} />
+          <OrderItems orders={orders} onDelete={handleDeleteOrders} />
         ) : (
           <div className={style.emptyBox}>
             <img src="/images/mypage/ico_nodata.png" alt="" />

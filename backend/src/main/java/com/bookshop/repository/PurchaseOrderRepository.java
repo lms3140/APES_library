@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Long> {
     List<PurchaseOrder> findByMemberMemberIdOrderByCreatedAtDesc(Long memberId);
+    List<PurchaseOrder> findByMemberMemberIdAndDeletedFalseOrderByCreatedAtDesc(Long memberId);
 }

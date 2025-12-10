@@ -1,7 +1,13 @@
 import dayjs from "dayjs";
 import style from "./OrderItems.module.css";
 
-export function OrderItems({ orders }) {
+export function OrderItems({ orders, onDelete }) {
+  const formatOrderId = (paidAt, id) => {
+    const date = dayjs(paidAt).format("YYYYMMDD");
+    const serial = String(id).padStart(6, "0");
+    return `${date}-${serial}`;
+  };
+
   return (
     <div className={style.wrapper}>
       {orders.map((order) => (
@@ -9,14 +15,16 @@ export function OrderItems({ orders }) {
           <div className={style.orderHeader}>
             <div>
               <span className={style.orderDate}>
-                {dayjs(order.paidAt).format("YYYY.MM.DD")}
+                {dayjs(order.paidAt).format("YYYY.MM.DD")} (
+                {formatOrderId(order.paidAt, order.orderId)})
               </span>
-              <span className={style.orderNumber}>({order.orderId})</span>
             </div>
 
             <div>
-              <img src="/images/mypage/ico_delete.png" alt="휴지통 아이콘" />
-              주문내역에서 삭제
+              <button onClick={() => onDelete(order.orderId)}>
+                <img src="/images/mypage/ico_delete.png" alt="휴지통 아이콘" />
+                주문내역에서 삭제
+              </button>
             </div>
           </div>
 
