@@ -235,3 +235,59 @@
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+/* ---------------------- 비밀번호 일치 / 불일치 메시지 ---------------------- */
+.successMsg {
+    color: #4caf50;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.errorMsg {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* ---------------------- 입력 안내 문구 (아이디/비밀번호 최소글자 등) ---------------------- */
+.inputInfo {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* ---------------------- 인증 관련 레이아웃 ---------------------- */
+.emailWrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.emailWrapper input {
+    flex: 1;
+}
+
+/* ---------------------- 인증번호 발송 버튼 ---------------------- */
+.btnSendCode {
+    height: 40px;
+    padding: 0 16px;
+    background-color: #888888;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnSendCode:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btnSendCode:hover:not(:disabled) {
+    background-color: #666666;
+}

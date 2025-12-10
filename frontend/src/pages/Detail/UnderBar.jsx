@@ -5,10 +5,12 @@ import "../../css/swal.css";
 import { addCartItem, isInCart } from "../../utils/cartStorage.js";
 import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../../hooks/useWishlist.js";
+import { isLoggedIn } from "../../components/Auth/loginCheck.js";
 
-const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
+const UnderBar = ({ product, count, setCount }) => {
   const navigate = useNavigate();
   if (!product) return null;
+
   const { isWish, toggleWish } = useWishlist(product.bookId);
 
   // 수량 증가/감소
@@ -18,7 +20,32 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
   // 총 금액 계산
   const totalPrice = (product.price * count).toLocaleString();
 
-  // 장바구니 버튼 클릭
+  // 로그인 안내 Swal
+  const requireLoginSwal = async () => {
+    const result = await Swal.fire({
+      title: "로그인이 필요합니다",
+      text: "로그인 후 이용해주세요.",
+      confirmButtonText: "로그인 하기",
+      cancelButtonText: "취소",
+      showCancelButton: true,
+      customClass: {
+        popup: "customPopup",
+        title: "customTitle",
+        htmlContainer: "customText",
+        confirmButton: "customConfirmButton",
+        cancelButton: "customCancelButton",
+      },
+    });
+
+    if (result.isConfirmed) {
+      navigate("/login");
+      return false;
+    }
+
+    return false;
+  };
+
+  // 장바구니 버튼 클릭 (로그인 불필요)
   const handleAddToCart = async () => {
     const existingItem = isInCart(product.bookId);
     addCartItem({ ...product, quantity: count });
@@ -45,8 +72,16 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
     if (result.isConfirmed) navigate("/cart");
   };
 
-  // 바로 구매 버튼 클릭
+  // 찜(좋아요) 버튼 클릭 → 로그인 필요
+  const handleWishClick = async () => {
+    if (!isLoggedIn()) return await requireLoginSwal();
+    toggleWish();
+  };
+
+  // 바로 구매 버튼 클릭 → 로그인 필요
   const handleBuyNow = async () => {
+    if (!isLoggedIn()) return await requireLoginSwal();
+
     const result = await Swal.fire({
       title: "바로 구매하시겠습니까?",
       text: "선택한 상품을 결제 페이지로 이동합니다.",
@@ -63,16 +98,17 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
     });
 
     if (result.isConfirmed) {
-      // Payment 페이지로 state 전송
       navigate("/payment", {
         state: {
-          orderItems: [{
-            bookId: product.bookId,
-            quantity: count,
-            title: product.title,
-            price: product.price,
-            imageUrl: product.imageUrl,
-          }],
+          orderItems: [
+            {
+              bookId: product.bookId,
+              quantity: count,
+              title: product.title,
+              price: product.price,
+              imageUrl: product.imageUrl,
+            },
+          ],
         },
       });
     }
@@ -103,7 +139,7 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
             </div>
 
             {/* 좋아요 */}
-            <button className={styles.iconBtn} onClick={toggleWish}>
+            <button className={styles.iconBtn} onClick={handleWishClick}>
               <img
                 src={
                   isWish
