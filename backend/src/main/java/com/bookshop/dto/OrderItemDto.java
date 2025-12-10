@@ -10,6 +10,7 @@ public class OrderItemDto {
     private String imageUrl;
     private int quantity;
     private int unitPrice;
+    private String categoryName;
 
     public OrderItemDto() {}
     public OrderItemDto(Long bookId, String title, String imageUrl, int quantity, int unitPrice) {
@@ -25,6 +26,7 @@ public class OrderItemDto {
         this.imageUrl = orderDetail.getBook().getImageUrl();
         this.quantity = orderDetail.getQuantity();
         this.unitPrice = orderDetail.getUnitPrice();
+        this.categoryName = orderDetail.getBook().getSubcategory().getCategory().getCategoryName();
 
     }
 }

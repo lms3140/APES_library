@@ -114,7 +114,6 @@ CREATE TABLE member (
   deleted_at TIMESTAMP NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-drop table address;
 CREATE TABLE address (
   address_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   member_id BIGINT NOT NULL,
@@ -144,7 +143,6 @@ CREATE TABLE cart_item (
   FOREIGN KEY (book_id) REFERENCES book(book_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-drop table cart_item;
 
 -- ============================================================
 -- 🧾 주문 / 주문 상세
@@ -153,6 +151,7 @@ CREATE TABLE purchase_order (
   order_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   member_id BIGINT NOT NULL,
   address_id BIGINT NULL,
+  deleted TINYINT(1) NOT NULL DEFAULT 0,
 
   total_amount INT NOT NULL,
   original_amount INT NOT NULL,
@@ -182,8 +181,6 @@ CREATE TABLE order_detail (
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-drop table order_detail;
-drop table purchase_order;
 
 -- ============================================================
 -- 🗂 도서 컬렉션
@@ -410,17 +407,12 @@ FROM purchase_order p
 LEFT JOIN member m ON m.member_id = p.member_id
 LEFT JOIN order_detail o ON o.order_id = p.order_id;
 
-select * from admin_booksales_detail_view;
-select * from member;
-
-select * from review;
-
-select * from address;
-desc address;
-
 select * from order_detail;
 select * from purchase_order;
-select * from inquiry;
+desc purchase_order;
 
+
+ALTER TABLE purchase_order
+ADD COLUMN deleted TINYINT(1) NOT NULL DEFAULT 0;
 
 

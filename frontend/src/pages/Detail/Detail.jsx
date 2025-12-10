@@ -88,7 +88,7 @@ export default function Detail() {
         <ProductInfo bookId={bookId} />
       </div>
 
-      <div ref={reviewRef} className={styles.tabContent}>
+      <div id="review" ref={reviewRef} className={styles.tabContent}>
         <Review bookId={bookId} />
       </div>
 

@@ -31,6 +31,7 @@ public class PurchaseOrder extends BaseCreatedEntity {
     private String tid;
 
     private LocalDateTime paidAt;
+    private boolean deleted = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -65,6 +66,10 @@ public class PurchaseOrder extends BaseCreatedEntity {
 
     public void error(){
         this.orderStatus = "ERROR";
+    }
+
+    public void deleted() {
+        this.deleted = true;
     }
 
 

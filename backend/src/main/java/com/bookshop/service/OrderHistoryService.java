@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface OrderHistoryService {
     List<OrderHistoryDto> getOrderHistoryList();
+    void deleteOrderHistory(Long orderId);
 }
