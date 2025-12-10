@@ -9,7 +9,11 @@
   margin: 0 auto;
 }
 .footerInnerContainer section {
+  margin-top: 1.25rem;
   width: 760px;
+}
+.footerInnerContainer > section > img {
+  height: 6.25rem;
 }
 
 .noticeWrapper {
@@ -72,7 +76,14 @@
 
 .footerAddress ul {
   display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
   flex-wrap: wrap;
-  gap: 20px;
-  font-size: var(--text-xs);
+}
+
+.footerAddress ul li {
+  display: flex;
+  align-items: center;
 }

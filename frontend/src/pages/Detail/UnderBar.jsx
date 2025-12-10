@@ -66,13 +66,15 @@ const UnderBar = ({ product, count, setCount, liked, setLiked }) => {
       // Payment 페이지로 state 전송
       navigate("/payment", {
         state: {
-          orderItems: [{
-            bookId: product.bookId,
-            quantity: count,
-            title: product.title,
-            price: product.price,
-            imageUrl: product.imageUrl,
-          }],
+          orderItems: [
+            {
+              bookId: product.bookId,
+              quantity: count,
+              title: product.title,
+              price: product.price,
+              imageUrl: product.imageUrl,
+            },
+          ],
         },
       });
     }
