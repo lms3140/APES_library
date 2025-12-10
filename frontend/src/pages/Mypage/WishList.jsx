@@ -68,7 +68,7 @@ export function WishList() {
     const confirmButtonText = "장바구니 보기";
 
     if (selectedItems.length === 0) {
-      await infoSwal("선택한 상품이 없습니다.", "확인");
+      await infoSwal("선택한 상품이 없습니다.", "", "확인");
       return;
     }
 
@@ -92,6 +92,11 @@ export function WishList() {
   };
 
   const handleDeleteWishList = async (bookId) => {
+    if (selectedItems.length === 0) {
+      await infoSwal("삭제할 상품/콘텐츠를 선택해 주세요.", "", "확인");
+      return;
+    }
+
     const result = await confirmSwal(
       "선택한 상품/콘텐츠를 삭제하시겠습니까?",
       "",

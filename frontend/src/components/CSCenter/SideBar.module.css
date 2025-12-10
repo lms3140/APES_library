@@ -24,10 +24,9 @@
   padding: 16px 0;
 }
 
-/* 메인, 자주묻는질문 아래 가로 border */
 .sidebar > ul > li:nth-child(1),
 .sidebar > ul > li:nth-child(2) {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--color-gray-300);
 }
 
 .sidebar > ul > li:nth-child(1):hover,
@@ -36,9 +35,8 @@
   text-decoration: underline;
 }
 
-/* 공지사항 위 가로 border */
 .sidebar > ul > li:last-child {
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid var(--color-gray-300);
 }
 
 /* 링크 */
@@ -52,7 +50,6 @@
   text-decoration: underline;
 }
 
-/* 하위 메뉴(1:1문의 접수/내역) — 들여쓰기 제거 */
 .sidebar ul ul {
   margin: 15px 0 0 0;
   padding: 0;
@@ -63,7 +60,6 @@
   margin-bottom: 8px;
 }
 
-/* 메인, 1:1 문의, 공지사항만 bold */
 .sidebar > ul > li:nth-child(1) > a,
 .sidebar > ul > li:nth-child(2) > a,
 .sidebar > ul > li:nth-child(3) > div,
@@ -72,9 +68,7 @@
   font-size: 16px;
 }
 
-/* 활성화된 메뉴 밑줄 */
 .active span {
   text-decoration: underline;
-  /* text-underline-offset: 2px; */
   text-decoration-thickness: 1px;
 }

@@ -12,7 +12,7 @@
 /* 지도 + 안내 묶음 */
 .mapWrap {
   display: flex;
-  align-items: stretch; /* <-- 핵심: 자식 높이 자동 맞춤 */
+  align-items: stretch;
   justify-content: space-between;
   gap: 40px;
   position: relative;
@@ -24,14 +24,12 @@
   height: 472px;
   flex: 1;
   background-color: #fff;
-  border: 1px solid #eaeaea;
+  border: 1px solid var(--color-gray-300);
   border-radius: 16px;
-  /* overflow: hidden; */
   box-sizing: border-box;
 }
 
 .address {
-  /* width: 598px; */
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -39,7 +37,6 @@
   font-weight: 400;
   padding: 16px;
   margin: 0;
-  /* border-bottom: 1px solid #e5e5e5; */
 }
 
 .icon {
@@ -54,21 +51,17 @@
   overflow: hidden;
 }
 
-/* --- 중앙 구분선 --- */
 .divider {
   width: 1px;
-  background-color: #eaeaea;
+  background-color: var(--color-gray-300);
   flex-shrink: 0;
-  align-self: stretch; /* <-- 두 박스 높이에 자동 맞춤 */
+  align-self: stretch;
 }
 
 /* 교통 안내 박스 */
 .transportWrap {
   flex: 0 0 45%;
   background-color: #fff;
-  /* border: 1px solid #e5e5e5; */
-  /* border-radius: 12px; */
-  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); */
   padding: 25px 30px;
   box-sizing: border-box;
 }
@@ -88,14 +81,14 @@
 
 .transportWrap li {
   font-size: 14px;
-  color: #333;
+  color: #000;
   line-height: 1.8;
 }
 
 /* 탭 버튼 */
 .tabButton {
   display: inline-block;
-  background-color: #292929;
+  background-color: var(--color-gray-900);
   color: #fff;
   font-size: 14px;
   padding: 5px 14px;
@@ -106,9 +99,4 @@
   cursor: default;
   font-size: 14px;
   line-height: 22px;
-}
-
-.tabButton.inactive {
-  background-color: #eee;
-  color: #666;
 }

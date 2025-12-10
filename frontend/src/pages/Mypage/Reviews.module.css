@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 0 120px 30px;
-  color: #111;
+  color: #000;
 }
 
 .title {
@@ -15,7 +15,7 @@
 .subText {
   padding-bottom: 14px;
   text-align: right;
-  color: #767676;
+  color: var(--color-gray-700);
   border-bottom: 1px solid #000;
   margin-bottom: 0;
   font-size: 13px;
@@ -23,7 +23,7 @@
 
 .reviewCard {
   padding: 20px 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--color-gray-500);
 }
 
 .bookInfo {
@@ -31,13 +31,13 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 14px;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid var(--color-gray-100);
   padding: 0 10px 10px 10px;
 }
 
 .bookImage {
   width: 62px;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-gray-300);
   object-fit: cover;
 }
 
@@ -56,14 +56,14 @@
 
 .bookAuthors {
   font-size: 12px;
-  color: #595959;
+  color: var(--color-gray-800);
   margin-top: 5px;
 }
 
 .metaWrapper {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid var(--color-gray-100);
   padding: 0 10px;
 }
 
@@ -77,14 +77,14 @@
 .reviewType {
   font-size: 14px;
   font-weight: 700;
-  color: #5055b1;
+  color: var(--color-blue-700);
   margin-right: 10px;
 }
 
 .metaBottom {
   margin-bottom: 14px;
   font-size: 13px;
-  color: #888;
+  color: var(--color-gray-600);
 }
 
 .metaBottom p {
@@ -97,7 +97,7 @@
   font-size: 0;
   width: 1px;
   height: 9px;
-  background-color: #d5d5d5;
+  background-color: var(--color-gray-400);
   margin: 5px 6px 0 8px;
   vertical-align: top;
   box-sizing: border-box;
@@ -108,7 +108,7 @@
   background: none;
   padding: 0;
   font-size: 13px;
-  color: #666;
+  color: var(--color-gray-800);
   cursor: pointer;
 }
 
@@ -120,7 +120,7 @@
   margin: 20px 0 30px 0;
   font-size: 15px;
   line-height: 1.7;
-  color: #111;
+  color: #000;
   padding: 0 10px;
 }
 
@@ -137,14 +137,15 @@
 
 .noData p {
   font-size: 15px;
-  color: #444;
+  color: #000;
   margin-bottom: 10px;
 }
 
 .noData button {
   margin-top: 20px;
   padding: 12px 22px;
-  background: #5055b1;
+  background: var(--color-blue-700);
+
   color: white;
   border: none;
   border-radius: 6px;
@@ -155,8 +156,8 @@
 }
 
 .noData button:hover {
-  background-color: #2c307c;
-  border-color: #2c307c;
+  background-color: var(--color-blue-900);
+  border-color: var(--color-blue-900);
 }
 
 .noDataInfo {

@@ -1,17 +1,17 @@
 .sideBar {
   width: 200px;
-  /* border: 1px solid #ccc; */
-  /* border-radius: 20px; */
   padding: 10px;
 }
+
 .userInfo {
   border-radius: 10px;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #5055b1;
+  background-color: var(--color-blue-700);
   width: 180px;
   height: 180px;
 }
+
 .menuList {
   padding: 10px;
   box-sizing: border-box;

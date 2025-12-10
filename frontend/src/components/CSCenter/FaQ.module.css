@@ -2,7 +2,6 @@
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  /* color: #111; */
 }
 
 .title {
@@ -13,7 +12,7 @@
 }
 
 .item {
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid var(--color-gray-300);
 }
 
 .item:first-of-type {
@@ -21,7 +20,7 @@
 }
 
 .item:last-of-type {
-  border-bottom: 0.5px solid #eaeaea;
+  border-bottom: 0.5px solid var(--color-gray-300);
 }
 
 .question {
@@ -49,7 +48,7 @@
   border-radius: 100%;
   width: 24px;
   height: 24px;
-  background-color: #474c98;
+  background-color: var(--color-blue-800);
   color: #fff;
   font-size: 14px;
   margin-right: 28px;
@@ -60,19 +59,19 @@
 
 .icon {
   font-size: 20px;
-  color: #666;
+  color: #000;
 }
 
 .answerBox {
   max-height: 0;
   overflow: hidden;
-  background-color: #f7f7f7;
+  background-color: var(--color-gray-100);
   display: flex;
   transition: max-height 0.3s ease;
 }
 
 .answerBox.open {
-  max-height: 600px; /* 내용에 따라 충분히 크게 설정 */
+  max-height: 600px;
   padding: 20px 40px;
 }
 
@@ -88,8 +87,7 @@
   line-height: 1.6;
 }
 
-/* 강조용 */
 .answer span {
   font-weight: 800;
-  color: #333;
+  color: #000;
 }

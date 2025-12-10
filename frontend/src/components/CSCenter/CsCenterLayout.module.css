@@ -1,18 +1,17 @@
 .layout {
   display: flex;
-  justify-content: flex-start; /* 좌측부터 배치 */
+  justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  max-width: 1200px; /* 전체 최대 너비 */
-  margin: 0 auto; /* 화면 가운데 정렬 */
-  padding: 60px 0px; /* 좌우 20px만 */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0px;
   box-sizing: border-box;
-  gap: 46px; /* 사이드바-본문 간격 */
+  gap: 46px;
 }
 
-/* 오른쪽 페이지 컨테이너 */
 .pageContent {
-  flex: 1; /* 남은 공간 모두 차지 */
-  min-width: 0; /* 내용 넘침 방지 */
+  flex: 1;
+  min-width: 0;
   box-sizing: border-box;
 }

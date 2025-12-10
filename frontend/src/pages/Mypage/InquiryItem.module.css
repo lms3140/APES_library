@@ -1,9 +1,8 @@
 .itemWrap {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-gray-300);
   padding: 20px 0;
 }
 
-/* 헤더 영역 */
 .header {
   display: grid;
   grid-template-columns: 160px 1fr auto;
@@ -17,24 +16,21 @@
   align-items: center;
 }
 
-/* 상태 (예: 준비중) */
 .status {
   padding: 4px 8px;
-  background-color: #ededf6;
-  color: #565a9c;
+  background-color: var(--color-blue-200);
+  color: var(--color-blue-700);
   border-radius: 16px;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-/* 카테고리 */
 .category {
-  color: #666;
+  color: var(--color-gray-800);
   font-size: 14px;
 }
 
-/* 제목 + Q 아이콘 */
 .titleArea {
   display: flex;
   align-items: center;
@@ -46,9 +42,10 @@
   border-radius: 100%;
   width: 24px;
   height: 24px;
-  background-color: #474c98;
+  background-color: var(--color-blue-800);
   color: #fff;
   font-size: 14px;
+  margin-right: 28px;
   font-weight: 500;
   text-align: center;
   line-height: 24px;
@@ -56,11 +53,10 @@
 
 .title {
   font-size: 15px;
-  color: #111;
+  color: #000;
   font-weight: 500;
 }
 
-/* 날짜 + 화살표 */
 .right {
   display: flex;
   align-items: center;
@@ -70,20 +66,19 @@
 
 .date {
   font-size: 13px;
-  color: #999;
+  color: var(--color-gray-700);
 }
 
-/* 열린 컨텐츠 박스 */
 .contentBox {
   margin-top: 16px;
   padding: 16px;
-  background-color: #f7f7f7;
+  background-color: var(--color-gray-100);
   border-radius: 10px;
 }
 
 .content {
   white-space: pre-line;
-  color: #444;
+  color: #000;
   font-size: 14px;
   line-height: 1.6;
   margin: 0;
@@ -101,9 +96,9 @@
   background: none;
   font-size: 13px;
   cursor: pointer;
-  color: #767676;
+  color: var(--color-gray-700);
 }
 
 .deleteBtn:hover {
-  background-color: #f0f0f0;
+  background-color: var(--color-gray-200);
 }

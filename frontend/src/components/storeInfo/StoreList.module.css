@@ -2,7 +2,6 @@
 .listOuter {
   position: relative;
   background: #fff;
-
 }
 
 .listOuter::after {
@@ -12,7 +11,7 @@
   left: 50%;
   width: 100vw;
   height: 1px;
-  background: #e5e5e5;
+  background: var(--color-gray-300);
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -30,7 +29,7 @@
 .storeItem {
   padding: 0;
   font-size: 15px;
-  color: #666;
+  color: var(--color-gray-800);
   cursor: pointer;
   transition: color 0.15s;
   border: none;
