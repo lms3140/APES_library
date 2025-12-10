@@ -1,25 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Layout } from "../pages/Layout/Layout.jsx";
 import { Home } from "../pages/Home/Home.jsx";
+import { Layout } from "../pages/Layout/Layout.jsx";
 import { StoreInfo } from "../pages/storeInfo/StoreInfo.jsx";
 
 import { Mypage } from "../pages/Mypage/Mypage.jsx";
-import { route1 } from "./route1.jsx";
-import { route2 } from "./route2.jsx";
-import { route3 } from "./route3.jsx";
+import { Orders } from "../pages/Mypage/Orders.jsx";
 import { NotFound } from "../pages/NotFound/NotFound.jsx";
 import { AuthRouter } from "./authRouter.jsx";
-import { Orders } from "../pages/Mypage/Orders.jsx";
 
-import { WishList } from "../pages/Mypage/WishList.jsx";
-import { Profile } from "../pages/Mypage/Profile.jsx";
-import { Reviews } from "../pages/Mypage/Reviews.jsx";
 import { Addresses } from "../pages/Mypage/Addresses.jsx";
 import { Inquiries } from "../pages/Mypage/Inquiries.jsx";
 import { MyPageHome } from "../pages/Mypage/MyPageHome.jsx";
+import { Profile } from "../pages/Mypage/Profile.jsx";
+import { Reviews } from "../pages/Mypage/Reviews.jsx";
+import { WishList } from "../pages/Mypage/WishList.jsx";
+import { Search } from "../pages/Search/Search.jsx";
+import { csCenterRoute } from "./csCenterRoute.jsx";
+import { loginRoute } from "./loginRoute.jsx";
+import { paymentRoute } from "./paymentRoute.jsx";
+import Detail from "../pages/Detail/Detail.jsx";
+import { testRoute } from "./testRoute.jsx";
+import Cart from "../pages/Cart/Cart.jsx";
 
 export const router = createBrowserRouter([
-  //인증이 필요없는 페이지
   {
     element: <Layout />,
     children: [
@@ -31,13 +34,23 @@ export const router = createBrowserRouter([
         path: "/store-info/:pid",
         element: <StoreInfo />,
       },
-      // 라우터 분업
-      ...route1,
-      ...route2,
-      ...route3,
+      {
+        path: "/detail/:bookId",
+        element: <Detail />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      ...csCenterRoute,
+      ...testRoute,
     ],
   },
-  // 인증이 필요한 페이지
+  ...loginRoute,
   {
     element: (
       <AuthRouter>
@@ -58,6 +71,7 @@ export const router = createBrowserRouter([
           { path: "inquiries", element: <Inquiries /> },
         ],
       },
+      ...paymentRoute,
     ],
   },
   {
