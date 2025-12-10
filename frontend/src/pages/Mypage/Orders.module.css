@@ -8,17 +8,25 @@
   font-size: 26px;
   font-weight: 700;
   color: #000;
+  border-bottom: 1px solid #000;
+  padding-bottom: 20px;
 }
 
-.emptyBox {
+.noDataWrap {
   text-align: center;
-  padding: 60px 0;
-  color: #777;
+  margin: 180px 0;
+  color: #666;
 }
 
-.emptyBox img {
-  width: 80px;
+.noDataWrap img {
+  width: 46px;
   margin-bottom: 12px;
+}
+
+.noDataWrap p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .noticeBox {

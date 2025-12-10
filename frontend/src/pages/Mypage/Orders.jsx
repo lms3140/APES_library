@@ -54,7 +54,7 @@ export function Orders() {
         {orders && orders.length > 0 ? (
           <OrderItems orders={orders} onDelete={handleDeleteOrders} />
         ) : (
-          <div className={style.emptyBox}>
+          <div className={style.noDataWrap}>
             <img src="/images/mypage/ico_nodata.png" alt="" />
             <p>주문한 상품이 없습니다.</p>
           </div>
