@@ -15,14 +15,13 @@
 
 .tabOuter::before {
   top: 0;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--color-gray-300);
 }
 
 .tabOuter::after {
   bottom: 0;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--color-gray-300);
 }
-
 
 /* 1200px 컨텐츠 영역 */
 .tabInner {

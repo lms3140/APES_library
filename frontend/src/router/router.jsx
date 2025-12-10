@@ -1,16 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home/Home.jsx";
 import { Layout } from "../pages/Layout/Layout.jsx";
-import { StoreInfo } from "../pages/storeInfo/StoreInfo.jsx";
+import { StoreInfo } from "../pages/StoreInfo/StoreInfo.jsx";
 
-import { Mypage } from "../pages/Mypage/Mypage.jsx";
+import { MyPageLayout } from "../pages/Mypage/MyPageLayout.jsx";
 import { Orders } from "../pages/Mypage/Orders.jsx";
 import { NotFound } from "../pages/NotFound/NotFound.jsx";
 import { AuthRouter } from "./authRouter.jsx";
 
 import { Addresses } from "../pages/Mypage/Addresses.jsx";
 import { Inquiries } from "../pages/Mypage/Inquiries.jsx";
-import { MyPageHome } from "../pages/Mypage/MyPageHome.jsx";
 import { Profile } from "../pages/Mypage/Profile.jsx";
 import { Reviews } from "../pages/Mypage/Reviews.jsx";
 import { WishList } from "../pages/Mypage/WishList.jsx";
@@ -60,9 +59,8 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/mypage",
-        element: <Mypage />,
+        element: <MyPageLayout />,
         children: [
-          { path: "/mypage", element: <MyPageHome /> },
           { path: "orders", element: <Orders /> },
           { path: "wishlist", element: <WishList /> },
           { path: "profile", element: <Profile /> },

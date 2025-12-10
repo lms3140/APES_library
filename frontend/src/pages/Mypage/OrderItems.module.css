@@ -16,7 +16,7 @@
   gap: 6px;
   font-size: 15px;
   padding: 0 10px 20px 10px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--color-gray-300);
 }
 
 .orderHeader button {
@@ -88,7 +88,7 @@
 
 .itemQty {
   font-size: 13px;
-  color: #595959;
+  color: var(--color-gray-800);
   margin: 0;
 }
 
@@ -104,7 +104,7 @@
 .statusBox {
   font-size: 14px;
   font-weight: 700;
-  color: #5055b1;
+  color: var(--color-blue-700);
 }
 
 .reviewBtn {
@@ -112,8 +112,8 @@
   height: 38px;
   padding: 6px 14px;
   background: #fff;
-  color: #474c98;
-  border: 1px solid #5055b1;
+  color: var(--color-blue-800);
+  border: 1px solid var(--color-blue-700);
   border-radius: 6px;
   font-size: 13px;
   cursor: pointer;
