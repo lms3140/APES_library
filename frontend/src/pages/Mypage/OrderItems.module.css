@@ -61,6 +61,7 @@
 .itemImg {
   width: 82px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .itemText {
@@ -78,6 +79,11 @@
   white-space: normal;
   margin: 0;
   line-height: 22px;
+}
+
+.itemTitle:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .itemQty {
