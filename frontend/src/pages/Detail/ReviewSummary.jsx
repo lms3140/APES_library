@@ -1,17 +1,14 @@
 import React from "react";
 import styles from "./ReviewSummary.module.css";
+import { StarRating } from "../../components/StarRating/StarRating.jsx";  // StarRating 컴포넌트 임포트
 
 export default function ReviewSummary({ summary }) {
-  // 그래프용 더미 데이터
-  const defaultRatingCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-
   const averageRating = summary?.averageRating ?? 0;
   const totalReviews = summary?.totalReviews ?? 0;
+  const ratingCounts = summary?.ratingCounts;
 
-  // ratingCounts는 백엔드에 없으므로 항상 더미 사용
-  const ratingCounts = summary?.ratingCounts || defaultRatingCounts;
-
-  const maxCount = Math.max(...Object.values(ratingCounts));
+  // ratingCounts가 없으면 빈 객체로 처리
+  const maxCount = ratingCounts ? Math.max(...Object.values(ratingCounts)) : 0;
 
   return (
     <div className={styles.container}>
@@ -19,18 +16,8 @@ export default function ReviewSummary({ summary }) {
       <div className={styles.left}>
         <div className={styles.avgRating}>
           <div className={styles.cloverIcons}>
-            {[...Array(5)].map((_, i) => (
-              <img
-                key={i}
-                src={
-                  i < Math.round(averageRating)
-                    ? "/images/detail/cloveron.png"
-                    : "/images/detail/cloveroff.png"
-                }
-                alt="rating"
-                className={styles.clover}
-              />
-            ))}
+            {/* 🔹 StarRating 컴포넌트 사용 */}
+            <StarRating rating={Math.round(averageRating)} />
           </div>
           <div className={styles.score}>{averageRating.toFixed(1)} / 5</div>
         </div>
@@ -42,10 +29,10 @@ export default function ReviewSummary({ summary }) {
         <div className={styles.totalNumber}>{totalReviews}개</div>
       </div>
 
-      {/* 오른쪽: 평점 막대*/}
+      {/* 오른쪽: 평점 막대 */}
       <div className={styles.right}>
         {[5, 4, 3, 2, 1].map((rate) => {
-          const count = ratingCounts[rate] ?? 0;
+          const count = ratingCounts?.[rate] ?? 0;
           const percent = maxCount === 0 ? 0 : (count / maxCount) * 100;
 
           return (
