@@ -119,6 +119,29 @@ export function Payment() {
 
   // ===== 결제 요청 =====
   const handlePayment = async () => {
+    // 주소 입력 여부 확인
+    if (
+      !addressData.recipientName ||
+      !addressData.phone ||
+      !addressData.zipCode ||
+      !addressData.addressLine1
+    ) {
+      Swal.fire({
+        title: "배송지 정보가 없습니다",
+        text: "배송지를 입력해주세요.",
+        confirmButtonText: "확인",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          confirmButton: "customConfirmButton",
+          },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setIsModalOpen(true);
+        }
+      });
+      return;
+    }
     try {
       const token = localStorage.getItem("jwtToken");
 
