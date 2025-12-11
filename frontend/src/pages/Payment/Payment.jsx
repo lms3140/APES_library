@@ -9,8 +9,6 @@ import { clearCart as clearLocalCart } from "../../utils/cartStorage.js";
 import paymentStyle from "./Payment.module.css";
 import { StepItemNum } from "../../components/Cart/StepItemNum.jsx";
 import { AddressModal } from "../Mypage/AddressModal.jsx";
-
-// 🔥 추가
 import AddressesList from "../Payment/AddressesList.jsx";
 
 export function Payment() {
@@ -32,8 +30,6 @@ export function Payment() {
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // 🔥 리스트 모달
   const [isAddressListOpen, setIsAddressListOpen] = useState(false);
 
   const [usePoints, setUsePoints] = useState(false);
@@ -96,7 +92,6 @@ export function Payment() {
     fetchAddress();
   }, []);
 
-  // 🔥 AddressesList에서 선택 시 호출
   const handleSelectAddress = (addr) => {
     setAddressData({
       recipientName: addr.recipientName,
@@ -249,19 +244,44 @@ export function Payment() {
           <div className={paymentStyle.paymentBox}>
             <h2>주문상품</h2>
             <div className={paymentStyle.orderList}>
-              {bookList.map((book) => (
-                <div
-                  key={book.book_id}
-                  className={paymentStyle.orderListItem}
-                >
-                  <img src={book.imageUrl} alt={book.title} />
-                  <div>
-                    <h2>{book.title}</h2>
-                    <p>수량: {book.quantity}</p>
-                    <p>가격: ₩ {(book.price || 0).toLocaleString()}</p>
+              {bookList.map((book) => {
+                const originalPrice = book.originalPrice || book.price;
+                const discountRate = book.discountRate || 10;
+                const discountedPrice = Math.floor(
+                  originalPrice * (1 - discountRate / 100)
+                );
+
+                const itemTotal = discountedPrice * (book.quantity || 1); // 총 금액
+
+                return (
+                  <div key={book.book_id} className={paymentStyle.orderListItem}>
+                    <img src={book.imageUrl} alt={book.title} />
+                    <div>
+                      <h2>{book.title}</h2>
+
+                      {/* 정가 + 할인률 + 판매가 */}
+                      <div className={paymentStyle.priceBox}>
+                        <span className={paymentStyle.discountRate}>
+                          {discountRate}%
+                        </span>
+                        <span className={paymentStyle.discountPrice}>
+                          ₩ {discountedPrice.toLocaleString()}
+                        </span>
+                        <span className={paymentStyle.originalPrice}>
+                          ₩ {originalPrice.toLocaleString()}
+                        </span>
+                      </div>
+
+                      <p>수량: {book.quantity}</p>
+
+                      {/* 총 금액 */}
+                      <p className={paymentStyle.itemTotal}>
+                        ㄴ 총 금액: ₩ {itemTotal.toLocaleString()}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -320,7 +340,7 @@ export function Payment() {
         />
       )}
 
-      {/* 🔥 리스트 모달 */}
+      {/* AddressesList 모달 */}
       {isAddressListOpen && (
         <AddressesList
           isOpen={isAddressListOpen}

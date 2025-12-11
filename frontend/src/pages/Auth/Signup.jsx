@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Signup.module.css";
 import cstyles from "./Logo.module.css";
-import Terms from "./Terms.jsx"; // 약관 컴포넌트
-import { signupMember } from "../../api/MemberAPI.jsx"; // 회원가입 API 호출
+import Terms from "./Terms.jsx";
+import { signupMember } from "../../api/MemberAPI.jsx";
+
+import Swal from "sweetalert2";
+import "../../css/swal.css";
 
 export const Signup = () => {
     const navigate = useNavigate();
@@ -27,18 +31,29 @@ export const Signup = () => {
 
     const [idCheckResult, setIdCheckResult] = useState(null);
     const [pwdMatch, setPwdMatch] = useState(null);
+    const [pwdValid, setPwdValid] = useState(null);
+
+    const validatePassword = (pwd) => {
+        const regex = /^.{4,}$/;
+        return regex.test(pwd);
+    };
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
 
-        if (name === "pwd" || name === "pwdcheck") {
-            const updatedForm = { ...formData, [name]: value };
-            setFormData(updatedForm);
-            if (updatedForm.pwd && updatedForm.pwdcheck) {
-                setPwdMatch(updatedForm.pwd === updatedForm.pwdcheck);
-            } else {
-                setPwdMatch(null);
+        if (name === "pwd") {
+            setFormData({ ...formData, pwd: value });
+            setPwdValid(validatePassword(value));
+
+            if (formData.pwdcheck) {
+                setPwdMatch(value === formData.pwdcheck);
             }
+            return;
+        }
+
+        if (name === "pwdcheck") {
+            setFormData({ ...formData, pwdcheck: value });
+            setPwdMatch(formData.pwd === value);
             return;
         }
 
@@ -69,10 +84,17 @@ export const Signup = () => {
         });
     };
 
-    // ===================== DB 연동 아이디 중복 확인 =====================
     const handleIdCheck = async () => {
         if (!formData.id) {
-            alert("아이디를 입력해주세요.");
+            Swal.fire({
+                title: "아이디를 입력해주세요.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
             return;
         }
 
@@ -87,28 +109,72 @@ export const Signup = () => {
 
             if (data.message === "사용 가능한 아이디입니다.") {
                 setIdCheckResult("available");
+                Swal.fire({
+                    title: "사용 가능한 아이디입니다.",
+                    confirmButtonText: "확인",
+                    customClass: {
+                        popup: "customPopup",
+                        title: "customTitle",
+                        confirmButton: "customConfirmButton",
+                    },
+                });
             } else {
                 setIdCheckResult("duplicate");
+                Swal.fire({
+                    title: "이미 존재하는 아이디입니다.",
+                    confirmButtonText: "확인",
+                    customClass: {
+                        popup: "customPopup",
+                        title: "customTitle",
+                        confirmButton: "customConfirmButton",
+                    },
+                });
             }
         } catch (err) {
             console.error(err);
-            alert("아이디 중복 확인 중 오류가 발생했습니다.");
+            Swal.fire({
+                title: "아이디 중복 확인 중 오류가 발생했습니다.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
         }
     };
-    // ====================================================================
 
     const handleSendCode = () => {
         if (!formData.email) {
-            alert("이메일을 입력해주세요.");
+            Swal.fire({
+                title: "이메일을 입력해주세요.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
             return;
         }
-        alert(`인증번호가 ${formData.email}로 발송되었습니다.`);
+
+        Swal.fire({
+            title: `인증번호가 ${formData.email}로 발송되었습니다.`,
+            confirmButtonText: "확인",
+            customClass: {
+                popup: "customPopup",
+                title: "customTitle",
+                confirmButton: "customConfirmButton",
+            },
+        });
     };
 
     const isRequiredFilled =
         formData.id &&
         formData.pwd &&
         formData.pwdcheck &&
+        pwdValid === true &&
+        pwdMatch === true &&
         formData.name &&
         formData.phone &&
         formData.email &&
@@ -120,18 +186,55 @@ export const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!pwdValid) {
+            Swal.fire({
+                title: "비밀번호가 형식에 맞지 않습니다.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
+            return;
+        }
+
         if (formData.pwd !== formData.pwdcheck) {
-            alert("비밀번호가 일치하지 않습니다.");
+            Swal.fire({
+                title: "비밀번호가 일치하지 않습니다.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
             return;
         }
 
         if (!isRequiredFilled) {
-            alert("필수 항목을 모두 입력하고 필수 약관에 동의해주세요.");
+            Swal.fire({
+                title: "필수 항목을 모두 입력하고 약관에 동의해주세요.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
             return;
         }
 
         if (idCheckResult !== "available") {
-            alert("아이디 중복 확인을 완료해주세요.");
+            Swal.fire({
+                title: "아이디 중복 확인을 완료해주세요.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
             return;
         }
 
@@ -147,17 +250,42 @@ export const Signup = () => {
 
         try {
             await signupMember(submitData);
-            alert("회원가입이 완료되었습니다!");
-            navigate("/login");
+
+            Swal.fire({
+                title: "회원가입이 완료되었습니다!",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            }).then(() => {
+                navigate("/login");
+            });
+
         } catch (err) {
             console.error(err);
-            alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+
+            Swal.fire({
+                title: "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.",
+                confirmButtonText: "확인",
+                customClass: {
+                    popup: "customPopup",
+                    title: "customTitle",
+                    confirmButton: "customConfirmButton",
+                },
+            });
         }
     };
 
     return (
         <div className={cstyles.container}>
-            <div className={cstyles.logo}><span>무슨문고</span></div>
+            <div className={cstyles.logo}>
+                <Link to="/">
+                <img src="/images/logo.png" alt="로고" className={cstyles.logoImg} />
+                </Link>
+            </div>
+
 
             <div className={styles.titleRow}>
                 <h2 className={styles.title}>회원가입</h2>
@@ -173,14 +301,21 @@ export const Signup = () => {
 
             <form onSubmit={handleSubmit} className={styles.form}>
                 {/* 아이디 */}
-                <label>아이디 <span className={styles.required}>*</span></label>
+                <label>
+                    아이디 <span className={styles.required}>*</span>
+                </label>
+
+                <div className={styles.inputInfo}>아이디는 최소 4글자 이상이어야 합니다.</div>
+
                 <div className={styles.inputRow}>
                     <input
+                        minLength={4}
                         name="id"
                         value={formData.id}
                         onChange={handleChange}
                         placeholder="아이디를 입력해주세요."
                     />
+
                     <button
                         type="button"
                         onClick={handleIdCheck}
@@ -189,11 +324,25 @@ export const Signup = () => {
                         중복확인
                     </button>
                 </div>
-                {idCheckResult === "available" && <p className={styles.successMsg}>사용 가능한 아이디입니다.</p>}
-                {idCheckResult === "duplicate" && <p className={styles.errorMsg}>이미 존재하는 아이디입니다.</p>}
+
+                {formData.id.length > 0 && formData.id.length < 4 && (
+                <div className={styles.errorMsg}>
+                    아이디는 최소 4글자 이상이어야 합니다.
+                </div>
+                )}
+
+                {idCheckResult === "available" && (
+                    <p className={styles.successMsg}>사용 가능한 아이디입니다.</p>
+                )}
+                {idCheckResult === "duplicate" && (
+                    <p className={styles.errorMsg}>이미 존재하는 아이디입니다.</p>
+                )}
 
                 {/* 비밀번호 */}
-                <label>비밀번호 <span className={styles.required}>*</span></label>
+                <label>
+                    비밀번호 <span className={styles.required}>*</span>
+                </label>
+
                 <input
                     type="password"
                     name="pwd"
@@ -202,8 +351,21 @@ export const Signup = () => {
                     placeholder="비밀번호를 입력해주세요."
                 />
 
+                {pwdValid === false && (
+                    <p className={styles.errorMsg}>
+                        비밀번호는 4자 이상, 영문/숫자/특수문자를 모두 포함해야 합니다.
+                    </p>
+                )}
+
+                {pwdValid === true && (
+                    <p className={styles.successMsg}>사용 가능한 비밀번호입니다.</p>
+                )}
+
                 {/* 비밀번호 확인 */}
-                <label>비밀번호 확인 <span className={styles.required}>*</span></label>
+                <label>
+                    비밀번호 확인 <span className={styles.required}>*</span>
+                </label>
+
                 <input
                     type="password"
                     name="pwdcheck"
@@ -211,8 +373,13 @@ export const Signup = () => {
                     onChange={handleChange}
                     placeholder="비밀번호를 한 번 더 입력해주세요."
                 />
-                {pwdMatch === false && <p className={styles.errorMsg}>비밀번호가 일치하지 않습니다.</p>}
-                {pwdMatch === true && <p className={styles.successMsg}>비밀번호가 일치합니다.</p>}
+
+                {pwdMatch === false && (
+                    <p className={styles.errorMsg}>비밀번호가 일치하지 않습니다.</p>
+                )}
+                {pwdMatch === true && (
+                    <p className={styles.successMsg}>비밀번호가 일치합니다.</p>
+                )}
 
                 {/* 이름 */}
                 <label>이름 <span className={styles.required}>*</span></label>
@@ -234,8 +401,10 @@ export const Signup = () => {
 
                 {/* 이메일 */}
                 <label>이메일 <span className={styles.required}>*</span></label>
+
                 <div className={styles.emailWrapper}>
                     <input
+                        type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
@@ -269,15 +438,24 @@ export const Signup = () => {
                         <div className={styles.segmentedControl}>
                             <button
                                 type="button"
-                                className={formData.gender === "m" ? styles.activeSegment : ""}
-                                onClick={() => setFormData({ ...formData, gender: "m" })}
+                                className={
+                                    formData.gender === "m" ? styles.activeSegment : ""
+                                }
+                                onClick={() =>
+                                    setFormData({ ...formData, gender: "m" })
+                                }
                             >
                                 {formData.gender === "m" && "✔"} 남
                             </button>
+
                             <button
                                 type="button"
-                                className={formData.gender === "f" ? styles.activeSegment : ""}
-                                onClick={() => setFormData({ ...formData, gender: "f" })}
+                                className={
+                                    formData.gender === "f" ? styles.activeSegment : ""
+                                }
+                                onClick={() =>
+                                    setFormData({ ...formData, gender: "f" })
+                                }
                             >
                                 {formData.gender === "f" && "✔"} 여
                             </button>
@@ -285,9 +463,14 @@ export const Signup = () => {
                     </div>
                 </div>
 
-                {/* 약관 */}
-                <Terms formData={formData} setFormData={setFormData} handleAllAgree={handleAllAgree} />
+                {/* 약관 동의 */}
+                <Terms
+                    formData={formData}
+                    setFormData={setFormData}
+                    handleAllAgree={handleAllAgree}
+                />
 
+                {/* 제출 버튼 */}
                 <button
                     type="submit"
                     className={styles.btnSignup}

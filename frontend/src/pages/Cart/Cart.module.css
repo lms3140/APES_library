@@ -6,7 +6,6 @@
   padding: 30px 20px;
 }
 
-/* 상단 영역: 제목 + 단계 표시 */
 .cartTopWrap {
   display: flex;
   justify-content: space-between;
@@ -23,16 +22,45 @@
   display: flex;
 }
 
-/* 장바구니 좌우 레이아웃 */
+/* 레이아웃 */
 .cartLayout {
   display: flex;
   gap: 30px;
   justify-content: space-between;
 }
 
-/* 좌측 영역: 장바구니 리스트 */
 .leftArea {
   flex: 1;
+}
+
+/* 전체 선택 영역 */
+.selectArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.checkLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.deleteSelectedBtn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+}
+
+.deleteSelectedBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .cartBox {
@@ -49,19 +77,24 @@
   color: #888;
 }
 
-/* 장바구니 아이템 */
+/* 아이템 */
 .cartItem {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   padding: 20px 0;
   border-bottom: 1px solid #e5e5e5;
 }
 
 .cartItem:last-child {
-  border-bottom: none; /* 마지막 아이템 밑줄 제거 */
+  border-bottom: none;
 }
 
-/* 책 이미지 */
+.itemCheckbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
 .bookImage {
   width: 110px;
   height: 150px;
@@ -70,40 +103,36 @@
   border: 1px solid #ddd;
 }
 
-/* 제목 */
 .cartItem h2 {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 6px;
 }
 
-/* 가격 표시: 정가, 할인율, 할인가 */
+/* 가격 */
 .priceRow {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 4px 0;
 }
 
 .originalPrice {
-  text-decoration: line-through; /* 정가에 줄 긋기 */
+  text-decoration: line-through;
   color: #888;
   font-size: 14px;
 }
 
 .discountRate {
-  color: #4dac27; /* 할인율 강조 색 */
+  color: #4dac27;
   font-weight: 700;
-  font-size: 14px;
 }
 
 .discountedPrice {
-  font-weight: 700;
   font-size: 16px;
-  color: #000;
+  font-weight: 700;
 }
 
-/* 수량 조절 및 삭제 버튼 */
+/* 수량 */
 .quantityContainer {
   display: flex;
   align-items: center;
@@ -116,81 +145,69 @@
   align-items: center;
   border: 1.5px solid #ccc;
   border-radius: 6px;
-  overflow: hidden;
-  background: #fff;
 }
 
 .qtyBtn {
-  width: 36px;
-  height: 36px;
-  border: none;
   background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
-.qtyBtn img {
-  width: 20px;
-  height: 20px;
+.qtyIcon {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
 }
 
 .qtyValue {
   width: 36px;
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
 }
 
 .deleteBtn {
   padding: 6px 10px;
-  font-size: 14px;
   border: 1px solid #ddd;
-  border-radius: 4px;
   background: #fff;
-  color: #666;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.15s ease;
 }
 
 .deleteBtn:hover {
   background: #f3f3f3;
 }
 
-/* 우측 영역: 결제 요약 */
+/* 총 금액 */
+.itemTotal {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* 우측 요약 영역 */
 .rightArea {
   width: 300px;
   background: #fafafa;
+  border: 1px solid #ddd;
   padding: 20px;
-  border: 1px solid #e5e5e5;
   border-radius: 8px;
   height: fit-content;
-}
-
-/* 결제 요약 텍스트 */
-.summary {
-  font-size: 15px;
-  line-height: 1.8;
 }
 
 .summary p {
   display: flex;
   justify-content: space-between;
-  margin: 6px 0;
 }
 
 .finalPrice {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: bold;
   margin-top: 10px;
-}
-
-.freeDelivery {
-  font-weight: 700;
-  color: #4dac27;
-  margin-bottom: 12px;
-  font-size: 16px;
 }
 
 /* 주문 버튼 */
@@ -198,21 +215,21 @@
   width: 100%;
   padding: 14px 0;
   background: #5156b2;
+  border: none;
   color: #fff;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
   border-radius: 6px;
-  border: none;
-  cursor: pointer;
   margin-top: 15px;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-.orderBtn:hover {
-  background: #3f42a0;
+.orderBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
-/* 반응형: 화면 작아질 때 세로 배치 */
+/* 반응형 */
 @media (max-width: 900px) {
   .cartLayout {
     flex-direction: column;
@@ -220,11 +237,5 @@
 
   .rightArea {
     width: 100%;
-  }
-
-  .cartTopWrap {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
   }
 }

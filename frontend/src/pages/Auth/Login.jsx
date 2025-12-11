@@ -129,7 +129,11 @@ export const Login = () => {
   return (
     <div className={cstyles.container}>
       {/* 로고 */}
-      <div className={cstyles.logo}><span>무슨문고</span></div>
+      <div className={cstyles.logo}>
+        <Link to="/">
+        <img src="/images/logo.png" alt="로고" className={cstyles.logoImg} />
+        </Link>
+      </div>
 
       {/* 로그인 폼 */}
       <form className={styles.loginForm} onSubmit={handleLogin}>

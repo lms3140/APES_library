@@ -6,12 +6,18 @@
     font-family: "Noto Sans KR", sans-serif;
 }
 
-/* 로고 */
+/* 로고 이미지 */
 .logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px; /* 원래 로고 높이에 맞춰 조절 */
-  font-size: 30px; /* 원하는 글자 크기 */
-  font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px; /* 기존 텍스트 로고 높이 유지 */
+    cursor: pointer;
 }
+
+.logoImg {
+    height: 50px;  /* ← 핵심: 텍스트 로고와 동일한 높이 */
+    width: auto;   /* 비율 유지 */
+    object-fit: contain;
+}
+

@@ -11,7 +11,9 @@ export const SignupIntro = () => {
     return (
         <div className={cstyles.container}>
             <div className={cstyles.logo}>
-                    <span>무슨문고</span>
+                    <Link to="/">
+                    <img src="/images/logo.png" alt="로고" className={cstyles.logoImg} />
+                    </Link>
                   </div>
 
             <button
