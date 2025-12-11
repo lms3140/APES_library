@@ -13,7 +13,7 @@
 
 ## 📺 실행 화면
 
-![홈화면] (./frontend/public/images/screenshot.png)
+![홈화면] (./screenshot.png)
 
 ## 🤖 실행 방법
 
