@@ -46,7 +46,7 @@ export function Footer() {
 
       <div className={styles.footerInnerContainer}>
         <section>
-          <h1>무슨문고</h1>
+          <img src="./images/logo.png" alt="logo" />
           <div>
             <ul className={styles.footerMenu}>
               <li>
@@ -75,16 +75,16 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <address className={styles.footerAddress}>
+          <div className={styles.footerAddress}>
             <ul>
               <li>교보문고</li>
               <li>서울특별시 강남</li>
               <li>대표이사 : 이명석</li>
               <li>사업자 등록번호 : xxx-xx-xxxxx</li>
               <li>대표전화: xxxx-xxxx</li>
-              <li>FAX:xxxx-xxx-xxxx</li>
+              <li>FAX:xxxxx</li>
             </ul>
-          </address>
+          </div>
           <span>AFEC BOOK CENTRE</span>
         </section>
         <div></div>

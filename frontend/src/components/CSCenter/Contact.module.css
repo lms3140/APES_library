@@ -1,4 +1,3 @@
-/* ===== 기본 레이아웃 ===== */
 .contactContainer {
   width: 100%;
   max-width: 1180px;
@@ -19,40 +18,40 @@
 }
 .header p {
   font-size: 14px;
-  color: #595959;
+  color: var(--color-gray-800);
   margin: 0;
 }
 
-/* 섹션 제목 줄 */
 .section {
   border-top: 1px solid #000;
 }
+
 .sectionTitle {
-  background-color: #f7f7f7;
+  background-color: var(--color-gray-100);
   font-weight: 400;
   padding: 16px 12px;
-  /* border-bottom: 1px solid #ddd; */
   font-size: 14px;
   margin: 0;
   text-align: center;
 }
 
-/* ===== 도서문의 내부(그대로) ===== */
 .subTable {
   width: 100%;
 }
+
 .subTable p {
   margin: 0;
   padding: 16px 12px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-gray-400);
 }
+
 .subTable p:last-child {
   border-bottom: none;
 }
 
 .rowGroup {
   display: flex;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-gray-400);
 }
 .leftCell {
   width: 370px;
@@ -64,7 +63,7 @@
 .rightCell {
   flex: 1;
   padding: 16px 12px;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid var(--color-gray-400);
 }
 .rightCell p {
   border-bottom: none;
@@ -73,41 +72,36 @@
   font-size: 13px;
 }
 
-/* ===== 매장 이용안내: 가로 표(3열) ===== */
 .storeGrid {
   width: 100%;
   display: grid;
-  grid-template-columns: 220px 220px 1fr; /* 최상위 / 중간 / 매장리스트 */
+  grid-template-columns: 220px 220px 1fr;
   grid-auto-rows: auto;
-  /* border: 1px solid #eaeaea; */
-  border-bottom: 1px solid #eaeaea;
-  border-top-width: 0; /* 섹션제목 아래선과 겹침 방지 */
+  border-bottom: 1px solid var(--color-gray-300);
+  border-top-width: 0;
 }
 
-/* 셀 공통: 표처럼 한 줄로 이어지게 상단/좌측만 그린다 */
 .cell {
   box-sizing: border-box;
   padding: 16px 12px;
-  border-top: 1px solid #eaeaea;
-  border-left: 1px solid #eaeaea;
+  border-top: 1px solid var(--color-gray-300);
+  border-left: 1px solid var(--color-gray-300);
   background: #fff;
   display: flex;
   align-items: center;
 }
 
-/* 첫 번째 행(상단) border 제거 */
 .storeGrid > .cell:nth-child(-n + 3) {
   border-top: none;
 }
 
-/* 첫 열은 컨테이너의 외곽선(좌측)을 쓰므로 좌보더 제거 */
 .noLeft {
   border-left: none;
 }
 
 .level1Span {
   grid-column: 1 / 2;
-  grid-row: 1 / span 4; /* ✅ 기존 span 3 → 4로 변경 */
+  grid-row: 1 / span 4;
   display: flex;
   align-items: flex-start;
   display: flex;
@@ -115,28 +109,28 @@
   border-left: none;
 }
 
-/* 가운데 열(파란 박스), 오른쪽 열(초록 박스) */
 .level2 {
   font-weight: 500;
 }
+
 .level3 {
   font-weight: 400;
 }
 
-/* 그리드 위치 보조(가독성 위해 클래스 제공) */
 .col2 {
   grid-column: 2;
 }
+
 .col3 {
   grid-column: 3;
 }
 
-/* 매장 리스트는 보더 없이 텍스트만 */
 .storeList {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .storeList li {
   margin: 0;
 }

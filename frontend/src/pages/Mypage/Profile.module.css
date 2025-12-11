@@ -14,15 +14,14 @@
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 0;
-  color: #111;
+  color: #000;
   border-bottom: 1px solid #000;
   padding-bottom: 20px;
 }
 
 .group {
   padding-top: 30px;
-  border-bottom: 1px solid #e5e5e5;
-  /* margin-bottom: 10px; */
+  border-bottom: 1px solid var(--color-gray-300);
 }
 
 .quitGroup {
@@ -34,12 +33,12 @@
 
 .quitGroup p {
   font-size: 13px;
-  color: #595959;
+  color: var(--color-gray-800);
 }
 
 .quitGroup button {
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-gray-400);
   border-radius: 4px;
   height: 25px;
   justify-content: center;
@@ -49,7 +48,7 @@
 }
 
 .quitGroup button:hover {
-  background-color: #f2f2f2;
+  background-color: var(--color-gray-200);
 }
 
 .buttonGroup {
@@ -72,19 +71,19 @@
 }
 
 .cancelBtn {
-  background-color: #767676;
+  background-color: var(--color-gray-700);
   color: #fff;
 }
 
 .cancelBtn:hover {
-  background-color: #595959;
+  background-color: var(--color-gray-800);
 }
 
 .confirmBtn {
-  background-color: #5055b1;
+  background-color: var(--color-blue-700);
   color: #fff;
 }
 
 .confirmBtn:hover {
-  background-color: #2d3078;
+  background-color: var(--color-blue-900);
 }

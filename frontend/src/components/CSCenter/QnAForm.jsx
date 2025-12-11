@@ -190,6 +190,12 @@ export function QnAForm() {
                     연락처를 입력해주세요.
                   </p>
                 )}
+                {phone.length < 11 && phone && (
+                  <p className={styles.warning}>
+                    <img src="/images/CSCenter/warningIcon.png" alt="" />
+                    유효한 연락처를 입력해주세요.(숫자만 입력)
+                  </p>
+                )}
 
                 {type === "phone" && (
                   <Checkbox

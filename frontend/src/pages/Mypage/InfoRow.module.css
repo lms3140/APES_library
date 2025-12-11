@@ -3,13 +3,12 @@
   grid-template-columns: 150px 400px 80px;
   padding-bottom: 30px;
   align-items: center;
-  /* justify-content: center; */
   gap: 30px;
 }
 
 .label {
   font-size: 15px;
-  color: #111;
+  color: #000;
   font-weight: 500;
 }
 
@@ -18,7 +17,7 @@
 }
 
 .border {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--color-gray-300);
 }
 
 .inputWrapper {
@@ -37,7 +36,7 @@
   height: 20px;
   padding: 10px 40px 10px 12px;
   font-size: 13px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-gray-400);
   border-radius: 6px;
 }
 
@@ -56,13 +55,13 @@
 
 .valueText {
   font-size: 15px;
-  color: #111;
+  color: #000;
 }
 
 .editBtn {
   background: white;
-  border: 1px solid #5155ab;
-  color: #5155ab;
+  border: 1px solid var(--color-blue-700);
+  color: var(--color-blue-700);
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -76,11 +75,11 @@
 
 .info {
   font-size: 13px;
-  color: #888;
+  color: var(--color-gray-600);
   line-height: 1.4;
 }
 
 .error {
-  color: #d12a2a;
+  color: var(--color-red-700);
   font-size: 13px;
 }
