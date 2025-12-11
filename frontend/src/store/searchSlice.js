@@ -89,7 +89,7 @@ export const selectFilteredSortedBooks = createSelector(
 
     if (sortOptions === "최신순") {
       filtered = filtered.sort(
-        (a, b) => new Date(b.publisherDate) - new Date(a.publisherDate)
+        (a, b) => new Date(b.publishedDate) - new Date(a.publishedDate)
       );
     }
     if (sortOptions === "낮은가격순") {
