@@ -10,7 +10,9 @@ public class MemberDto {
 
     private Long memberId;
     private String userId;
+    private String currentPwd;
     private String pwd;
+    private String pwdCheck;
     private String name;
     private String phone;
     private String email;

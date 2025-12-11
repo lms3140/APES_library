@@ -415,4 +415,3 @@ desc purchase_order;
 ALTER TABLE purchase_order
 ADD COLUMN deleted TINYINT(1) NOT NULL DEFAULT 0;
 
-

@@ -38,8 +38,7 @@ export function MyPageSidebar() {
         </div>
         <div className={styles.name}>{member ? member.name : "회원"}님</div>
         <div className={styles.point}>
-          포인트 :{" "}
-          <a href="/mypage/points">{member ? member.pointBalance : 0}</a>
+          포인트 : <span>{member ? member.pointBalance : 0}</span>
         </div>
       </div>
       <nav>
