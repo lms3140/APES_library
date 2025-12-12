@@ -32,8 +32,9 @@ export function Payment() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressListOpen, setIsAddressListOpen] = useState(false);
 
+  // ===== 포인트 =====
   const [usePoints, setUsePoints] = useState(false);
-  const [userPoints, setUserPoints] = useState(1000);
+  const [userPoints, setUserPoints] = useState(0); // 초기값 0으로
 
   // ===== 주문 상품 리스트 =====
   const [bookList, setBookList] = useState([]);
@@ -88,8 +89,25 @@ export function Payment() {
     }
   };
 
+  // ===== 사용자 포인트 불러오기 =====
+  const fetchUserPoints = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      const response = await axios.get("http://localhost:8080/user/points", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response.data?.points !== undefined) {
+        setUserPoints(response.data.points);
+      }
+    } catch (err) {
+      console.error("포인트 불러오기 실패", err);
+    }
+  };
+
   useEffect(() => {
     fetchAddress();
+    fetchUserPoints();
   }, []);
 
   const handleSelectAddress = (addr) => {
@@ -119,6 +137,29 @@ export function Payment() {
 
   // ===== 결제 요청 =====
   const handlePayment = async () => {
+    if (
+      !addressData.recipientName ||
+      !addressData.phone ||
+      !addressData.zipCode ||
+      !addressData.addressLine1
+    ) {
+      Swal.fire({
+        title: "배송지 정보가 없습니다",
+        text: "배송지를 입력해주세요.",
+        confirmButtonText: "확인",
+        customClass: {
+          popup: "customPopup",
+          title: "customTitle",
+          confirmButton: "customConfirmButton",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setIsModalOpen(true);
+        }
+      });
+      return;
+    }
+
     try {
       const token = localStorage.getItem("jwtToken");
 
@@ -133,7 +174,7 @@ export function Payment() {
         {
           userId: "user123",
           itemName,
-          point: 0,
+          point: usePoints ? userPoints : 0, // 실제 사용 포인트
           books: bookList.map((book) => ({
             bookId: book.book_id,
             quantity: book.quantity,
@@ -187,7 +228,6 @@ export function Payment() {
     }
   };
 
-  // 전화번호 포맷
   const formatPhone = (phone) => {
     if (!phone) return "";
     return phone.replace(/(\d{3})(\d{3,4})(\d{4})/, "$1-$2-$3");
@@ -209,7 +249,6 @@ export function Payment() {
           {/* 배송지 */}
           <div className={paymentStyle.addressBox}>
             <h2>배송지</h2>
-
             <div className={paymentStyle.itemInfo}>
               <div className={paymentStyle.itemTitle}>
                 {addressData.addressName}
@@ -250,16 +289,13 @@ export function Payment() {
                 const discountedPrice = Math.floor(
                   originalPrice * (1 - discountRate / 100)
                 );
-
-                const itemTotal = discountedPrice * (book.quantity || 1); // 총 금액
+                const itemTotal = discountedPrice * (book.quantity || 1);
 
                 return (
                   <div key={book.book_id} className={paymentStyle.orderListItem}>
                     <img src={book.imageUrl} alt={book.title} />
                     <div>
                       <h2>{book.title}</h2>
-
-                      {/* 정가 + 할인률 + 판매가 */}
                       <div className={paymentStyle.priceBox}>
                         <span className={paymentStyle.discountRate}>
                           {discountRate}%
@@ -271,10 +307,7 @@ export function Payment() {
                           ₩ {originalPrice.toLocaleString()}
                         </span>
                       </div>
-
                       <p>수량: {book.quantity}</p>
-
-                      {/* 총 금액 */}
                       <p className={paymentStyle.itemTotal}>
                         ㄴ 총 금액: ₩ {itemTotal.toLocaleString()}
                       </p>
@@ -331,7 +364,6 @@ export function Payment() {
         </div>
       </div>
 
-      {/* 기존 AddressModal */}
       {isModalOpen && (
         <AddressModal
           isOpen={isModalOpen}
@@ -340,7 +372,6 @@ export function Payment() {
         />
       )}
 
-      {/* AddressesList 모달 */}
       {isAddressListOpen && (
         <AddressesList
           isOpen={isAddressListOpen}

@@ -70,15 +70,18 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public boolean signup(MemberDto dto) {
         if (idCheck(dto.getUserId())) return false;
-        dto.setPwd(passwordEncoder.encode(dto.getPwd()));
-        Member saved = memberRepository.save(new Member(dto));
-        return saved != null;
+
+        Member member = new Member(dto);
+        member.setPwd(passwordEncoder.encode(dto.getPwd()));
+
+        memberRepository.save(member);
+        return true;
     }
 
     // ===== 아이디 중복 체크 =====
     @Override
     public boolean idCheck(String userId) {
-        return memberRepository.countByUserId(userId) > 0;
+        return memberRepository.existsByUserId(userId);
     }
 
     @Override

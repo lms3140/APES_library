@@ -25,8 +25,9 @@ public class MemberDto {
     private Integer pointBalance;
     private Integer changePoint;
 
-    // JWT Token을 위한 추가 필드
-    private String jwtToken;
+    private String jwtToken; // JWT 토큰
+    private String kakaoAccessToken; // 카카오 access token
+    private String kakaoId;  // 카카오 고유 ID
 
     public MemberDto() {}
     public MemberDto(Member entity) {
@@ -41,5 +42,12 @@ public class MemberDto {
         this.role = entity.getRole();
         this.pointBalance = entity.getPointBalance();
         this.changePoint = 0;
+        this.kakaoId = entity.getKakaoId();
+    }
+
+    public MemberDto(Member entity, String jwtToken, String kakaoAccessToken) {
+        this(entity);
+        this.jwtToken = jwtToken;
+        this.kakaoAccessToken = kakaoAccessToken;
     }
 }
