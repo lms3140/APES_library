@@ -32,6 +32,23 @@ export const axiosPost = async (url, formData) => {
   return response.data;
 };
 
+export const axiosGetKakaoAuth = async (url) => {
+
+  const response = await axios.get(url);
+
+  return response.data;
+};
+
+export const axiosPostKakaoToken = async (url, data) => {
+
+  const response = await axios.post(url, data, {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+    },
+  });
+  return response.data;
+};
+
 export const fetchData = async (url) => {
   const response = await fetch(url);
   const jsonData = await response.json();

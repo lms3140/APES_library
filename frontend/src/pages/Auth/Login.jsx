@@ -6,6 +6,7 @@ import { FaLock } from "react-icons/fa";
 import Swal from "sweetalert2";
 import "../../css/swal.css";
 
+import { axiosGetKakaoAuth } from "../../utils/dataFetch.js"
 import { loginMember } from "../../api/MemberAPI.jsx";
 import { setIsLogin, setUserId } from "../../store/memberSlice.js";
 
@@ -38,7 +39,6 @@ export const Login = () => {
     }
   }, [dispatch]);
 
-  // 입력 필드 변경 핸들러
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -47,7 +47,6 @@ export const Login = () => {
     });
   };
 
-  // 로그인 버튼 클릭 시 처리
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -84,6 +83,8 @@ export const Login = () => {
 
         await Swal.fire({
           title: "로그인 성공!",
+          text: `환영합니다, ${formData.userId}님`,
+          icon: "success",
           confirmButtonText: "확인",
           customClass: {
             popup: "customPopup",
@@ -126,16 +127,18 @@ export const Login = () => {
     }
   };
 
+const handleKakaoAuth = () => {
+    window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=faa41cfd2406bc361c3eb40aa4fb7ceb&redirect_uri=http://localhost:5173/kakao/callback&response_type=code";
+    }
+
   return (
     <div className={cstyles.container}>
-      {/* 로고 */}
       <div className={cstyles.logo}>
         <Link to="/">
-        <img src="/images/logo.png" alt="로고" className={cstyles.logoImg} />
+          <img src="/images/logo.png" alt="로고" className={cstyles.logoImg} />
         </Link>
       </div>
 
-      {/* 로그인 폼 */}
       <form className={styles.loginForm} onSubmit={handleLogin}>
         <div className={styles.inputBox}>
           <FaRegUser className={styles.icon} />
@@ -159,7 +162,6 @@ export const Login = () => {
           />
         </div>
 
-        {/* 아이디 저장 체크박스 */}
         <div className={styles.checkboxWrap}>
           <input
             type="checkbox"
@@ -171,13 +173,10 @@ export const Login = () => {
           <label htmlFor="saveId">아이디 저장</label>
         </div>
 
-        {/* 에러 메시지 */}
         {error && <p className={styles.error}>{error}</p>}
 
-        {/* 로그인 버튼 */}
         <button type="submit" className={styles.btnLogin}>로그인</button>
 
-        {/* 회원가입/아이디 찾기/비밀번호 찾기 */}
         <div className={styles.loginLinks}>
           <Link to="/signup-intro">회원가입</Link>
           <span>|</span>
@@ -186,17 +185,21 @@ export const Login = () => {
           <a href="#">비밀번호 찾기</a>
         </div>
 
-        {/* 소셜 로그인 버튼 */}
         <div className={styles.socialLogin}>
-          <button type="button" className={styles.btnKakao}>카카오 로그인</button>
-          <button type="button" className={styles.btnNaver}>네이버 로그인</button>
-          <button type="button" className={styles.btnGoogle}>구글 로그인</button>
+          <button
+            type="button"
+            className={styles.btnKakao}
+            onClick={handleKakaoAuth}
+          >
+            카카오 로그인
+          </button>
+{/*           <button type="button" className={styles.btnNaver}>네이버 로그인</button> */}
+{/*           <button type="button" className={styles.btnGoogle}>구글 로그인</button> */}
         </div>
 
-        {/* 비회원 주문조회 */}
-        <div className={styles.guestLink}>
-          <a href="#">비회원 주문조회</a>
-        </div>
+{/*         <div className={styles.guestLink}> */}
+{/*           <a href="#">비회원 주문조회</a> */}
+{/*         </div> */}
       </form>
     </div>
   );

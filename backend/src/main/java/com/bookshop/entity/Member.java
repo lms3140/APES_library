@@ -21,7 +21,7 @@ public class Member {
     @Column(unique = true, nullable = false)
     private String userId;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String pwd;
 
     @Column(nullable = false)
@@ -46,6 +46,11 @@ public class Member {
 
     private LocalDateTime deletedAt;
 
+    // 카카오 고유 ID 저장 (String 타입)
+    @Column(unique = true)
+    private String kakaoId;
+
+    // 일반 회원가입용 생성자
     public Member(MemberDto dto) {
         this.userId = dto.getUserId();
         this.pwd = dto.getPwd();
@@ -56,5 +61,27 @@ public class Member {
         this.gender = dto.getGender();
         this.role = dto.getRole() != null ? dto.getRole() : "USER";
         this.pointBalance = dto.getPointBalance() != null ? dto.getPointBalance() : 0;
+        this.kakaoId = dto.getKakaoId();
+    }
+
+    /**
+     * 카카오 로그인 최초 가입용 팩토리 메서드
+     */
+    public static Member createKakaoMember(String kakaoId) {
+        Member m = new Member();
+
+        m.kakaoId = kakaoId;
+        m.userId = "kakao_" + kakaoId;   // 아이디 충돌 방지
+        m.pwd = null;                    // 소셜 회원은 패스워드 없음
+
+        // 기본값 채움
+        m.name = "카카오사용자";
+        m.phone = "000-0000-0000";
+        m.email = "kakao_" + kakaoId + "@kakao.com";
+
+        m.role = "USER";
+        m.pointBalance = 0;
+
+        return m;
     }
 }

@@ -106,6 +106,10 @@
     font-weight: bold;
 }
 
+.btnKakao:hover {
+    background-color: #e6d307;
+}
+
 .btnNaver {
     background-color: #03c75a;
     color: white;
