@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { axiosPostKakaoToken } from "../../utils/dataFetch.js"
@@ -8,20 +9,25 @@ import "../../css/swal.css";
 //토큰 발급
 export const KakaoCallback = () => {
   const navigate = useNavigate();
-  const code = url.searchParams.get("code");
 
-  useEffect(() => {
-      const fetchdata = async() => {
-//         if (code) {
-            const url = "https://kauth.kakao.com/oauth/token";
+    const [searchParams] = useSearchParams();
+    const code = searchParams.get("code");
+
+
+    const tokenUrl = "https://kauth.kakao.com/oauth/token";
             const data = {
                 "grant_type": "authorization_code",
                 "client_id" : "faa41cfd2406bc361c3eb40aa4fb7ceb",
-                "redirect_uri" : "http://localhost:5173/kakao/callback",
+                "redirect_uri" : "http://localhost:8080/auth/kakao/login",
                 "code" : code
                 }
+console.log(code);
+  useEffect(() => {
+      const fetchdata = async() => {
+//         if (code) {
 
-            const jsondata = await axiosPostKakaoToken(url, data);
+
+            const jsondata = await axiosPostKakaoToken(tokenUrl, data);
 //             console.log(jsondata);
         }
     fetchdata();

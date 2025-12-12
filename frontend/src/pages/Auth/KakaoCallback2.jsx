@@ -6,7 +6,8 @@ import React, { useEffect } from "react";
 // import "../../css/swal.css";
 
 //토큰 발급
-export default function KaKaoCallback2() {
+export const KaKaoCallback2 = () => {
+    const code = url.searchParams.get("");
     return (
         <div></div>
         );

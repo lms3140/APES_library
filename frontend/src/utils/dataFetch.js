@@ -39,10 +39,11 @@ export const axiosGetKakaoAuth = async (url) => {
   return response.data;
 };
 
-export const axiosPostKakaoToken = async (url, data) => {
+export const axiosPostKakaoToken = async (data) => {
 
-  const response = await axios.post(url, data, {
+  const response = await axios.post("https://kauth.kakao.com/oauth/token", data, {
     headers: {
+
       "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
     },
   });
