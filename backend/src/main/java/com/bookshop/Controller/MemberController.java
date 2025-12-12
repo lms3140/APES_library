@@ -1,6 +1,7 @@
 package com.bookshop.Controller;
 
 import com.bookshop.dto.MemberDto;
+import com.bookshop.entity.Member;
 import com.bookshop.service.JwtService;
 import com.bookshop.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -125,10 +126,8 @@ public class MemberController {
 
     // ===== 회원 정보 수정 =====
     @PutMapping("/update")
-    public ResponseEntity<?> updateMember(
-            @RequestHeader("Authorization") String authHeader,
-            @RequestBody MemberDto updateReq
-    ) {
+    public ResponseEntity<?> updateMember(@RequestHeader("Authorization") String authHeader,
+                                          @RequestBody MemberDto updateReq) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return ResponseEntity.status(401).body("No token provided");
         }
@@ -138,16 +137,31 @@ public class MemberController {
             return ResponseEntity.status(401).body("Invalid or expired token");
         }
 
-        // JWT → userId 추출
         String userId = jwtService.getUserId(token);
 
-        // 회원 정보 수정 처리
+        if(updateReq.getCurrentPwd() == null || updateReq.getCurrentPwd().isBlank()){
+            return ResponseEntity.status(400).body("Current password is required");
+        }
+
+        if(updateReq.getPwd().equals(updateReq.getCurrentPwd())) {
+            return ResponseEntity.status(400).body("Need new password");
+        }
+
+        if(updateReq.getPwd() != null && !updateReq.getPwd().isBlank()) {
+            if (updateReq.getPwdCheck() == null || updateReq.getPwdCheck().isBlank()) {
+                return ResponseEntity.status(400).body("Password confirmation required");
+            }
+
+            if(!updateReq.getPwd().equals(updateReq.getPwdCheck())) {
+                return ResponseEntity.status(400).body("Password mismatch");
+            }
+        }
+
         boolean success = memberService.updateMember(userId, updateReq);
 
-        if (success) {
-            return ResponseEntity.ok(Map.of("update", true));
-        } else {
-            return ResponseEntity.status(404).body("User not found");
+        if(!success) {
+            return ResponseEntity.status(400).body("Invalid current password");
         }
+        return ResponseEntity.ok(Map.of("update", true));
     }
 }

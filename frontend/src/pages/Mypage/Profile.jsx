@@ -2,18 +2,22 @@ import styles from "./Profile.module.css";
 import { InfoRow } from "./InfoRow.jsx";
 import { useEffect, useState } from "react";
 import { infoSwal } from "../../api/api.js";
+import { useNavigate } from "react-router-dom";
 
 export function Profile() {
+  const navigate = useNavigate();
   const [member, setMember] = useState(null);
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [currentPwVisible, setCurrentPwVisible] = useState(false);
   const [pwVisible, setPwVisible] = useState(false);
   const [pwCheckVisible, setPwCheckVisible] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [newPhone, setNewPhone] = useState("");
   const [editEmail, setEditEmail] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
+  const [currentPwd, setCurrentPwd] = useState("");
 
   useEffect(() => {
     const fetchInfo = async () => {
@@ -47,11 +51,6 @@ export function Profile() {
   }, [member]);
 
   const handleUpdate = async () => {
-    if (passwordError) {
-      infoSwal("비밀번호가 일치하지 않습니다.", "확인");
-      return;
-    }
-
     const token = localStorage.getItem("jwtToken");
 
     const res = await fetch("http://localhost:8080/member/update", {
@@ -61,16 +60,51 @@ export function Profile() {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
+        currentPwd,
         pwd: password,
+        pwdCheck: passwordCheck,
         email: newEmail,
         phone: newPhone,
       }),
     });
 
-    if (res.ok) {
-      infoSwal("회원정보가 수정되었습니다,", "", "확인");
+    if (!res.ok) {
+      const msg = await res.text();
+
+      if (msg === "Current password is required") {
+        infoSwal("현재 비밀번호를 입력해주세요.", "", "확인");
+      }
+
+      if (msg === "Invalid current password") {
+        infoSwal(
+          "현재 비밀번호가 일치하지 않습니다.",
+          "다시 입력해주세요.",
+          "확인"
+        );
+      }
+
+      if (msg === "Password confirmation required") {
+        infoSwal("비밀번호 확인을 입력해주세요.", "", "확인");
+      }
+
+      if (msg === "Password mismatch") {
+        infoSwal(
+          "새 비밀번호와 비밀번호 확인이 일치하지 않습니다.",
+          "다시 입력해주세요.",
+          "확인"
+        );
+      }
+
+      if (msg === "Need new password") {
+        infoSwal(
+          "이전에 사용하던 비밀번호는 사용할 수 없습니다.",
+          "새로운 비밀번호를 입력해주세요.",
+          "확인"
+        );
+      }
     } else {
-      infoSwal("수정 중 오류가 발생했습니다.", "", "확인");
+      await infoSwal("회원정보가 수정되었습니다.", "", "확인");
+      navigate("/");
     }
   };
 
@@ -82,6 +116,15 @@ export function Profile() {
         <p className={styles.sectionTitle}>기본 정보</p>
         <div className={styles.group}>
           <InfoRow label="아이디" value={member?.userId} />
+
+          <InfoRow
+            label="현재 비밀번호"
+            type={currentPwVisible ? "text" : "password"}
+            onChange={(e) => setCurrentPwd(e.target.value)}
+            placeholder="현재 비밀번호를 입력해주세요."
+            buttonIcon
+            onButtonClick={() => setCurrentPwVisible(!currentPwVisible)}
+          />
 
           <InfoRow
             label="새 비밀번호"

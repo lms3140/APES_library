@@ -423,4 +423,3 @@ select * from order_detail;
 select * from purchase_order;
 select * from inquiry;
 
-

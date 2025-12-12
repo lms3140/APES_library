@@ -102,12 +102,20 @@ public class MemberServiceImpl implements MemberService {
     public boolean updateMember(String userId, MemberDto updateReq) {
         Optional<Member> memberOpt = memberRepository.findByUserId(userId);
         if (memberOpt.isEmpty()) return false;
+
         Member member = memberOpt.get();
 
-        // 필요한 필드만 수정
+        if(!passwordEncoder.matches(updateReq.getCurrentPwd(), member.getPwd())) {
+            return false;
+        }
+
         if (updateReq.getPwd() != null && !updateReq.getPwd().isBlank()) {
+            if(updateReq.getPwdCheck() == null || !updateReq.getPwd().equals(updateReq.getPwdCheck())) {
+                return false;
+            }
             member.setPwd(passwordEncoder.encode(updateReq.getPwd()));
         }
+
         if (updateReq.getEmail() != null) {
             member.setEmail(updateReq.getEmail());
         }
@@ -115,7 +123,6 @@ public class MemberServiceImpl implements MemberService {
             member.setPhone(updateReq.getPhone());
         }
 
-        // JPA 저장 (트랜잭션 안이라 자동 flush)
         return true;
     }
 }

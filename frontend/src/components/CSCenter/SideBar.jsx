@@ -43,12 +43,11 @@ export function SideBar() {
             </li>
             <li>
               <div
-                onClick={() => navigate("/mypage")}
+                onClick={() => navigate("/mypage/inquiries")}
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 <span>1:1 문의 내역</span>
               </div>
-              {/* 마이페이지-1:1문의 내역으로 연결해야함! */}
             </li>
           </ul>
         </li>
