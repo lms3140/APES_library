@@ -5,6 +5,7 @@ import com.bookshop.service.JwtService;
 import com.bookshop.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,31 @@ public class MemberController {
                 "login", true,
                 "token", token,
                 "userId", memberDto.getUserId()
+        ));
+    }
+
+    // 쿠키를 받는 로그인
+    @PostMapping("/login-cookie")
+    public ResponseEntity<?> loginCookie(@RequestBody MemberDto dto,
+                                         HttpServletResponse response) {
+        String token = memberService.adminLogin(dto, response);
+        if (token == null) {
+            return ResponseEntity.status(401).body(Map.of("login", false));
+        }
+
+        ResponseCookie cookie = ResponseCookie.from("accessToken", token)
+                .httpOnly(true)
+                .secure(true)
+                .sameSite("Strict")
+                .path("/")
+                .maxAge(60 * 30)
+                .build();
+
+        response.addHeader("Set-Cookie", cookie.toString());
+
+        return ResponseEntity.ok(Map.of(
+                "login", true,
+                "userId", dto.getUserId()
         ));
     }
 

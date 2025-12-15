@@ -44,6 +44,25 @@ public class MemberServiceImpl implements MemberService {
         return token;
     }
 
+    // ===== 로그인 (JWT 발급) =====
+    @Override
+    public String adminLogin(MemberDto dto, HttpServletResponse response) {
+        Optional<Member> memberOpt = memberRepository.findByUserId(dto.getUserId());
+        if (memberOpt.isEmpty()) return null;
+        Member member = memberOpt.get();
+        if(!member.getRole().equals("ADMIN")){
+            return null;
+        }
+        if (!passwordEncoder.matches(dto.getPwd(), member.getPwd())) return null;
+
+        // JWT 생성
+        String token = jwtService.generateToken(member.getUserId());
+
+        // JWT를 Response Header에 넣기
+        response.setHeader("Authorization", "Bearer " + token);
+        return token;
+    }
+
     // ===== JWT 기반 회원 확인 =====
     @Override
     public Long getCurrentMemberId(HttpServletRequest request) {
