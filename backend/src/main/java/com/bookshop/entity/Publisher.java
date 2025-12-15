@@ -15,6 +15,6 @@ import lombok.Setter;
 public class Publisher extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long publisherId;
+    private Long publisherId;
     private String name;
 }

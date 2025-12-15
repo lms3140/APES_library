@@ -3,6 +3,7 @@ package com.bookshop.security;
 import com.bookshop.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,28 +34,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        // 1) Authorization 헤더 가져오기
-        String authHeader = request.getHeader("Authorization");
+        // 1 토큰 추출 (Bearer → Cookie 순)
+        String token = resolveToken(request);
 
-        // 없거나 Bearer 로 시작하지 않으면 다음 필터로 넘김
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        // 토큰 없으면 인증 시도 안 하고 그대로 통과
+        if (token == null) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // 2) 토큰 추출
-        String token = authHeader.substring(7);
-
-        // 3) JWT에서 userId 추출
+        // 2 ⃣ JWT에서 userId 추출
         String userId = jwtService.extractUsername(token);
 
-        // 4) SecurityContext에 인증 정보가 없을 경우에만 처리
-        if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        // 3 아직 인증 안 된 경우에만 처리
+        if (userId != null &&
+                SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            // 5) DB에서 유저 정보 조회
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
+            // 4 DB에서 유저 정보 조회
+            UserDetails userDetails =
+                    userDetailsService.loadUserByUsername(userId);
 
-            // 6) 토큰이 유효하면 Authentication 생성 후 컨텍스트에 저장
+            // 5 토큰 검증
             if (jwtService.validateToken(token)) {
 
                 UsernamePasswordAuthenticationToken authToken =
@@ -68,12 +68,39 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );
 
-                // ★ request를 "로그인된 사용자"로 지정
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+                // 6 인증 완료
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authToken);
             }
         }
 
         // 다음 필터 실행
         filterChain.doFilter(request, response);
+    }
+
+    /**
+     * 토큰 추출 로직
+     * 1) Authorization: Bearer xxx
+     * 2) HttpOnly Cookie (accessToken)
+     */
+    private String resolveToken(HttpServletRequest request) {
+        // Bearer 헤더 우선
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7);
+        }
+
+        // HttpOnly 쿠키
+        if (request.getCookies() == null) {
+            return null;
+        }
+
+        for (Cookie cookie : request.getCookies()) {
+            if ("accessToken".equals(cookie.getName())) {
+                return cookie.getValue();
+            }
+        }
+
+        return null;
     }
 }
