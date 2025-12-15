@@ -16,6 +16,7 @@ public class PurchaseOrder extends BaseCreatedEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
+    @Setter
     private String orderStatus = "READY";
 
     @Setter

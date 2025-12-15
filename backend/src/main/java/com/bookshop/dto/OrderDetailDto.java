@@ -12,7 +12,7 @@ public class OrderDetailDto {
     private List<OrderItemDto> items;
     private String receiverName;
     private String phone;
-    private String address;
+    private AddressDto address;
     private int totalAmount;
     private int originalAmount;
     private int earnedPoint;

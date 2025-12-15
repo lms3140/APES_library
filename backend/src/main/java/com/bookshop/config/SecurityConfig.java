@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**","/kakao/**","/member/**","/book-collection/**","/Book/detail/**", "/api/**", "/adminPage/**").permitAll()
+                        .requestMatchers("/auth/**","/kakao/**","/member/**","/book-collection/**","/Book/detail/**", "/api/**", "/adminPage/**", "admin/**").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
