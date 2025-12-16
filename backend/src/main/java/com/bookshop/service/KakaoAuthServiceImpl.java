@@ -18,7 +18,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class AuthServiceImpl implements AuthService {
+public class KakaoAuthServiceImpl implements KakaoAuthService {
 
     private final MemberRepository memberRepository;
     private final JwtService jwtService;
@@ -45,8 +45,8 @@ public class AuthServiceImpl implements AuthService {
         String redirect_uri = "http://localhost:8080/auth/kakao/loginReady";
         String response_type = "code";
         String authUrl = "https://kauth.kakao.com/oauth/authorize?client_id="+client_id
-                            +"&redirect_uri="+redirect_uri
-                            +"&response_type="+response_type;
+                +"&redirect_uri="+redirect_uri
+                +"&response_type="+response_type;
         System.out.println("authUrl--------------> "+authUrl);
 
 

@@ -12,4 +12,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     default boolean existsByUserId(String userId) {
         return countByUserId(userId) > 0;
     }
+
+    boolean existsByKakaoId(String kakaoId);
 }

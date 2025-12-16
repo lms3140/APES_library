@@ -127,7 +127,7 @@ export const Login = () => {
   };
 
 const handleKakaoAuth = () => {
-    window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=faa41cfd2406bc361c3eb40aa4fb7ceb&redirect_uri=http://localhost:5173/kakao/callback&response_type=code";
+    window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=faa41cfd2406bc361c3eb40aa4fb7ceb&redirect_uri=http://localhost:5173/auth/kakao/callback&response_type=code";
     }
 
   return (

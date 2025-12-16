@@ -144,4 +144,27 @@ public class MemberServiceImpl implements MemberService {
 
         return true;
     }
+
+    // ===== 카카오 ID로 유저 존재 여부 확인 =====
+    @Override
+    public boolean isUserExist(String kakaoId) {
+        // 카카오 ID를 이용하여 사용자가 존재하는지 확인
+        return memberRepository.existsByKakaoId(kakaoId);
+    }
+
+    @Override
+    public void signupWithKakao(String kakaoId) {
+        // 카카오 ID로 회원 가입 처리
+        if (!isUserExist(kakaoId)) {
+            Member member = new Member();
+            member.setKakaoId(kakaoId);
+            memberRepository.save(member);
+        }
+    }
+
+    @Override
+    public String generateJwtToken(String kakaoId) {
+        // 카카오 ID로 JWT 생성
+        return jwtService.generateToken(kakaoId);
+    }
 }
