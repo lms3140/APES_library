@@ -84,7 +84,6 @@ export const Login = () => {
         await Swal.fire({
           title: "로그인 성공!",
           text: `환영합니다, ${formData.userId}님`,
-          icon: "success",
           confirmButtonText: "확인",
           customClass: {
             popup: "customPopup",
