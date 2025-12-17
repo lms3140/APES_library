@@ -49,7 +49,6 @@ public class KakaoAuthController {
         Map<String, Object> userInfo = userInfoResponse.getBody();
 
         String kakaoId = userInfo.get("id").toString();
-        String email = (String) userInfo.get("kakao_account.email");
 
         // 카카오 ID로 사용자 존재 여부 확인
         boolean isUserExist = memberService.isUserExist(kakaoId);
