@@ -1,5 +1,6 @@
 package com.bookshop.entity;
 
+import com.bookshop.entity.book.BookAuthorId;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,13 +10,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookAuthor {
 
-    @Id
+    @EmbeddedId
+    private BookAuthorId id;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("bookId")
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("authorId")
     @JoinColumn(name = "author_id")
     private Author author;
+
+    public BookAuthor(Book book, Author author) {
+        this.book = book;
+        this.author = author;
+        this.id = new BookAuthorId(book.getBookId(), author.getAuthorId());
+    }
 }
