@@ -1,6 +1,7 @@
 package com.bookshop.service.book;
 
 import com.bookshop.dto.BookDetailDto;
+import com.bookshop.dto.BookDto;
 import com.bookshop.dto.book.BookCreateRequestDto;
 import com.bookshop.entity.*;
 import com.bookshop.repository.*;
@@ -8,6 +9,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +24,7 @@ public class BookServiceImpl implements BookService{
 
     // 이거 쓰는건가??
     public BookDetailDto findByBookIdDetail(Long bookId) {
-        BookDetailDto bookInfo = bookRepository.findDetailByBookId(bookId);
-        return bookInfo;
+        return bookRepository.findDetailByBookId(bookId);
     }
 
     @Override
@@ -57,4 +59,5 @@ public class BookServiceImpl implements BookService{
 
         return savedBook.getBookId();
     }
+
 }

@@ -111,8 +111,7 @@ CREATE TABLE member (
   role VARCHAR(20) NULL,
   point_balance INT DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  deleted_at TIMESTAMP NULL,
-  kakao_id VARCHAR(255) UNIQUE
+  deleted_at TIMESTAMP NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 drop table address;
@@ -186,6 +185,7 @@ CREATE TABLE order_detail (
 drop table order_detail;
 drop table purchase_order;
 
+use book_store;
 -- ============================================================
 -- 🗂 도서 컬렉션
 -- ============================================================
@@ -422,4 +422,6 @@ desc address;
 select * from order_detail;
 select * from purchase_order;
 select * from inquiry;
+
+
 
