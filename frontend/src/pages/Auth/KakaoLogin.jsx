@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "../../css/swal.css";
@@ -7,11 +7,16 @@ import "../../css/swal.css";
 // 카카오 로그인 후 토큰을 발급받는 컴포넌트
 export const KakaoLogin = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const code = searchParams.get("code"); // URL에서 인가 코드 추출
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const code = params.get("code");
+// URL에서 인가 코드 추출
+
+// alert(code)
 
   useEffect(() => {
     // 'code' 값이 없으면 리다이렉트 처리하거나 오류 처리 필요
+//     console.log("code -------->", code);
     if (!code) {
       Swal.fire({
         title: "로그인 실패",
@@ -39,6 +44,7 @@ export const KakaoLogin = () => {
             client_id: "faa41cfd2406bc361c3eb40aa4fb7ceb", // 실제 카카오 REST API 키
             redirect_uri: "http://localhost:5173/auth/kakao/callback", // 리다이렉트 URI
             code: code, // URL에서 받은 인가 코드
+            client_secret: "PHItwtu9LhGh8FmQFesCzcZ8dGelUM0f"
           }),
           {
             headers: {
@@ -47,25 +53,31 @@ export const KakaoLogin = () => {
           }
         );
 
+
         // 응답에서 액세스 토큰을 추출
-        const { access_token } = response.data;
+//         const { access_token } = response.data;
+        const { id_token, access_token } = await response.data;
+        const payloadBase64 = id_token.split(".")[1];
+        const payload = JSON.parse(atob(payloadBase64));
+
+        console.log(payload);
         console.log("발급된 액세스 토큰:", access_token);  // 응답 데이터 확인
 
         // 2. 액세스 토큰을 로컬 스토리지에 저장
         localStorage.setItem("access_token", access_token); // 로컬 스토리지에 저장
 
-        // 3. 사용자 정보 확인 또는 후속 처리 (백엔드와 연동)
-        const checkUserResponse = await axios.post(
-          "http://localhost:8080/api/auth/checkUser", // 실제 백엔드 API
-          { access_token }
-        );
-
-        // 4. 사용자 정보가 존재하면 로그인, 없으면 회원가입
-        if (checkUserResponse.data.success) {
-          navigate("/"); // 로그인 성공시 홈 화면으로 리디렉션
-        } else {
-          navigate("/signup", { state: { user: checkUserResponse.data.user } }); // 회원가입 페이지로 이동
-        }
+        if(access_token) {
+            Swal.fire({
+              title: "로그인 성공",
+              confirmButtonText: "확인",
+              customClass: {
+                popup: "customPopup",
+                title: "customTitle",
+                confirmButton: "customConfirmButton",
+              },
+            });
+            navigate("/");
+            }
 
       } catch (error) {
         console.error("카카오 로그인 실패:", error);

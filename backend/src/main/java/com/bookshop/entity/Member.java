@@ -65,23 +65,21 @@ public class Member {
     }
 
     /**
-     * 카카오 로그인 최초 가입용 팩토리 메서드
+     * 카카오 최초 가입용 팩토리 메서드
      */
     public static Member createKakaoMember(String kakaoId) {
         Member m = new Member();
-
         m.kakaoId = kakaoId;
-        m.userId = "kakao_" + kakaoId;   // 아이디 충돌 방지
-        m.pwd = null;                    // 소셜 회원은 패스워드 없음
+        m.userId = "kakao_" + kakaoId; // 내부 ID
+        m.pwd = null;
 
-        // 기본값 채움
+        // NOT NULL 컬럼 기본값
         m.name = "카카오사용자";
         m.phone = "000-0000-0000";
         m.email = "kakao_" + kakaoId + "@kakao.com";
 
         m.role = "USER";
         m.pointBalance = 0;
-
         return m;
     }
 }
