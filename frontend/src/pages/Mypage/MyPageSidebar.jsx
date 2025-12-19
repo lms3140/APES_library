@@ -38,7 +38,8 @@ export function MyPageSidebar() {
         </div>
         <div className={styles.name}>{member ? member.name : "회원"}님</div>
         <div className={styles.point}>
-          포인트 : <span>{member ? member.pointBalance : 0}</span>
+          포인트 :{" "}
+          <span>{(member ? member.pointBalance : 0).toLocaleString()}</span>
         </div>
       </div>
       <nav>

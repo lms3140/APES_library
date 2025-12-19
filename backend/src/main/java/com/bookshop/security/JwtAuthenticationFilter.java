@@ -33,7 +33,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getRequestURI().startsWith("/auth/kakao");
+        String uri = request.getRequestURI();
+        return uri.startsWith("/auth/kakao") || uri.startsWith("/admin/");
     }
 
     @Override

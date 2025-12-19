@@ -2,6 +2,7 @@ package com.bookshop.Controller;
 
 import com.bookshop.dto.OrderDetailDto;
 import com.bookshop.dto.OrderHistoryDto;
+import com.bookshop.dto.OrderStatusUpdateRequestDto;
 import com.bookshop.service.AdminOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,8 @@ public class AdminOrderController {
 
     @PatchMapping("/{orderId}/status")
     public String updateOrderStatus(@PathVariable Long orderId,
-                                    @RequestParam String status) {
-        adminOrderService.updateOrderStatus(orderId, status);
+                                    @RequestBody OrderStatusUpdateRequestDto requestDto) {
+        adminOrderService.updateOrderStatus(orderId, requestDto.getOrderStatus());
         return "updated";
     }
 }
