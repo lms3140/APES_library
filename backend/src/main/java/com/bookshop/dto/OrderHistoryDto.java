@@ -1,5 +1,6 @@
 package com.bookshop.dto;
 
+import com.bookshop.entity.OrderStatus;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Builder
 public class OrderHistoryDto {
     private Long orderId;
-    private String orderStatus;
+    private OrderStatus orderStatus;
     private Integer originalAmount;
     private LocalDateTime paidAt;
 

@@ -2,6 +2,7 @@ package com.bookshop.service;
 
 import com.bookshop.dto.*;
 import com.bookshop.entity.Address;
+import com.bookshop.entity.OrderStatus;
 import com.bookshop.entity.PurchaseOrder;
 import com.bookshop.repository.OrderDetailRepository;
 import com.bookshop.repository.PurchaseOrderRepository;
@@ -69,16 +70,21 @@ public class AdminOrderServiceImpl implements AdminOrderService{
     }
 
     @Override
-    public void updateOrderStatus(Long orderId, String status) {
+    public void updateOrderStatus(Long orderId, OrderStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("OrderStatus must not be null");
+        }
+
         PurchaseOrder order = purchaseOrderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
-        switch (status.toUpperCase()) {
-            case "READY" -> order.setOrderStatus("READY");
-            case "PAID" -> order.approve();
-            case "CANCEL" -> order.cancel();
-            case "FAIL" -> order.fail();
-            case "ERROR" -> order.error();
-            default -> throw new IllegalArgumentException("Invalid order status");
+
+        switch (status) {
+            case READY -> order.setOrderStatus(OrderStatus.READY);
+            case PAID -> order.approve();
+            case CANCEL -> order.cancel();
+            case FAIL -> order.fail();
+            case ERROR -> order.error();
+            case DELIVER -> order.deliver();
         }
     }
 }

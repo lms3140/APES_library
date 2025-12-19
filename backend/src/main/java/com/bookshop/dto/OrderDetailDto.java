@@ -1,5 +1,6 @@
 package com.bookshop.dto;
 
+import com.bookshop.entity.OrderStatus;
 import lombok.Data;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class OrderDetailDto {
     private Long orderId;
     private String orderDate;
-    private String orderStatus;
+    private OrderStatus orderStatus;
     private List<OrderItemDto> items;
     private String receiverName;
     private String phone;

@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.query.Order;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class PurchaseOrder extends BaseCreatedEntity {
 
@@ -16,19 +18,15 @@ public class PurchaseOrder extends BaseCreatedEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    @Setter
-    private String orderStatus = "READY";
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus = OrderStatus.READY;
 
-    @Setter
     private Integer originalAmount;
 
-    @Setter
     private Integer totalAmount;
 
-    @Setter
     private int earnedPoint;
 
-    @Setter
     private String tid;
 
     private LocalDateTime paidAt;
@@ -47,26 +45,30 @@ public class PurchaseOrder extends BaseCreatedEntity {
         this.member = member;
         this.address = address;
         this.totalAmount = totalAmount;
-        this.orderStatus = "READY";
         this.originalAmount = originalAmount;
+        this.orderStatus = OrderStatus.READY;
     }
 
     // 결제 승인 시
     public void approve() {
-        this.orderStatus = "PAID";
+        this.orderStatus = OrderStatus.PAID;
         this.paidAt = LocalDateTime.now();
     }
 
     public void cancel() {
-        this.orderStatus = "CANCEL";
+        this.orderStatus = OrderStatus.CANCEL;
     }
 
     public void fail() {
-        this.orderStatus = "FAIL";
+        this.orderStatus = OrderStatus.FAIL;
     }
 
     public void error(){
-        this.orderStatus = "ERROR";
+        this.orderStatus = OrderStatus.ERROR;
+    }
+
+    public void deliver() {
+        this.orderStatus = OrderStatus.DELIVER;
     }
 
     public void deleted() {
