@@ -6,6 +6,12 @@ import cstyles from "./Logo.module.css";
 
 export const SignupIntro = () => {
     const navigate = useNavigate();
+    const handleKakaoAuth = () => {
+        window.location.href = "https://kauth.kakao.com/oauth/authorize?" +
+                            "client_id=faa41cfd2406bc361c3eb40aa4fb7ceb" +
+                            "&redirect_uri=http://localhost:5173/auth/kakao/callback" +
+                            "&response_type=code";
+        };
 
     return (
         <div className={cstyles.container}>
@@ -36,17 +42,9 @@ export const SignupIntro = () => {
                 <button
                     type="button"
                     className={styles.btnKakao}
-                    onClick={() => {
-                        if (window.Kakao && !window.Kakao.isInitialized()) {
-                            window.Kakao.init("faa41cfd2406bc361c3eb40aa4fb7ceb");
-                        }
-
-                        window.Kakao.Auth.authorize({
-                            redirectUri: "http://localhost:5173/kakao/callback",
-                        });
-                    }}
-                >
-                    카카오 회원가입
+                    onClick={handleKakaoAuth}
+                  >
+                    카카오로 회원가입
                 </button>
 
                 {/* 네이버 회원가입 버튼 */}

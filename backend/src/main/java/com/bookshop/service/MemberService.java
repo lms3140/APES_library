@@ -15,4 +15,8 @@ public interface MemberService {
     Long getCurrentMemberId(HttpServletRequest request);
     MemberDto getMemberInfo(String userId);
     boolean updateMember(String userId, MemberDto updateReq);
+
+//    boolean isUserExist(String kakaoId);  // 카카오 ID로 유저 존재 여부 확인
+//    void signupWithKakao(String kakaoId); // 카카오로 회원 가입
+//    String generateJwtToken(String kakaoId); // 카카오 ID로 JWT 생성
 }
