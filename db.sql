@@ -186,6 +186,7 @@ CREATE TABLE order_detail (
 drop table order_detail;
 drop table purchase_order;
 
+use book_store;
 -- ============================================================
 -- 🗂 도서 컬렉션
 -- ============================================================
@@ -422,4 +423,6 @@ desc address;
 select * from order_detail;
 select * from purchase_order;
 select * from inquiry;
+
+
 
