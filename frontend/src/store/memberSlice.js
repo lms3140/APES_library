@@ -5,6 +5,7 @@ export const memberSlice = createSlice({
   initialState: {
     isLogin: false,
     userId: null, // 로그인한 사용자 ID
+    jwtToken: null, // 로그인한 사용자 JWT토큰
   },
   reducers: {
     // 로그인 상태 설정
@@ -14,6 +15,10 @@ export const memberSlice = createSlice({
     // 로그인한 사용자 ID 설정
     setUserId: (state, action) => {
       state.userId = action.payload;
+    },
+    // JWT 토큰 저장
+    setJwtToken: (state, action) => {
+      state.jwtToken = action.payload;
     },
   },
 });
