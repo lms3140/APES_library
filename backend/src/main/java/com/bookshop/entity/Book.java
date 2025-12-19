@@ -1,8 +1,7 @@
 package com.bookshop.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,7 +9,10 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Book extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +41,6 @@ public class Book extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="publisher_id")
     private Publisher publisher;
+
+
 }

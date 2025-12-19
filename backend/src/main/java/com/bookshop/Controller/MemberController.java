@@ -57,7 +57,7 @@ public class MemberController {
                 .secure(true)
                 .sameSite("Strict")
                 .path("/")
-                .maxAge(60 * 30)
+                .maxAge(60 * 60 * 24 * 7)
                 .build();
 
         response.addHeader("Set-Cookie", cookie.toString());
