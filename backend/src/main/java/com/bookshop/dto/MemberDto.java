@@ -26,7 +26,6 @@ public class MemberDto {
     private Integer changePoint;
 
     private String jwtToken; // JWT 토큰
-    private String kakaoAccessToken; // 카카오 access token
     private String kakaoId;  // 카카오 고유 ID
 
     public MemberDto() {}
@@ -48,6 +47,5 @@ public class MemberDto {
     public MemberDto(Member entity, String jwtToken, String kakaoAccessToken) {
         this(entity);
         this.jwtToken = jwtToken;
-        this.kakaoAccessToken = kakaoAccessToken;
     }
 }

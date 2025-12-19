@@ -19,7 +19,7 @@ export const KakaoLogin = () => {
 //     console.log("code -------->", code);
     if (!code) {
       Swal.fire({
-        title: "로그인 실패",
+        title: "로그인 실패(인가 코드)",
         text: "로그인 과정에서 문제가 발생했습니다.",
         confirmButtonText: "확인",
         customClass: {
@@ -56,28 +56,43 @@ export const KakaoLogin = () => {
 
         // 응답에서 액세스 토큰을 추출
 //         const { access_token } = response.data;
-        const { id_token, access_token } = await response.data;
+        const { id_token } = await response.data;
         const payloadBase64 = id_token.split(".")[1];
         const payload = JSON.parse(atob(payloadBase64));
 
-        console.log(payload);
-        console.log("발급된 액세스 토큰:", access_token);  // 응답 데이터 확인
+        console.log(payload);  // 응답 데이터 확인
+        console.log("발급된 ID 토큰:", id_token);
 
-        // 2. 액세스 토큰을 로컬 스토리지에 저장
-        localStorage.setItem("access_token", access_token); // 로컬 스토리지에 저장
+        const kakaoId = payload.sub;
 
-        if(access_token) {
-            Swal.fire({
-              title: "로그인 성공",
-              confirmButtonText: "확인",
-              customClass: {
-                popup: "customPopup",
-                title: "customTitle",
-                confirmButton: "customConfirmButton",
-              },
+        console.log("Kakao_ID:", kakaoId);
+
+        const backendRes = await axios.post(
+            "http://localhost:8080/auth/kakao/login",
+            {
+              kakaoId,
             });
-            navigate("/");
-            }
+
+        console.log("백엔드 응답:", backendRes.data);
+
+        const { jwtToken } = backendRes.data;
+
+        // 우리 서비스 JWT 저장
+        localStorage.setItem("jwt", jwtToken);
+
+//         // 2. 액세스 토큰을 로컬 스토리지에 저장
+//         localStorage.setItem("access_token", access_token); // 로컬 스토리지에 저장
+
+        Swal.fire({
+          title: "로그인 성공",
+          confirmButtonText: "확인",
+          customClass: {
+            popup: "customPopup",
+            title: "customTitle",
+            confirmButton: "customConfirmButton",
+          },
+        });
+        navigate("/");
 
       } catch (error) {
         console.error("카카오 로그인 실패:", error);
