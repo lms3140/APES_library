@@ -111,7 +111,8 @@ CREATE TABLE member (
   role VARCHAR(20) NULL,
   point_balance INT DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  deleted_at TIMESTAMP NULL
+  deleted_at TIMESTAMP NULL,
+  kakao_id VARCHAR(255) UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 drop table address;
