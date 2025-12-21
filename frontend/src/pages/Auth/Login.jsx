@@ -6,7 +6,7 @@ import { FaLock } from "react-icons/fa";
 import Swal from "sweetalert2";
 import "../../css/swal.css";
 
-import { axiosGetKakaoAuth } from "../../utils/dataFetch.js"
+import { axiosGetKakaoAuth } from "../../utils/dataFetch.js";
 import { loginMember } from "../../api/MemberAPI.jsx";
 import { setIsLogin, setUserId } from "../../store/memberSlice.js";
 
@@ -126,9 +126,9 @@ export const Login = () => {
     }
   };
 
-const handleKakaoAuth = () => {
+  const handleKakaoAuth = () => {
     window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=faa41cfd2406bc361c3eb40aa4fb7ceb&redirect_uri=http://localhost:5173/auth/kakao/callback&response_type=code";
-    }
+  };
 
   return (
     <div className={cstyles.container}>

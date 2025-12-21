@@ -4,59 +4,39 @@ import com.bookshop.dto.MemberDto;
 import com.bookshop.entity.Member;
 import com.bookshop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-//@Transactional
+@Transactional
 public class KakaoAuthServiceImpl implements KakaoAuthService {
 
     private final MemberRepository memberRepository;
     private final JwtService jwtService;
-
-    @Value("${kakao.rest-api-key}")
-    private String restApiKey;
-
-    // optional: client secret (앱에서 client_secret 사용 설정 했으면 properties에 넣어야 함)
-    @Value("${kakao.client-secret:}")
-    private String clientSecret;
-
-    @Value("${kakao.redirect-uri}")
-    private String redirectUri;
-
-    @Value("${kakao.admin-key:}")
-    private String adminKey;
-
-    private final RestTemplate rest = new RestTemplate();
+    private final PasswordEncoder passwordEncoder;  // passwordEncoder 주입
 
     @Override
-    public MemberDto kakaoLogin(String code) {
-        return null;
-    }
+    public MemberDto loginByKakaoId(String kakaoId) {
 
-    @Override
-    public boolean kakaoLogout(String token) {
-        String url = "https://kapi.kakao.com/v1/user/logout";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.add("Authorization", "Bearer " + token);
+        // 1️⃣ 카카오 ID로 회원 조회
+        Member member = memberRepository.findByKakaoId(kakaoId)
+                .orElseGet(() -> {
+                    // 2️⃣ 없으면 자동 회원가입
+                    Member newMember = Member.createKakaoMember(kakaoId); // 비밀번호는 평문으로 설정됨
 
-        HttpEntity<?> entity = new HttpEntity<>(headers);
-        try {
-            Map<String, Object> result = rest.postForObject(url, entity, Map.class);
-            return result != null && result.get("id") != null;
-        } catch (Exception e) {
-            // 로그아웃 실패: false 반환
-            return false;
-        }
+                    // 패스워드 암호화
+                    String encryptedPassword = passwordEncoder.encode("kakao_" + kakaoId);  // 암호화
+                    newMember.setPwd(encryptedPassword);  // 암호화된 비밀번호 설정
+
+                    return memberRepository.save(newMember);  // 새 회원 저장
+                });
+
+        // 3️⃣ JWT 발급
+        String jwtToken = jwtService.generateToken(member.getUserId());
+
+        // 4️⃣ DTO로 반환
+        return new MemberDto(member, jwtToken, null);
     }
 }

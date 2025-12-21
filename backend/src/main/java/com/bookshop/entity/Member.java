@@ -71,7 +71,12 @@ public class Member {
         Member m = new Member();
         m.kakaoId = kakaoId;
         m.userId = "kakao_" + kakaoId; // 내부 ID
-        m.pwd = null;
+
+        // 카카오 사용자 기본 비밀번호 생성 (임시 비밀번호로 설정)
+        String defaultPassword = "kakao_" + kakaoId; // 예시 비밀번호, 필요시 변경
+
+        // 비밀번호 암호화는 서비스 계층에서 처리하도록 변경
+        m.pwd = defaultPassword; // 여기서는 평문으로
 
         // NOT NULL 컬럼 기본값
         m.name = "카카오사용자";
@@ -80,6 +85,8 @@ public class Member {
 
         m.role = "USER";
         m.pointBalance = 0;
+
         return m;
     }
+
 }
