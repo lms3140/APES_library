@@ -8,16 +8,16 @@ import java.util.List;
 
 @Data
 @Builder
-public class BookCreateRequestDto {
-    private Long BookId;
+public class BookUpdateRespDto {
     private String title;
-    private SelectInputDto category;      // 미사용
-    private SelectInputDto subCategory;
-    private SelectInputDto publisher;
+    private Long category;      // 미사용
+    private Long subCategory;
+    private Long publisher;
     private Integer price;
     private Integer point;
     private LocalDate publishedDate;
     private String description;
     private String imageUrl;
-    private List<SelectInputDto> author;
+    private List<Long> author;
+
 }
