@@ -3,6 +3,7 @@ package com.bookshop.dto.book;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class BookCreateRequestDto {
@@ -15,6 +16,6 @@ public class BookCreateRequestDto {
     private LocalDate publishedDate;
     private String description;
     private String imageUrl;
-    private Long authorId;
+    private List<Long> authorId;
 
 }

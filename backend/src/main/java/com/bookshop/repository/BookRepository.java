@@ -40,4 +40,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             nativeQuery = true)
     BookDetailDto findDetailByBookId(@Param("bookId") Long bookId);
 
+
+
 }

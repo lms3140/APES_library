@@ -35,7 +35,8 @@ public class BookServiceImpl implements BookService{
         Publisher publisher = publisherRepository
                 .getReferenceById(requestDto.getPublisherId());
 
-        Author author = authorRepository.getReferenceById(requestDto.getAuthorId());
+        List<Author> authors = requestDto.getAuthorId().stream().map(authorRepository::getReferenceById).toList();
+
 
         Book book = Book.builder()
                 .title(requestDto.getTitle())
@@ -52,10 +53,10 @@ public class BookServiceImpl implements BookService{
 
         Book savedBook = bookRepository.save(book);
 
-        // 작가가 두명 이상이면 for문으로 교체가능
-        BookAuthor bookAuthor = new BookAuthor(savedBook,author);
-
-        bookAuthorRepository.save(bookAuthor);
+        for (Author author : authors) {
+            BookAuthor bookAuthor = new BookAuthor(savedBook, author);
+            bookAuthorRepository.save(bookAuthor);
+        }
 
         return savedBook.getBookId();
     }
