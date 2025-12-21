@@ -4,6 +4,7 @@ package com.bookshop.Controller;
 import com.bookshop.dto.BookDetailDto;
 import com.bookshop.dto.BookDto;
 import com.bookshop.dto.book.BookCreateRequestDto;
+import com.bookshop.dto.book.BookUpdateRespDto;
 import com.bookshop.service.book.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,11 +30,17 @@ public class BookController {
         return result;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Long> createBook(@RequestBody BookCreateRequestDto requestDto){
+    @GetMapping("/admin/detail/{bookId}")
+    public BookUpdateRespDto getAdminBookDetail(@PathVariable Long bookId){
+        System.out.println(bookId);
+        return bookService.findBookDetails(bookId);
+    }
 
-        long id = bookService.createBook(requestDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(id);
+    @PostMapping("/save")
+    public ResponseEntity<Long> saveBook(@RequestBody BookCreateRequestDto requestDto){
+
+        long id = bookService.saveBook(requestDto);
+        return ResponseEntity.status(HttpStatus.OK).body(id);
     }
 
     @GetMapping("/list")
