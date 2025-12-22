@@ -101,19 +101,33 @@ CREATE TABLE book_translator (
 -- ============================================================
 CREATE TABLE member (
   member_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  -- 로그인 정보
   user_id VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
+  -- 기본 회원 정보
   name VARCHAR(50) NOT NULL,
   phone VARCHAR(20) NOT NULL,
   email VARCHAR(100) NOT NULL,
   birth DATE NULL,
   gender VARCHAR(1) NULL,
-  role VARCHAR(20) NULL,
+  -- 권한 / 상태
+  role VARCHAR(20) DEFAULT 'USER', 
+  status VARCHAR(20) DEFAULT 'ACTIVE', 
+  -- ACTIVE / BLOCK / WITHDRAW
+  -- 차단 정보
+  block_reason VARCHAR(255) NULL,
+  blocked_at TIMESTAMP NULL,
+  -- 포인트
   point_balance INT DEFAULT 0,
+  -- 소셜 로그인
+  kakao_id VARCHAR(255) UNIQUE NULL,
+  -- 시간 관리
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  deleted_at TIMESTAMP NULL,
-  kakao_id VARCHAR(255) UNIQUE
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 drop table address;
 CREATE TABLE address (

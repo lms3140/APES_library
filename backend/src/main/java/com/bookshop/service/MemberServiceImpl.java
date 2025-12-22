@@ -36,17 +36,24 @@ public class MemberServiceImpl implements MemberService {
         if (memberOpt.isEmpty()) return null;
 
         Member member = memberOpt.get();
+
+        // ===== 차단 회원 로그인 제한 (정책 확정 전 주석 처리) =====
+        /*
+        if ("BLOCK".equals(member.getStatus())) {
+            throw new RuntimeException(
+                    "차단된 회원입니다. 사유: " + member.getBlockReason()
+            );
+        }
+        */
+
         if (!passwordEncoder.matches(dto.getPwd(), member.getPwd())) return null;
 
-        // JWT 생성
         String token = jwtService.generateToken(member.getUserId());
-
-        // JWT를 Response Header에 넣기
         response.setHeader("Authorization", "Bearer " + token);
         return token;
     }
 
-    // ===== 로그인 (JWT 발급) =====
+    // ===== 어드민 로그인 (JWT 발급) =====
     @Override
     public String adminLogin(MemberDto dto, HttpServletResponse response) {
         Optional<Member> memberOpt = memberRepository.findByUserId(dto.getUserId());
@@ -55,6 +62,12 @@ public class MemberServiceImpl implements MemberService {
         if(!member.getRole().equals("ADMIN")){
             return null;
         }
+        // ===== 관리자 상태 체크 (정책 확정 전 주석 처리) =====
+        /*
+        if (!"ACTIVE".equals(member.getStatus())) {
+            return null;
+        }
+        */
         if (!passwordEncoder.matches(dto.getPwd(), member.getPwd())) return null;
 
         // JWT 생성
@@ -120,21 +133,34 @@ public class MemberServiceImpl implements MemberService {
     }
 
     // 회원 정보 수정
-    public boolean updateMember(String userId, MemberDto updateReq) {
-        Optional<Member> memberOpt = memberRepository.findByUserId(userId);
+    @Override
+    public boolean updateMember(String userId,
+                                MemberDto updateReq) {
+
+        Optional<Member> memberOpt =
+                memberRepository.findByUserId(userId);
         if (memberOpt.isEmpty()) return false;
 
         Member member = memberOpt.get();
 
-        if(!passwordEncoder.matches(updateReq.getCurrentPwd(), member.getPwd())) {
+        // 현재 비밀번호 확인
+        if (!passwordEncoder.matches(
+                updateReq.getCurrentPwd(),
+                member.getPwd())) {
             return false;
         }
 
-        if (updateReq.getPwd() != null && !updateReq.getPwd().isBlank()) {
-            if(updateReq.getPwdCheck() == null || !updateReq.getPwd().equals(updateReq.getPwdCheck())) {
+        // 비밀번호 변경
+        if (updateReq.getPwd() != null &&
+                !updateReq.getPwd().isBlank()) {
+
+            if (updateReq.getPwdCheck() == null ||
+                    !updateReq.getPwd().equals(updateReq.getPwdCheck())) {
                 return false;
             }
-            member.setPwd(passwordEncoder.encode(updateReq.getPwd()));
+
+            member.setPwd(
+                    passwordEncoder.encode(updateReq.getPwd()));
         }
 
         if (updateReq.getEmail() != null) {
