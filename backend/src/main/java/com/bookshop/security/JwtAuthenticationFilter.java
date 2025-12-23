@@ -34,7 +34,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String uri = request.getRequestURI();
-        return uri.startsWith("/auth/kakao") || uri.equals("/admin/login");
+        return uri.startsWith("/auth/kakao")
+                || uri.startsWith("/member/")
+                || uri.startsWith("/admin/");
     }
 
     @Override
@@ -43,7 +45,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        // 1 토큰 추출 (Bearer → Cookie 순)
+        // 토큰 추출 (Bearer → Cookie 순)
         String token = resolveToken(request);
 
         // 토큰 없으면 인증 시도 안 하고 그대로 통과
@@ -52,18 +54,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        // 2 ⃣ JWT에서 userId 추출
+        // JWT에서 userId 추출
         String userId = jwtService.extractUsername(token);
 
-        // 3 아직 인증 안 된 경우에만 처리
+        // 아직 인증 안 된 경우에만 처리
         if (userId != null &&
                 SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            // 4 DB에서 유저 정보 조회
+            // DB에서 유저 정보 조회
             UserDetails userDetails =
                     userDetailsService.loadUserByUsername(userId);
 
-            // 5 토큰 검증
+            // 토큰 검증
             if (jwtService.validateToken(token)) {
 
                 UsernamePasswordAuthenticationToken authToken =

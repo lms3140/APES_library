@@ -25,7 +25,7 @@ public class Member {
     private String userId;
 
     // 비밀번호
-    @Column(nullable = false)
+    @Column(nullable = false, name ="password")
     private String pwd;
 
     // 기본 회원 정보

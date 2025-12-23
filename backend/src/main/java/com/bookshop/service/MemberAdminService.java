@@ -6,21 +6,21 @@ import org.springframework.data.domain.Pageable;
 
 public interface MemberAdminService {
 
-    // ===== 회원 목록 조회 (검색 + 상태 필터 + 페이지네이션) =====
+    // 회원 목록 (검색 + 상태 + 페이징)
     Page<Member> getMembers(String keyword,
                             String status,
                             Pageable pageable);
 
-    // ===== 회원 상세 조회 =====
+    // 회원 상세
     Member getMember(Long memberId);
 
-    // ===== 회원 상태 변경 (ACTIVE / BLOCK / WITHDRAW) =====
+    // 상태 변경
     void changeStatus(Long adminId,
                       Long memberId,
                       String status,
                       String reason);
 
-    // ===== 회원 포인트 변경 (증감) =====
+    // 포인트 변경
     void changePoint(Long adminId,
                      Long memberId,
                      int amount,

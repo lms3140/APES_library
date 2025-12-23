@@ -19,38 +19,45 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         this.memberRepository = memberRepository;
     }
 
-    // ===== 회원 목록 조회 =====
+    // ===== 회원 목록 =====
     @Override
     @Transactional(readOnly = true)
     public Page<Member> getMembers(String keyword,
                                    String status,
                                    Pageable pageable) {
 
-        if (keyword != null && !keyword.isBlank()
-                && status != null && !status.isBlank()) {
+        boolean hasKeyword = keyword != null && !keyword.isBlank();
+        boolean hasStatus = status != null && !status.isBlank();
 
+        // 상태 + 키워드
+        if (hasKeyword && hasStatus) {
+            MemberStatus s = MemberStatus.valueOf(status);
             return memberRepository
-                    .findByStatusAndUserIdContainingOrNameContainingOrEmailContaining(
-                            MemberStatus.valueOf(status),
-                            keyword, keyword, keyword,
+                    .findByStatusAndUserIdContainingOrStatusAndNameContainingOrStatusAndEmailContaining(
+                            s, keyword,
+                            s, keyword,
+                            s, keyword,
                             pageable
                     );
         }
 
-        if (keyword != null && !keyword.isBlank()) {
+        // 키워드만
+        if (hasKeyword) {
             return memberRepository
                     .findByUserIdContainingOrNameContainingOrEmailContaining(
                             keyword, keyword, keyword, pageable
                     );
         }
 
-        if (status != null && !status.isBlank()) {
+        // 상태만
+        if (hasStatus) {
             return memberRepository.findByStatus(
                     MemberStatus.valueOf(status),
                     pageable
             );
         }
 
+        // 전체
         return memberRepository.findAll(pageable);
     }
 
@@ -63,7 +70,7 @@ public class MemberAdminServiceImpl implements MemberAdminService {
                         new EntityNotFoundException("회원이 존재하지 않습니다."));
     }
 
-    // ===== 회원 상태 변경 =====
+    // ===== 상태 변경 =====
     @Override
     public void changeStatus(Long adminId,
                              Long memberId,
@@ -74,26 +81,17 @@ public class MemberAdminServiceImpl implements MemberAdminService {
                 .orElseThrow(() ->
                         new EntityNotFoundException("회원이 존재하지 않습니다."));
 
-        MemberStatus memberStatus = MemberStatus.valueOf(status);
-        member.setStatus(memberStatus);
+        MemberStatus newStatus = MemberStatus.valueOf(status);
+        member.setStatus(newStatus);
 
-        if (MemberStatus.BLOCK.equals(memberStatus)) {
+        if (newStatus == MemberStatus.BLOCK) {
             member.setBlockReason(reason);
         } else {
             member.setBlockReason(null);
         }
-
-        // ===== 관리자 로그 (정책 확정 전 주석 처리) =====
-        /*
-        adminAuditLogService.log(
-            adminId,
-            "CHANGE_MEMBER_STATUS",
-            "memberId=" + memberId
-        );
-        */
     }
 
-    // ===== 회원 포인트 변경 =====
+    // ===== 포인트 변경 =====
     @Override
     public void changePoint(Long adminId,
                             Long memberId,
@@ -107,14 +105,5 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         member.setPointBalance(
                 member.getPointBalance() + amount
         );
-
-        // ===== 관리자 로그 (정책 확정 전 주석 처리) =====
-        /*
-        adminAuditLogService.log(
-            adminId,
-            "CHANGE_MEMBER_POINT",
-            "memberId=" + memberId
-        );
-        */
     }
 }
