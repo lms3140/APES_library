@@ -3,7 +3,7 @@ import styles from "./Detail.module.css";
 import { useGetFetch } from "../../hooks/useGetFetch";
 
 export const ProductInfo = ({ bookId }) => {
-  const url = `http://localhost:8080/Book/detail/${bookId}`;
+  const url = `http://localhost:8080/book/detail/${bookId}`;
   const { data, isLoading, isError } = useGetFetch(url);
 
   if (isLoading) return <div>상품 정보를 불러오는 중...</div>;
@@ -54,7 +54,9 @@ export const ProductInfo = ({ bookId }) => {
 
           <tr>
             <th>카테고리</th>
-            <td>{categoryName} &gt; {subcategoryName}</td>
+            <td>
+              {categoryName} &gt; {subcategoryName}
+            </td>
           </tr>
 
           <tr>

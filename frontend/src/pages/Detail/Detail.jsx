@@ -9,7 +9,7 @@ import UnderBar from "./UnderBar";
 
 export default function Detail() {
   const { bookId } = useParams(); // URL 파라미터에서 bookId 추출
-  const url = `http://localhost:8080/Book/detail/${bookId}`;
+  const url = `http://localhost:8080/book/detail/${bookId}`;
   const { isLoading, isError, data } = useGetFetch(url);
 
   const [count, setCount] = useState(1);
