@@ -57,7 +57,7 @@ export default function Detail() {
         <div className={styles.bookInfo}>
           <h2 className={styles.title}>{data.title}</h2>
           <p className={styles.author}>
-            {data.authors} | {data.publisher}
+            {data.authors || "저자 정보 없음"} | {data.publisherName || "출판사 정보 없음"}
           </p>
           <p className={styles.price}>₩ {data.price.toLocaleString()}</p>
         </div>
