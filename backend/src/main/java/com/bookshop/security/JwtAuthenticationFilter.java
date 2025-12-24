@@ -1,6 +1,7 @@
 package com.bookshop.security;
 
 import com.bookshop.service.JwtService;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -45,47 +46,50 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        // 토큰 추출 (Bearer → Cookie 순)
         String token = resolveToken(request);
 
-        // 토큰 없으면 인증 시도 안 하고 그대로 통과
         if (token == null) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // JWT에서 userId 추출
-        String userId = jwtService.extractUsername(token);
+        String userId;
+        try {
+            userId = jwtService.extractUsername(token);
+        } catch (ExpiredJwtException e) {
+            clearAuthCookie(response);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
-        // 아직 인증 안 된 경우에만 처리
         if (userId != null &&
                 SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            // DB에서 유저 정보 조회
-            UserDetails userDetails =
-                    userDetailsService.loadUserByUsername(userId);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
 
-            // 토큰 검증
-            if (jwtService.validateToken(token)) {
+            try {
+                if (jwtService.validateToken(token)) {
 
-                UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails,
-                                null,
-                                userDetails.getAuthorities()
-                        );
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(
+                                    userDetails,
+                                    null,
+                                    userDetails.getAuthorities()
+                            );
 
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
+                    authToken.setDetails(
+                            new WebAuthenticationDetailsSource().buildDetails(request)
+                    );
 
-                // 6 인증 완료
-                SecurityContextHolder.getContext()
-                        .setAuthentication(authToken);
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            } catch (ExpiredJwtException e) {
+                clearAuthCookie(response);
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
             }
         }
 
-        // 다음 필터 실행
         filterChain.doFilter(request, response);
     }
 
@@ -113,5 +117,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         return null;
+    }
+
+    private void clearAuthCookie(HttpServletResponse response) {
+        Cookie expired = new Cookie("accessToken", "");
+        expired.setMaxAge(0);
+        expired.setPath("/");
+        expired.setHttpOnly(true);
+        expired.setSecure(true);
+        response.addCookie(expired);
     }
 }
