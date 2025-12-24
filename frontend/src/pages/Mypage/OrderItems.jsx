@@ -15,6 +15,25 @@ export function OrderItems({ orders, onDelete }) {
     return `${date}-${serial}`;
   };
 
+  const formatStatus = (status) => {
+    switch (status) {
+      case "PAID":
+        return "배송준비중";
+      case "READY":
+        return "결제대기";
+      case "CANCEL":
+        return "취소";
+      case "FAIL":
+        return "결제실패";
+      case "ERROR":
+        return "결제오류";
+      case "DELIVER":
+        return "배송중";
+      default:
+        return status;
+    }
+  };
+
   return (
     <div className={style.wrapper}>
       {orders.map((order) => (
@@ -60,9 +79,7 @@ export function OrderItems({ orders, onDelete }) {
               </div>
 
               <div className={style.statusBox}>
-                {order.orderStatus === "PAID"
-                  ? "배송준비중"
-                  : order.orderStatus}
+                {formatStatus(order.orderStatus)}
               </div>
 
               <div className={style.reviewBox}>
