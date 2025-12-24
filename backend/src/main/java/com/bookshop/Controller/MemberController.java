@@ -117,6 +117,21 @@ public class MemberController {
         }
     }
 
+    @PostMapping("/validate-jwt-cookie")
+    public ResponseEntity<?> validateCookieJwt(
+            @CookieValue(name = "accessToken", required = false) String token) {
+        if (token == null) {
+            return ResponseEntity.status(401).body("No token");
+        }
+
+        boolean isValid = jwtService.validateToken(token);
+        if (!isValid) {
+            return ResponseEntity.status(401).body("Invalid or expired JWT");
+        }
+
+        return ResponseEntity.ok().build();
+    }
+
     // ===== JWT에서 userId 추출 =====
     @PostMapping("/extract-userid")
     public ResponseEntity<?> extractUserId(@RequestBody String token) {
