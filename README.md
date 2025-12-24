@@ -34,4 +34,5 @@
 
 - git clone https://github.com/lms3140/APES_library.git
 - cd frontend
+- npm i
 - npm run dev
