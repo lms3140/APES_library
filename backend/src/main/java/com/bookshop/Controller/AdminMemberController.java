@@ -3,48 +3,56 @@ package com.bookshop.Controller;
 import com.bookshop.entity.Member;
 import com.bookshop.service.MemberAdminService;
 import com.bookshop.service.MemberService;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
-
 import com.bookshop.dto.StatusRequestDto;
 import com.bookshop.dto.PointRequestDto;
-
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin/users")
+@RequiredArgsConstructor
 public class AdminMemberController {
 
     private final MemberAdminService memberAdminService;
     private final MemberService memberService;
 
-    public AdminMemberController(MemberAdminService memberAdminService,
-                                 MemberService memberService) {
-        this.memberAdminService = memberAdminService;
-        this.memberService = memberService;
-    }
-
     // ===== 회원 목록 =====
     @GetMapping
-    public Page<Member> list(@RequestParam(required = false) String keyword,
-                             @RequestParam(required = false) String status,
-                             Pageable pageable) {
-        return memberAdminService.getMembers(keyword, status, pageable);
+    public ResponseEntity<Page<Member>> list(
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) String status,
+            Pageable pageable
+    ) {
+        Page<Member> members =
+                memberAdminService.getMembers(keyword, status, pageable);
+
+        return ResponseEntity.ok(members);
     }
 
     // ===== 회원 상세 =====
     @GetMapping("/{id}")
-    public Member detail(@PathVariable Long id) {
-        return memberAdminService.getMember(id);
+    public ResponseEntity<Member> detail(@PathVariable Long id) {
+        Member member = memberAdminService.getMember(id);
+
+        // ⭐ null 방어 (이거 없으면 JSON 비어서 프론트 터짐)
+        if (member == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(member);
     }
 
     // ===== 회원 상태 변경 =====
     @PatchMapping("/{id}/status")
-    public void changeStatus(@PathVariable Long id,
-                             @RequestBody StatusRequestDto req,
-                             HttpServletRequest request) {
-
+    public ResponseEntity<Void> changeStatus(
+            @PathVariable Long id,
+            @RequestBody StatusRequestDto req,
+            HttpServletRequest request
+    ) {
         Long adminId = memberService.getCurrentMemberId(request);
 
         memberAdminService.changeStatus(
@@ -53,14 +61,18 @@ public class AdminMemberController {
                 req.getStatus(),
                 req.getReason()
         );
+
+        // ⭐ void → ResponseEntity 로 변경
+        return ResponseEntity.ok().build();
     }
 
     // ===== 회원 포인트 변경 =====
     @PatchMapping("/{id}/point")
-    public void changePoint(@PathVariable Long id,
-                            @RequestBody PointRequestDto req,
-                            HttpServletRequest request) {
-
+    public ResponseEntity<Void> changePoint(
+            @PathVariable Long id,
+            @RequestBody PointRequestDto req,
+            HttpServletRequest request
+    ) {
         Long adminId = memberService.getCurrentMemberId(request);
 
         memberAdminService.changePoint(
@@ -69,5 +81,8 @@ public class AdminMemberController {
                 req.getAmount(),
                 req.getReason()
         );
+
+        // ⭐ void → ResponseEntity
+        return ResponseEntity.ok().build();
     }
 }
