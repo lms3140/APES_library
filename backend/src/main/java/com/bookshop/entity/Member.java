@@ -50,8 +50,10 @@ public class Member {
     @Column(nullable = false)
     private MemberStatus status = MemberStatus.ACTIVE;
 
+    // 차단 사유, 시각
     @Column(length = 255)
     private String blockReason;
+    private LocalDateTime blockedAt;
 
     // 포인트
     @Column(name = "point_balance")
@@ -61,6 +63,10 @@ public class Member {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    // 수정일
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     // 탈퇴일 (소프트 삭제)
     private LocalDateTime deletedAt;

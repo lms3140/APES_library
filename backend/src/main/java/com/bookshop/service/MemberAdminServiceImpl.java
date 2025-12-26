@@ -2,21 +2,33 @@ package com.bookshop.service;
 
 import com.bookshop.entity.Member;
 import com.bookshop.entity.MemberStatus;
+import com.bookshop.entity.PurchaseOrder;
+import com.bookshop.entity.Review;
 import com.bookshop.repository.MemberRepository;
+import com.bookshop.repository.PurchaseOrderRepository;
+import com.bookshop.repository.ReviewRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class MemberAdminServiceImpl implements MemberAdminService {
 
     private final MemberRepository memberRepository;
+    private final PurchaseOrderRepository purchaseOrderRepository;
+    private final ReviewRepository reviewRepository;
 
-    public MemberAdminServiceImpl(MemberRepository memberRepository) {
+    public MemberAdminServiceImpl(MemberRepository memberRepository,
+                                  PurchaseOrderRepository purchaseOrderRepository,
+                                  ReviewRepository reviewRepository) {
         this.memberRepository = memberRepository;
+        this.purchaseOrderRepository = purchaseOrderRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     // ===== 회원 목록 =====
@@ -29,7 +41,6 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         boolean hasKeyword = keyword != null && !keyword.isBlank();
         boolean hasStatus = status != null && !status.isBlank();
 
-        // 상태 + 키워드
         if (hasKeyword && hasStatus) {
             MemberStatus s = MemberStatus.valueOf(status);
             return memberRepository
@@ -41,7 +52,6 @@ public class MemberAdminServiceImpl implements MemberAdminService {
                     );
         }
 
-        // 키워드만
         if (hasKeyword) {
             return memberRepository
                     .findByUserIdContainingOrNameContainingOrEmailContaining(
@@ -49,7 +59,6 @@ public class MemberAdminServiceImpl implements MemberAdminService {
                     );
         }
 
-        // 상태만
         if (hasStatus) {
             return memberRepository.findByStatus(
                     MemberStatus.valueOf(status),
@@ -57,7 +66,6 @@ public class MemberAdminServiceImpl implements MemberAdminService {
             );
         }
 
-        // 전체
         return memberRepository.findAll(pageable);
     }
 
@@ -105,5 +113,25 @@ public class MemberAdminServiceImpl implements MemberAdminService {
         member.setPointBalance(
                 member.getPointBalance() + amount
         );
+    }
+
+    // ===== 주문 조회 =====
+    @Override
+    @Transactional(readOnly = true)
+    public List<PurchaseOrder> getOrders(Long memberId) {
+        if (!memberRepository.existsById(memberId)) {
+            throw new EntityNotFoundException("회원이 존재하지 않습니다.");
+        }
+        return purchaseOrderRepository.findByMemberMemberIdAndDeletedFalseOrderByCreatedAtDesc(memberId);
+    }
+
+    // ===== 리뷰 조회 =====
+    @Override
+    @Transactional(readOnly = true)
+    public List<Review> getReviews(Long memberId) {
+        if (!memberRepository.existsById(memberId)) {
+            throw new EntityNotFoundException("회원이 존재하지 않습니다.");
+        }
+        return reviewRepository.findByMember_MemberId(memberId);
     }
 }

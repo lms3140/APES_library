@@ -1,6 +1,8 @@
 package com.bookshop.Controller;
 
 import com.bookshop.entity.Member;
+import com.bookshop.entity.PurchaseOrder;
+import com.bookshop.entity.Review;
 import com.bookshop.service.MemberAdminService;
 import com.bookshop.service.MemberService;
 import com.bookshop.dto.StatusRequestDto;
@@ -11,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/users")
@@ -29,7 +33,6 @@ public class AdminMemberController {
     ) {
         Page<Member> members =
                 memberAdminService.getMembers(keyword, status, pageable);
-
         return ResponseEntity.ok(members);
     }
 
@@ -37,12 +40,9 @@ public class AdminMemberController {
     @GetMapping("/{id}")
     public ResponseEntity<Member> detail(@PathVariable Long id) {
         Member member = memberAdminService.getMember(id);
-
-        // ⭐ null 방어 (이거 없으면 JSON 비어서 프론트 터짐)
         if (member == null) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(member);
     }
 
@@ -54,15 +54,7 @@ public class AdminMemberController {
             HttpServletRequest request
     ) {
         Long adminId = memberService.getCurrentMemberId(request);
-
-        memberAdminService.changeStatus(
-                adminId,
-                id,
-                req.getStatus(),
-                req.getReason()
-        );
-
-        // ⭐ void → ResponseEntity 로 변경
+        memberAdminService.changeStatus(adminId, id, req.getStatus(), req.getReason());
         return ResponseEntity.ok().build();
     }
 
@@ -74,15 +66,21 @@ public class AdminMemberController {
             HttpServletRequest request
     ) {
         Long adminId = memberService.getCurrentMemberId(request);
-
-        memberAdminService.changePoint(
-                adminId,
-                id,
-                req.getAmount(),
-                req.getReason()
-        );
-
-        // ⭐ void → ResponseEntity
+        memberAdminService.changePoint(adminId, id, req.getAmount(), req.getReason());
         return ResponseEntity.ok().build();
+    }
+
+    // ===== 회원 주문 조회 =====
+    @GetMapping("/{id}/orders")
+    public ResponseEntity<List<PurchaseOrder>> getOrders(@PathVariable Long id) {
+        List<PurchaseOrder> orders = memberAdminService.getOrders(id);
+        return ResponseEntity.ok(orders);
+    }
+
+    // ===== 회원 리뷰 조회 =====
+    @GetMapping("/{id}/reviews")
+    public ResponseEntity<List<Review>> getReviews(@PathVariable Long id) {
+        List<Review> reviews = memberAdminService.getReviews(id);
+        return ResponseEntity.ok(reviews);
     }
 }
