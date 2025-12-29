@@ -1,8 +1,9 @@
 package com.bookshop.service;
 
+import com.bookshop.dto.OrderHistoryDto;
+import com.bookshop.dto.ReviewDto;
 import com.bookshop.entity.Member;
-import com.bookshop.entity.PurchaseOrder;
-import com.bookshop.entity.Review;
+import com.bookshop.entity.MemberHistory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,8 +32,11 @@ public interface MemberAdminService {
                      String reason);
 
     // ===== 주문 조회 =====
-    List<PurchaseOrder> getOrders(Long memberId);
+    List<OrderHistoryDto> getOrders(Long memberId);
 
     // ===== 리뷰 조회 =====
-    List<Review> getReviews(Long memberId);
+    List<ReviewDto> getReviews(Long memberId);
+
+    // ================= 히스토리 =================
+    List<MemberHistory> getHistories(Long memberId);
 }
