@@ -128,8 +128,17 @@ CREATE TABLE member (
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE member_history (
+  history_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  member_id BIGINT NOT NULL,               -- member 테이블과 연동
+  type VARCHAR(20) NOT NULL,               -- 상태/포인트
+  before_value VARCHAR(255),               -- 변경 전 값
+  after_value VARCHAR(255),                -- 변경 후 값
+  reason VARCHAR(255),                     -- 수정 이유
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 수정 시간
+  FOREIGN KEY (member_id) REFERENCES member(member_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-drop table address;
 CREATE TABLE address (
   address_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   member_id BIGINT NOT NULL,
@@ -145,7 +154,7 @@ CREATE TABLE address (
   FOREIGN KEY (member_id) REFERENCES member (member_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+drop table address;
 -- ============================================================
 -- 🛒 장바구니
 -- ============================================================
