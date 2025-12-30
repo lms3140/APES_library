@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Table(name = "member_history")
+// 회원 정보에서 수정 이력 출력 및 자장 용
 public class MemberHistory {
 
     @Id
