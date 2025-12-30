@@ -27,6 +27,7 @@ public class MemberDto {
 
     private String jwtToken; // JWT 토큰
     private String kakaoId;  // 카카오 고유 ID
+    private String nickname; // 카카오 닉네임
 
     public MemberDto() {}
     public MemberDto(Member entity) {

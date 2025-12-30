@@ -20,7 +20,7 @@ public class KakaoAuthController {
     @PostMapping("/login")
     public MemberDto kakaoLogin(@RequestBody MemberDto dto) {
         System.out.println("🔥 kakaoId = " + dto.getKakaoId());
-        MemberDto result = kakaoAuthService.loginByKakaoId(dto.getKakaoId());
+        MemberDto result = kakaoAuthService.loginByKakaoId(dto.getKakaoId(), dto.getNickname());
         System.out.println("JWT = " + result.getJwtToken());
         return result;
     }

@@ -190,7 +190,11 @@ export const Login = () => {
             className={styles.btnKakao}
             onClick={handleKakaoAuth}
           >
-            카카오 로그인
+            <img
+                src="/images/auth/kakao_login.png"
+                alt="카카오 로그인"
+                className={styles.kakaoImg}
+              />
           </button>
 {/*           <button type="button" className={styles.btnNaver}>네이버 로그인</button> */}
 {/*           <button type="button" className={styles.btnGoogle}>구글 로그인</button> */}

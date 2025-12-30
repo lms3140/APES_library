@@ -359,7 +359,11 @@ export function Payment() {
           </div>
 
           <button className={paymentStyle.orderBtn} onClick={handlePayment}>
-            결제하기
+            <img
+            src="/images/paymentPage/ico_payment_kakaopay@2x.png"
+            alt="카카오 결제"
+            className={paymentStyle.kakaoImg}
+            />
           </button>
         </div>
       </div>

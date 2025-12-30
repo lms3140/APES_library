@@ -93,7 +93,7 @@ public class Member {
     /**
      * 카카오 최초 가입용 팩토리 메서드
      */
-    public static Member createKakaoMember(String kakaoId) {
+    public static Member createKakaoMember(String kakaoId, String nickname) {
         Member m = new Member();
         m.kakaoId = kakaoId;
         m.userId = "kakao_" + kakaoId;
@@ -101,7 +101,7 @@ public class Member {
         // 비밀번호는 서비스에서 암호화
         m.pwd = "kakao_" + kakaoId;
 
-        m.name = "카카오사용자";
+        m.name = nickname;
         m.phone = "000-0000-0000";
         m.email = "kakao_" + kakaoId + "@kakao.com";
 
