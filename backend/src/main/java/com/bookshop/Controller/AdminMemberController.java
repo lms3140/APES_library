@@ -1,16 +1,21 @@
 package com.bookshop.Controller;
 
+import com.bookshop.dto.OrderHistoryDto;
+import com.bookshop.dto.PointRequestDto;
+import com.bookshop.dto.StatusRequestDto;
 import com.bookshop.entity.Member;
+import com.bookshop.entity.MemberHistory;
+import com.bookshop.dto.ReviewDto;
 import com.bookshop.service.MemberAdminService;
 import com.bookshop.service.MemberService;
-import com.bookshop.dto.StatusRequestDto;
-import com.bookshop.dto.PointRequestDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/users")
@@ -20,69 +25,48 @@ public class AdminMemberController {
     private final MemberAdminService memberAdminService;
     private final MemberService memberService;
 
-    // ===== 회원 목록 =====
     @GetMapping
-    public ResponseEntity<Page<Member>> list(
-            @RequestParam(required = false) String keyword,
-            @RequestParam(required = false) String status,
-            Pageable pageable
-    ) {
-        Page<Member> members =
-                memberAdminService.getMembers(keyword, status, pageable);
-
-        return ResponseEntity.ok(members);
+    public ResponseEntity<Page<Member>> list(@RequestParam(required = false) String keyword,
+                                             @RequestParam(required = false) String status,
+                                             Pageable pageable) {
+        return ResponseEntity.ok(memberAdminService.getMembers(keyword, status, pageable));
     }
 
-    // ===== 회원 상세 =====
     @GetMapping("/{id}")
     public ResponseEntity<Member> detail(@PathVariable Long id) {
-        Member member = memberAdminService.getMember(id);
-
-        // ⭐ null 방어 (이거 없으면 JSON 비어서 프론트 터짐)
-        if (member == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(member);
+        return ResponseEntity.ok(memberAdminService.getMember(id));
     }
 
-    // ===== 회원 상태 변경 =====
     @PatchMapping("/{id}/status")
-    public ResponseEntity<Void> changeStatus(
-            @PathVariable Long id,
-            @RequestBody StatusRequestDto req,
-            HttpServletRequest request
-    ) {
+    public ResponseEntity<Void> changeStatus(@PathVariable Long id,
+                                             @RequestBody StatusRequestDto req,
+                                             HttpServletRequest request) {
         Long adminId = memberService.getCurrentMemberId(request);
-
-        memberAdminService.changeStatus(
-                adminId,
-                id,
-                req.getStatus(),
-                req.getReason()
-        );
-
-        // ⭐ void → ResponseEntity 로 변경
+        memberAdminService.changeStatus(adminId, id, req.getStatus(), req.getReason());
         return ResponseEntity.ok().build();
     }
 
-    // ===== 회원 포인트 변경 =====
     @PatchMapping("/{id}/point")
-    public ResponseEntity<Void> changePoint(
-            @PathVariable Long id,
-            @RequestBody PointRequestDto req,
-            HttpServletRequest request
-    ) {
+    public ResponseEntity<Void> changePoint(@PathVariable Long id,
+                                            @RequestBody PointRequestDto req,
+                                            HttpServletRequest request) {
         Long adminId = memberService.getCurrentMemberId(request);
-
-        memberAdminService.changePoint(
-                adminId,
-                id,
-                req.getAmount(),
-                req.getReason()
-        );
-
-        // ⭐ void → ResponseEntity
+        memberAdminService.changePoint(adminId, id, req.getAmount(), req.getReason());
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}/orders")
+    public ResponseEntity<List<OrderHistoryDto>> getMemberOrders(@PathVariable Long id) {
+        return ResponseEntity.ok(memberAdminService.getOrders(id));
+    }
+
+    @GetMapping("/{id}/reviews")
+    public ResponseEntity<List<ReviewDto>> getReviews(@PathVariable Long id) {
+        return ResponseEntity.ok(memberAdminService.getReviews(id));
+    }
+
+    @GetMapping("/{id}/history")
+    public ResponseEntity<List<MemberHistory>> getHistory(@PathVariable Long id) {
+        return ResponseEntity.ok(memberAdminService.getHistories(id));
     }
 }

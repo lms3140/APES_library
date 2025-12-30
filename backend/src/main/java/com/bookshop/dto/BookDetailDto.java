@@ -20,4 +20,5 @@ public class BookDetailDto {
     private String imageUrl;
     private String authors;
     private String translators;
+    private String publisherName;
 }
