@@ -26,6 +26,8 @@ public class PurchaseOrder extends BaseCreatedEntity {
     private Integer totalAmount;
 
     private int earnedPoint;
+    // 사용한 포인트
+    private int usedPoint;
 
     private String tid;
 

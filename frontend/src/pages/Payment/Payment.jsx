@@ -11,6 +11,9 @@ import { StepItemNum } from "../../components/Cart/StepItemNum.jsx";
 import { AddressModal } from "../Mypage/AddressModal.jsx";
 import AddressesList from "../Payment/AddressesList.jsx";
 
+const FREE_SHIPPING_PRICE = 30000;
+const SHIPPING_FEE = 3000;
+
 export function Payment() {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
@@ -34,7 +37,7 @@ export function Payment() {
 
   // ===== 포인트 =====
   const [usePoints, setUsePoints] = useState(false);
-  const [userPoints, setUserPoints] = useState(0); // 초기값 0으로
+  const [userPoints, setUserPoints] = useState(0);
 
   // ===== 주문 상품 리스트 =====
   const [bookList, setBookList] = useState([]);
@@ -93,17 +96,23 @@ export function Payment() {
   const fetchUserPoints = async () => {
     try {
       const token = localStorage.getItem("jwtToken");
-      const response = await axios.get("http://localhost:8080/user/points", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      if (!token) return;
 
-      if (response.data?.points !== undefined) {
-        setUserPoints(response.data.points);
+      const response = await axios.get(
+        "http://localhost:8080/member/me",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (response.data?.pointBalance !== undefined) {
+        setUserPoints(response.data.pointBalance);
       }
     } catch (err) {
       console.error("포인트 불러오기 실패", err);
     }
   };
+
 
   useEffect(() => {
     fetchAddress();
@@ -133,7 +142,17 @@ export function Payment() {
 
   const totalDiscount = Math.floor(totalPrice * 0.1);
   const totalPoints = Math.floor(totalPrice * 0.1);
-  const finalPrice = totalPrice - totalDiscount - (usePoints ? userPoints : 0);
+
+  const shippingFee =
+    bookList.length > 0 && totalPrice < FREE_SHIPPING_PRICE
+      ? SHIPPING_FEE
+      : 0;
+
+  const finalPrice =
+    totalPrice -
+    totalDiscount -
+    (usePoints ? userPoints : 0) +
+    shippingFee;
 
   // ===== 결제 요청 =====
   const handlePayment = async () => {
@@ -174,7 +193,7 @@ export function Payment() {
         {
           userId: "user123",
           itemName,
-          point: usePoints ? userPoints : 0, // 실제 사용 포인트
+          point: usePoints ? userPoints : 0,
           books: bookList.map((book) => ({
             bookId: book.book_id,
             quantity: book.quantity,
@@ -205,7 +224,6 @@ export function Payment() {
 
       if (response.data?.orderId)
         localStorage.setItem("orderId", response.data.orderId);
-
       if (response.data?.tid)
         localStorage.setItem("tid", response.data.tid);
 
@@ -338,11 +356,11 @@ export function Payment() {
           <div className={paymentStyle.summary}>
             <p>
               <span>상품 금액</span>
-              <span>₩ {(totalPrice || 0).toLocaleString()}</span>
+              <span>₩ {totalPrice.toLocaleString()}</span>
             </p>
             <p>
               <span>할인 금액</span>
-              <span>-₩ {(totalDiscount || 0).toLocaleString()}</span>
+              <span>-₩ {totalDiscount.toLocaleString()}</span>
             </p>
             <p>
               <span>포인트 차감</span>
@@ -350,19 +368,47 @@ export function Payment() {
             </p>
             <p>
               <span>포인트 적립</span>
-              <span>{(totalPoints || 0).toLocaleString()}P</span>
+              <span>{totalPoints.toLocaleString()}P</span>
+            </p>
+            <p>
+              <span>
+                배송비
+                <button
+                  className={paymentStyle.helpIcon}
+                  onClick={() =>
+                    Swal.fire({
+                      title: "배송비 안내",
+                      text: "결제 금액 3만원 미만 시 배송비 3,000원이 부과됩니다.",
+                      confirmButtonText: "확인",
+                      customClass: {
+                        popup: "customPopup",
+                        title: "customTitle",
+                        htmlContainer: "customText",
+                        confirmButton: "customConfirmButton",
+                      },
+                    })
+                  }
+                >
+                  ?
+                </button>
+              </span>
+              <span>
+                {shippingFee === 0
+                  ? "무료"
+                  : `₩ ${shippingFee.toLocaleString()}`}
+              </span>
             </p>
             <p className={paymentStyle.finalPrice}>
               <span>결제 예정 금액</span>
-              <span>₩ {(finalPrice || 0).toLocaleString()}</span>
+              <span>₩ {finalPrice.toLocaleString()}</span>
             </p>
           </div>
 
           <button className={paymentStyle.orderBtn} onClick={handlePayment}>
             <img
-            src="/images/paymentPage/ico_payment_kakaopay@2x.png"
-            alt="카카오 결제"
-            className={paymentStyle.kakaoImg}
+              src="/images/paymentPage/ico_payment_kakaopay@2x.png"
+              alt="카카오 결제"
+              className={paymentStyle.kakaoImg}
             />
           </button>
         </div>
