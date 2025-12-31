@@ -62,7 +62,7 @@ export function UserMenu() {
             </div>
           </li>
           <li>
-            <Link to="#">주문배송</Link>
+            <Link to="/mypage/orders">주문배송</Link>
           </li>
           <li>
             <Link to="/store-info/001">매장안내</Link>

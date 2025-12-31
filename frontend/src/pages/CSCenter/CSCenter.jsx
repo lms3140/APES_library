@@ -33,7 +33,7 @@ export function CSCenter() {
                 <p>문의 접수</p>
               </button>
               <div className={styles.verticalDivider}></div>
-              <button onClick={() => navigate("/mypage")}>
+              <button onClick={() => navigate("/mypage/inquiries")}>
                 {docIcon}
                 <p>문의 내역</p>
               </button>
