@@ -165,7 +165,7 @@ export const Signup = () => {
         }
 
         Swal.fire({
-            title: `인증번호가 ${formData.email}로 발송되었습니다.`,
+            title: `인증 메일이 ${formData.email}로 발송되었습니다.`,
             confirmButtonText: "확인",
             customClass: {
                 popup: "customPopup",

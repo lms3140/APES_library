@@ -18,13 +18,13 @@ public class KakaoAuthServiceImpl implements KakaoAuthService {
     private final PasswordEncoder passwordEncoder;  // passwordEncoder 주입
 
     @Override
-    public MemberDto loginByKakaoId(String kakaoId) {
+    public MemberDto loginByKakaoId(String kakaoId, String nickname) {
 
         // 1️⃣ 카카오 ID로 회원 조회
         Member member = memberRepository.findByKakaoId(kakaoId)
                 .orElseGet(() -> {
                     // 2️⃣ 없으면 자동 회원가입
-                    Member newMember = Member.createKakaoMember(kakaoId); // 비밀번호는 평문으로 설정됨
+                    Member newMember = Member.createKakaoMember(kakaoId, nickname); // 비밀번호는 평문으로 설정됨
 
                     // 패스워드 암호화
                     String encryptedPassword = passwordEncoder.encode("kakao_" + kakaoId);  // 암호화

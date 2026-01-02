@@ -10,6 +10,9 @@ import {
 import Swal from "sweetalert2";
 import { isLoggedIn } from "../../components/Auth/loginCheck.js";
 
+const FREE_SHIPPING_PRICE = 30000;
+const SHIPPING_FEE = 3000;
+
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -155,8 +158,24 @@ const Cart = () => {
   );
 
   const totalDiscount = Math.floor(totalPrice * 0.1);
-  const finalPrice = totalPrice - totalDiscount;
+  const shippingFee = totalPrice < FREE_SHIPPING_PRICE && totalPrice > 0 ? SHIPPING_FEE : 0;
+  const finalPrice = totalPrice - totalDiscount + shippingFee;
   const totalPoints = Math.floor(totalPrice * 0.1);
+
+  const showShippingInfo = () => {
+    Swal.fire({
+      title: "배송비 안내",
+      text: "결제 금액 3만원 미만 시 배송비 3,000원이 부과됩니다.",
+      confirmButtonText: "확인",
+      customClass: {
+        popup: "customPopup",
+        title: "customTitle",
+        htmlContainer: "customText",
+        confirmButton: "customConfirmButton",
+      },
+    });
+  };
+
 
   /** 로그인 요구 Swal */
   const requireLoginSwal = async () => {
@@ -343,6 +362,18 @@ const Cart = () => {
             <p>
               <span>포인트 적립</span>
               <span>{totalPoints.toLocaleString()}P</span>
+            </p>
+
+            <p>
+              <span>
+                배송비
+                <button className={styles.helpIcon} onClick={showShippingInfo}>
+                  ?
+                </button>
+              </span>
+              <span>
+                {shippingFee === 0 ? "무료" : `₩ ${shippingFee.toLocaleString()}`}
+              </span>
             </p>
 
             <p className={styles.finalPrice}>

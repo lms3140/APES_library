@@ -3,5 +3,5 @@ package com.bookshop.service;
 import com.bookshop.dto.MemberDto;
 
 public interface KakaoAuthService {
-    MemberDto loginByKakaoId(String kakaoId);
+    MemberDto loginByKakaoId(String kakaoId, String nickname);
 }

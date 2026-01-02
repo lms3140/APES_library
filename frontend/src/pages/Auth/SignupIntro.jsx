@@ -44,7 +44,11 @@ export const SignupIntro = () => {
                     className={styles.btnKakao}
                     onClick={handleKakaoAuth}
                   >
-                    카카오로 회원가입
+                    <img
+                    src="/images/auth/kakao_start.png"
+                    alt="카카오 로그인"
+                    className={styles.kakaoImg}
+                  />
                 </button>
 
                 {/* 네이버 회원가입 버튼 */}
